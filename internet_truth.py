@@ -8,21 +8,35 @@ import re
 
 from u_ite.storage import init_db, save_run, generate_network_id
 
+def run_diagnostics(
+    router_ip=None,
+    internet_ip="8.8.8.8",
+    website="www.google.com",
+    url="https://www.google.com"
+):
+    """
+    Runs a single U-ITE diagnostic cycle and saves the result.
+    Designed for reuse by automation services.
+    """
+
+    ROUTER_IP = router_ip or get_default_gateway()
+    INTERNET_IP = internet_ip
+    WEBSITE_NAME = website
+    WEBSITE_URL = url
+
+    if not ROUTER_IP:
+        print("[ERROR] No active network interface detected.")
+        return
 
 
 def get_default_gateway():
-    """
-    Attempts to detect the default gateway (router IP).
-    Works on Linux/macOS/Windows.
-    """
+    """Detect default gateway (router IP)."""
     system = platform.system().lower()
 
     try:
         if system in ("linux", "darwin"):
             result = subprocess.run(
-                ["ip", "route"],
-                capture_output=True,
-                text=True
+                ["ip", "route"], capture_output=True, text=True
             )
             match = re.search(r"default via ([\d\.]+)", result.stdout)
             if match:
@@ -30,18 +44,16 @@ def get_default_gateway():
 
         elif system == "windows":
             result = subprocess.run(
-                ["ipconfig"],
-                capture_output=True,
-                text=True
+                ["ipconfig"], capture_output=True, text=True
             )
             match = re.search(r"Default Gateway[ .]*: ([\d\.]+)", result.stdout)
             if match:
                 return match.group(1)
-
     except Exception:
         pass
 
     return None
+
 
 
 # [COMMIT] feat: Parse command-line arguments
@@ -199,143 +211,151 @@ def is_valid_ip(ip):
     except socket.error:
         return False
 
-if not is_valid_ip(ROUTER_IP):
-    print(f"[ERROR] Invalid router IP detected: {ROUTER_IP}")
-    sys.exit(1)
+    if not is_valid_ip(ROUTER_IP):
+        print(f"[ERROR] Invalid router IP detected: {ROUTER_IP}")
+        sys.exit(1)
 
-router_ok = False
-internet_ok = False
-dns_ok = False
-http_ok = False
+    router_ok = False
+    internet_ok = False
+    dns_ok = False
+    http_ok = False
 
-latency = None
-loss = None
-verdict = "Unknown"
+    latency = None
+    loss = None
+    verdict = "Unknown"
 
 
-# [COMMIT] feat: Start main diagnostic flow
-print("--- U-ITE Diagnostic Check Initiated ---")
+    # [COMMIT] feat: Start main diagnostic flow
+    print("--- U-ITE Diagnostic Check Initiated ---")
 
-# Check 1: Local network (Router)
-if can_ping(ROUTER_IP):
-    router_ok = True
-    print(f"[PASS] Check 1: Router ({ROUTER_IP}) is reachable.")
-else:
-    print("[FAIL] Check 1: Router unreachable.")
-    verdict = "Local Network Failure"
-
-    print("Truth: Device is connected, but cannot reach the router.")
-    print("Action: Verify router IP, check router power, LAN cable, or Wi-Fi link.")
-
-    save_run({
-        "network_id": generate_network_id(ROUTER_IP, INTERNET_IP),
-        "router_ip": ROUTER_IP,
-        "internet_ip": INTERNET_IP,
-        "router_reachable": router_ok,
-        "internet_reachable": internet_ok,
-        "dns_ok": dns_ok,
-        "http_ok": http_ok,
-        "avg_latency": latency,
-        "packet_loss": loss,
-        "verdict": verdict
-    })
-    print("--- U-ITE Diagnostic Check Complete ---")
-    sys.exit(0)
-  # stop everything here
-
-# Check 2: Internet reachability (ISP)
-if can_ping(INTERNET_IP):
-    internet_ok = True
-    print(f"[PASS] Check 2: Public IP reachable.")
-else:
-    print("[FAIL] Check 2: Internet unreachable.")
-    verdict = "ISP Failure"
-    print("Truth: ISP is unreachable. Check your modem/router or ISP service.")
-    save_run({
-        "network_id": generate_network_id(ROUTER_IP, INTERNET_IP),
-        "router_ip": ROUTER_IP,
-        "internet_ip": INTERNET_IP,
-        "router_reachable": router_ok,
-        "internet_reachable": internet_ok,
-        "dns_ok": dns_ok,
-        "http_ok": http_ok,
-        "avg_latency": latency,
-        "packet_loss": loss,
-        "verdict": verdict
-    })
-    print("--- U-ITE Diagnostic Check Complete ---")
-    sys.exit(0)  # stop here too
-
-# Check 3: DNS resolution
-if can_resolve_dns(WEBSITE_NAME):
-    dns_ok = True
-    print("[PASS] Check 3: DNS resolution OK.")
-else:
-    print("[FAIL] Check 3: DNS failure.")
-    verdict = "DNS Failure"
-    print("Truth: DNS lookup failed. Check DNS settings or try a different DNS server.")
-    save_run({
-        "network_id": generate_network_id(ROUTER_IP, INTERNET_IP),
-        "router_ip": ROUTER_IP,
-        "internet_ip": INTERNET_IP,
-        "router_reachable": router_ok,
-        "internet_reachable": internet_ok,
-        "dns_ok": dns_ok,
-        "http_ok": http_ok,
-        "avg_latency": latency,
-        "packet_loss": loss,
-        "verdict": verdict
-    })
-    print("--- U-ITE Diagnostic Check Complete ---")
-    sys.exit(0)  # stop here
-
-# Check 4: Application layer
-if can_open_website(WEBSITE_URL):
-    http_ok = True
-    print("[PASS] Check 4: HTTP OK.")
-else:
-    print("[FAIL] Check 4: Application layer failure.")
-    verdict = "Application Failure"
-    print("Truth: Cannot reach the website. Problem may be server-side or network config.")
-    save_run({
-        "network_id": generate_network_id(ROUTER_IP, INTERNET_IP),
-        "router_ip": ROUTER_IP,
-        "internet_ip": INTERNET_IP,
-        "router_reachable": router_ok,
-        "internet_reachable": internet_ok,
-        "dns_ok": dns_ok,
-        "http_ok": http_ok,
-        "avg_latency": latency,
-        "packet_loss": loss,
-        "verdict": verdict
-    })
-    print("--- U-ITE Diagnostic Check Complete ---")
-    sys.exit(0)  # stop here
-
-# Check 5: Network quality (Latency & Packet Loss)
-latency, loss = measure_latency_and_loss(INTERNET_IP)
-if latency is not None and loss is not None:
-    print(f"[INFO] Avg latency: {latency:.2f} ms | Packet loss: {loss}%")
-    if loss >= 20 or latency >= 200:
-        verdict = "Degraded Internet"
+    # Check 1: Local network (Router)
+    if can_ping(ROUTER_IP):
+        router_ok = True
+        print(f"[PASS] Check 1: Router ({ROUTER_IP}) is reachable.")
     else:
+        print("[FAIL] Check 1: Router unreachable.")
+        verdict = "Local Network Failure"
+
+        print("Truth: Device is connected, but cannot reach the router.")
+        print("Action: Verify router IP, check router power, LAN cable, or Wi-Fi link.")
+
+        save_run({
+            "network_id": generate_network_id(ROUTER_IP, INTERNET_IP),
+            "router_ip": ROUTER_IP,
+            "internet_ip": INTERNET_IP,
+            "router_reachable": router_ok,
+            "internet_reachable": internet_ok,
+            "dns_ok": dns_ok,
+            "http_ok": http_ok,
+            "avg_latency": latency,
+            "packet_loss": loss,
+            "verdict": verdict
+        })
+        print("--- U-ITE Diagnostic Check Complete ---")
+        sys.exit(0)
+    # stop everything here
+
+    # Check 2: Internet reachability (ISP)
+    if can_ping(INTERNET_IP):
+        internet_ok = True
+        print(f"[PASS] Check 2: Public IP reachable.")
+    else:
+        print("[FAIL] Check 2: Internet unreachable.")
+        verdict = "ISP Failure"
+        print("Truth: ISP is unreachable. Check your modem/router or ISP service.")
+        save_run({
+            "network_id": generate_network_id(ROUTER_IP, INTERNET_IP),
+            "router_ip": ROUTER_IP,
+            "internet_ip": INTERNET_IP,
+            "router_reachable": router_ok,
+            "internet_reachable": internet_ok,
+            "dns_ok": dns_ok,
+            "http_ok": http_ok,
+            "avg_latency": latency,
+            "packet_loss": loss,
+            "verdict": verdict
+        })
+        print("--- U-ITE Diagnostic Check Complete ---")
+        sys.exit(0)  # stop here too
+
+    # Check 3: DNS resolution
+    if can_resolve_dns(WEBSITE_NAME):
+        dns_ok = True
+        print("[PASS] Check 3: DNS resolution OK.")
+    else:
+        print("[FAIL] Check 3: DNS failure.")
+        verdict = "DNS Failure"
+        print("Truth: DNS lookup failed. Check DNS settings or try a different DNS server.")
+        save_run({
+            "network_id": generate_network_id(ROUTER_IP, INTERNET_IP),
+            "router_ip": ROUTER_IP,
+            "internet_ip": INTERNET_IP,
+            "router_reachable": router_ok,
+            "internet_reachable": internet_ok,
+            "dns_ok": dns_ok,
+            "http_ok": http_ok,
+            "avg_latency": latency,
+            "packet_loss": loss,
+            "verdict": verdict
+        })
+        print("--- U-ITE Diagnostic Check Complete ---")
+        sys.exit(0)  # stop here
+
+    # Check 4: Application layer
+    if can_open_website(WEBSITE_URL):
+        http_ok = True
+        print("[PASS] Check 4: HTTP OK.")
+    else:
+        print("[FAIL] Check 4: Application layer failure.")
+        verdict = "Application Failure"
+        print("Truth: Cannot reach the website. Problem may be server-side or network config.")
+        save_run({
+            "network_id": generate_network_id(ROUTER_IP, INTERNET_IP),
+            "router_ip": ROUTER_IP,
+            "internet_ip": INTERNET_IP,
+            "router_reachable": router_ok,
+            "internet_reachable": internet_ok,
+            "dns_ok": dns_ok,
+            "http_ok": http_ok,
+            "avg_latency": latency,
+            "packet_loss": loss,
+            "verdict": verdict
+        })
+        print("--- U-ITE Diagnostic Check Complete ---")
+        sys.exit(0)  # stop here
+
+    # Check 5: Network quality (Latency & Packet Loss)
+    latency, loss = measure_latency_and_loss(INTERNET_IP)
+    if latency is not None and loss is not None:
+        print(f"[INFO] Avg latency: {latency:.2f} ms | Packet loss: {loss}%")
+        if loss >= 20 or latency >= 200:
+            verdict = "Degraded Internet"
+        else:
+            verdict = "Healthy"
+    else:
+        print("[WARN] Could not accurately measure network quality.")
         verdict = "Healthy"
-else:
-    print("[WARN] Could not accurately measure network quality.")
-    verdict = "Healthy"
 
-# Save final run
-save_run({
-    "network_id": generate_network_id(ROUTER_IP, INTERNET_IP),
-    "router_ip": ROUTER_IP,
-    "internet_ip": INTERNET_IP,
-    "router_reachable": router_ok,
-    "internet_reachable": internet_ok,
-    "dns_ok": dns_ok,
-    "http_ok": http_ok,
-    "avg_latency": latency,
-    "packet_loss": loss,
-    "verdict": verdict
-})
+    # Save final run
+    save_run({
+        "network_id": generate_network_id(ROUTER_IP, INTERNET_IP),
+        "router_ip": ROUTER_IP,
+        "internet_ip": INTERNET_IP,
+        "router_reachable": router_ok,
+        "internet_reachable": internet_ok,
+        "dns_ok": dns_ok,
+        "http_ok": http_ok,
+        "avg_latency": latency,
+        "packet_loss": loss,
+        "verdict": verdict
+    })
 
-print("--- U-ITE Diagnostic Check Complete ---")
+    print("--- U-ITE Diagnostic Check Complete ---")
+
+if __name__ == "__main__":
+    run_diagnostics(
+        router_ip=args.router,
+        internet_ip=args.internet_ip,
+        website=args.website,
+        url=args.url
+    )
