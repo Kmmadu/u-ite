@@ -1,0 +1,145 @@
+2026-02-02 13:23:45,238 [ERROR] Failed to initialize database: module 'storage' has no attribute 'init_db'
+2026-02-02 13:31:40,824 [INFO] Database initialized successfully.
+2026-02-02 13:31:40,824 [ERROR] Diagnostic cycle failed: run_diagnostics() got an unexpected keyword argument 'return_result'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 79, in observe
+    result = run_diagnostics(return_result=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_diagnostics() got an unexpected keyword argument 'return_result'
+2026-02-02 13:32:40,832 [ERROR] Diagnostic cycle failed: run_diagnostics() got an unexpected keyword argument 'return_result'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 79, in observe
+    result = run_diagnostics(return_result=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_diagnostics() got an unexpected keyword argument 'return_result'
+2026-02-02 13:33:40,841 [ERROR] Diagnostic cycle failed: run_diagnostics() got an unexpected keyword argument 'return_result'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 79, in observe
+    result = run_diagnostics(return_result=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_diagnostics() got an unexpected keyword argument 'return_result'
+2026-02-02 13:34:40,850 [ERROR] Diagnostic cycle failed: run_diagnostics() got an unexpected keyword argument 'return_result'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 79, in observe
+    result = run_diagnostics(return_result=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_diagnostics() got an unexpected keyword argument 'return_result'
+2026-02-02 13:35:40,860 [ERROR] Diagnostic cycle failed: run_diagnostics() got an unexpected keyword argument 'return_result'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 79, in observe
+    result = run_diagnostics(return_result=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_diagnostics() got an unexpected keyword argument 'return_result'
+2026-02-02 13:36:40,869 [ERROR] Diagnostic cycle failed: run_diagnostics() got an unexpected keyword argument 'return_result'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 79, in observe
+    result = run_diagnostics(return_result=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_diagnostics() got an unexpected keyword argument 'return_result'
+2026-02-02 13:37:40,875 [ERROR] Diagnostic cycle failed: run_diagnostics() got an unexpected keyword argument 'return_result'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 79, in observe
+    result = run_diagnostics(return_result=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_diagnostics() got an unexpected keyword argument 'return_result'
+2026-02-02 13:38:40,882 [ERROR] Diagnostic cycle failed: run_diagnostics() got an unexpected keyword argument 'return_result'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 79, in observe
+    result = run_diagnostics(return_result=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_diagnostics() got an unexpected keyword argument 'return_result'
+2026-02-02 13:39:40,888 [ERROR] Diagnostic cycle failed: run_diagnostics() got an unexpected keyword argument 'return_result'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 79, in observe
+    result = run_diagnostics(return_result=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_diagnostics() got an unexpected keyword argument 'return_result'
+2026-02-02 13:40:40,896 [ERROR] Diagnostic cycle failed: run_diagnostics() got an unexpected keyword argument 'return_result'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 79, in observe
+    result = run_diagnostics(return_result=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_diagnostics() got an unexpected keyword argument 'return_result'
+2026-02-02 13:40:52,605 [INFO] Shutdown signal received. Cleaning up...
+2026-02-02 13:40:52,898 [INFO] U-ITE Observer stopped.
+2026-02-02 13:40:55,858 [INFO] Database initialized successfully.
+2026-02-02 13:40:55,859 [ERROR] Diagnostic cycle failed: run_diagnostics() missing 4 required positional arguments: 'router_ip', 'internet_ip', 'website', and 'url'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 79, in observe
+    result = run_diagnostics(return_result=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_diagnostics() missing 4 required positional arguments: 'router_ip', 'internet_ip', 'website', and 'url'
+2026-02-02 13:47:31,562 [INFO] Database initialized successfully.
+2026-02-02 13:47:31,563 [ERROR] Diagnostic cycle failed: run_diagnostics() missing 4 required positional arguments: 'router_ip', 'internet_ip', 'website', and 'url'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 79, in observe
+    result = run_diagnostics(return_result=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_diagnostics() missing 4 required positional arguments: 'router_ip', 'internet_ip', 'website', and 'url'
+2026-02-02 13:48:31,570 [ERROR] Diagnostic cycle failed: run_diagnostics() missing 4 required positional arguments: 'router_ip', 'internet_ip', 'website', and 'url'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 79, in observe
+    result = run_diagnostics(return_result=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_diagnostics() missing 4 required positional arguments: 'router_ip', 'internet_ip', 'website', and 'url'
+2026-02-02 13:49:31,576 [ERROR] Diagnostic cycle failed: run_diagnostics() missing 4 required positional arguments: 'router_ip', 'internet_ip', 'website', and 'url'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 79, in observe
+    result = run_diagnostics(return_result=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_diagnostics() missing 4 required positional arguments: 'router_ip', 'internet_ip', 'website', and 'url'
+2026-02-02 13:50:31,583 [ERROR] Diagnostic cycle failed: run_diagnostics() missing 4 required positional arguments: 'router_ip', 'internet_ip', 'website', and 'url'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 79, in observe
+    result = run_diagnostics(return_result=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_diagnostics() missing 4 required positional arguments: 'router_ip', 'internet_ip', 'website', and 'url'
+2026-02-02 13:51:31,590 [ERROR] Diagnostic cycle failed: run_diagnostics() missing 4 required positional arguments: 'router_ip', 'internet_ip', 'website', and 'url'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 79, in observe
+    result = run_diagnostics(return_result=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_diagnostics() missing 4 required positional arguments: 'router_ip', 'internet_ip', 'website', and 'url'
+2026-02-02 13:52:31,597 [ERROR] Diagnostic cycle failed: run_diagnostics() missing 4 required positional arguments: 'router_ip', 'internet_ip', 'website', and 'url'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 79, in observe
+    result = run_diagnostics(return_result=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_diagnostics() missing 4 required positional arguments: 'router_ip', 'internet_ip', 'website', and 'url'
+2026-02-02 13:53:31,605 [ERROR] Diagnostic cycle failed: run_diagnostics() missing 4 required positional arguments: 'router_ip', 'internet_ip', 'website', and 'url'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 79, in observe
+    result = run_diagnostics(return_result=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_diagnostics() missing 4 required positional arguments: 'router_ip', 'internet_ip', 'website', and 'url'
+2026-02-02 13:54:31,611 [ERROR] Diagnostic cycle failed: run_diagnostics() missing 4 required positional arguments: 'router_ip', 'internet_ip', 'website', and 'url'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 79, in observe
+    result = run_diagnostics(return_result=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_diagnostics() missing 4 required positional arguments: 'router_ip', 'internet_ip', 'website', and 'url'
+2026-02-02 13:55:31,618 [ERROR] Diagnostic cycle failed: run_diagnostics() missing 4 required positional arguments: 'router_ip', 'internet_ip', 'website', and 'url'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 79, in observe
+    result = run_diagnostics(return_result=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_diagnostics() missing 4 required positional arguments: 'router_ip', 'internet_ip', 'website', and 'url'
+2026-02-02 13:56:31,627 [ERROR] Diagnostic cycle failed: run_diagnostics() missing 4 required positional arguments: 'router_ip', 'internet_ip', 'website', and 'url'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 79, in observe
+    result = run_diagnostics(return_result=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_diagnostics() missing 4 required positional arguments: 'router_ip', 'internet_ip', 'website', and 'url'
+2026-02-02 13:57:31,633 [ERROR] Diagnostic cycle failed: run_diagnostics() missing 4 required positional arguments: 'router_ip', 'internet_ip', 'website', and 'url'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 79, in observe
+    result = run_diagnostics(return_result=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_diagnostics() missing 4 required positional arguments: 'router_ip', 'internet_ip', 'website', and 'url'
+2026-02-02 13:58:17,641 [INFO] Shutdown signal received. Cleaning up...
+2026-02-02 13:58:17,648 [INFO] U-ITE Observer stopped.
+2026-02-02 13:58:19,625 [INFO] Database initialized successfully.
+2026-02-02 13:58:28,136 [INFO] Verdict: Healthy | Latency: 7.3ms | Loss: 0%
+2026-02-02 13:59:24,058 [INFO] Verdict: Healthy | Latency: 9.2ms | Loss: 0%
+2026-02-02 14:00:17,500 [INFO] Shutdown signal received. Cleaning up...
+2026-02-02 14:00:18,065 [INFO] U-ITE Observer stopped.

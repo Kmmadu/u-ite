@@ -7,7 +7,8 @@ import argparse
 import re
 from storage.db import init_db, save_run, generate_network_id
 
-# Initialize DB once
+# Initialize DB once (This should ideally be handled by the main entry point, e.g., observe.py)
+# For now, keeping it here for standalone execution of internet_truth.py
 init_db()
 
 
@@ -90,18 +91,18 @@ def measure_latency_and_loss(target, count=5):
     return latency, loss
 
 
-def run_diagnostics(router_ip, internet_ip, website, url):
+def run_diagnostics(router_ip=None, internet_ip="8.8.8.8", website="www.google.com", url="https://www.google.com", return_result=False):
     ROUTER_IP = router_ip or get_default_gateway()
     INTERNET_IP = internet_ip
     WEBSITE_NAME = website
     WEBSITE_URL = url
 
     if not ROUTER_IP:
-        print("[ERROR] No active network interface detected.")
+        if not return_result: print("[ERROR] No active network interface detected.")
         return None
 
-    print(f"[INFO] Using router IP: {ROUTER_IP}")
-    print("--- U-ITE Diagnostic Check Initiated ---")
+    if not return_result: print(f"[INFO] Using router IP: {ROUTER_IP}")
+    if not return_result: print("--- U-ITE Diagnostic Check Initiated ---")
 
     router_ok = False
     internet_ok = False
@@ -114,47 +115,47 @@ def run_diagnostics(router_ip, internet_ip, website, url):
     # Check 1: Router
     if can_ping(ROUTER_IP):
         router_ok = True
-        print("[PASS] Router reachable")
+        if not return_result: print("[PASS] Router reachable")
     else:
         verdict = "Local Network Failure"
-        print("[FAIL] Router unreachable")
+        if not return_result: print("[FAIL] Router unreachable")
 
     # Check 2: Internet
     if router_ok and can_ping(INTERNET_IP):
         internet_ok = True
-        print("[PASS] Internet reachable")
+        if not return_result: print("[PASS] Internet reachable")
     elif router_ok:
         verdict = "ISP Failure"
-        print("[FAIL] Internet unreachable")
+        if not return_result: print("[FAIL] Internet unreachable")
 
     # Check 3: DNS
     if internet_ok and can_resolve_dns(WEBSITE_NAME):
         dns_ok = True
-        print("[PASS] DNS OK")
+        if not return_result: print("[PASS] DNS OK")
     elif internet_ok:
         verdict = "DNS Failure"
-        print("[FAIL] DNS failure")
+        if not return_result: print("[FAIL] DNS failure")
 
     # Check 4: HTTP
     if dns_ok and can_open_website(WEBSITE_URL):
         http_ok = True
-        print("[PASS] HTTP OK")
+        if not return_result: print("[PASS] HTTP OK")
     elif dns_ok:
         verdict = "Application Failure"
-        print("[FAIL] HTTP failure")
+        if not return_result: print("[FAIL] HTTP failure")
 
     # Check 5: Quality
     if http_ok:
         latency, loss = measure_latency_and_loss(INTERNET_IP)
         if latency is not None and loss is not None:
-            print(f"[INFO] Avg latency: {latency:.2f} ms | Packet loss: {loss}%")
+            if not return_result: print(f"[INFO] Avg latency: {latency:.2f} ms | Packet loss: {loss}%")
             verdict = "Degraded Internet" if loss >= 20 or latency >= 200 else "Healthy"
         else:
             verdict = "Healthy"
 
     network_id = generate_network_id(ROUTER_IP, INTERNET_IP)
 
-    save_run({
+    diagnostic_data = {
         "network_id": network_id,
         "router_ip": ROUTER_IP,
         "internet_ip": INTERNET_IP,
@@ -165,21 +166,15 @@ def run_diagnostics(router_ip, internet_ip, website, url):
         "avg_latency": latency,
         "packet_loss": loss,
         "verdict": verdict
-    })
-
-    print(f"[RESULT] Verdict: {verdict}")
-    print("--- U-ITE Diagnostic Check Complete ---")
-
-    return {
-        "network_id": network_id,
-        "router_reachable": router_ok,
-        "internet_reachable": internet_ok,
-        "dns_ok": dns_ok,
-        "http_ok": http_ok,
-        "avg_latency": latency,
-        "packet_loss": loss,
-        "verdict": verdict
     }
+
+    # Save run only if not returning result (i.e., when run as standalone script)
+    if not return_result:
+        save_run(diagnostic_data)
+        print(f"[RESULT] Verdict: {verdict}")
+        print("--- U-ITE Diagnostic Check Complete ---")
+
+    return diagnostic_data
 
 # ---------------- CLI ---------------- #
 
@@ -195,5 +190,6 @@ if __name__ == "__main__":
         router_ip=args.router,
         internet_ip=args.internet_ip,
         website=args.website,
-        url=args.url
+        url=args.url,
+        return_result=False # When run as a standalone script, don't return result
     )

@@ -9,9 +9,12 @@ from pathlib import Path
 # Ensure these files are in the same directory or in the Python path
 try:
     from internet_truth import run_diagnostics
-    import storage
+    # Assuming storage.py has been refactored into a package structure like storage/db.py
+    # The error 'module 'storage' has no attribute 'init_db'' indicates that
+    # init_db and save_run are likely within a 'db.py' file inside a 'storage' directory.
+    from storage.db import init_db, save_run
 except ImportError as e:
-    print(f"Error: Missing core U-ITE modules. Ensure internet_truth.py and storage.py are present. ({e})")
+    print(f"Error: Missing core U-ITE modules. Ensure internet_truth.py and storage/db.py are present. ({e})")
     sys.exit(1)
 
 # -------- Configuration --------
@@ -61,7 +64,7 @@ def observe(interval=DEFAULT_INTERVAL):
 
     # [COMMIT] feat: Initialize database once at startup
     try:
-        storage.init_db()
+        init_db() # Call init_db directly as it's imported from storage.db
         logger.info("Database initialized successfully.")
     except Exception as e:
         logger.error(f"Failed to initialize database: {e}")
@@ -90,7 +93,7 @@ def observe(interval=DEFAULT_INTERVAL):
                 state.last_network_id = network_id
 
                 # [COMMIT] feat: Persist results to Layer 3 (Storage)
-                storage.save_run(result)
+                save_run(result) # Call save_run directly as it's imported from storage.db
 
                 # [COMMIT] feat: Professional CLI Output
                 status_msg = f"Verdict: {verdict}"
