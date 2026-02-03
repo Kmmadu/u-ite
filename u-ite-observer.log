@@ -1,668 +1,79 @@
-2026-02-02 14:12:14,956 [INFO] Database initialized successfully.
-2026-02-02 14:12:21,434 [INFO] Verdict: Degraded Internet | Latency: 7.8ms | Loss: 20%
-2026-02-02 14:13:19,424 [INFO] Verdict: Healthy | Latency: 9.6ms | Loss: 0%
-2026-02-02 14:14:19,435 [INFO] Verdict: Healthy | Latency: 10.4ms | Loss: 0%
-2026-02-02 14:15:19,873 [INFO] Verdict: Healthy | Latency: 8.1ms | Loss: 0%
-2026-02-02 14:16:19,631 [INFO] Verdict: Healthy | Latency: 10.2ms | Loss: 0%
-2026-02-02 14:17:19,470 [INFO] Verdict: Healthy | Latency: 11.2ms | Loss: 0%
-2026-02-02 14:18:19,988 [INFO] Verdict: Healthy | Latency: 21.1ms | Loss: 0%
-2026-02-02 14:19:20,056 [INFO] Verdict: Healthy | Latency: 25.4ms | Loss: 0%
-2026-02-02 14:20:20,636 [INFO] Verdict: Degraded Internet | Latency: 16.9ms | Loss: 20%
-2026-02-02 14:21:19,468 [INFO] Verdict: Healthy | Latency: 7.9ms | Loss: 0%
-2026-02-02 14:22:19,442 [INFO] Verdict: Healthy | Latency: 5.3ms | Loss: 0%
-2026-02-02 14:23:25,047 [INFO] Verdict: Local Network Failure
-2026-02-02 14:24:19,716 [INFO] Verdict: Healthy | Latency: 38.1ms | Loss: 0%
-2026-02-02 14:25:19,473 [INFO] Verdict: Healthy | Latency: 7.0ms | Loss: 0%
-2026-02-02 14:26:19,668 [INFO] Verdict: Degraded Internet | Latency: 236.9ms | Loss: 0%
-2026-02-02 14:27:19,706 [INFO] Verdict: Healthy | Latency: 6.8ms | Loss: 0%
-2026-02-02 14:28:19,691 [INFO] Verdict: Healthy | Latency: 5.5ms | Loss: 0%
-2026-02-02 14:29:19,526 [INFO] Verdict: Healthy | Latency: 5.8ms | Loss: 0%
-2026-02-02 14:30:19,485 [INFO] Verdict: Healthy | Latency: 6.7ms | Loss: 0%
-2026-02-02 14:31:19,542 [INFO] Verdict: Healthy | Latency: 10.0ms | Loss: 0%
-2026-02-02 14:32:19,863 [INFO] Verdict: Healthy | Latency: 12.1ms | Loss: 0%
-2026-02-02 14:33:19,727 [INFO] Verdict: Healthy | Latency: 6.0ms | Loss: 0%
-2026-02-02 14:34:19,959 [INFO] Verdict: Healthy | Latency: 27.2ms | Loss: 0%
-2026-02-02 14:35:19,742 [INFO] Verdict: Healthy | Latency: 7.8ms | Loss: 0%
-2026-02-02 14:36:34,565 [INFO] Verdict: Healthy | Latency: 5.2ms | Loss: 0%
-2026-02-02 14:37:20,379 [INFO] Verdict: Healthy | Latency: 40.3ms | Loss: 0%
-2026-02-02 14:38:19,815 [INFO] Verdict: Healthy | Latency: 45.6ms | Loss: 0%
-2026-02-02 14:39:20,034 [INFO] Verdict: Healthy | Latency: 17.2ms | Loss: 0%
-2026-02-02 14:40:19,898 [INFO] Verdict: Healthy | Latency: 10.4ms | Loss: 0%
-2026-02-02 14:41:19,808 [INFO] Verdict: Healthy | Latency: 10.7ms | Loss: 0%
-2026-02-02 14:42:19,665 [INFO] Verdict: Healthy | Latency: 5.6ms | Loss: 0%
-2026-02-02 14:43:19,699 [INFO] Verdict: Healthy | Latency: 11.6ms | Loss: 0%
-2026-02-02 14:44:19,672 [INFO] Verdict: Healthy | Latency: 5.8ms | Loss: 0%
-2026-02-02 14:45:20,564 [INFO] Verdict: Healthy | Latency: 144.9ms | Loss: 0%
-2026-02-02 14:46:20,240 [INFO] Verdict: Healthy | Latency: 14.9ms | Loss: 0%
-2026-02-02 14:47:19,876 [INFO] Verdict: Healthy | Latency: 7.1ms | Loss: 0%
-2026-02-02 14:48:19,945 [INFO] Verdict: Healthy | Latency: 20.0ms | Loss: 0%
-2026-02-02 14:49:20,104 [INFO] Verdict: Healthy | Latency: 5.4ms | Loss: 0%
-2026-02-02 14:50:22,155 [INFO] Verdict: Healthy | Latency: 37.5ms | Loss: 0%
-2026-02-02 14:51:19,848 [INFO] Verdict: Healthy | Latency: 7.2ms | Loss: 0%
-2026-02-02 14:52:19,935 [INFO] Verdict: Healthy | Latency: 44.9ms | Loss: 0%
-2026-02-02 18:18:24,244 [INFO] Database initialized successfully.
-2026-02-02 18:18:32,031 [INFO] Verdict: Healthy | Latency: 79.7ms | Loss: 0%
-2026-02-02 18:19:29,031 [INFO] Verdict: Healthy | Latency: 23.1ms | Loss: 0%
-2026-02-02 18:20:29,059 [INFO] Verdict: Healthy | Latency: 44.3ms | Loss: 0%
-2026-02-02 18:21:29,157 [INFO] Verdict: Healthy | Latency: 33.4ms | Loss: 0%
-2026-02-02 18:22:29,160 [INFO] Verdict: Healthy | Latency: 25.5ms | Loss: 0%
-2026-02-02 18:23:29,690 [INFO] Verdict: Healthy | Latency: 53.8ms | Loss: 0%
-2026-02-02 18:23:48,132 [INFO] Shutdown signal received. Cleaning up...
-2026-02-02 18:23:48,694 [INFO] U-ITE Observer stopped.
-2026-02-02 19:46:33,104 [INFO] Database initialized successfully.
-2026-02-02 19:46:38,728 [INFO] Verdict: Healthy | Latency: 23.8ms | Loss: 0%
-2026-02-02 19:47:38,545 [INFO] Verdict: Healthy | Latency: 41.8ms | Loss: 0%
-2026-02-02 19:48:38,841 [INFO] Verdict: Healthy | Latency: 50.2ms | Loss: 0%
-2026-02-02 19:49:39,009 [INFO] Verdict: Degraded Internet | Latency: 234.0ms | Loss: 0%
-2026-02-02 19:50:38,788 [INFO] Verdict: Healthy | Latency: 28.0ms | Loss: 0%
-2026-02-02 19:51:40,617 [INFO] Verdict: Degraded Internet | Latency: 543.8ms | Loss: 40%
-2026-02-02 19:52:39,303 [INFO] Verdict: Healthy | Latency: 25.3ms | Loss: 0%
-2026-02-02 19:53:38,499 [INFO] Verdict: Healthy | Latency: 27.1ms | Loss: 0%
-2026-02-02 19:54:38,880 [INFO] Verdict: Healthy | Latency: 48.5ms | Loss: 0%
-2026-02-02 19:55:38,712 [INFO] Verdict: Healthy | Latency: 26.1ms | Loss: 0%
-2026-02-02 19:56:38,943 [INFO] Verdict: Healthy | Latency: 37.7ms | Loss: 0%
-2026-02-02 19:57:38,939 [INFO] Verdict: Healthy | Latency: 37.7ms | Loss: 0%
-2026-02-02 19:58:38,878 [INFO] Verdict: Healthy | Latency: 40.6ms | Loss: 0%
-2026-02-02 19:59:38,831 [INFO] Verdict: Healthy | Latency: 47.2ms | Loss: 0%
-2026-02-02 20:00:38,801 [INFO] Verdict: Degraded Internet | Latency: 245.3ms | Loss: 0%
-2026-02-02 20:01:38,740 [INFO] Verdict: Healthy | Latency: 25.4ms | Loss: 0%
-2026-02-02 20:02:38,750 [INFO] Verdict: Healthy | Latency: 26.9ms | Loss: 0%
-2026-02-02 20:03:38,848 [INFO] Verdict: Healthy | Latency: 30.3ms | Loss: 0%
-2026-02-02 20:04:39,668 [INFO] Verdict: Healthy | Latency: 23.5ms | Loss: 0%
-2026-02-02 20:05:45,126 [INFO] Verdict: Healthy | Latency: 65.2ms | Loss: 0%
-2026-02-02 20:06:38,880 [INFO] Verdict: Healthy | Latency: 27.8ms | Loss: 0%
-2026-02-02 20:07:38,772 [INFO] Verdict: Healthy | Latency: 28.9ms | Loss: 0%
-2026-02-02 20:08:39,779 [INFO] Verdict: Healthy | Latency: 25.4ms | Loss: 0%
-2026-02-02 20:09:39,626 [INFO] Verdict: Healthy | Latency: 34.5ms | Loss: 0%
-2026-02-02 20:10:39,019 [INFO] Verdict: Healthy | Latency: 71.5ms | Loss: 0%
-2026-02-02 20:11:38,918 [INFO] Verdict: Healthy | Latency: 23.5ms | Loss: 0%
-2026-02-02 20:12:38,820 [INFO] Verdict: Healthy | Latency: 23.9ms | Loss: 0%
-2026-02-02 20:13:38,728 [INFO] Verdict: Healthy | Latency: 35.3ms | Loss: 0%
-2026-02-02 20:14:38,852 [INFO] Verdict: Healthy | Latency: 24.9ms | Loss: 0%
-2026-02-02 20:15:39,394 [INFO] Verdict: Healthy | Latency: 59.2ms | Loss: 0%
-2026-02-02 20:16:39,053 [INFO] Verdict: Healthy | Latency: 33.6ms | Loss: 0%
-2026-02-02 20:17:43,666 [INFO] Verdict: Healthy | Latency: 23.6ms | Loss: 0%
-2026-02-02 20:18:39,028 [INFO] Verdict: Healthy | Latency: 35.3ms | Loss: 0%
-2026-02-02 20:19:38,962 [INFO] Verdict: Healthy | Latency: 34.8ms | Loss: 0%
-2026-02-02 20:20:40,353 [INFO] Verdict: Healthy | Latency: 55.0ms | Loss: 0%
-2026-02-02 20:21:38,901 [INFO] Verdict: Healthy | Latency: 24.2ms | Loss: 0%
-2026-02-02 20:22:38,961 [INFO] Verdict: Healthy | Latency: 54.0ms | Loss: 0%
-2026-02-02 20:23:39,749 [INFO] Verdict: Healthy | Latency: 52.9ms | Loss: 0%
-2026-02-02 20:24:38,999 [INFO] Verdict: Healthy | Latency: 23.2ms | Loss: 0%
-2026-02-02 20:25:39,097 [INFO] Verdict: Degraded Internet | Latency: 259.5ms | Loss: 0%
-2026-02-02 20:26:38,878 [INFO] Verdict: Healthy | Latency: 34.0ms | Loss: 0%
-2026-02-02 20:27:39,042 [INFO] Verdict: Healthy | Latency: 20.2ms | Loss: 0%
-2026-02-02 20:28:39,014 [INFO] Verdict: Healthy | Latency: 27.2ms | Loss: 0%
-2026-02-02 20:29:38,956 [INFO] Verdict: Healthy | Latency: 28.8ms | Loss: 0%
-2026-02-02 20:30:39,072 [INFO] Verdict: Healthy | Latency: 25.9ms | Loss: 0%
-2026-02-02 20:31:39,075 [INFO] Verdict: Healthy | Latency: 24.7ms | Loss: 0%
-2026-02-02 20:32:39,084 [INFO] Verdict: Healthy | Latency: 27.5ms | Loss: 0%
-2026-02-02 20:33:39,202 [INFO] Verdict: Healthy | Latency: 33.1ms | Loss: 0%
-2026-02-02 20:34:39,307 [INFO] Verdict: Healthy | Latency: 28.5ms | Loss: 0%
-2026-02-02 20:35:39,113 [INFO] Verdict: Healthy | Latency: 26.0ms | Loss: 0%
-2026-02-02 20:36:39,058 [INFO] Verdict: Healthy | Latency: 27.7ms | Loss: 0%
-2026-02-02 20:37:40,301 [INFO] Verdict: Degraded Internet | Latency: 39.4ms | Loss: 20%
-2026-02-02 20:38:38,874 [WARNING] NETWORK CHANGE DETECTED
-2026-02-02 20:38:38,874 [INFO] Old Network ID: 79b0387ba9e74e6f
-2026-02-02 20:38:38,874 [INFO] New Network ID: 524fde7ca1390a79
-2026-02-02 20:38:48,896 [INFO] Verdict: ISP Failure
-2026-02-02 20:39:48,855 [INFO] Verdict: ISP Failure
-2026-02-02 20:40:34,286 [WARNING] NETWORK CHANGE DETECTED
-2026-02-02 20:40:34,286 [INFO] Old Network ID: 524fde7ca1390a79
-2026-02-02 20:40:34,287 [INFO] New Network ID: 79b0387ba9e74e6f
-2026-02-02 20:40:39,180 [INFO] Verdict: Healthy | Latency: 34.2ms | Loss: 0%
-2026-02-02 20:41:39,050 [INFO] Verdict: Healthy | Latency: 23.3ms | Loss: 0%
-2026-02-02 20:42:39,168 [INFO] Verdict: Healthy | Latency: 21.0ms | Loss: 0%
-2026-02-02 20:43:39,270 [INFO] Verdict: Healthy | Latency: 26.5ms | Loss: 0%
-2026-02-02 20:44:39,295 [INFO] Verdict: Healthy | Latency: 30.8ms | Loss: 0%
-2026-02-02 20:45:39,104 [INFO] Verdict: Healthy | Latency: 37.2ms | Loss: 0%
-2026-02-02 20:46:40,333 [INFO] Verdict: Degraded Internet | Latency: 22.1ms | Loss: 20%
-2026-02-02 20:47:39,226 [INFO] Verdict: Healthy | Latency: 27.1ms | Loss: 0%
-2026-02-02 20:48:39,459 [INFO] Verdict: Healthy | Latency: 22.5ms | Loss: 0%
-2026-02-02 20:49:45,576 [INFO] Verdict: Degraded Internet | Latency: 1774.8ms | Loss: 0%
-2026-02-02 20:50:39,072 [INFO] Verdict: Healthy | Latency: 33.7ms | Loss: 0%
-2026-02-02 20:51:39,317 [INFO] Verdict: Healthy | Latency: 48.7ms | Loss: 0%
-2026-02-02 20:52:41,265 [INFO] Verdict: Degraded Internet | Latency: 341.5ms | Loss: 20%
-2026-02-02 20:53:40,395 [INFO] Verdict: Degraded Internet | Latency: 242.4ms | Loss: 40%
-2026-02-02 20:54:39,298 [INFO] Verdict: Degraded Internet | Latency: 240.5ms | Loss: 0%
-2026-02-02 20:55:45,186 [INFO] Verdict: Degraded Internet | Latency: 237.2ms | Loss: 0%
-2026-02-02 20:56:39,577 [INFO] Verdict: Healthy | Latency: 51.9ms | Loss: 0%
-2026-02-02 20:57:40,237 [INFO] Verdict: Degraded Internet | Latency: 32.3ms | Loss: 20%
-2026-02-02 20:58:39,117 [INFO] Verdict: Healthy | Latency: 23.4ms | Loss: 0%
-2026-02-02 20:59:39,127 [INFO] Verdict: Healthy | Latency: 22.5ms | Loss: 0%
-2026-02-02 21:00:39,368 [INFO] Verdict: Healthy | Latency: 31.1ms | Loss: 0%
-2026-02-02 21:01:39,379 [INFO] Verdict: Healthy | Latency: 28.8ms | Loss: 0%
-2026-02-02 21:02:39,335 [INFO] Verdict: Healthy | Latency: 24.3ms | Loss: 0%
-2026-02-02 21:03:39,340 [INFO] Verdict: Healthy | Latency: 26.0ms | Loss: 0%
-2026-02-02 21:04:39,324 [INFO] Verdict: Healthy | Latency: 23.3ms | Loss: 0%
-2026-02-02 21:05:39,464 [INFO] Verdict: Healthy | Latency: 71.1ms | Loss: 0%
-2026-02-02 21:06:39,332 [INFO] Verdict: Healthy | Latency: 37.1ms | Loss: 0%
-2026-02-02 21:07:39,492 [INFO] Verdict: Healthy | Latency: 22.6ms | Loss: 0%
-2026-02-02 21:08:39,325 [INFO] Verdict: Healthy | Latency: 44.9ms | Loss: 0%
-2026-02-02 21:09:42,109 [INFO] Verdict: Healthy | Latency: 23.7ms | Loss: 0%
-2026-02-02 21:10:39,435 [INFO] Verdict: Healthy | Latency: 25.8ms | Loss: 0%
-2026-02-02 21:11:40,075 [INFO] Verdict: Healthy | Latency: 43.4ms | Loss: 0%
-2026-02-02 21:12:39,431 [INFO] Verdict: Healthy | Latency: 24.6ms | Loss: 0%
-2026-02-02 21:13:39,639 [INFO] Verdict: Healthy | Latency: 23.7ms | Loss: 0%
-2026-02-02 21:14:40,488 [INFO] Verdict: Healthy | Latency: 26.0ms | Loss: 0%
-2026-02-02 21:15:39,439 [INFO] Verdict: Healthy | Latency: 22.4ms | Loss: 0%
-2026-02-02 21:16:39,344 [INFO] Verdict: Healthy | Latency: 25.6ms | Loss: 0%
-2026-02-02 21:17:45,926 [INFO] Verdict: Degraded Internet | Latency: 1250.5ms | Loss: 0%
-2026-02-02 21:18:40,018 [INFO] Verdict: Healthy | Latency: 113.0ms | Loss: 0%
-2026-02-02 21:19:39,619 [INFO] Verdict: Healthy | Latency: 49.9ms | Loss: 0%
-2026-02-02 21:20:43,845 [INFO] Verdict: Healthy | Latency: 105.6ms | Loss: 0%
-2026-02-02 21:21:39,472 [INFO] Verdict: Healthy | Latency: 22.1ms | Loss: 0%
-2026-02-02 21:22:39,689 [INFO] Verdict: Healthy | Latency: 40.3ms | Loss: 0%
-2026-02-02 21:23:39,488 [INFO] Verdict: Healthy | Latency: 22.6ms | Loss: 0%
-2026-02-02 21:24:39,497 [INFO] Verdict: Healthy | Latency: 26.6ms | Loss: 0%
-2026-02-02 21:25:39,599 [INFO] Verdict: Healthy | Latency: 33.3ms | Loss: 0%
-2026-02-02 21:26:39,396 [INFO] Verdict: Healthy | Latency: 41.2ms | Loss: 0%
-2026-02-02 21:27:39,517 [INFO] Verdict: Healthy | Latency: 27.1ms | Loss: 0%
-2026-02-02 21:28:39,650 [INFO] Verdict: Healthy | Latency: 33.4ms | Loss: 0%
-2026-02-02 21:29:39,445 [INFO] Verdict: Healthy | Latency: 25.9ms | Loss: 0%
-2026-02-02 21:30:39,875 [INFO] Verdict: Healthy | Latency: 48.2ms | Loss: 0%
-2026-02-02 21:31:39,683 [INFO] Verdict: Healthy | Latency: 51.5ms | Loss: 0%
-2026-02-02 21:32:39,907 [INFO] Verdict: Healthy | Latency: 60.5ms | Loss: 0%
-2026-02-02 21:33:39,888 [INFO] Verdict: Healthy | Latency: 50.5ms | Loss: 0%
-2026-02-02 21:34:42,233 [INFO] Verdict: Healthy | Latency: 91.2ms | Loss: 0%
-2026-02-02 21:35:39,680 [INFO] Verdict: Healthy | Latency: 26.1ms | Loss: 0%
-2026-02-02 21:36:39,788 [INFO] Verdict: Healthy | Latency: 45.4ms | Loss: 0%
-2026-02-02 21:37:39,798 [INFO] Verdict: Healthy | Latency: 27.3ms | Loss: 0%
-2026-02-02 21:38:40,669 [INFO] Verdict: Degraded Internet | Latency: 55.7ms | Loss: 20%
-2026-02-02 21:39:39,600 [INFO] Verdict: Healthy | Latency: 24.9ms | Loss: 0%
-2026-02-02 21:40:39,880 [INFO] Verdict: Healthy | Latency: 49.0ms | Loss: 0%
-2026-02-02 21:41:39,568 [INFO] Verdict: Healthy | Latency: 22.6ms | Loss: 0%
-2026-02-02 21:42:39,619 [INFO] Verdict: Healthy | Latency: 21.3ms | Loss: 0%
-2026-02-02 21:43:39,733 [INFO] Verdict: Healthy | Latency: 26.9ms | Loss: 0%
-2026-02-02 21:44:39,847 [INFO] Verdict: Healthy | Latency: 37.5ms | Loss: 0%
-2026-02-02 21:45:39,782 [INFO] Verdict: Healthy | Latency: 24.2ms | Loss: 0%
-2026-02-02 21:46:40,366 [INFO] Verdict: Healthy | Latency: 38.8ms | Loss: 0%
-2026-02-02 21:47:40,001 [INFO] Verdict: Healthy | Latency: 35.1ms | Loss: 0%
-2026-02-02 21:48:39,794 [INFO] Verdict: Healthy | Latency: 30.7ms | Loss: 0%
-2026-02-02 21:49:39,782 [INFO] Verdict: Healthy | Latency: 28.6ms | Loss: 0%
-2026-02-02 21:50:40,177 [INFO] Verdict: Healthy | Latency: 22.1ms | Loss: 0%
-2026-02-02 21:51:40,121 [INFO] Verdict: Healthy | Latency: 31.7ms | Loss: 0%
-2026-02-02 21:52:46,323 [INFO] Verdict: Degraded Internet | Latency: 485.7ms | Loss: 0%
-2026-02-02 21:53:40,201 [INFO] Verdict: Healthy | Latency: 55.8ms | Loss: 0%
-2026-02-02 21:54:41,359 [INFO] Verdict: Healthy | Latency: 117.7ms | Loss: 0%
-2026-02-02 21:55:40,153 [INFO] Verdict: Healthy | Latency: 42.2ms | Loss: 0%
-2026-02-02 21:56:40,044 [INFO] Verdict: Healthy | Latency: 45.0ms | Loss: 0%
-2026-02-02 21:57:39,939 [INFO] Verdict: Healthy | Latency: 27.0ms | Loss: 0%
-2026-02-02 21:58:39,949 [INFO] Verdict: Healthy | Latency: 22.6ms | Loss: 0%
-2026-02-02 21:59:40,052 [INFO] Verdict: Healthy | Latency: 26.7ms | Loss: 0%
-2026-02-02 22:00:45,388 [INFO] Verdict: ISP Failure
-2026-02-02 22:01:40,220 [INFO] Verdict: Healthy | Latency: 49.1ms | Loss: 0%
-2026-02-02 22:02:39,885 [INFO] Verdict: Healthy | Latency: 27.7ms | Loss: 0%
-2026-02-02 22:03:39,945 [INFO] Verdict: Healthy | Latency: 29.2ms | Loss: 0%
-2026-02-02 22:04:40,094 [INFO] Verdict: Healthy | Latency: 22.4ms | Loss: 0%
-2026-02-02 22:05:40,009 [INFO] Verdict: Healthy | Latency: 27.6ms | Loss: 0%
-2026-02-02 22:06:40,003 [INFO] Verdict: Healthy | Latency: 20.8ms | Loss: 0%
-2026-02-02 22:07:39,909 [INFO] Verdict: Healthy | Latency: 26.8ms | Loss: 0%
-2026-02-02 22:08:39,916 [INFO] Verdict: Healthy | Latency: 21.7ms | Loss: 0%
-2026-02-02 22:09:40,106 [INFO] Verdict: Healthy | Latency: 40.5ms | Loss: 0%
-2026-02-02 22:10:40,128 [INFO] Verdict: Healthy | Latency: 24.6ms | Loss: 0%
-2026-02-02 22:11:40,131 [INFO] Verdict: Healthy | Latency: 25.3ms | Loss: 0%
-2026-02-02 22:12:39,917 [INFO] Verdict: Healthy | Latency: 23.3ms | Loss: 0%
-2026-02-02 22:13:40,226 [INFO] Verdict: Healthy | Latency: 36.5ms | Loss: 0%
-2026-02-02 22:14:40,025 [INFO] Verdict: Healthy | Latency: 25.4ms | Loss: 0%
-2026-02-02 22:15:40,120 [INFO] Verdict: Healthy | Latency: 21.5ms | Loss: 0%
-2026-02-02 22:16:39,864 [INFO] Verdict: Healthy | Latency: 21.3ms | Loss: 0%
-2026-02-02 22:17:40,129 [INFO] Verdict: Healthy | Latency: 30.0ms | Loss: 0%
-2026-02-02 22:18:40,121 [INFO] Verdict: Healthy | Latency: 21.9ms | Loss: 0%
-2026-02-02 22:19:40,043 [INFO] Verdict: Healthy | Latency: 26.2ms | Loss: 0%
-2026-02-02 22:20:40,130 [INFO] Verdict: Healthy | Latency: 25.5ms | Loss: 0%
-2026-02-02 22:21:40,346 [INFO] Verdict: Healthy | Latency: 25.6ms | Loss: 0%
-2026-02-02 22:22:40,132 [INFO] Verdict: Healthy | Latency: 34.1ms | Loss: 0%
-2026-02-02 22:23:40,248 [INFO] Verdict: Healthy | Latency: 22.7ms | Loss: 0%
-2026-02-02 22:24:40,351 [INFO] Verdict: Healthy | Latency: 34.9ms | Loss: 0%
-2026-02-02 22:25:40,157 [INFO] Verdict: Healthy | Latency: 32.3ms | Loss: 0%
-2026-02-02 22:26:40,153 [INFO] Verdict: Healthy | Latency: 25.1ms | Loss: 0%
-2026-02-02 22:27:40,171 [INFO] Verdict: Healthy | Latency: 22.7ms | Loss: 0%
-2026-02-02 22:28:40,133 [INFO] Verdict: Healthy | Latency: 25.7ms | Loss: 0%
-2026-02-02 22:29:40,054 [INFO] Verdict: Healthy | Latency: 36.8ms | Loss: 0%
-2026-02-02 22:30:40,216 [INFO] Verdict: Healthy | Latency: 34.3ms | Loss: 0%
-2026-02-02 22:31:40,337 [INFO] Verdict: Healthy | Latency: 33.8ms | Loss: 0%
-2026-02-02 22:32:40,300 [INFO] Verdict: Healthy | Latency: 46.4ms | Loss: 0%
-2026-02-02 22:33:40,266 [INFO] Verdict: Healthy | Latency: 37.0ms | Loss: 0%
-2026-02-02 22:34:40,648 [INFO] Verdict: Healthy | Latency: 49.4ms | Loss: 0%
-2026-02-02 22:35:45,193 [INFO] Verdict: Healthy | Latency: 19.0ms | Loss: 0%
-2026-02-02 22:36:40,313 [INFO] Verdict: Healthy | Latency: 24.9ms | Loss: 0%
-2026-02-02 22:37:40,421 [INFO] Verdict: Healthy | Latency: 31.4ms | Loss: 0%
-2026-02-02 22:38:40,343 [INFO] Verdict: Healthy | Latency: 37.6ms | Loss: 0%
-2026-02-02 22:39:40,325 [INFO] Verdict: Healthy | Latency: 22.6ms | Loss: 0%
-2026-02-02 22:40:40,330 [INFO] Verdict: Healthy | Latency: 23.2ms | Loss: 0%
-2026-02-02 22:40:42,112 [INFO] Shutdown signal received. Stopping observer...
-2026-02-02 22:40:42,330 [INFO] U-ITE Observer stopped.
-2026-02-02 22:40:52,840 [INFO] Database initialized successfully.
-2026-02-02 22:40:58,266 [INFO] Verdict: Healthy | Latency: 29.4ms | Loss: 0%
-2026-02-02 22:41:58,269 [INFO] Verdict: Healthy | Latency: 23.9ms | Loss: 0%
-2026-02-02 22:42:58,697 [INFO] Verdict: Healthy | Latency: 37.9ms | Loss: 0%
-2026-02-02 22:43:58,377 [INFO] Verdict: Healthy | Latency: 24.9ms | Loss: 0%
-2026-02-02 22:44:58,386 [INFO] Verdict: Healthy | Latency: 27.5ms | Loss: 0%
-2026-02-02 22:45:58,394 [INFO] Verdict: Healthy | Latency: 21.6ms | Loss: 0%
-2026-02-02 22:46:58,488 [INFO] Verdict: Healthy | Latency: 35.0ms | Loss: 0%
-2026-02-02 22:47:58,326 [INFO] Verdict: Healthy | Latency: 51.2ms | Loss: 0%
-2026-02-02 22:48:58,552 [INFO] Verdict: Healthy | Latency: 120.7ms | Loss: 0%
-2026-02-02 22:49:58,226 [INFO] Verdict: Healthy | Latency: 23.3ms | Loss: 0%
-2026-02-03 09:59:40,334 [INFO] Database initialized successfully.
-2026-02-03 09:59:46,317 [INFO] Verdict: Healthy | Latency: 105.7ms | Loss: 0%
-2026-02-03 10:00:45,490 [WARNING] NETWORK CHANGE DETECTED
-2026-02-03 10:00:45,491 [INFO] Old Network ID: ee18f21fd903fb51
-2026-02-03 10:00:45,491 [INFO] New Network ID: de692c32586911eb
-2026-02-03 10:00:51,673 [INFO] Verdict: Healthy | Latency: 195.9ms | Loss: 0%
-2026-02-03 10:01:40,992 [WARNING] NETWORK CHANGE DETECTED
-2026-02-03 10:01:40,992 [INFO] Old Network ID: de692c32586911eb
-2026-02-03 10:01:40,992 [INFO] New Network ID: ee18f21fd903fb51
-2026-02-03 10:01:45,740 [INFO] Verdict: Healthy | Latency: 41.2ms | Loss: 0%
-2026-02-03 10:02:55,681 [INFO] Verdict: Healthy | Latency: 21.1ms | Loss: 0%
-2026-02-03 10:03:45,336 [INFO] Verdict: Healthy | Latency: 16.8ms | Loss: 0%
-2026-02-03 10:04:45,343 [INFO] Verdict: Healthy | Latency: 8.2ms | Loss: 0%
-2026-02-03 10:05:40,828 [WARNING] NETWORK CHANGE DETECTED
-2026-02-03 10:05:40,828 [INFO] Old Network ID: ee18f21fd903fb51
-2026-02-03 10:05:40,829 [INFO] New Network ID: 198daee87bc14fd4
-2026-02-03 10:05:45,303 [INFO] Verdict: Healthy | Latency: 9.1ms | Loss: 0%
-2026-02-03 10:06:40,940 [WARNING] NETWORK CHANGE DETECTED
-2026-02-03 10:06:40,940 [INFO] Old Network ID: 198daee87bc14fd4
-2026-02-03 10:06:40,941 [INFO] New Network ID: ee18f21fd903fb51
-2026-02-03 10:06:45,587 [INFO] Verdict: Healthy | Latency: 28.4ms | Loss: 0%
-2026-02-03 10:07:41,215 [WARNING] NETWORK CHANGE DETECTED
-2026-02-03 10:07:41,222 [INFO] Old Network ID: ee18f21fd903fb51
-2026-02-03 10:07:41,222 [INFO] New Network ID: 198daee87bc14fd4
-2026-02-03 10:07:56,109 [INFO] Verdict: Healthy | Latency: 34.8ms | Loss: 0%
-2026-02-03 10:08:45,807 [INFO] Verdict: Healthy | Latency: 20.6ms | Loss: 0%
-2026-02-03 10:09:42,840 [WARNING] NETWORK CHANGE DETECTED
-2026-02-03 10:09:42,847 [INFO] Old Network ID: 198daee87bc14fd4
-2026-02-03 10:09:42,848 [INFO] New Network ID: ee18f21fd903fb51
-2026-02-03 10:09:48,303 [INFO] Verdict: Healthy | Latency: 90.4ms | Loss: 0%
-2026-02-03 10:10:45,620 [INFO] Verdict: Healthy | Latency: 19.7ms | Loss: 0%
-2026-02-03 10:11:45,496 [INFO] Verdict: Healthy | Latency: 23.6ms | Loss: 0%
-2026-02-03 10:12:45,604 [INFO] Verdict: Healthy | Latency: 16.8ms | Loss: 0%
-2026-02-03 10:13:46,756 [INFO] Verdict: Healthy | Latency: 64.0ms | Loss: 0%
-2026-02-03 10:14:46,683 [INFO] Verdict: Degraded Internet | Latency: 41.3ms | Loss: 20%
-2026-02-03 10:15:51,076 [INFO] Verdict: Healthy | Latency: 16.4ms | Loss: 0%
-2026-02-03 10:16:51,418 [INFO] Verdict: Degraded Internet | Latency: 15.7ms | Loss: 20%
-2026-02-03 10:17:41,204 [WARNING] NETWORK CHANGE DETECTED
-2026-02-03 10:17:41,204 [INFO] Old Network ID: ee18f21fd903fb51
-2026-02-03 10:17:41,205 [INFO] New Network ID: 198daee87bc14fd4
-2026-02-03 10:17:45,768 [INFO] Verdict: Healthy | Latency: 13.3ms | Loss: 0%
-2026-02-03 10:18:42,724 [WARNING] NETWORK CHANGE DETECTED
-2026-02-03 10:18:42,732 [INFO] Old Network ID: 198daee87bc14fd4
-2026-02-03 10:18:42,732 [INFO] New Network ID: ee18f21fd903fb51
-2026-02-03 10:18:47,279 [INFO] Verdict: Healthy | Latency: 16.7ms | Loss: 0%
-2026-02-03 10:19:50,668 [WARNING] NETWORK CHANGE DETECTED
-2026-02-03 10:19:50,668 [INFO] Old Network ID: ee18f21fd903fb51
-2026-02-03 10:19:50,668 [INFO] New Network ID: de692c32586911eb
-2026-02-03 10:19:55,129 [INFO] Verdict: Healthy | Latency: 16.6ms | Loss: 0%
-2026-02-03 10:20:50,078 [INFO] Verdict: Healthy | Latency: 7.3ms | Loss: 0%
-2026-02-03 10:21:40,971 [WARNING] NETWORK CHANGE DETECTED
-2026-02-03 10:21:40,972 [INFO] Old Network ID: de692c32586911eb
-2026-02-03 10:21:40,972 [INFO] New Network ID: 198daee87bc14fd4
-2026-02-03 10:21:45,744 [INFO] Verdict: Healthy | Latency: 15.5ms | Loss: 0%
-2026-02-03 10:22:46,303 [INFO] Verdict: Healthy | Latency: 88.3ms | Loss: 0%
-2026-02-03 10:23:42,555 [WARNING] NETWORK CHANGE DETECTED
-2026-02-03 10:23:42,555 [INFO] Old Network ID: 198daee87bc14fd4
-2026-02-03 10:23:42,556 [INFO] New Network ID: ee18f21fd903fb51
-2026-02-03 10:23:47,090 [INFO] Verdict: Healthy | Latency: 17.0ms | Loss: 0%
-2026-02-03 10:24:40,908 [WARNING] NETWORK CHANGE DETECTED
-2026-02-03 10:24:40,908 [INFO] Old Network ID: ee18f21fd903fb51
-2026-02-03 10:24:40,908 [INFO] New Network ID: 198daee87bc14fd4
-2026-02-03 10:24:45,358 [INFO] Verdict: Healthy | Latency: 10.9ms | Loss: 0%
-2026-02-03 10:25:45,174 [WARNING] NETWORK CHANGE DETECTED
-2026-02-03 10:25:45,175 [INFO] Old Network ID: 198daee87bc14fd4
-2026-02-03 10:25:45,175 [INFO] New Network ID: ee18f21fd903fb51
-2026-02-03 10:25:49,788 [INFO] Verdict: Healthy | Latency: 15.9ms | Loss: 0%
-2026-02-03 10:26:46,224 [INFO] Verdict: Healthy | Latency: 16.4ms | Loss: 0%
-2026-02-03 10:27:55,484 [INFO] Verdict: Healthy | Latency: 28.7ms | Loss: 0%
-2026-02-03 10:28:46,684 [WARNING] NETWORK CHANGE DETECTED
-2026-02-03 10:28:46,684 [INFO] Old Network ID: ee18f21fd903fb51
-2026-02-03 10:28:46,684 [INFO] New Network ID: de692c32586911eb
-2026-02-03 10:28:51,881 [INFO] Verdict: Healthy | Latency: 35.4ms | Loss: 0%
-2026-02-03 10:29:44,136 [WARNING] NETWORK CHANGE DETECTED
-2026-02-03 10:29:44,136 [INFO] Old Network ID: de692c32586911eb
-2026-02-03 10:29:44,136 [INFO] New Network ID: 198daee87bc14fd4
-2026-02-03 10:29:49,483 [INFO] Verdict: Degraded Internet | Latency: 243.8ms | Loss: 0%
-2026-02-03 10:30:45,043 [WARNING] NETWORK CHANGE DETECTED
-2026-02-03 10:30:45,043 [INFO] Old Network ID: 198daee87bc14fd4
-2026-02-03 10:30:45,043 [INFO] New Network ID: ee18f21fd903fb51
-2026-02-03 10:30:49,837 [INFO] Verdict: Healthy | Latency: 9.9ms | Loss: 0%
-2026-02-03 10:31:51,533 [INFO] Verdict: Healthy | Latency: 48.0ms | Loss: 0%
-2026-02-03 10:32:41,160 [WARNING] NETWORK CHANGE DETECTED
-2026-02-03 10:32:41,161 [INFO] Old Network ID: ee18f21fd903fb51
-2026-02-03 10:32:41,161 [INFO] New Network ID: 198daee87bc14fd4
-2026-02-03 10:32:46,439 [INFO] Verdict: Healthy | Latency: 112.7ms | Loss: 0%
-2026-02-03 10:33:51,276 [INFO] Verdict: ISP Failure
-2026-02-03 10:34:41,057 [WARNING] NETWORK CHANGE DETECTED
-2026-02-03 10:34:41,057 [INFO] Old Network ID: 198daee87bc14fd4
-2026-02-03 10:34:41,057 [INFO] New Network ID: ee18f21fd903fb51
-2026-02-03 10:34:49,614 [INFO] Verdict: Healthy | Latency: 15.5ms | Loss: 0%
-2026-02-03 10:35:45,453 [INFO] Verdict: Healthy | Latency: 15.5ms | Loss: 0%
-2026-02-03 10:36:41,008 [WARNING] NETWORK CHANGE DETECTED
-2026-02-03 10:36:41,008 [INFO] Old Network ID: ee18f21fd903fb51
-2026-02-03 10:36:41,008 [INFO] New Network ID: 198daee87bc14fd4
-2026-02-03 10:36:45,475 [INFO] Verdict: Healthy | Latency: 20.0ms | Loss: 0%
-2026-02-03 10:37:51,993 [INFO] Verdict: Healthy | Latency: 32.1ms | Loss: 0%
-2026-02-03 10:38:50,059 [WARNING] NETWORK CHANGE DETECTED
-2026-02-03 10:38:50,061 [INFO] Old Network ID: 198daee87bc14fd4
-2026-02-03 10:38:50,061 [INFO] New Network ID: ee18f21fd903fb51
-2026-02-03 10:38:54,689 [INFO] Verdict: Healthy | Latency: 64.6ms | Loss: 0%
-2026-02-03 10:39:53,202 [INFO] Verdict: Degraded Internet | Latency: 43.1ms | Loss: 20%
-2026-02-03 10:40:41,943 [WARNING] NETWORK CHANGE DETECTED
-2026-02-03 10:40:41,944 [INFO] Old Network ID: ee18f21fd903fb51
-2026-02-03 10:40:41,944 [INFO] New Network ID: 198daee87bc14fd4
-2026-02-03 10:40:46,981 [INFO] Verdict: Healthy | Latency: 46.1ms | Loss: 0%
-2026-02-03 10:41:04,318 [INFO] Shutdown signal received. Stopping observer...
-2026-02-03 10:41:04,983 [INFO] U-ITE Observer stopped.
-2026-02-03 10:54:36,088 [INFO] Database initialized successfully.
-2026-02-03 10:54:41,628 [ERROR] Observer cycle failed: name 'json' is not defined
-Traceback (most recent call last):
-  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 84, in observe
-    network_id = generate_network_id(fingerprint)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/kmtech/Projects/u-ite/core/fingerprint.py", line 106, in generate_network_id
-    canonical = json.dumps(fingerprint, sort_keys=True, default=str) # default=str handles non-JSON serializable types
-                ^^^^
-NameError: name 'json' is not defined. Did you forget to import 'json'
-2026-02-03 10:55:42,541 [ERROR] Observer cycle failed: name 'json' is not defined
-Traceback (most recent call last):
-  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 84, in observe
-    network_id = generate_network_id(fingerprint)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/kmtech/Projects/u-ite/core/fingerprint.py", line 106, in generate_network_id
-    canonical = json.dumps(fingerprint, sort_keys=True, default=str) # default=str handles non-JSON serializable types
-                ^^^^
-NameError: name 'json' is not defined. Did you forget to import 'json'
-2026-02-03 10:56:47,017 [ERROR] Observer cycle failed: name 'json' is not defined
-Traceback (most recent call last):
-  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 84, in observe
-    network_id = generate_network_id(fingerprint)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/kmtech/Projects/u-ite/core/fingerprint.py", line 106, in generate_network_id
-    canonical = json.dumps(fingerprint, sort_keys=True, default=str) # default=str handles non-JSON serializable types
-                ^^^^
-NameError: name 'json' is not defined. Did you forget to import 'json'
-2026-02-03 10:57:39,244 [ERROR] Observer cycle failed: name 'json' is not defined
-Traceback (most recent call last):
-  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 84, in observe
-    network_id = generate_network_id(fingerprint)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/kmtech/Projects/u-ite/core/fingerprint.py", line 106, in generate_network_id
-    canonical = json.dumps(fingerprint, sort_keys=True, default=str) # default=str handles non-JSON serializable types
-                ^^^^
-NameError: name 'json' is not defined. Did you forget to import 'json'
-2026-02-03 10:58:50,435 [ERROR] Observer cycle failed: name 'json' is not defined
-Traceback (most recent call last):
-  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 84, in observe
-    network_id = generate_network_id(fingerprint)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/kmtech/Projects/u-ite/core/fingerprint.py", line 106, in generate_network_id
-    canonical = json.dumps(fingerprint, sort_keys=True, default=str) # default=str handles non-JSON serializable types
-                ^^^^
-NameError: name 'json' is not defined. Did you forget to import 'json'
-2026-02-03 10:59:43,368 [ERROR] Observer cycle failed: name 'json' is not defined
-Traceback (most recent call last):
-  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 84, in observe
-    network_id = generate_network_id(fingerprint)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/kmtech/Projects/u-ite/core/fingerprint.py", line 106, in generate_network_id
-    canonical = json.dumps(fingerprint, sort_keys=True, default=str) # default=str handles non-JSON serializable types
-                ^^^^
-NameError: name 'json' is not defined. Did you forget to import 'json'
-2026-02-03 11:00:41,793 [ERROR] Observer cycle failed: name 'json' is not defined
-Traceback (most recent call last):
-  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 84, in observe
-    network_id = generate_network_id(fingerprint)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/kmtech/Projects/u-ite/core/fingerprint.py", line 106, in generate_network_id
-    canonical = json.dumps(fingerprint, sort_keys=True, default=str) # default=str handles non-JSON serializable types
-                ^^^^
-NameError: name 'json' is not defined. Did you forget to import 'json'
-2026-02-03 11:01:45,984 [ERROR] Observer cycle failed: name 'json' is not defined
-Traceback (most recent call last):
-  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 84, in observe
-    network_id = generate_network_id(fingerprint)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/kmtech/Projects/u-ite/core/fingerprint.py", line 106, in generate_network_id
-    canonical = json.dumps(fingerprint, sort_keys=True, default=str) # default=str handles non-JSON serializable types
-                ^^^^
-NameError: name 'json' is not defined. Did you forget to import 'json'
-2026-02-03 11:02:41,343 [ERROR] Observer cycle failed: name 'json' is not defined
-Traceback (most recent call last):
-  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 84, in observe
-    network_id = generate_network_id(fingerprint)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/kmtech/Projects/u-ite/core/fingerprint.py", line 106, in generate_network_id
-    canonical = json.dumps(fingerprint, sort_keys=True, default=str) # default=str handles non-JSON serializable types
-                ^^^^
-NameError: name 'json' is not defined. Did you forget to import 'json'
-2026-02-03 11:03:37,002 [ERROR] Observer cycle failed: name 'json' is not defined
-Traceback (most recent call last):
-  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 84, in observe
-    network_id = generate_network_id(fingerprint)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/kmtech/Projects/u-ite/core/fingerprint.py", line 106, in generate_network_id
-    canonical = json.dumps(fingerprint, sort_keys=True, default=str) # default=str handles non-JSON serializable types
-                ^^^^
-NameError: name 'json' is not defined. Did you forget to import 'json'
-2026-02-03 11:04:41,378 [ERROR] Observer cycle failed: name 'json' is not defined
-Traceback (most recent call last):
-  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 84, in observe
-    network_id = generate_network_id(fingerprint)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/kmtech/Projects/u-ite/core/fingerprint.py", line 106, in generate_network_id
-    canonical = json.dumps(fingerprint, sort_keys=True, default=str) # default=str handles non-JSON serializable types
-                ^^^^
-NameError: name 'json' is not defined. Did you forget to import 'json'
-2026-02-03 11:05:36,690 [ERROR] Observer cycle failed: name 'json' is not defined
-Traceback (most recent call last):
-  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 84, in observe
-    network_id = generate_network_id(fingerprint)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/kmtech/Projects/u-ite/core/fingerprint.py", line 106, in generate_network_id
-    canonical = json.dumps(fingerprint, sort_keys=True, default=str) # default=str handles non-JSON serializable types
-                ^^^^
-NameError: name 'json' is not defined. Did you forget to import 'json'
-2026-02-03 11:06:38,167 [ERROR] Observer cycle failed: name 'json' is not defined
-Traceback (most recent call last):
-  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 84, in observe
-    network_id = generate_network_id(fingerprint)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/kmtech/Projects/u-ite/core/fingerprint.py", line 106, in generate_network_id
-    canonical = json.dumps(fingerprint, sort_keys=True, default=str) # default=str handles non-JSON serializable types
-                ^^^^
-NameError: name 'json' is not defined. Did you forget to import 'json'
-2026-02-03 11:07:37,161 [ERROR] Observer cycle failed: name 'json' is not defined
-Traceback (most recent call last):
-  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 84, in observe
-    network_id = generate_network_id(fingerprint)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/kmtech/Projects/u-ite/core/fingerprint.py", line 106, in generate_network_id
-    canonical = json.dumps(fingerprint, sort_keys=True, default=str) # default=str handles non-JSON serializable types
-                ^^^^
-NameError: name 'json' is not defined. Did you forget to import 'json'
-2026-02-03 11:08:36,772 [ERROR] Observer cycle failed: name 'json' is not defined
-Traceback (most recent call last):
-  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 84, in observe
-    network_id = generate_network_id(fingerprint)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/kmtech/Projects/u-ite/core/fingerprint.py", line 106, in generate_network_id
-    canonical = json.dumps(fingerprint, sort_keys=True, default=str) # default=str handles non-JSON serializable types
-                ^^^^
-NameError: name 'json' is not defined. Did you forget to import 'json'
-2026-02-03 11:09:37,135 [ERROR] Observer cycle failed: name 'json' is not defined
-Traceback (most recent call last):
-  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 84, in observe
-    network_id = generate_network_id(fingerprint)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/kmtech/Projects/u-ite/core/fingerprint.py", line 106, in generate_network_id
-    canonical = json.dumps(fingerprint, sort_keys=True, default=str) # default=str handles non-JSON serializable types
-                ^^^^
-NameError: name 'json' is not defined. Did you forget to import 'json'
-2026-02-03 11:10:36,868 [ERROR] Observer cycle failed: name 'json' is not defined
-Traceback (most recent call last):
-  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 84, in observe
-    network_id = generate_network_id(fingerprint)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/kmtech/Projects/u-ite/core/fingerprint.py", line 106, in generate_network_id
-    canonical = json.dumps(fingerprint, sort_keys=True, default=str) # default=str handles non-JSON serializable types
-                ^^^^
-NameError: name 'json' is not defined. Did you forget to import 'json'
-2026-02-03 11:11:36,729 [ERROR] Observer cycle failed: name 'json' is not defined
-Traceback (most recent call last):
-  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 84, in observe
-    network_id = generate_network_id(fingerprint)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/kmtech/Projects/u-ite/core/fingerprint.py", line 106, in generate_network_id
-    canonical = json.dumps(fingerprint, sort_keys=True, default=str) # default=str handles non-JSON serializable types
-                ^^^^
-NameError: name 'json' is not defined. Did you forget to import 'json'
-2026-02-03 11:12:41,958 [ERROR] Observer cycle failed: name 'json' is not defined
-Traceback (most recent call last):
-  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 84, in observe
-    network_id = generate_network_id(fingerprint)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/kmtech/Projects/u-ite/core/fingerprint.py", line 106, in generate_network_id
-    canonical = json.dumps(fingerprint, sort_keys=True, default=str) # default=str handles non-JSON serializable types
-                ^^^^
-NameError: name 'json' is not defined. Did you forget to import 'json'
-2026-02-03 11:13:40,319 [ERROR] Observer cycle failed: name 'json' is not defined
-Traceback (most recent call last):
-  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 84, in observe
-    network_id = generate_network_id(fingerprint)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/kmtech/Projects/u-ite/core/fingerprint.py", line 106, in generate_network_id
-    canonical = json.dumps(fingerprint, sort_keys=True, default=str) # default=str handles non-JSON serializable types
-                ^^^^
-NameError: name 'json' is not defined. Did you forget to import 'json'
-2026-02-03 11:14:46,483 [ERROR] Observer cycle failed: name 'json' is not defined
-Traceback (most recent call last):
-  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 84, in observe
-    network_id = generate_network_id(fingerprint)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/kmtech/Projects/u-ite/core/fingerprint.py", line 106, in generate_network_id
-    canonical = json.dumps(fingerprint, sort_keys=True, default=str) # default=str handles non-JSON serializable types
-                ^^^^
-NameError: name 'json' is not defined. Did you forget to import 'json'
-2026-02-03 11:15:42,209 [ERROR] Observer cycle failed: name 'json' is not defined
-Traceback (most recent call last):
-  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 84, in observe
-    network_id = generate_network_id(fingerprint)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/kmtech/Projects/u-ite/core/fingerprint.py", line 106, in generate_network_id
-    canonical = json.dumps(fingerprint, sort_keys=True, default=str) # default=str handles non-JSON serializable types
-                ^^^^
-NameError: name 'json' is not defined. Did you forget to import 'json'
-2026-02-03 11:16:37,713 [ERROR] Observer cycle failed: name 'json' is not defined
-Traceback (most recent call last):
-  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 84, in observe
-    network_id = generate_network_id(fingerprint)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/kmtech/Projects/u-ite/core/fingerprint.py", line 106, in generate_network_id
-    canonical = json.dumps(fingerprint, sort_keys=True, default=str) # default=str handles non-JSON serializable types
-                ^^^^
-NameError: name 'json' is not defined. Did you forget to import 'json'
-2026-02-03 11:17:40,544 [ERROR] Observer cycle failed: name 'json' is not defined
-Traceback (most recent call last):
-  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 84, in observe
-    network_id = generate_network_id(fingerprint)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/kmtech/Projects/u-ite/core/fingerprint.py", line 106, in generate_network_id
-    canonical = json.dumps(fingerprint, sort_keys=True, default=str) # default=str handles non-JSON serializable types
-                ^^^^
-NameError: name 'json' is not defined. Did you forget to import 'json'
-2026-02-03 11:18:36,962 [ERROR] Observer cycle failed: name 'json' is not defined
-Traceback (most recent call last):
-  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 84, in observe
-    network_id = generate_network_id(fingerprint)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/kmtech/Projects/u-ite/core/fingerprint.py", line 106, in generate_network_id
-    canonical = json.dumps(fingerprint, sort_keys=True, default=str) # default=str handles non-JSON serializable types
-                ^^^^
-NameError: name 'json' is not defined. Did you forget to import 'json'
-2026-02-03 11:19:41,875 [ERROR] Observer cycle failed: name 'json' is not defined
-Traceback (most recent call last):
-  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 84, in observe
-    network_id = generate_network_id(fingerprint)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/kmtech/Projects/u-ite/core/fingerprint.py", line 106, in generate_network_id
-    canonical = json.dumps(fingerprint, sort_keys=True, default=str) # default=str handles non-JSON serializable types
-                ^^^^
-NameError: name 'json' is not defined. Did you forget to import 'json'
-2026-02-03 11:20:40,777 [ERROR] Observer cycle failed: name 'json' is not defined
-Traceback (most recent call last):
-  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 84, in observe
-    network_id = generate_network_id(fingerprint)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/kmtech/Projects/u-ite/core/fingerprint.py", line 106, in generate_network_id
-    canonical = json.dumps(fingerprint, sort_keys=True, default=str) # default=str handles non-JSON serializable types
-                ^^^^
-NameError: name 'json' is not defined. Did you forget to import 'json'
-2026-02-03 11:21:40,841 [ERROR] Observer cycle failed: name 'json' is not defined
-Traceback (most recent call last):
-  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 84, in observe
-    network_id = generate_network_id(fingerprint)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/kmtech/Projects/u-ite/core/fingerprint.py", line 106, in generate_network_id
-    canonical = json.dumps(fingerprint, sort_keys=True, default=str) # default=str handles non-JSON serializable types
-                ^^^^
-NameError: name 'json' is not defined. Did you forget to import 'json'
-2026-02-03 11:22:11,764 [INFO] Shutdown signal received. Stopping observer...
-2026-02-03 11:22:11,847 [INFO] U-ITE Observer stopped.
-2026-02-03 11:22:14,291 [INFO] Database initialized successfully.
-2026-02-03 11:22:16,863 [ERROR] Observer cycle failed: name 'json' is not defined
-Traceback (most recent call last):
-  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 84, in observe
-    network_id = generate_network_id(fingerprint)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/kmtech/Projects/u-ite/core/fingerprint.py", line 106, in generate_network_id
-    canonical = json.dumps(fingerprint, sort_keys=True, default=str) # default=str handles non-JSON serializable types
-                ^^^^
-NameError: name 'json' is not defined. Did you forget to import 'json'
-2026-02-03 11:22:18,552 [INFO] Shutdown signal received. Stopping observer...
-2026-02-03 11:22:18,870 [INFO] U-ITE Observer stopped.
-2026-02-03 11:26:18,741 [INFO] Database initialized successfully.
-2026-02-03 11:26:19,456 [ERROR] Observer cycle failed: name 'json' is not defined
-Traceback (most recent call last):
-  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 84, in observe
-    network_id = generate_network_id(fingerprint)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/kmtech/Projects/u-ite/core/fingerprint.py", line 106, in generate_network_id
-    canonical = json.dumps(fingerprint, sort_keys=True, default=str) # default=str handles non-JSON serializable types
-                ^^^^
-NameError: name 'json' is not defined. Did you forget to import 'json'
-2026-02-03 11:26:24,213 [INFO] Shutdown signal received. Stopping observer...
-2026-02-03 11:26:24,463 [INFO] U-ITE Observer stopped.
-2026-02-03 12:29:56,602 [INFO] Database initialized successfully.
-2026-02-03 12:30:09,686 [INFO] Verdict: Healthy | Latency: 55.1ms | Loss: 0%
-2026-02-03 12:30:25,229 [INFO] Shutdown signal received. Stopping observer...
-2026-02-03 12:30:25,688 [INFO] U-ITE Observer stopped.
-2026-02-03 12:30:41,134 [INFO] Database initialized successfully.
-2026-02-03 12:31:02,474 [INFO] Verdict: Degraded Internet | Latency: 45.7ms | Loss: 20%
-2026-02-03 12:31:52,928 [INFO] Verdict: ISP Failure
-2026-02-03 12:32:54,470 [INFO] Verdict: ISP Failure
-2026-02-03 12:33:46,847 [WARNING] NETWORK CHANGE DETECTED
-2026-02-03 12:33:46,848 [INFO] Old Network ID: 22fc061c99144ef1
-2026-02-03 12:33:46,848 [INFO] New Network ID: 73d0af451b8de3f8
-2026-02-03 12:33:56,925 [INFO] Verdict: ISP Failure
-2026-02-03 12:34:41,972 [WARNING] NETWORK CHANGE DETECTED
-2026-02-03 12:34:41,973 [INFO] Old Network ID: 73d0af451b8de3f8
-2026-02-03 12:34:41,973 [INFO] New Network ID: 22fc061c99144ef1
-2026-02-03 12:34:48,166 [INFO] Verdict: Degraded Internet | Latency: 19.9ms | Loss: 20%
-2026-02-03 12:35:41,793 [WARNING] NETWORK CHANGE DETECTED
-2026-02-03 12:35:41,794 [INFO] Old Network ID: 22fc061c99144ef1
-2026-02-03 12:35:41,794 [INFO] New Network ID: 73d0af451b8de3f8
-2026-02-03 12:35:46,506 [INFO] Verdict: Healthy | Latency: 38.3ms | Loss: 0%
-2026-02-03 12:36:55,960 [INFO] Verdict: Healthy | Latency: 61.6ms | Loss: 0%
-2026-02-03 12:37:45,075 [WARNING] NETWORK CHANGE DETECTED
-2026-02-03 12:37:45,076 [INFO] Old Network ID: 73d0af451b8de3f8
-2026-02-03 12:37:45,076 [INFO] New Network ID: 22fc061c99144ef1
-2026-02-03 12:37:50,164 [INFO] Verdict: Healthy | Latency: 170.6ms | Loss: 0%
-2026-02-03 12:38:52,096 [WARNING] NETWORK CHANGE DETECTED
-2026-02-03 12:38:52,096 [INFO] Old Network ID: 22fc061c99144ef1
-2026-02-03 12:38:52,096 [INFO] New Network ID: a68828759c5e7d2d
-2026-02-03 12:39:02,112 [INFO] Verdict: Local Network Failure
-2026-02-03 12:39:47,191 [WARNING] NETWORK CHANGE DETECTED
-2026-02-03 12:39:47,192 [INFO] Old Network ID: a68828759c5e7d2d
-2026-02-03 12:39:47,193 [INFO] New Network ID: 22fc061c99144ef1
-2026-02-03 12:39:56,790 [INFO] Shutdown signal received. Stopping observer...
-2026-02-03 12:39:56,802 [INFO] Verdict: Degraded Internet | Latency: 213.1ms | Loss: 20%
-2026-02-03 12:39:56,803 [INFO] U-ITE Observer stopped.
+2026-02-03 16:06:37,709 [INFO] Device ID: 07bf093a-6a7e-4e5d-88f0-e59c00017cd0
+2026-02-03 16:06:37,713 [INFO] Database initialized successfully.
+2026-02-03 16:06:44,024 [INFO] Verdict: Healthy | Latency: 103.5ms | Loss: 0%
+2026-02-03 16:07:58,769 [INFO] Verdict: Healthy | Latency: 15.6ms | Loss: 0%
+2026-02-03 16:08:03,316 [INFO] Shutdown signal received. Stopping observer...
+2026-02-03 16:08:03,769 [INFO] U-ITE Observer stopped.
+2026-02-03 16:35:29,907 [INFO] Device ID: 07bf093a-6a7e-4e5d-88f0-e59c00017cd0
+2026-02-03 16:35:29,915 [INFO] Database initialized successfully.
+2026-02-03 16:35:35,367 [INFO] Verdict: Healthy | Latency: 22.4ms | Loss: 0%
+2026-02-03 16:36:31,856 [WARNING] NETWORK CHANGE DETECTED
+2026-02-03 16:36:31,857 [INFO] Old Network ID: 22fc061c99144ef1
+2026-02-03 16:36:31,858 [INFO] New Network ID: 73d0af451b8de3f8
+2026-02-03 16:36:36,809 [INFO] Verdict: Healthy | Latency: 11.6ms | Loss: 0%
+2026-02-03 16:37:30,954 [WARNING] NETWORK CHANGE DETECTED
+2026-02-03 16:37:30,955 [INFO] Old Network ID: 73d0af451b8de3f8
+2026-02-03 16:37:30,955 [INFO] New Network ID: 22fc061c99144ef1
+2026-02-03 16:37:36,235 [INFO] Verdict: Healthy | Latency: 7.5ms | Loss: 0%
+2026-02-03 16:38:30,722 [WARNING] NETWORK CHANGE DETECTED
+2026-02-03 16:38:30,722 [INFO] Old Network ID: 22fc061c99144ef1
+2026-02-03 16:38:30,723 [INFO] New Network ID: 73d0af451b8de3f8
+2026-02-03 16:38:35,850 [INFO] Verdict: Healthy | Latency: 12.9ms | Loss: 0%
+2026-02-03 16:39:30,764 [WARNING] NETWORK CHANGE DETECTED
+2026-02-03 16:39:30,766 [INFO] Old Network ID: 73d0af451b8de3f8
+2026-02-03 16:39:30,766 [INFO] New Network ID: 22fc061c99144ef1
+2026-02-03 16:39:36,222 [INFO] Verdict: Healthy | Latency: 12.3ms | Loss: 0%
+2026-02-03 16:40:46,007 [INFO] Verdict: Healthy | Latency: 73.0ms | Loss: 0%
+2026-02-03 16:41:36,039 [INFO] Verdict: Healthy | Latency: 10.9ms | Loss: 0%
+2026-02-03 16:41:43,270 [INFO] Shutdown signal received. Stopping observer...
+2026-02-03 16:41:44,041 [INFO] U-ITE Observer stopped.
+2026-02-03 19:03:31,704 [INFO] Device ID: 07bf093a-6a7e-4e5d-88f0-e59c00017cd0
+2026-02-03 19:03:31,707 [INFO] Database initialized successfully.
+2026-02-03 19:03:37,221 [INFO] Verdict: Healthy | Latency: 24.8ms | Loss: 0%
+2026-02-03 19:04:37,327 [INFO] Verdict: Healthy | Latency: 79.5ms | Loss: 0%
+2026-02-03 19:05:37,995 [INFO] Verdict: Healthy | Latency: 57.8ms | Loss: 0%
+2026-02-03 19:06:37,402 [INFO] Verdict: Degraded Internet | Latency: 239.5ms | Loss: 0%
+2026-02-03 19:07:38,167 [INFO] Verdict: Degraded Internet | Latency: 32.9ms | Loss: 20%
+2026-02-03 19:08:39,847 [INFO] Verdict: Degraded Internet | Latency: 963.3ms | Loss: 0%
+2026-02-03 19:09:37,436 [INFO] Verdict: Healthy | Latency: 26.5ms | Loss: 0%
+2026-02-03 19:10:38,294 [INFO] Verdict: Healthy | Latency: 54.5ms | Loss: 0%
+2026-02-03 19:11:40,285 [INFO] Verdict: Healthy | Latency: 61.0ms | Loss: 0%
+2026-02-03 19:12:39,081 [INFO] Verdict: Degraded Internet | Latency: 1978.8ms | Loss: 0%
+2026-02-03 19:13:37,965 [INFO] Verdict: Degraded Internet | Latency: 387.2ms | Loss: 0%
+2026-02-03 19:14:37,733 [INFO] Verdict: Healthy | Latency: 84.3ms | Loss: 0%
+2026-02-03 19:15:37,671 [INFO] Verdict: Degraded Internet | Latency: 244.2ms | Loss: 0%
+2026-02-03 19:16:37,777 [INFO] Verdict: Degraded Internet | Latency: 306.7ms | Loss: 0%
+2026-02-03 19:17:38,398 [INFO] Verdict: Degraded Internet | Latency: 849.1ms | Loss: 0%
+2026-02-03 19:18:38,813 [INFO] Verdict: Healthy | Latency: 127.4ms | Loss: 0%
+2026-02-03 19:19:37,365 [INFO] Verdict: Healthy | Latency: 22.6ms | Loss: 0%
+2026-02-03 19:20:37,407 [INFO] Verdict: Healthy | Latency: 29.3ms | Loss: 0%
+2026-02-03 19:21:37,838 [INFO] Verdict: Healthy | Latency: 79.0ms | Loss: 0%
+2026-02-03 19:22:37,922 [INFO] Verdict: Healthy | Latency: 27.6ms | Loss: 0%
+2026-02-03 19:23:37,518 [INFO] Verdict: Healthy | Latency: 24.9ms | Loss: 0%
+2026-02-03 19:24:37,516 [INFO] Verdict: Healthy | Latency: 22.1ms | Loss: 0%
+2026-02-03 19:25:37,546 [INFO] Verdict: Healthy | Latency: 30.1ms | Loss: 0%
+2026-02-03 19:26:37,457 [INFO] Verdict: Healthy | Latency: 46.0ms | Loss: 0%
+2026-02-03 19:27:37,555 [INFO] Verdict: Healthy | Latency: 29.1ms | Loss: 0%
+2026-02-03 19:28:37,449 [INFO] Verdict: Healthy | Latency: 22.7ms | Loss: 0%
+2026-02-03 19:29:37,669 [INFO] Verdict: Healthy | Latency: 24.2ms | Loss: 0%
+2026-02-03 19:30:37,657 [INFO] Verdict: Healthy | Latency: 30.1ms | Loss: 0%
+2026-02-03 19:31:37,691 [INFO] Verdict: Healthy | Latency: 28.8ms | Loss: 0%
+2026-02-03 19:32:42,986 [INFO] Verdict: Healthy | Latency: 54.6ms | Loss: 0%
+2026-02-03 19:33:39,322 [INFO] Verdict: Healthy | Latency: 124.3ms | Loss: 0%
+2026-02-03 19:34:43,733 [INFO] Verdict: ISP Failure
+2026-02-03 19:35:43,005 [INFO] Verdict: Degraded Internet | Latency: 291.0ms | Loss: 60%
+2026-02-03 19:36:37,850 [INFO] Verdict: Degraded Internet | Latency: 236.5ms | Loss: 0%
+2026-02-03 19:37:38,774 [INFO] Verdict: Healthy | Latency: 42.9ms | Loss: 0%
+2026-02-03 19:38:37,557 [INFO] Verdict: Healthy | Latency: 28.1ms | Loss: 0%
+2026-02-03 19:39:38,582 [INFO] Verdict: Healthy | Latency: 29.4ms | Loss: 0%
+2026-02-03 19:40:40,198 [INFO] Verdict: Degraded Internet | Latency: 291.9ms | Loss: 0%
+2026-02-03 19:41:40,162 [INFO] Verdict: Degraded Internet | Latency: 228.7ms | Loss: 20%
+2026-02-03 19:42:37,830 [INFO] Verdict: Healthy | Latency: 78.5ms | Loss: 0%
+2026-02-03 19:43:37,777 [INFO] Verdict: Healthy | Latency: 161.7ms | Loss: 0%
+2026-02-03 19:44:37,755 [INFO] Verdict: Healthy | Latency: 36.3ms | Loss: 0%
+2026-02-03 19:45:39,012 [INFO] Verdict: Healthy | Latency: 118.5ms | Loss: 0%
+2026-02-03 19:46:38,024 [INFO] Verdict: Healthy | Latency: 43.2ms | Loss: 0%
+2026-02-03 19:47:38,099 [INFO] Verdict: Healthy | Latency: 45.6ms | Loss: 0%
+2026-02-03 19:48:38,853 [INFO] Verdict: Healthy | Latency: 110.6ms | Loss: 0%
+2026-02-03 19:49:09,893 [INFO] Shutdown signal received. Stopping observer...
+2026-02-03 19:49:10,858 [INFO] U-ITE Observer stopped.

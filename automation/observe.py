@@ -8,6 +8,7 @@ try:
     from internet_truth import run_diagnostics
     from storage.db import init_db, save_run
     from core.fingerprint import collect_fingerprint, generate_network_id
+    from core.device import get_device_id
 except ImportError as e:
     print(f"Error: Missing core U-ITE modules ({e})")
     sys.exit(1)
@@ -16,12 +17,11 @@ except ImportError as e:
 DEFAULT_INTERVAL = 60
 LOG_FILE = "u-ite-observer.log"
 
-# Default diagnostic targets (can be made configurable later)
 DEFAULT_INTERNET_IP = "8.8.8.8"
 DEFAULT_WEBSITE_NAME = "www.google.com"
 DEFAULT_WEBSITE_URL = "https://www.google.com"
 
-# -------- Logging (Single Source of Truth) --------
+# -------- Logging --------
 log_formatter = logging.Formatter(
     "%(asctime)s [%(levelname)s] %(message)s"
 )
@@ -30,7 +30,7 @@ file_handler = logging.FileHandler(LOG_FILE, mode="a", delay=False)
 file_handler.setLevel(logging.INFO)
 file_handler.setFormatter(log_formatter)
 
-# Force immediate flush to disk (no reload needed)
+# Force immediate flush
 file_handler.flush = file_handler.stream.flush
 
 console_handler = logging.StreamHandler(sys.stdout)
@@ -61,12 +61,17 @@ signal.signal(signal.SIGTERM, shutdown_handler)
 
 # -------- Observer Loop --------
 def observe(interval=DEFAULT_INTERVAL):
+
     print("\n" + "=" * 45)
     print("  U-ITE | Continuous Truth Observer")
     print(f"  Interval: {interval}s")
     print(f"  Log File: {LOG_FILE}")
     print("  Press Ctrl+C to stop")
     print("=" * 45 + "\n")
+
+    # Load persistent device identity once
+    device_id = get_device_id()
+    logger.info(f"Device ID: {device_id}")
 
     try:
         init_db()
@@ -79,7 +84,7 @@ def observe(interval=DEFAULT_INTERVAL):
         start_time = time.time()
 
         try:
-            # -------- NETWORK IDENTITY LAYER --------
+            # -------- NETWORK IDENTITY --------
             fingerprint = collect_fingerprint()
             network_id = generate_network_id(fingerprint)
 
@@ -87,20 +92,16 @@ def observe(interval=DEFAULT_INTERVAL):
                 logger.warning("NETWORK CHANGE DETECTED")
                 logger.info(f"Old Network ID: {state.last_network_id}")
                 logger.info(f"New Network ID: {network_id}")
-                logger.debug(f"Old Fingerprint: {state.last_fingerprint}")
-                logger.debug(f"New Fingerprint: {fingerprint}")
 
             state.last_network_id = network_id
             state.last_fingerprint = fingerprint
 
-            # -------- DIAGNOSTIC LAYER --------
-            # Get the router IP from the fingerprint to pass to the diagnostic engine
+            # -------- DIAGNOSTICS --------
             router_ip = fingerprint.get("default_gateway")
             if not router_ip:
-                logger.error("Could not determine router IP from fingerprint. Skipping diagnostic cycle.")
+                logger.error("Router IP not detected. Skipping cycle.")
                 continue
 
-            # Call run_diagnostics with all required arguments
             result = run_diagnostics(
                 router_ip=router_ip,
                 internet_ip=DEFAULT_INTERNET_IP,
@@ -112,7 +113,9 @@ def observe(interval=DEFAULT_INTERVAL):
             if not result:
                 logger.warning("No diagnostic data returned.")
             else:
+                result["device_id"] = device_id
                 result["network_id"] = network_id
+
                 save_run(result)
 
                 verdict = result.get("verdict", "Unknown")
