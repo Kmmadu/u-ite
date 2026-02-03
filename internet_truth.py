@@ -5,12 +5,12 @@ import requests
 import sys
 import argparse
 import re
-from storage.db import init_db, save_run, generate_network_id
 
-# Initialize DB once (This should ideally be handled by the main entry point, e.g., observe.py)
-# For now, keeping it here for standalone execution of internet_truth.py
-init_db()
 
+# Removed: from storage.db import init_db, save_run, generate_network_id
+# These operations are now handled by the observer (observe.py) or core.fingerprint
+
+# Removed: init_db() - Database initialization is now handled by observe.py
 
 def get_default_gateway():
     """Detect default gateway (router IP)."""
@@ -91,14 +91,16 @@ def measure_latency_and_loss(target, count=5):
     return latency, loss
 
 
-def run_diagnostics(router_ip=None, internet_ip="8.8.8.8", website="www.google.com", url="https://www.google.com", return_result=False):
-    ROUTER_IP = router_ip or get_default_gateway()
+def run_diagnostics(router_ip, internet_ip="8.8.8.8", website="www.google.com", url="https://www.google.com", return_result=False):
+    # These parameters are now expected to be provided by the caller (e.g., observe.py)
+    # The router_ip is now a mandatory argument for this function.
+    ROUTER_IP = router_ip
     INTERNET_IP = internet_ip
     WEBSITE_NAME = website
     WEBSITE_URL = url
 
     if not ROUTER_IP:
-        if not return_result: print("[ERROR] No active network interface detected.")
+        if not return_result: print("[ERROR] No router IP provided.")
         return None
 
     if not return_result: print(f"[INFO] Using router IP: {ROUTER_IP}")
@@ -153,10 +155,7 @@ def run_diagnostics(router_ip=None, internet_ip="8.8.8.8", website="www.google.c
         else:
             verdict = "Healthy"
 
-    network_id = generate_network_id(ROUTER_IP, INTERNET_IP)
-
     diagnostic_data = {
-        "network_id": network_id,
         "router_ip": ROUTER_IP,
         "internet_ip": INTERNET_IP,
         "router_reachable": router_ok,
@@ -168,9 +167,8 @@ def run_diagnostics(router_ip=None, internet_ip="8.8.8.8", website="www.google.c
         "verdict": verdict
     }
 
-    # Save run only if not returning result (i.e., when run as standalone script)
     if not return_result:
-        save_run(diagnostic_data)
+        # When run as standalone, it still prints the result
         print(f"[RESULT] Verdict: {verdict}")
         print("--- U-ITE Diagnostic Check Complete ---")
 
@@ -179,17 +177,24 @@ def run_diagnostics(router_ip=None, internet_ip="8.8.8.8", website="www.google.c
 # ---------------- CLI ---------------- #
 
 parser = argparse.ArgumentParser(description="U-ITE Internet Truth Engine")
-parser.add_argument("--router", required=False)
-parser.add_argument("--internet-ip", default="8.8.8.8")
-parser.add_argument("--website", default="www.google.com")
-parser.add_argument("--url", default="https://www.google.com")
+parser.add_argument("--router", required=False, help="Router IP address. If not provided, attempts to auto-detect.")
+parser.add_argument("--internet-ip", default="8.8.8.8", help="Public IP for internet reachability and quality checks.")
+parser.add_argument("--website", default="www.google.com", help="Website name for DNS resolution check.")
+parser.add_argument("--url", default="https://www.google.com", help="Full URL for HTTP/HTTPS connectivity check.")
 args = parser.parse_args()
 
 if __name__ == "__main__":
+    # For standalone execution, we need to get the router IP if not provided via CLI
+    # Note: get_default_gateway is defined in this file
+    detected_router_ip = args.router or get_default_gateway()
+    if not detected_router_ip:
+        print("[ERROR] Could not determine router IP. Please provide it via --router argument.")
+        sys.exit(1)
+
     run_diagnostics(
-        router_ip=args.router,
+        router_ip=detected_router_ip,
         internet_ip=args.internet_ip,
         website=args.website,
         url=args.url,
-        return_result=False # When run as a standalone script, don't return result
+        return_result=False
     )
