@@ -9,6 +9,9 @@ try:
     from storage.db import init_db, save_run
     from core.fingerprint import collect_fingerprint, generate_network_id
     from core.device import get_device_id
+    from tracking.event_detector import EventDetector
+    from tracking.event_store import save_events
+
 except ImportError as e:
     print(f"Error: Missing core U-ITE modules ({e})")
     sys.exit(1)
@@ -30,7 +33,7 @@ file_handler = logging.FileHandler(LOG_FILE, mode="a", delay=False)
 file_handler.setLevel(logging.INFO)
 file_handler.setFormatter(log_formatter)
 
-# Force immediate flush
+# Force immediate flush (no reload needed)
 file_handler.flush = file_handler.stream.flush
 
 console_handler = logging.StreamHandler(sys.stdout)
@@ -46,8 +49,6 @@ logger.propagate = False
 class ObserverState:
     def __init__(self):
         self.running = True
-        self.last_network_id = None
-        self.last_fingerprint = None
 
 state = ObserverState()
 
@@ -69,16 +70,20 @@ def observe(interval=DEFAULT_INTERVAL):
     print("  Press Ctrl+C to stop")
     print("=" * 45 + "\n")
 
-    # Load persistent device identity once
+    # -------- Persistent Identity --------
     device_id = get_device_id()
     logger.info(f"Device ID: {device_id}")
 
+    # -------- Init Storage --------
     try:
         init_db()
         logger.info("Database initialized successfully.")
     except Exception as e:
         logger.error(f"Failed to initialize database: {e}")
         return
+
+    # -------- Event Engine --------
+    event_detector = EventDetector(device_id=device_id)
 
     while state.running:
         start_time = time.time()
@@ -87,14 +92,6 @@ def observe(interval=DEFAULT_INTERVAL):
             # -------- NETWORK IDENTITY --------
             fingerprint = collect_fingerprint()
             network_id = generate_network_id(fingerprint)
-
-            if state.last_network_id and network_id != state.last_network_id:
-                logger.warning("NETWORK CHANGE DETECTED")
-                logger.info(f"Old Network ID: {state.last_network_id}")
-                logger.info(f"New Network ID: {network_id}")
-
-            state.last_network_id = network_id
-            state.last_fingerprint = fingerprint
 
             # -------- DIAGNOSTICS --------
             router_ip = fingerprint.get("default_gateway")
@@ -112,21 +109,44 @@ def observe(interval=DEFAULT_INTERVAL):
 
             if not result:
                 logger.warning("No diagnostic data returned.")
-            else:
-                result["device_id"] = device_id
-                result["network_id"] = network_id
+                continue
 
-                save_run(result)
+            # -------- ENRICH SNAPSHOT --------
+            timestamp = time.time()
 
-                verdict = result.get("verdict", "Unknown")
-                latency = result.get("avg_latency")
-                loss = result.get("packet_loss")
+            result.update({
+                "device_id": device_id,
+                "network_id": network_id,
+                "timestamp": timestamp
+            })
 
-                msg = f"Verdict: {verdict}"
-                if latency is not None and loss is not None:
-                    msg += f" | Latency: {latency:.1f}ms | Loss: {loss}%"
+            save_run(result)
 
-                logger.info(msg)
+            # -------- EVENT DETECTION --------
+            events = event_detector.process(
+                fingerprint=fingerprint,
+                diagnostics=result,
+                timestamp=timestamp
+            )
+
+            if events:
+                save_events(events)
+
+                for event in events:
+                    logger.warning(
+                        f"EVENT [{event.event_type}] | {event.summary}"
+                    )
+
+            # -------- METRIC LOGGING --------
+            verdict = result.get("verdict", "Unknown")
+            latency = result.get("avg_latency")
+            loss = result.get("packet_loss")
+
+            msg = f"Verdict: {verdict}"
+            if latency is not None and loss is not None:
+                msg += f" | Latency: {latency:.1f}ms | Loss: {loss}%"
+
+            logger.info(msg)
 
         except Exception as e:
             logger.error(f"Observer cycle failed: {e}", exc_info=True)
