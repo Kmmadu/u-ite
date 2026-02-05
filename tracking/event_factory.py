@@ -8,7 +8,6 @@ from tracking.category import Category, is_valid_category
 from tracking.severity import Severity, is_valid_severity
 
 
-
 # ------------------------------
 # Custom Exceptions
 # ------------------------------
@@ -55,27 +54,53 @@ class Event:
 
 class EventFactory:
 
+    # Centralized event metadata (single source of truth)
+    EVENT_DEFINITIONS: Dict[str, Dict[str, Any]] = {
+        EventType.INTERNET_DOWN.value: {
+            "category": Category.CONNECTIVITY.value,
+            "severity": Severity.CRITICAL.value,
+            "summary": "Internet connection lost",
+            "verdict": "Network unreachable",
+            "resolved": False,
+        },
+        EventType.NETWORK_RESTORED.value: {
+            "category": Category.CONNECTIVITY.value,
+            "severity": Severity.INFO.value,
+            "summary": "Internet connection restored",
+            "verdict": "Connectivity recovered",
+            "resolved": True,
+        },
+    }
+
     @staticmethod
     def create_event(
         event_type: str,
-        category: str,
-        severity: str,
         device_id: str,
         network_id: str,
-        verdict: str,
-        summary: str,
         description: str,
         metrics: Optional[Dict[str, Any]] = None,
         fingerprint: Optional[Dict[str, Any]] = None,
         duration: Optional[float] = None,
-        resolved: bool = False,
         correlation_id: Optional[str] = None
     ) -> Dict[str, Any]:
 
-        # ---------- Enum Validation ----------
+        # ---------- Event Type Validation ----------
 
         if not is_valid_event_type(event_type):
             raise EventValidationError(f"Invalid event_type: {event_type}")
+
+        if event_type not in EventFactory.EVENT_DEFINITIONS:
+            raise EventValidationError(f"No event definition for type: {event_type}")
+
+        definition = EventFactory.EVENT_DEFINITIONS[event_type]
+
+        category = definition["category"]
+        severity = definition["severity"]
+        summary = definition["summary"]
+        verdict = definition["verdict"]
+        resolved = definition["resolved"]
+
+        # ---------- Enum Validation ----------
 
         if not is_valid_category(category):
             raise EventValidationError(f"Invalid category: {category}")
@@ -88,8 +113,6 @@ class EventFactory:
         required_fields = {
             "device_id": device_id,
             "network_id": network_id,
-            "verdict": verdict,
-            "summary": summary,
             "description": description,
         }
 
@@ -112,8 +135,7 @@ class EventFactory:
             fingerprint=fingerprint or {},
             duration=duration,
             resolved=resolved,
-            correlation_id=correlation_id
+            correlation_id=correlation_id,
         )
 
-        # ---------- Safe Serialization ----------
         return asdict(event)
