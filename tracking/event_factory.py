@@ -1,0 +1,119 @@
+import uuid
+from datetime import datetime, timezone
+from dataclasses import dataclass, field, asdict
+from typing import Optional, Dict, Any
+
+from tracking.event_types import EventType, is_valid_event_type
+from tracking.category import Category, is_valid_category
+from tracking.severity import Severity, is_valid_severity
+
+
+
+# ------------------------------
+# Custom Exceptions
+# ------------------------------
+
+class EventValidationError(Exception):
+    pass
+
+
+# ------------------------------
+# Event Schema
+# ------------------------------
+
+@dataclass
+class Event:
+
+    event_id: str = field(init=False)
+    timestamp: str = field(init=False)
+
+    type: str
+    category: str
+    severity: str
+
+    device_id: str
+    network_id: str
+    verdict: str
+    summary: str
+    description: str
+
+    metrics: Dict[str, Any] = field(default_factory=dict)
+    fingerprint: Dict[str, Any] = field(default_factory=dict)
+
+    duration: Optional[float] = None
+    resolved: bool = False
+    correlation_id: Optional[str] = None
+
+    def __post_init__(self):
+        self.event_id = str(uuid.uuid4())
+        self.timestamp = datetime.now(timezone.utc).isoformat(timespec="milliseconds")
+
+
+# ------------------------------
+# Factory
+# ------------------------------
+
+class EventFactory:
+
+    @staticmethod
+    def create_event(
+        event_type: str,
+        category: str,
+        severity: str,
+        device_id: str,
+        network_id: str,
+        verdict: str,
+        summary: str,
+        description: str,
+        metrics: Optional[Dict[str, Any]] = None,
+        fingerprint: Optional[Dict[str, Any]] = None,
+        duration: Optional[float] = None,
+        resolved: bool = False,
+        correlation_id: Optional[str] = None
+    ) -> Dict[str, Any]:
+
+        # ---------- Enum Validation ----------
+
+        if not is_valid_event_type(event_type):
+            raise EventValidationError(f"Invalid event_type: {event_type}")
+
+        if not is_valid_category(category):
+            raise EventValidationError(f"Invalid category: {category}")
+
+        if not is_valid_severity(severity):
+            raise EventValidationError(f"Invalid severity: {severity}")
+
+        # ---------- Required Field Validation ----------
+
+        required_fields = {
+            "device_id": device_id,
+            "network_id": network_id,
+            "verdict": verdict,
+            "summary": summary,
+            "description": description,
+        }
+
+        for name, value in required_fields.items():
+            if not value or not isinstance(value, str) or not value.strip():
+                raise EventValidationError(f"Missing or invalid field: {name}")
+
+        # ---------- Create Event ----------
+
+        event = Event(
+            type=event_type,
+            category=category,
+            severity=severity,
+            device_id=device_id,
+            network_id=network_id,
+            verdict=verdict,
+            summary=summary,
+            description=description,
+            metrics=metrics or {},
+            fingerprint=fingerprint or {},
+            duration=duration,
+            resolved=resolved,
+            correlation_id=correlation_id
+        )
+
+        # ---------- Safe Serialization ----------
+        return asdict(event)

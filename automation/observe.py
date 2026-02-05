@@ -11,6 +11,8 @@ try:
     from core.device import get_device_id
     from tracking.event_detector import EventDetector
     from tracking.event_store import save_events
+    from tracking.category import Category
+
 
 except ImportError as e:
     print(f"Error: Missing core U-ITE modules ({e})")
