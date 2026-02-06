@@ -12,3 +12,32 @@ CREATE TABLE IF NOT EXISTS diagnostic_runs (
     packet_loss_pct REAL,
     verdict TEXT
 );
+
+-- ===============================
+-- Event Storage
+-- ===============================
+CREATE TABLE IF NOT EXISTS events (
+    event_id TEXT PRIMARY KEY,
+    timestamp TEXT NOT NULL,
+    network_id TEXT NOT NULL,
+    device_id TEXT NOT NULL,
+    event_type TEXT NOT NULL,
+    category TEXT NOT NULL,
+    severity TEXT NOT NULL,
+    summary TEXT,
+    description TEXT,
+    duration REAL,
+    resolved INTEGER,
+    correlation_id TEXT
+);
+
+-- ===============================
+-- Network State Storage
+-- ===============================
+CREATE TABLE IF NOT EXISTS network_states (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    network_id TEXT NOT NULL,
+    state TEXT NOT NULL,
+    timestamp TEXT NOT NULL,
+    downtime_seconds REAL
+);

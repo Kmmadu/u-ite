@@ -25,7 +25,7 @@ def save_run(data: dict):
     with sqlite3.connect(DB_PATH) as conn:
         conn.execute(
             """
-            INSERT INTO runs (
+            INSERT INTO diagnostic_runs (
                 timestamp,
                 network_id,
                 router_ip,
@@ -34,8 +34,8 @@ def save_run(data: dict):
                 internet_reachable,
                 dns_ok,
                 http_ok,
-                avg_latency,
-                packet_loss,
+                avg_latency_ms,
+                packet_loss_pct,
                 verdict
             )
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
