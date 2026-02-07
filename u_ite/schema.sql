@@ -35,11 +35,16 @@ CREATE TABLE IF NOT EXISTS events (
 );
 
 -- ===============================
--- Network State Storage (Latest State Snapshot)
+-- Network State Storage (Full History)
 -- ===============================
 CREATE TABLE IF NOT EXISTS network_states (
-    network_id TEXT PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    network_id TEXT NOT NULL,
     state TEXT NOT NULL,
     timestamp TEXT NOT NULL,
     downtime_seconds REAL
 );
+
+-- Index for faster queries by network and time
+CREATE INDEX IF NOT EXISTS idx_network_states_network_id 
+ON network_states(network_id, timestamp DESC);

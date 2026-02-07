@@ -124,3 +124,367 @@ Traceback (most recent call last):
     events = event_detector.process(
              ^^^^^^^^^^^^^^^^^^^^^^
 AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:18:50,298 [INFO] Device ID: 07bf093a-6a7e-4e5d-88f0-e59c00017cd0
+2026-02-07 21:18:50,300 [INFO] Database initialized successfully.
+2026-02-07 21:18:55,712 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:20:11,484 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:20:55,431 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:21:56,358 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:22:55,691 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:23:55,405 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:24:55,548 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:25:55,633 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:26:55,452 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:27:55,413 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:28:55,605 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:29:56,764 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:30:55,511 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:31:55,432 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:32:59,808 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:33:55,907 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:34:55,922 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:35:55,477 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:36:55,483 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:37:55,526 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:38:55,550 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:39:56,717 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:40:55,866 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:41:55,879 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:42:55,919 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:43:56,315 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:44:56,988 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:45:55,499 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:46:55,584 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:47:55,659 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:48:55,769 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:49:55,571 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:50:55,729 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:51:56,778 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:53:05,598 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:53:55,879 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:54:55,975 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:55:56,821 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:56:55,644 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:57:55,686 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:58:55,805 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 21:59:56,094 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 22:00:55,828 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 22:01:55,937 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 22:02:55,738 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 22:03:55,682 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 22:04:57,076 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 22:05:55,651 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 22:06:55,761 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 22:07:56,788 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 22:08:55,829 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 22:09:56,951 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 22:11:05,812 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 22:11:55,917 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 22:12:55,831 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 22:13:56,014 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 22:14:57,076 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 22:15:55,746 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 22:16:55,752 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 22:17:55,962 [ERROR] Observer cycle failed: 'EventDetector' object has no attribute 'process'
+Traceback (most recent call last):
+  File "/home/kmtech/Projects/u-ite/automation/observe.py", line 128, in observe
+    events = event_detector.process(
+             ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'EventDetector' object has no attribute 'process'
+2026-02-07 22:18:29,073 [INFO] Shutdown signal received. Stopping observer...
+2026-02-07 22:18:29,967 [INFO] U-ITE Observer stopped.
