@@ -4,30 +4,42 @@ from typing import Dict, Optional
 from tracking.state.network_state import NetworkState
 from tracking.state.transitions import is_valid_transition
 from tracking.state.emitter import NetworkEventEmitter
+from storage.state_store import StateStore
 
 
 class NetworkStateEngine:
     """
     Tracks network states and emits events when valid state transitions occur.
+    Persists state to database for recovery after restart.
     """
 
     def __init__(self):
-        # Stores current state per network_id
+        # In-memory cache (fast access)
         self._states: Dict[str, NetworkState] = {}
 
-        # Stores when a network went DOWN (for downtime calculation)
+        # Tracks when network went DOWN
         self._down_since: Dict[str, datetime] = {}
 
     def update_state(self, network_id: str, new_state: NetworkState) -> Dict:
         """
-        Updates the state of a network and emits an event if a valid transition occurs.
+        Updates network state and emits events when transitions occur.
         """
 
+        # ---- Load state from memory first ----
         previous_state: Optional[NetworkState] = self._states.get(network_id)
 
-        # First state assignment (no transition validation needed)
+        # ---- If not in memory, try loading from DB ----
+        if previous_state is None:
+            previous_state = StateStore.get_state(network_id)
+
+            # Cache DB state in memory
+            if previous_state:
+                self._states[network_id] = previous_state
+
+        # ---- First time state assignment ----
         if previous_state is None:
             self._states[network_id] = new_state
+            StateStore.save_state(network_id, new_state)
 
             if new_state == NetworkState.DOWN:
                 self._down_since[network_id] = datetime.now(timezone.utc)
@@ -39,7 +51,7 @@ class NetworkStateEngine:
                 "downtime_seconds": None,
             }
 
-        # Ignore invalid transitions
+        # ---- Ignore invalid transitions ----
         if not is_valid_transition(previous_state, new_state):
             return {
                 "transitioned": False,
@@ -50,22 +62,24 @@ class NetworkStateEngine:
 
         downtime_seconds = None
 
-        # Handle DOWN → UP recovery
+        # ---- DOWN → UP recovery ----
         if previous_state == NetworkState.DOWN and new_state == NetworkState.UP:
             down_time = self._down_since.pop(network_id, None)
+
             if down_time:
                 downtime_seconds = int(
                     (datetime.now(timezone.utc) - down_time).total_seconds()
                 )
 
-        # Handle UP → DOWN
+        # ---- UP → DOWN ----
         if new_state == NetworkState.DOWN:
             self._down_since[network_id] = datetime.now(timezone.utc)
 
-        # Persist new state
+        # ---- Persist + Cache new state ----
         self._states[network_id] = new_state
+        StateStore.save_state(network_id, new_state)
 
-        # Emit network event
+        # ---- Emit Event ----
         event = NetworkEventEmitter.emit(
             network_id=network_id,
             device_id="gateway-001",

@@ -1,3 +1,6 @@
+-- ===============================
+-- Diagnostic Runs (Historical Checks)
+-- ===============================
 CREATE TABLE IF NOT EXISTS diagnostic_runs (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     timestamp TEXT NOT NULL,
@@ -14,7 +17,7 @@ CREATE TABLE IF NOT EXISTS diagnostic_runs (
 );
 
 -- ===============================
--- Event Storage
+-- Event Storage (Event History)
 -- ===============================
 CREATE TABLE IF NOT EXISTS events (
     event_id TEXT PRIMARY KEY,
@@ -32,11 +35,10 @@ CREATE TABLE IF NOT EXISTS events (
 );
 
 -- ===============================
--- Network State Storage
+-- Network State Storage (Latest State Snapshot)
 -- ===============================
 CREATE TABLE IF NOT EXISTS network_states (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    network_id TEXT NOT NULL,
+    network_id TEXT PRIMARY KEY,
     state TEXT NOT NULL,
     timestamp TEXT NOT NULL,
     downtime_seconds REAL

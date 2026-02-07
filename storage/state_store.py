@@ -1,38 +1,47 @@
-from datetime import datetime
-from storage.db import get_connection
+import sqlite3
+from typing import Optional
+
+from storage.db import DB_PATH
+from tracking.state.network_state import NetworkState
 
 
 class StateStore:
 
-    def save_state(self, network_id, state):
-        conn = get_connection()
-        cursor = conn.cursor()
+    @staticmethod
+    def save_state(network_id: str, state: NetworkState):
+        """
+        Save or update network state
+        """
 
-        cursor.execute("""
-        INSERT INTO network_states(network_id, state, last_updated)
-        VALUES (?, ?, ?)
-        ON CONFLICT(network_id)
-        DO UPDATE SET
-            state = excluded.state,
-            last_updated = excluded.last_updated
-        """, (
-            network_id,
-            state,
-            datetime.utcnow().isoformat()
-        ))
+        with sqlite3.connect(DB_PATH) as conn:
+            conn.execute(
+                """
+                INSERT INTO network_states (network_id, state)
+                VALUES (?, ?)
+                ON CONFLICT(network_id)
+                DO UPDATE SET state = excluded.state
+                """,
+                (network_id, state.value),
+            )
 
-        conn.commit()
-        conn.close()
+    @staticmethod
+    def get_state(network_id: str) -> Optional[NetworkState]:
+        """
+        Retrieve last known state
+        """
 
-    def get_state(self, network_id):
-        conn = get_connection()
-        cursor = conn.cursor()
+        with sqlite3.connect(DB_PATH) as conn:
+            cursor = conn.execute(
+                """
+                SELECT state FROM network_states
+                WHERE network_id = ?
+                """,
+                (network_id,),
+            )
 
-        cursor.execute("""
-        SELECT * FROM network_states WHERE network_id=?
-        """, (network_id,))
+            row = cursor.fetchone()
 
-        row = cursor.fetchone()
-        conn.close()
+            if row:
+                return NetworkState(row[0])
 
-        return row
+            return None
