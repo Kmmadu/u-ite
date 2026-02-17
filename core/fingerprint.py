@@ -4,7 +4,7 @@ import re
 import hashlib
 import uuid
 import socket
-import requests # Using requests for public IP to match internet_truth.py style and robustness
+import requests
 import json
 
 def get_mac_address():
@@ -12,26 +12,20 @@ def get_mac_address():
     system = platform.system().lower()
     try:
         if system == "windows":
-            # On Windows, getmac provides MAC addresses
             result = subprocess.run(["getmac"], capture_output=True, text=True, check=True)
-            # Regex to find a MAC address pattern, typically the first active one
             match = re.search(r"([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})", result.stdout)
             if match: return match.group(0).replace("-", ":").upper()
         elif system in ("linux", "darwin"):
-            # On Linux, `ip link` is preferred. On macOS, `ifconfig` is common.
             command = ["ip", "link"]
             if system == "darwin":
                 command = ["ifconfig"]
 
             result = subprocess.run(command, capture_output=True, text=True, check=True)
-            # Look for MAC address that is not loopback and is UP
-            # This regex tries to find MACs associated with active interfaces
             mac_pattern = r"ether\s+([0-9A-Fa-f]{2}(?::[0-9A-Fa-f]{2}){5})"
             matches = re.findall(mac_pattern, result.stdout)
             if matches:
-                # Filter out common virtual/loopback MACs if possible, or just take the first valid one
                 for mac in matches:
-                    if mac != "00:00:00:00:00:00": # Exclude null MAC
+                    if mac != "00:00:00:00:00:00":
                         return mac.upper()
     except (subprocess.CalledProcessError, FileNotFoundError, Exception):
         pass
@@ -65,10 +59,8 @@ def get_public_ip():
 def get_local_ip():
     """Attempts to get the local IP address of the primary network interface."""
     try:
-        # Create a socket to an external address (doesn't actually send data)
-        # This is a common trick to get the local IP used for outbound connections
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        s.connect(("8.8.8.8", 80)) # Connect to a public DNS server
+        s.connect(("8.8.8.8", 80))
         ip = s.getsockname()[0]
         s.close()
         return ip
@@ -99,10 +91,21 @@ def collect_fingerprint():
     return fingerprint
 
 def generate_network_id(fingerprint: dict) -> str:
-    """Generates a unique ID for the network based on its fingerprint.
-    A SHA256 hash of the sorted fingerprint items ensures consistency.
-    """
-    # Convert all fingerprint values to strings for hashing
-    # Use json.dumps to ensure consistent string representation for hashing
-    canonical = json.dumps(fingerprint, sort_keys=True, default=str) # default=str handles non-JSON serializable types
-    return hashlib.sha256(canonical.encode()).hexdigest()[:16]
+    """Generates a stable network ID using only persistent components."""
+    # Use ONLY stable components that shouldn't change between cycles
+    stable_components = [
+        fingerprint.get('default_gateway', 'unknown'),  # Router IP (stable)
+        fingerprint.get('mac_address', 'unknown'),      # MAC address (hardware-bound)
+    ]
+    
+    # Filter out None values
+    stable_components = [str(c) for c in stable_components if c is not None and c != 'unknown']
+    
+    # If both are unknown, fall back to local IP (less stable but better than nothing)
+    if not stable_components or stable_components == ['unknown', 'unknown']:
+        local_ip = fingerprint.get('local_ip', 'unknown')
+        stable_components = [str(local_ip)]
+    
+    # Create hash from stable components
+    raw = "|".join(stable_components)
+    return hashlib.sha256(raw.encode()).hexdigest()[:16]

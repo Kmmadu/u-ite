@@ -19,7 +19,7 @@ except ImportError as e:
     sys.exit(1)
 
 # -------- Configuration --------
-DEFAULT_INTERVAL = 60
+DEFAULT_INTERVAL = 30
 LOG_FILE = "u-ite-observer.log"
 
 DEFAULT_INTERNET_IP = "8.8.8.8"
@@ -125,10 +125,8 @@ def observe(interval=DEFAULT_INTERVAL):
             save_run(result)
 
             # -------- EVENT DETECTION --------
-            events = event_detector.process(
-                fingerprint=fingerprint,
-                diagnostics=result,
-                timestamp=timestamp
+            events = event_detector.analyze(
+                snapshot=result
             )
 
             if events:
@@ -136,7 +134,7 @@ def observe(interval=DEFAULT_INTERVAL):
 
                 for event in events:
                     logger.warning(
-                        f"EVENT [{event.event_type}] | {event.summary}"
+                        f"EVENT [{event['type']}] | {event['summary']}"
                     )
 
             # -------- METRIC LOGGING --------

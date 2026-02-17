@@ -54,23 +54,46 @@ class Event:
 
 class EventFactory:
 
-    # Centralized event metadata (single source of truth)
     EVENT_DEFINITIONS: Dict[str, Dict[str, Any]] = {
-        EventType.INTERNET_DOWN.value: {
-            "category": Category.CONNECTIVITY.value,
-            "severity": Severity.CRITICAL.value,
-            "summary": "Internet connection lost",
-            "verdict": "Network unreachable",
-            "resolved": False,
-        },
-        EventType.NETWORK_RESTORED.value: {
-            "category": Category.CONNECTIVITY.value,
-            "severity": Severity.INFO.value,
-            "summary": "Internet connection restored",
-            "verdict": "Connectivity recovered",
-            "resolved": True,
-        },
-    }
+
+    # --- Connectivity Loss ---
+    EventType.INTERNET_DOWN.value: {
+        "category": Category.CONNECTIVITY.value,
+        "severity": Severity.CRITICAL.value,
+        "summary": "Internet connection lost",
+        "verdict": "Network unreachable",
+        "resolved": False,
+    },
+
+    # --- Connectivity Restored ---
+    EventType.NETWORK_RESTORED.value: {
+        "category": Category.CONNECTIVITY.value,
+        "severity": Severity.INFO.value,
+        "summary": "Internet connection restored",
+        "verdict": "Connectivity recovered",
+        "resolved": True,
+    },
+
+    # --- Network Switch ---
+    EventType.NETWORK_SWITCH.value: {
+        "category": Category.CONNECTIVITY.value,
+        "severity": Severity.INFO.value,
+        "summary": "Network switched",
+        "verdict": "Network changed",
+        "resolved": False,
+    },
+
+    # --- Status Change ---
+    "NETWORK_STATUS_CHANGE": {
+        "category": Category.PERFORMANCE.value,
+        "severity": Severity.WARNING.value,
+        "summary": "Network status changed",
+        "verdict": "Network condition changed",
+        "resolved": False,
+    },
+}
+
+
 
     @staticmethod
     def create_event(

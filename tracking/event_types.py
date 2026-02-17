@@ -10,6 +10,7 @@ class EventType(str, Enum):
     WEBSITE_UNREACHABLE = "WEBSITE_UNREACHABLE"
     DNS_FAILURE = "DNS_FAILURE"
     NETWORK_RESTORED = "NETWORK_RESTORED"
+    NETWORK_STATUS_CHANGE = "NETWORK_STATUS_CHANGE"
 
 
 def is_valid_event_type(value) -> bool:

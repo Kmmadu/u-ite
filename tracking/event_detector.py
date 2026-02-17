@@ -1,4 +1,4 @@
-from .events import create_event
+from .event_factory import EventFactory
 from .event_types import EventType
 from .event_state import EventState
 
@@ -35,15 +35,11 @@ class EventDetector:
         # ---- Network Switch ----
         if self.state.network_id and network_id != self.state.network_id:
             events.append(
-                create_event(
-                    event_type=EventType.NETWORK_SWITCH,
-                    category="INFRASTRUCTURE",
-                    severity="INFO", # Severity can be dynamic based on impact
+                EventFactory.create_event(
+                    event_type=EventType.NETWORK_SWITCH.value,
                     device_id=self.device_id,
                     network_id=network_id,
-                    verdict=verdict,
-                    summary="Network changed",
-                    description=f"Network ID changed from {self.state.network_id} to {network_id}.",
+                    description=f"Network ID changed from {self.state.network_id} to {network_id}. Verdict: {verdict}",
                     fingerprint=snapshot.get("fingerprint", {})
                 )
             )
@@ -55,14 +51,10 @@ class EventDetector:
             # This logic might need refinement based on desired event granularity
             if not (self.state.network_id and network_id != self.state.network_id):
                 events.append(
-                    create_event(
-                        event_type=EventType.NETWORK_STATUS_CHANGE, # Assuming this event type exists
-                        category="CONNECTIVITY",
-                        severity="LOW", # Default, can be adjusted
+                    EventFactory.create_event(
+                        event_type=EventType.NETWORK_STATUS_CHANGE.value,  # ← ADD COMMA HERE
                         device_id=self.device_id,
                         network_id=network_id,
-                        verdict=verdict,
-                        summary=f"Network status changed from {self.state.verdict} to {verdict}",
                         description=f"Diagnostic verdict changed from {self.state.verdict} to {verdict}.",
                         metrics=snapshot.get("metrics", {})
                     )
@@ -72,14 +64,10 @@ class EventDetector:
         # This assumes 'online' is a boolean derived from the snapshot
         if self.state.online is True and online is False:
             events.append(
-                create_event(
-                    event_type=EventType.INTERNET_DOWN,
-                    category="CONNECTIVITY",
-                    severity="CRITICAL",
+                EventFactory.create_event(
+                    event_type=EventType.INTERNET_DOWN.value,
                     device_id=self.device_id,
                     network_id=network_id,
-                    verdict=verdict,
-                    summary="Internet connection lost",
                     description=f"Internet connectivity moved from online to offline. Current verdict: {verdict}.",
                     metrics=snapshot.get("metrics", {})
                 )
@@ -88,14 +76,10 @@ class EventDetector:
         # ---- Network Restored ----
         if self.state.online is False and online is True:
             events.append(
-                create_event(
-                    event_type=EventType.INTERNET_RESTORED, # Assuming this event type exists
-                    category="CONNECTIVITY",
-                    severity="INFO",
+                EventFactory.create_event(
+                    event_type=EventType.NETWORK_RESTORED.value,  # ← ADD COMMA HERE
                     device_id=self.device_id,
                     network_id=network_id,
-                    verdict=verdict,
-                    summary="Internet connection restored",
                     description=f"Internet connectivity moved from offline to online. Current verdict: {verdict}.",
                     metrics=snapshot.get("metrics", {})
                 )

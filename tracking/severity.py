@@ -7,6 +7,7 @@ class Severity(str, Enum):
     MEDIUM = "MEDIUM"
     HIGH = "HIGH"
     CRITICAL = "CRITICAL"
+    WARNING = "WARNING"
 
 
 def is_valid_severity(value) -> bool:
