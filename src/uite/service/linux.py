@@ -1,5 +1,5 @@
 import time
-from automation.runner import run_truth_cycle
+from uite.daemon.runner import run_truth_cycle
 
 INTERVAL_SECONDS = 60  # start with 60s (we can tune later)
 

@@ -5,7 +5,7 @@ import logging
 
 # -------- Core Imports --------
 try:
-    from internet_truth import run_diagnostics
+    from uite.diagnostics.base import run_diagnostics
     from storage.db import init_db, save_run
     from core.fingerprint import collect_fingerprint, generate_network_id
     from core.device import get_device_id

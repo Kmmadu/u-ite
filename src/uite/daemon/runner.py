@@ -1,4 +1,4 @@
-from internet_truth import run_diagnostics
+from uite.diagnostics.base import run_diagnostics
 from u_ite.storage.db import save_run
 from visualization.dashboard import generate_charts
 from utils.network import get_network_id

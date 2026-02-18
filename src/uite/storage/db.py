@@ -2,18 +2,20 @@ import sqlite3
 from pathlib import Path
 from datetime import datetime
 import hashlib
+import importlib.resources as pkg_resources
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+# For runtime data (writable)
+BASE_DIR = Path.home() / ".uite"
 DB_PATH = BASE_DIR / "data" / "u_ite.db"
-SCHEMA_PATH = BASE_DIR / "u_ite" / "schema.sql"
-
 
 def init_db():
     DB_PATH.parent.mkdir(parents=True, exist_ok=True)
 
     with sqlite3.connect(DB_PATH) as conn:
-        with open(SCHEMA_PATH) as f:
-            conn.executescript(f.read())
+        # Load schema from package (read-only, works after installation)
+        from uite import storage
+        schema_text = pkg_resources.read_text(storage, "schema.sql")
+        conn.executescript(schema_text)
 
 
 def generate_network_id(router_ip, internet_ip):
