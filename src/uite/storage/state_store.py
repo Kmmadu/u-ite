@@ -2,10 +2,10 @@ import sqlite3
 from typing import Optional, List, Dict, Any, TYPE_CHECKING
 from datetime import datetime, timezone
 
-from storage.db import DB_PATH
+from uite.storage.db import DB_PATH
 
 if TYPE_CHECKING:
-    from tracking.state.network_state import NetworkState
+    from uite.tracking.state.network_state import NetworkState
 
 
 class StateStore:
@@ -72,7 +72,7 @@ class StateStore:
         Retrieve only the most recent state for a network
         """
         # Import here to avoid circular import
-        from tracking.state.network_state import NetworkState
+        from uite.tracking.state.network_state import NetworkState
         
         with sqlite3.connect(DB_PATH) as conn:
             cursor = conn.execute(
@@ -102,7 +102,7 @@ class StateStore:
         Get latest state for all networks
         """
         # Import here to avoid circular import
-        from tracking.state.network_state import NetworkState
+        from uite.tracking.state.network_state import NetworkState
         
         with sqlite3.connect(DB_PATH) as conn:
             cursor = conn.execute(

@@ -2,7 +2,7 @@ import sqlite3
 from pathlib import Path
 from typing import Dict, Any
 
-from storage.db import DB_PATH
+from uite.storage.db import DB_PATH
 
 
 class EventStore:

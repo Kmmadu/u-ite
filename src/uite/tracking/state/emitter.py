@@ -1,5 +1,5 @@
-from tracking.event_factory import EventFactory
-from tracking.state.network_state import NetworkState
+from uite.tracking.event_factory import EventFactory
+from uite.tracking.state.network_state import NetworkState
 
 
 class NetworkEventEmitter:

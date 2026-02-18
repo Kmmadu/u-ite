@@ -3,9 +3,9 @@ from datetime import datetime, timezone
 from dataclasses import dataclass, field, asdict
 from typing import Optional, Dict, Any
 
-from tracking.event_types import EventType, is_valid_event_type
-from tracking.category import Category, is_valid_category
-from tracking.severity import Severity, is_valid_severity
+from uite.tracking.event_types import EventType, is_valid_event_type
+from uite.tracking.category import Category, is_valid_category
+from uite.tracking.severity import Severity, is_valid_severity
 
 
 # ------------------------------

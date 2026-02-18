@@ -4983,3 +4983,69 @@
 2026-02-18 17:11:03,955 [INFO] Verdict: Healthy | Latency: 20.0ms | Loss: 0%
 2026-02-18 17:11:33,955 [INFO] Verdict: Healthy | Latency: 8.3ms | Loss: 0%
 2026-02-18 17:12:09,790 [INFO] Verdict: Healthy | Latency: 36.9ms | Loss: 0%
+2026-02-18 17:12:40,150 [WARNING] EVENT [NETWORK_STATUS_CHANGE] | Network status changed
+2026-02-18 17:12:40,152 [INFO] Verdict: Degraded Internet | Latency: 32.2ms | Loss: 40%
+2026-02-18 17:13:04,566 [WARNING] EVENT [NETWORK_STATUS_CHANGE] | Network status changed
+2026-02-18 17:13:04,568 [INFO] Verdict: Healthy | Latency: 15.6ms | Loss: 0%
+2026-02-18 17:13:33,989 [INFO] Verdict: Healthy | Latency: 7.7ms | Loss: 0%
+2026-02-18 17:14:04,039 [INFO] Verdict: Healthy | Latency: 11.2ms | Loss: 0%
+2026-02-18 17:14:35,541 [INFO] Verdict: Healthy | Latency: 13.7ms | Loss: 0%
+2026-02-18 17:15:01,388 [INFO] Shutdown signal received. Stopping observer...
+2026-02-18 17:15:01,399 [INFO] Verdict: Healthy | Latency: 4.9ms | Loss: 0%
+2026-02-18 17:15:01,399 [INFO] U-ITE Observer stopped.
+2026-02-18 18:18:20,250 [INFO] Device ID: 07bf093a-6a7e-4e5d-88f0-e59c00017cd0
+2026-02-18 18:18:20,274 [INFO] Database initialized successfully.
+2026-02-18 18:18:25,845 [INFO] Verdict: Healthy | Latency: 4.7ms | Loss: 0%
+2026-02-18 18:18:55,392 [INFO] Verdict: Healthy | Latency: 7.5ms | Loss: 0%
+2026-02-18 18:19:26,585 [INFO] Verdict: Healthy | Latency: 17.8ms | Loss: 0%
+2026-02-18 18:20:01,079 [WARNING] EVENT [NETWORK_STATUS_CHANGE] | Network status changed
+2026-02-18 18:20:01,079 [INFO] Verdict: ISP Failure
+2026-02-18 18:20:26,440 [WARNING] EVENT [NETWORK_STATUS_CHANGE] | Network status changed
+2026-02-18 18:20:26,440 [INFO] Verdict: Degraded Internet | Latency: 14.5ms | Loss: 20%
+2026-02-18 18:21:00,435 [WARNING] EVENT [NETWORK_STATUS_CHANGE] | Network status changed
+2026-02-18 18:21:00,435 [INFO] Verdict: Healthy | Latency: 12.7ms | Loss: 0%
+2026-02-18 18:21:36,708 [INFO] Verdict: Healthy | Latency: 19.1ms | Loss: 0%
+2026-02-18 18:21:55,360 [INFO] Verdict: Healthy | Latency: 11.7ms | Loss: 0%
+2026-02-18 18:22:25,277 [INFO] Verdict: Healthy | Latency: 4.2ms | Loss: 0%
+2026-02-18 18:22:55,305 [INFO] Verdict: Healthy | Latency: 8.5ms | Loss: 0%
+2026-02-18 18:23:25,618 [INFO] Verdict: Healthy | Latency: 17.6ms | Loss: 0%
+2026-02-18 18:23:56,465 [WARNING] EVENT [NETWORK_STATUS_CHANGE] | Network status changed
+2026-02-18 18:23:56,465 [INFO] Verdict: Degraded Internet | Latency: 8.3ms | Loss: 20%
+2026-02-18 18:24:26,234 [WARNING] EVENT [NETWORK_STATUS_CHANGE] | Network status changed
+2026-02-18 18:24:26,234 [INFO] Verdict: Healthy | Latency: 13.7ms | Loss: 0%
+2026-02-18 18:24:55,557 [INFO] Verdict: Healthy | Latency: 7.6ms | Loss: 0%
+2026-02-18 18:25:26,095 [INFO] Verdict: Healthy | Latency: 4.1ms | Loss: 0%
+2026-02-18 18:26:00,443 [INFO] Verdict: Healthy | Latency: 15.9ms | Loss: 0%
+2026-02-18 18:26:25,370 [INFO] Verdict: Healthy | Latency: 18.5ms | Loss: 0%
+2026-02-18 18:26:56,363 [INFO] Verdict: Healthy | Latency: 5.2ms | Loss: 0%
+2026-02-18 18:27:21,947 [WARNING] EVENT [NETWORK_STATUS_CHANGE] | Network status changed
+2026-02-18 18:27:21,947 [INFO] Verdict: Application Failure
+2026-02-18 18:27:57,577 [WARNING] EVENT [NETWORK_STATUS_CHANGE] | Network status changed
+2026-02-18 18:27:57,577 [INFO] Verdict: Healthy | Latency: 12.6ms | Loss: 0%
+2026-02-18 18:28:25,795 [INFO] Verdict: Healthy | Latency: 17.1ms | Loss: 0%
+2026-02-18 18:28:57,069 [INFO] Verdict: Healthy | Latency: 15.0ms | Loss: 0%
+2026-02-18 18:29:25,582 [INFO] Verdict: Healthy | Latency: 6.4ms | Loss: 0%
+2026-02-18 18:29:55,775 [INFO] Verdict: Healthy | Latency: 12.3ms | Loss: 0%
+2026-02-18 18:30:32,916 [INFO] Verdict: Healthy | Latency: 9.6ms | Loss: 0%
+2026-02-18 18:30:57,075 [INFO] Verdict: Healthy | Latency: 15.0ms | Loss: 0%
+2026-02-18 18:31:31,053 [WARNING] EVENT [NETWORK_STATUS_CHANGE] | Network status changed
+2026-02-18 18:31:31,053 [INFO] Verdict: ISP Failure
+2026-02-18 18:32:00,965 [WARNING] EVENT [NETWORK_STATUS_CHANGE] | Network status changed
+2026-02-18 18:32:00,965 [INFO] Verdict: Healthy | Latency: 17.3ms | Loss: 0%
+2026-02-18 18:32:25,480 [INFO] Verdict: Healthy | Latency: 6.6ms | Loss: 0%
+2026-02-18 18:32:55,407 [INFO] Verdict: Healthy | Latency: 10.6ms | Loss: 0%
+2026-02-18 18:33:25,552 [INFO] Verdict: Healthy | Latency: 24.5ms | Loss: 0%
+2026-02-18 18:33:55,399 [INFO] Verdict: Healthy | Latency: 18.4ms | Loss: 0%
+2026-02-18 18:34:26,142 [INFO] Verdict: Healthy | Latency: 7.7ms | Loss: 0%
+2026-02-18 18:34:56,156 [INFO] Verdict: Healthy | Latency: 6.4ms | Loss: 0%
+2026-02-18 18:35:25,797 [INFO] Verdict: Healthy | Latency: 14.8ms | Loss: 0%
+2026-02-18 18:35:55,589 [INFO] Verdict: Healthy | Latency: 21.4ms | Loss: 0%
+2026-02-18 18:36:26,486 [INFO] Verdict: Healthy | Latency: 11.3ms | Loss: 0%
+2026-02-18 18:36:55,722 [INFO] Verdict: Healthy | Latency: 18.7ms | Loss: 0%
+2026-02-18 18:37:02,289 [INFO] Shutdown signal received. Stopping observer...
+2026-02-18 18:37:02,725 [INFO] U-ITE Observer stopped.
+2026-02-18 18:42:48,506 [INFO] Device ID: 07bf093a-6a7e-4e5d-88f0-e59c00017cd0
+2026-02-18 18:42:48,508 [INFO] Database initialized successfully.
+2026-02-18 18:42:54,324 [INFO] Verdict: Healthy | Latency: 13.9ms | Loss: 0%
+2026-02-18 18:42:55,963 [INFO] Shutdown signal received. Stopping observer...
+2026-02-18 18:42:56,324 [INFO] U-ITE Observer stopped.

@@ -1,4 +1,4 @@
-from core.models import NetworkState, Event, Severity
+from uite.core.models import NetworkState, Event, Severity
 from datetime import datetime
 import uuid
 

@@ -6,12 +6,12 @@ import logging
 # -------- Core Imports --------
 try:
     from uite.diagnostics.base import run_diagnostics
-    from storage.db import init_db, save_run
-    from core.fingerprint import collect_fingerprint, generate_network_id
-    from core.device import get_device_id
-    from tracking.event_detector import EventDetector
-    from tracking.event_store import save_events
-    from tracking.category import Category
+    from uite.storage.db import init_db, save_run
+    from uite.core.fingerprint import collect_fingerprint, generate_network_id
+    from uite.core.device import get_device_id
+    from uite.tracking.event_detector import EventDetector
+    from uite.tracking.event_store import save_events
+    from uite.tracking.category import Category
 
 
 except ImportError as e:

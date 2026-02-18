@@ -1,4 +1,4 @@
-from tracking.state.network_state import NetworkState
+from uite.tracking.state.network_state import NetworkState
 
 
 # Defines valid state transitions
