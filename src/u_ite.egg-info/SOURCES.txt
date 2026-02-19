@@ -1,9 +1,12 @@
 README.md
 pyproject.toml
-src/UNKNOWN.egg-info/PKG-INFO
-src/UNKNOWN.egg-info/SOURCES.txt
-src/UNKNOWN.egg-info/dependency_links.txt
-src/UNKNOWN.egg-info/top_level.txt
+setup.py
+src/u_ite.egg-info/PKG-INFO
+src/u_ite.egg-info/SOURCES.txt
+src/u_ite.egg-info/dependency_links.txt
+src/u_ite.egg-info/entry_points.txt
+src/u_ite.egg-info/requires.txt
+src/u_ite.egg-info/top_level.txt
 src/uite/__main__.py
 src/uite/api/__init__.py
 src/uite/api/routes.py
