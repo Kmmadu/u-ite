@@ -10,6 +10,7 @@ try:
     from uite.storage.db import init_db, save_run
     from uite.core.fingerprint import collect_fingerprint, generate_network_id
     from uite.core.device import get_device_id
+    from uite.core.formatters import format_duration  # ADDED THIS IMPORT
     from uite.tracking.event_detector import EventDetector
     from uite.tracking.event_store import save_events
     from uite.tracking.category import Category
@@ -106,9 +107,9 @@ def observe(interval=DEFAULT_INTERVAL):
                     state.outage_started = datetime.now()
                     logger.error("🌐 INTERNET DOWN: Router not detected. Please check your internet connection.")
                 else:
-                    # Calculate outage duration
+                    # Calculate outage duration with human-readable format
                     outage_duration = (datetime.now() - state.outage_started).seconds
-                    logger.error(f"🌐 Still offline (outage duration: {outage_duration}s). Will retry in {interval}s.")
+                    logger.error(f"🌐 Still offline (outage duration: {format_duration(outage_duration)}). Will retry in {interval}s.")
                 
                 # Skip diagnostic run but still respect interval
                 result = None
@@ -116,7 +117,7 @@ def observe(interval=DEFAULT_INTERVAL):
                 # Internet is back - clear outage flag if it was set
                 if state.outage_started is not None:
                     outage_duration = (datetime.now() - state.outage_started).seconds
-                    logger.info(f"✅ Internet connection restored after {outage_duration} seconds")
+                    logger.info(f"✅ Internet connection restored after {format_duration(outage_duration)}")
                     state.outage_started = None
 
                 # Run diagnostics
@@ -151,9 +152,15 @@ def observe(interval=DEFAULT_INTERVAL):
                         save_events(events)
 
                         for event in events:
-                            logger.warning(
-                                f"EVENT [{event['type']}] | {event['summary']}"
-                            )
+                            # If this is a restoration event, use the formatter in the log
+                            if event['type'] == 'NETWORK_RESTORED':
+                                logger.warning(
+                                    f"EVENT [{event['type']}] | {event['summary']}"
+                                )
+                            else:
+                                logger.warning(
+                                    f"EVENT [{event['type']}] | {event['summary']}"
+                                )
 
                     # -------- METRIC LOGGING --------
                     verdict = result.get("verdict", "Unknown")
@@ -185,6 +192,11 @@ def observe(interval=DEFAULT_INTERVAL):
 
         if state.running:
             time.sleep(sleep_time % 1)
+
+    # Log total runtime when stopping
+    if 'start_time' in locals():
+        total_runtime = int(time.time() - start_time)
+        logger.info(f"U-ITE Observer ran for: {format_duration(total_runtime)}")
 
     logger.info("U-ITE Observer stopped.")
 

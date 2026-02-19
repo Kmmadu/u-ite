@@ -119,41 +119,48 @@ def run_diagnostics(router_ip, internet_ip="8.8.8.8", website="www.google.com", 
         router_ok = True
         if not return_result: print("[PASS] Router reachable")
     else:
-        verdict = "Local Network Failure"
-        if not return_result: print("[FAIL] Router unreachable")
+        verdict = "🔴 No Network Connection"
+        if not return_result: print("[FAIL] Router unreachable - Check cables or WiFi")
 
     # Check 2: Internet
     if router_ok and can_ping(INTERNET_IP):
         internet_ok = True
         if not return_result: print("[PASS] Internet reachable")
     elif router_ok:
-        verdict = "ISP Failure"
-        if not return_result: print("[FAIL] Internet unreachable")
+        verdict = "🌍 ISP Outage"
+        if not return_result: print("[FAIL] Internet unreachable - Your ISP may be down")
 
     # Check 3: DNS
     if internet_ok and can_resolve_dns(WEBSITE_NAME):
         dns_ok = True
         if not return_result: print("[PASS] DNS OK")
     elif internet_ok:
-        verdict = "DNS Failure"
-        if not return_result: print("[FAIL] DNS failure")
+        verdict = "🔍 DNS Resolution Failed"
+        if not return_result: print("[FAIL] DNS failure - Can't resolve website names")
 
     # Check 4: HTTP
     if dns_ok and can_open_website(WEBSITE_URL):
         http_ok = True
         if not return_result: print("[PASS] HTTP OK")
     elif dns_ok:
-        verdict = "Application Failure"
-        if not return_result: print("[FAIL] HTTP failure")
+        verdict = "🌐 Web Access Issue"
+        if not return_result: print("[FAIL] HTTP failure - Can't load websites")
 
     # Check 5: Quality
     if http_ok:
         latency, loss = measure_latency_and_loss(INTERNET_IP)
         if latency is not None and loss is not None:
             if not return_result: print(f"[INFO] Avg latency: {latency:.2f} ms | Packet loss: {loss}%")
-            verdict = "Degraded Internet" if loss >= 20 or latency >= 200 else "Healthy"
+            if loss >= 20:
+                verdict = "⚠️ Unstable Connection"
+            elif latency >= 200:
+                verdict = "🐢 Slow Connection"
+            elif loss >= 10 or latency >= 100:
+                verdict = "📶 Degraded Performance"
+            else:
+                verdict = "✅ Connected"
         else:
-            verdict = "Healthy"
+            verdict = "✅ Connected"
 
     diagnostic_data = {
         "router_ip": ROUTER_IP,
@@ -169,7 +176,7 @@ def run_diagnostics(router_ip, internet_ip="8.8.8.8", website="www.google.com", 
 
     if not return_result:
         # When run as standalone, it still prints the result
-        print(f"[RESULT] Verdict: {verdict}")
+        print(f"[RESULT] {verdict}")
         print("--- U-ITE Diagnostic Check Complete ---")
 
     return diagnostic_data

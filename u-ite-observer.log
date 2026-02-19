@@ -5356,3 +5356,57 @@
 2026-02-19 14:35:54,918 [INFO] Shutdown signal received. Stopping observer...
 2026-02-19 14:36:00,709 [INFO] Verdict: Healthy | Latency: 68.9ms | Loss: 0%
 2026-02-19 14:36:00,709 [INFO] U-ITE Observer stopped.
+2026-02-19 14:41:45,755 [INFO] Device ID: 07bf093a-6a7e-4e5d-88f0-e59c00017cd0
+2026-02-19 14:41:45,756 [INFO] Database initialized successfully.
+2026-02-19 14:41:50,810 [INFO] Verdict: Healthy | Latency: 8.5ms | Loss: 0%
+2026-02-19 14:42:20,726 [INFO] Verdict: Healthy | Latency: 14.7ms | Loss: 0%
+2026-02-19 14:42:51,030 [INFO] Verdict: Healthy | Latency: 10.3ms | Loss: 0%
+2026-02-19 14:43:20,860 [INFO] Verdict: Healthy | Latency: 10.4ms | Loss: 0%
+2026-02-19 14:43:52,048 [INFO] Verdict: Application Failure
+2026-02-19 14:44:35,796 [ERROR] 🌐 INTERNET DOWN: Router not detected. Please check your internet connection.
+2026-02-19 14:45:05,796 [ERROR] 🌐 Still offline (outage duration: 30 seconds). Will retry in 30s.
+2026-02-19 14:45:35,794 [ERROR] 🌐 Still offline (outage duration: 59 seconds). Will retry in 30s.
+2026-02-19 14:46:05,797 [ERROR] 🌐 Still offline (outage duration: 1 minute 30 seconds). Will retry in 30s.
+2026-02-19 14:46:35,801 [ERROR] 🌐 Still offline (outage duration: 2 minutes). Will retry in 30s.
+2026-02-19 14:47:05,800 [ERROR] 🌐 Still offline (outage duration: 2 minutes 30 seconds). Will retry in 30s.
+2026-02-19 14:47:31,330 [ERROR] 🌐 Still offline (outage duration: 2 minutes 55 seconds). Will retry in 30s.
+2026-02-19 14:47:46,425 [INFO] ✅ Internet connection restored after 3 minutes 10 seconds
+2026-02-19 14:48:01,746 [INFO] Verdict: Healthy | Latency: 10.8ms | Loss: 0%
+2026-02-19 14:48:20,775 [INFO] Verdict: Healthy | Latency: 12.2ms | Loss: 0%
+2026-02-19 14:49:15,824 [INFO] Verdict: Local Network Failure
+2026-02-19 14:49:21,011 [WARNING] EVENT [NETWORK_STATUS_CHANGE] | Network status changed
+2026-02-19 14:49:21,011 [INFO] Verdict: Healthy | Latency: 12.9ms | Loss: 0%
+2026-02-19 14:49:51,798 [INFO] Verdict: Degraded Internet | Latency: 60.6ms | Loss: 20%
+2026-02-19 14:50:21,567 [INFO] Verdict: Healthy | Latency: 13.4ms | Loss: 0%
+2026-02-19 14:50:51,484 [INFO] Shutdown signal received. Stopping observer...
+2026-02-19 14:50:51,496 [INFO] Verdict: Healthy | Latency: 44.2ms | Loss: 0%
+2026-02-19 14:50:51,497 [INFO] U-ITE Observer ran for: 5 seconds
+2026-02-19 14:50:51,497 [INFO] U-ITE Observer stopped.
+2026-02-19 15:19:47,150 [INFO] Device ID: 07bf093a-6a7e-4e5d-88f0-e59c00017cd0
+2026-02-19 15:19:47,153 [INFO] Database initialized successfully.
+2026-02-19 15:20:03,339 [INFO] Verdict: ✅ Connected | Latency: 16.3ms | Loss: 0%
+2026-02-19 15:20:22,446 [INFO] Verdict: ✅ Connected | Latency: 15.5ms | Loss: 0%
+2026-02-19 15:20:53,343 [INFO] Verdict: ⚠️ Unstable Connection | Latency: 5.3ms | Loss: 20%
+2026-02-19 15:21:22,192 [INFO] Verdict: ✅ Connected | Latency: 14.0ms | Loss: 0%
+2026-02-19 15:21:52,826 [INFO] Verdict: ✅ Connected | Latency: 10.5ms | Loss: 0%
+2026-02-19 15:22:22,939 [INFO] Verdict: ✅ Connected | Latency: 15.3ms | Loss: 0%
+2026-02-19 15:22:52,358 [INFO] Verdict: ✅ Connected | Latency: 12.0ms | Loss: 0%
+2026-02-19 15:23:23,342 [INFO] Verdict: ⚠️ Unstable Connection | Latency: 32.3ms | Loss: 20%
+2026-02-19 15:23:52,364 [INFO] Verdict: ✅ Connected | Latency: 10.5ms | Loss: 0%
+2026-02-19 15:24:22,372 [INFO] Verdict: ✅ Connected | Latency: 5.0ms | Loss: 0%
+2026-02-19 15:25:07,236 [ERROR] 🌐 INTERNET DOWN: Router not detected. Please check your internet connection.
+2026-02-19 15:25:37,222 [ERROR] 🌐 Still offline (outage duration: 29 seconds). Will retry in 30s.
+2026-02-19 15:26:07,220 [ERROR] 🌐 Still offline (outage duration: 59 seconds). Will retry in 30s.
+2026-02-19 15:26:37,223 [ERROR] 🌐 Still offline (outage duration: 1 minute 29 seconds). Will retry in 30s.
+2026-02-19 15:27:07,223 [ERROR] 🌐 Still offline (outage duration: 1 minute 59 seconds). Will retry in 30s.
+2026-02-19 15:27:37,224 [ERROR] 🌐 Still offline (outage duration: 2 minutes 29 seconds). Will retry in 30s.
+2026-02-19 15:28:07,228 [ERROR] 🌐 Still offline (outage duration: 2 minutes 59 seconds). Will retry in 30s.
+2026-02-19 15:28:37,227 [ERROR] 🌐 Still offline (outage duration: 3 minutes 29 seconds). Will retry in 30s.
+2026-02-19 15:29:07,227 [ERROR] 🌐 Still offline (outage duration: 3 minutes 59 seconds). Will retry in 30s.
+2026-02-19 15:29:37,231 [ERROR] 🌐 Still offline (outage duration: 4 minutes 29 seconds). Will retry in 30s.
+2026-02-19 15:29:49,583 [INFO] ✅ Internet connection restored after 4 minutes 42 seconds
+2026-02-19 15:29:54,202 [INFO] Verdict: ✅ Connected | Latency: 17.1ms | Loss: 0%
+2026-02-19 15:30:22,175 [INFO] Verdict: ✅ Connected | Latency: 11.8ms | Loss: 0%
+2026-02-19 15:30:52,164 [INFO] Verdict: ✅ Connected | Latency: 11.9ms | Loss: 0%
+2026-02-19 15:31:23,359 [INFO] Verdict: ⚠️ Unstable Connection | Latency: 6.4ms | Loss: 20%
+2026-02-19 15:31:52,134 [INFO] Verdict: ✅ Connected | Latency: 23.5ms | Loss: 0%
