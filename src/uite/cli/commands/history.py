@@ -15,52 +15,52 @@ def from_command(args):
         uite from yesterday to today
         uite from "Jan 17" to "Jan 18"
     """
+    # DEBUG: Print raw arguments
+    click.echo(f"🔍 DEBUG: Raw args received: {args}")
+    click.echo(f"🔍 DEBUG: Number of args: {len(args)}")
+    
     # Join all arguments into a string
     text = ' '.join(args).lower()
+    click.echo(f"🔍 DEBUG: Combined text: '{text}'")
     
-    # Try multiple parsing strategies
-    start_str = None
-    end_str = None
-    
-    # Strategy 1: Look for "from" and "to" positions
+    # Since "from" is the command name, the args should contain "to"
+    # Format should be: <start> to <end>
     words = text.split()
-    if 'from' in words and 'to' in words:
-        from_idx = words.index('from')
+    click.echo(f"🔍 DEBUG: Split words: {words}")
+    
+    # Find the position of "to"
+    if 'to' in words:
         to_idx = words.index('to')
+        click.echo(f"🔍 DEBUG: Found 'to' at index {to_idx}")
         
-        if to_idx > from_idx:
-            # Get everything between "from" and "to"
-            start_parts = words[from_idx+1:to_idx]
+        if to_idx > 0 and to_idx < len(words) - 1:
+            # Everything before "to" is the start date
+            start_parts = words[:to_idx]
+            # Everything after "to" is the end date
             end_parts = words[to_idx+1:]
+            
+            click.echo(f"🔍 DEBUG: Start parts: {start_parts}")
+            click.echo(f"🔍 DEBUG: End parts: {end_parts}")
             
             if start_parts and end_parts:
                 start_str = ' '.join(start_parts)
                 end_str = ' '.join(end_parts)
-    
-    # Strategy 2: Try regex pattern
-    if not start_str or not end_str:
-        patterns = [
-            r'from\s+(.+?)\s+to\s+(.+)',  # Standard format
-            r'from\s+(\d{1,2}[/-]\d{1,2}(?:[/-]\d{4})?(?:\s+\d{1,2}:\d{2})?)\s+to\s+(\d{1,2}[/-]\d{1,2}(?:[/-]\d{4})?(?:\s+\d{1,2}:\d{2})?)',  # Date patterns
-        ]
-        
-        for pattern in patterns:
-            match = re.search(pattern, text)
-            if match:
-                start_str = match.group(1).strip()
-                end_str = match.group(2).strip()
-                break
-    
-    if not start_str or not end_str:
-        click.echo("❌ Please use format: uite from <start> to <end>")
-        click.echo("   Examples:")
-        click.echo("     uite from 17/02 to 18/02")
-        click.echo("     uite from 17/02/2026 08:00 to 18/02/2026 18:00")
-        click.echo("     uite from yesterday to today")
+                click.echo(f"🔍 DEBUG: Found start: '{start_str}', end: '{end_str}'")
+            else:
+                click.echo("❌ Start or end parts empty")
+                return
+        else:
+            click.echo("❌ 'to' is at the beginning or end of the arguments")
+            return
+    else:
+        click.echo("❌ Could not find 'to' in the arguments")
+        click.echo("   Please use format: uite from <start> to <end>")
         return
     
     # Parse start and end dates
+    click.echo(f"🔍 DEBUG: Parsing start date: '{start_str}'")
     start = parse_natural_date(start_str)
+    click.echo(f"🔍 DEBUG: Parsing end date: '{end_str}'") 
     end = parse_natural_date(end_str)
     
     if not start or not end:
@@ -95,16 +95,25 @@ def parse_natural_date(text):
     """Parse natural language dates like '17/02', 'yesterday', 'today'"""
     now = datetime.now()
     text = text.lower().strip()
+    click.echo(f"🔍 DEBUG parse: Parsing text: '{text}'")
     
     # Handle special words
     if text == 'today':
-        return now.replace(hour=0, minute=0, second=0, microsecond=0)
+        result = now.replace(hour=0, minute=0, second=0, microsecond=0)
+        click.echo(f"🔍 DEBUG parse: Special word 'today' -> {result}")
+        return result
     elif text == 'yesterday':
-        return (now - timedelta(days=1)).replace(hour=0, minute=0, second=0)
+        result = (now - timedelta(days=1)).replace(hour=0, minute=0, second=0)
+        click.echo(f"🔍 DEBUG parse: Special word 'yesterday' -> {result}")
+        return result
     elif text == 'tomorrow':
-        return (now + timedelta(days=1)).replace(hour=0, minute=0, second=0)
+        result = (now + timedelta(days=1)).replace(hour=0, minute=0, second=0)
+        click.echo(f"🔍 DEBUG parse: Special word 'tomorrow' -> {result}")
+        return result
     elif text == 'now':
-        return now
+        result = now
+        click.echo(f"🔍 DEBUG parse: Special word 'now' -> {result}")
+        return result
     
     # Try to parse with time
     time_match = re.search(r'(\d{1,2}):(\d{2})', text)
@@ -113,6 +122,7 @@ def parse_natural_date(text):
         hour = int(time_match.group(1))
         minute = int(time_match.group(2))
         text = text.replace(time_match.group(0), '').strip()
+        click.echo(f"🔍 DEBUG parse: Found time {hour}:{minute}, remaining text: '{text}'")
     
     # Try different date formats
     date_formats = [
@@ -134,15 +144,20 @@ def parse_natural_date(text):
             if year_suffix:
                 # If year suffix is provided, append it
                 date_str = f"{text} {year_suffix}"
+                click.echo(f"🔍 DEBUG parse: Trying format {fmt} with year: '{date_str}'")
                 dt = datetime.strptime(date_str, f"{fmt} %Y")
             else:
+                click.echo(f"🔍 DEBUG parse: Trying format {fmt}: '{text}'")
                 dt = datetime.strptime(text, fmt)
                 # If no year in format, assume current year
                 dt = dt.replace(year=now.year)
             
             # Set the time
-            return dt.replace(hour=hour, minute=minute)
-        except ValueError:
+            result = dt.replace(hour=hour, minute=minute)
+            click.echo(f"🔍 DEBUG parse: Success! -> {result}")
+            return result
+        except ValueError as e:
+            click.echo(f"🔍 DEBUG parse: Format {fmt} failed: {e}")
             continue
     
     click.echo(f"❌ Could not understand date: '{text}'")
