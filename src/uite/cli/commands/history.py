@@ -15,23 +15,16 @@ def from_command(args):
         uite from yesterday to today
         uite from "Jan 17" to "Jan 18"
     """
-    # DEBUG: Print raw arguments
-    click.echo(f"🔍 DEBUG: Raw args received: {args}")
-    click.echo(f"🔍 DEBUG: Number of args: {len(args)}")
-    
     # Join all arguments into a string
     text = ' '.join(args).lower()
-    click.echo(f"🔍 DEBUG: Combined text: '{text}'")
     
     # Since "from" is the command name, the args should contain "to"
     # Format should be: <start> to <end>
     words = text.split()
-    click.echo(f"🔍 DEBUG: Split words: {words}")
     
     # Find the position of "to"
     if 'to' in words:
         to_idx = words.index('to')
-        click.echo(f"🔍 DEBUG: Found 'to' at index {to_idx}")
         
         if to_idx > 0 and to_idx < len(words) - 1:
             # Everything before "to" is the start date
@@ -39,15 +32,11 @@ def from_command(args):
             # Everything after "to" is the end date
             end_parts = words[to_idx+1:]
             
-            click.echo(f"🔍 DEBUG: Start parts: {start_parts}")
-            click.echo(f"🔍 DEBUG: End parts: {end_parts}")
-            
             if start_parts and end_parts:
                 start_str = ' '.join(start_parts)
                 end_str = ' '.join(end_parts)
-                click.echo(f"🔍 DEBUG: Found start: '{start_str}', end: '{end_str}'")
             else:
-                click.echo("❌ Start or end parts empty")
+                click.echo("❌ Start or end date missing")
                 return
         else:
             click.echo("❌ 'to' is at the beginning or end of the arguments")
@@ -58,9 +47,7 @@ def from_command(args):
         return
     
     # Parse start and end dates
-    click.echo(f"🔍 DEBUG: Parsing start date: '{start_str}'")
     start = parse_natural_date(start_str)
-    click.echo(f"🔍 DEBUG: Parsing end date: '{end_str}'") 
     end = parse_natural_date(end_str)
     
     if not start or not end:
@@ -95,25 +82,16 @@ def parse_natural_date(text):
     """Parse natural language dates like '17/02', 'yesterday', 'today'"""
     now = datetime.now()
     text = text.lower().strip()
-    click.echo(f"🔍 DEBUG parse: Parsing text: '{text}'")
     
     # Handle special words
     if text == 'today':
-        result = now.replace(hour=0, minute=0, second=0, microsecond=0)
-        click.echo(f"🔍 DEBUG parse: Special word 'today' -> {result}")
-        return result
+        return now.replace(hour=0, minute=0, second=0, microsecond=0)
     elif text == 'yesterday':
-        result = (now - timedelta(days=1)).replace(hour=0, minute=0, second=0)
-        click.echo(f"🔍 DEBUG parse: Special word 'yesterday' -> {result}")
-        return result
+        return (now - timedelta(days=1)).replace(hour=0, minute=0, second=0)
     elif text == 'tomorrow':
-        result = (now + timedelta(days=1)).replace(hour=0, minute=0, second=0)
-        click.echo(f"🔍 DEBUG parse: Special word 'tomorrow' -> {result}")
-        return result
+        return (now + timedelta(days=1)).replace(hour=0, minute=0, second=0)
     elif text == 'now':
-        result = now
-        click.echo(f"🔍 DEBUG parse: Special word 'now' -> {result}")
-        return result
+        return now
     
     # Try to parse with time
     time_match = re.search(r'(\d{1,2}):(\d{2})', text)
@@ -122,7 +100,6 @@ def parse_natural_date(text):
         hour = int(time_match.group(1))
         minute = int(time_match.group(2))
         text = text.replace(time_match.group(0), '').strip()
-        click.echo(f"🔍 DEBUG parse: Found time {hour}:{minute}, remaining text: '{text}'")
     
     # Try different date formats
     date_formats = [
@@ -144,20 +121,15 @@ def parse_natural_date(text):
             if year_suffix:
                 # If year suffix is provided, append it
                 date_str = f"{text} {year_suffix}"
-                click.echo(f"🔍 DEBUG parse: Trying format {fmt} with year: '{date_str}'")
                 dt = datetime.strptime(date_str, f"{fmt} %Y")
             else:
-                click.echo(f"🔍 DEBUG parse: Trying format {fmt}: '{text}'")
                 dt = datetime.strptime(text, fmt)
                 # If no year in format, assume current year
                 dt = dt.replace(year=now.year)
             
             # Set the time
-            result = dt.replace(hour=hour, minute=minute)
-            click.echo(f"🔍 DEBUG parse: Success! -> {result}")
-            return result
-        except ValueError as e:
-            click.echo(f"🔍 DEBUG parse: Format {fmt} failed: {e}")
+            return dt.replace(hour=hour, minute=minute)
+        except ValueError:
             continue
     
     click.echo(f"❌ Could not understand date: '{text}'")
