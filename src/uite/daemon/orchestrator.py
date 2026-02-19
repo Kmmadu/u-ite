@@ -2,7 +2,7 @@ import time
 import signal
 import sys
 import logging
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # -------- Core Imports --------
 try:
@@ -10,11 +10,11 @@ try:
     from uite.storage.db import init_db, save_run
     from uite.core.fingerprint import collect_fingerprint, generate_network_id
     from uite.core.device import get_device_id
-    from uite.core.formatters import format_duration  # ADDED THIS IMPORT
+    from uite.core.formatters import format_duration
     from uite.tracking.event_detector import EventDetector
     from uite.tracking.event_store import save_events
     from uite.tracking.category import Category
-
+    from uite.core.network_profile import NetworkProfileManager
 
 except ImportError as e:
     print(f"Error: Missing core U-ITE modules ({e})")
@@ -54,6 +54,7 @@ class ObserverState:
     def __init__(self):
         self.running = True
         self.outage_started = None  # Track when internet outage began
+        self.announced_networks = set()  # Track which networks we've announced
 
 state = ObserverState()
 
@@ -87,6 +88,9 @@ def observe(interval=DEFAULT_INTERVAL):
         logger.error(f"Failed to initialize database: {e}")
         return
 
+    # -------- Initialize Network Profile Manager --------
+    profile_manager = NetworkProfileManager()
+
     # -------- Event Engine --------
     event_detector = EventDetector(device_id=device_id)
 
@@ -97,6 +101,19 @@ def observe(interval=DEFAULT_INTERVAL):
             # -------- NETWORK IDENTITY --------
             fingerprint = collect_fingerprint()
             network_id = generate_network_id(fingerprint)
+
+            # -------- NETWORK PROFILING --------
+            profile = profile_manager.get_or_create(network_id, fingerprint)
+            
+            # Check if this is a newly created profile (within the last 5 minutes)
+            # This prevents the message from showing on every cycle
+            time_since_first_seen = (datetime.now() - profile.first_seen).total_seconds()
+            if time_since_first_seen < 300:  # Less than 5 minutes old
+                if network_id not in state.announced_networks:
+                    state.announced_networks.add(network_id)
+                    logger.info(f"🆕 New network detected: {profile.name}")
+                    logger.info(f"   Run 'uite network list' to see all networks")
+                    logger.info(f"   Run 'uite network rename {network_id[:8]} \"My Network\"' to name it")
 
             # -------- DIAGNOSTICS --------
             router_ip = fingerprint.get("default_gateway")
@@ -138,6 +155,9 @@ def observe(interval=DEFAULT_INTERVAL):
                     result.update({
                         "device_id": device_id,
                         "network_id": network_id,
+                        "network_name": profile.name,
+                        "network_provider": profile.provider,
+                        "network_tags": ",".join(profile.tags) if profile.tags else "",
                         "timestamp": timestamp
                     })
 
@@ -152,22 +172,16 @@ def observe(interval=DEFAULT_INTERVAL):
                         save_events(events)
 
                         for event in events:
-                            # If this is a restoration event, use the formatter in the log
-                            if event['type'] == 'NETWORK_RESTORED':
-                                logger.warning(
-                                    f"EVENT [{event['type']}] | {event['summary']}"
-                                )
-                            else:
-                                logger.warning(
-                                    f"EVENT [{event['type']}] | {event['summary']}"
-                                )
+                            logger.warning(
+                                f"EVENT [{event['type']}] | {event['summary']}"
+                            )
 
                     # -------- METRIC LOGGING --------
                     verdict = result.get("verdict", "Unknown")
                     latency = result.get("avg_latency")
                     loss = result.get("packet_loss")
 
-                    msg = f"Verdict: {verdict}"
+                    msg = f"[{profile.name}] Verdict: {verdict}"
                     if latency is not None and loss is not None:
                         msg += f" | Latency: {latency:.1f}ms | Loss: {loss}%"
 

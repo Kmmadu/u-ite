@@ -5514,3 +5514,35 @@
 2026-02-19 20:16:15,162 [INFO] Verdict: ✅ Connected | Latency: 68.3ms | Loss: 0%
 2026-02-19 20:16:15,163 [INFO] U-ITE Observer ran for: 5 seconds
 2026-02-19 20:16:15,163 [INFO] U-ITE Observer stopped.
+2026-02-19 20:58:58,662 [INFO] Device ID: 07bf093a-6a7e-4e5d-88f0-e59c00017cd0
+2026-02-19 20:58:58,688 [INFO] Database initialized successfully.
+2026-02-19 20:58:59,825 [INFO] 🆕 New network detected: Network 192.168.1.1
+2026-02-19 20:58:59,825 [INFO]    Run 'uite network list' to see all networks
+2026-02-19 20:58:59,826 [INFO]    Run 'uite network rename 345ec2aa "My Network"' to name it
+2026-02-19 20:59:05,782 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 69.6ms | Loss: 0%
+2026-02-19 20:59:34,402 [INFO] 🆕 New network detected: Network 192.168.1.1
+2026-02-19 20:59:34,403 [INFO]    Run 'uite network list' to see all networks
+2026-02-19 20:59:34,403 [INFO]    Run 'uite network rename 345ec2aa "My Network"' to name it
+2026-02-19 20:59:39,713 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 68.2ms | Loss: 0%
+2026-02-19 21:00:00,956 [INFO] 🆕 New network detected: Network 192.168.1.1
+2026-02-19 21:00:00,957 [INFO]    Run 'uite network list' to see all networks
+2026-02-19 21:00:00,957 [INFO]    Run 'uite network rename 345ec2aa "My Network"' to name it
+2026-02-19 21:00:06,509 [INFO] [Network 192.168.1.1] Verdict: 📶 Degraded Performance | Latency: 140.8ms | Loss: 0%
+2026-02-19 21:00:29,507 [INFO] 🆕 New network detected: Network 192.168.1.1
+2026-02-19 21:00:29,507 [INFO]    Run 'uite network list' to see all networks
+2026-02-19 21:00:29,508 [INFO]    Run 'uite network rename 345ec2aa "My Network"' to name it
+2026-02-19 21:00:40,205 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 79.7ms | Loss: 0%
+2026-02-19 21:00:41,803 [INFO] Shutdown signal received. Stopping observer...
+2026-02-19 21:00:42,205 [INFO] U-ITE Observer ran for: 13 seconds
+2026-02-19 21:00:42,206 [INFO] U-ITE Observer stopped.
+2026-02-19 21:59:56,136 [INFO] Device ID: 07bf093a-6a7e-4e5d-88f0-e59c00017cd0
+2026-02-19 21:59:56,140 [INFO] Database initialized successfully.
+2026-02-19 22:00:02,493 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 63.5ms | Loss: 0%
+2026-02-19 22:00:37,937 [INFO] [Network 192.168.1.1] Verdict: ⚠️ Unstable Connection | Latency: 104.0ms | Loss: 20%
+2026-02-19 22:01:02,330 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 79.6ms | Loss: 0%
+2026-02-19 22:01:32,982 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 52.9ms | Loss: 0%
+2026-02-19 22:02:03,013 [INFO] [Network 192.168.1.1] Verdict: ⚠️ Unstable Connection | Latency: 54.5ms | Loss: 20%
+2026-02-19 22:02:32,877 [INFO] [Network 192.168.1.1] Verdict: 📶 Degraded Performance | Latency: 120.8ms | Loss: 0%
+2026-02-19 22:02:33,089 [INFO] Shutdown signal received. Stopping observer...
+2026-02-19 22:02:33,877 [INFO] U-ITE Observer ran for: 7 seconds
+2026-02-19 22:02:33,877 [INFO] U-ITE Observer stopped.

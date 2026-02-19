@@ -2,6 +2,9 @@ import click
 from datetime import datetime, timedelta
 import re
 from uite.storage.history import HistoricalData
+from uite.core.network_profile import NetworkProfileManager
+
+__all__ = ['from_command', 'by_network', 'parse_natural_date', 'display_results']
 
 @click.command(name="from")
 @click.argument('args', nargs=-1, required=True)
@@ -78,6 +81,74 @@ def from_command(args):
     # Display results
     display_results(runs, start, end)
 
+@click.command(name="by-network")
+@click.argument('network_identifier')
+@click.option('--days', default=7, help='Number of days to look back')
+@click.option('--start', help='Start date (DD-MM-YYYY)')
+@click.option('--end', help='End date (DD-MM-YYYY)')
+def by_network(network_identifier, days, start, end):
+    """Show data for a specific network (by name, ID, or tag)"""
+    
+    manager = NetworkProfileManager()
+    
+    # Find network by name, ID, or tag
+    network_id = None
+    matched_profile = None
+    
+    for pid, profile in manager.profiles.items():
+        if (network_identifier.lower() in profile.name.lower() or 
+            network_identifier == pid or
+            (profile.tags and network_identifier.lower() in [t.lower() for t in profile.tags]) or
+            (profile.provider and network_identifier.lower() in profile.provider.lower())):
+            network_id = pid
+            matched_profile = profile
+            break
+    
+    if not network_id:
+        click.echo(f"❌ No network found matching '{network_identifier}'")
+        click.echo("\nAvailable networks:")
+        for pid, profile in manager.profiles.items():
+            tags = f"[{', '.join(profile.tags)}]" if profile.tags else ""
+            provider = f"({profile.provider})" if profile.provider else ""
+            click.echo(f"  • {profile.name} {provider} {tags}")
+            click.echo(f"    ID: {pid}")
+        return
+    
+    # Calculate date range
+    if start and end:
+        # Use custom date range if provided
+        try:
+            start_date = datetime.strptime(start, "%d-%m-%Y")
+            end_date = datetime.strptime(end, "%d-%m-%Y")
+            end_date = end_date.replace(hour=23, minute=59, second=59)
+        except ValueError:
+            click.echo("❌ Invalid date format. Use DD-MM-YYYY")
+            return
+    else:
+        # Default to last N days
+        end_date = datetime.now()
+        start_date = end_date - timedelta(days=days)
+    
+    runs = HistoricalData.get_runs_by_date_range(
+        start_date.strftime("%d-%m-%Y"), start_date.strftime("%H:%M"),
+        end_date.strftime("%d-%m-%Y"), end_date.strftime("%H:%M"),
+        network_id=network_id
+    )
+    
+    if not runs:
+        click.echo(f"📭 No data found for {matched_profile.name} in this period")
+        return
+    
+    # Display results with network context
+    click.echo(f"\n📡 Network: {matched_profile.name}")
+    if matched_profile.provider:
+        click.echo(f"   Provider: {matched_profile.provider}")
+    if matched_profile.tags:
+        click.echo(f"   Tags: {', '.join(matched_profile.tags)}")
+    
+    # Reuse display_results but with modified header
+    display_results(runs, start_date, end_date, show_header=False)
+
 def parse_natural_date(text):
     """Parse natural language dates like '17/02', 'yesterday', 'today'"""
     now = datetime.now()
@@ -136,7 +207,7 @@ def parse_natural_date(text):
     click.echo("   Try formats like: 17/02, 17/02/2026, 17-02, yesterday, today")
     return None
 
-def display_results(runs, start, end):
+def display_results(runs, start, end, show_header=True):
     """Display the historical data in a nice format"""
     
     total = len(runs)
@@ -159,10 +230,11 @@ def display_results(runs, start, end):
         if run.get('loss') is not None:
             losses.append(run['loss'])
     
-    # Header
-    click.echo("\n" + "=" * 70)
-    click.echo(f"📊 Historical Summary ({start.strftime('%d %b %Y %H:%M')} to {end.strftime('%d %b %Y %H:%M')})")
-    click.echo("=" * 70)
+    # Header (conditional for by-network command)
+    if show_header:
+        click.echo("\n" + "=" * 70)
+        click.echo(f"📊 Historical Summary ({start.strftime('%d %b %Y %H:%M')} to {end.strftime('%d %b %Y %H:%M')})")
+        click.echo("=" * 70)
     
     # Overview
     click.echo(f"\n📈 Overview:")

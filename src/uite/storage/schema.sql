@@ -13,7 +13,11 @@ CREATE TABLE IF NOT EXISTS diagnostic_runs (
     http_ok INTEGER,
     avg_latency_ms REAL,
     packet_loss_pct REAL,
-    verdict TEXT
+    verdict TEXT,
+    -- Add provider info columns (must be at the end for ALTER to work)
+    provider_name TEXT,
+    network_name TEXT,
+    network_tags TEXT
 );
 
 -- ===============================
@@ -45,6 +49,39 @@ CREATE TABLE IF NOT EXISTS network_states (
     downtime_seconds REAL
 );
 
--- Index for faster queries by network and time
+-- ===============================
+-- Network Profiles (Network Identity)
+-- ===============================
+CREATE TABLE IF NOT EXISTS network_profiles (
+    network_id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    provider TEXT,
+    tags TEXT,
+    first_seen TEXT NOT NULL,
+    last_seen TEXT NOT NULL,
+    notes TEXT,
+    total_runs INTEGER DEFAULT 0,
+    avg_latency REAL,
+    avg_loss REAL,
+    uptime_percentage REAL
+);
+
+-- ===============================
+-- Indexes for Performance
+-- ===============================
+
+-- Index for diagnostic runs by network and time
+CREATE INDEX IF NOT EXISTS idx_diagnostic_runs_network 
+ON diagnostic_runs(network_id, timestamp);
+
+-- Index for network states by network and time
 CREATE INDEX IF NOT EXISTS idx_network_states_network_id 
 ON network_states(network_id, timestamp DESC);
+
+-- Index for events by network
+CREATE INDEX IF NOT EXISTS idx_events_network 
+ON events(network_id, timestamp);
+
+-- Index for events by type
+CREATE INDEX IF NOT EXISTS idx_events_type 
+ON events(event_type);
