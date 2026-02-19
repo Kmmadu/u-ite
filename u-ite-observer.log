@@ -5049,3 +5049,310 @@
 2026-02-18 18:42:54,324 [INFO] Verdict: Healthy | Latency: 13.9ms | Loss: 0%
 2026-02-18 18:42:55,963 [INFO] Shutdown signal received. Stopping observer...
 2026-02-18 18:42:56,324 [INFO] U-ITE Observer stopped.
+2026-02-19 13:12:41,881 [INFO] Device ID: 07bf093a-6a7e-4e5d-88f0-e59c00017cd0
+2026-02-19 13:12:41,885 [INFO] Database initialized successfully.
+2026-02-19 13:12:49,363 [INFO] Verdict: Healthy | Latency: 86.1ms | Loss: 0%
+2026-02-19 13:13:19,162 [INFO] Verdict: Healthy | Latency: 56.2ms | Loss: 0%
+2026-02-19 13:13:47,612 [INFO] Verdict: Healthy | Latency: 59.6ms | Loss: 0%
+2026-02-19 13:13:50,363 [INFO] Shutdown signal received. Stopping observer...
+2026-02-19 13:13:50,613 [INFO] U-ITE Observer stopped.
+2026-02-19 13:14:06,192 [INFO] Device ID: 07bf093a-6a7e-4e5d-88f0-e59c00017cd0
+2026-02-19 13:14:06,193 [INFO] Database initialized successfully.
+2026-02-19 13:14:06,204 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,212 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,220 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,227 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,235 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,241 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,247 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,255 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,262 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,269 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,277 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,286 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,293 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,300 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,306 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,313 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,319 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,325 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,333 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,342 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,349 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,357 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,364 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,371 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,377 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,385 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,391 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,398 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,405 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,413 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,420 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,426 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,433 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,439 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,446 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,453 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,460 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,467 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,472 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,480 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,486 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,493 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,500 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,505 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,513 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,519 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,526 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,533 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,538 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,546 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,552 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,559 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,566 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,571 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,580 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,585 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,593 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,599 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,604 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,612 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,617 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,624 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,631 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,636 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,644 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,650 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,656 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,662 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,669 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,676 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,683 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,689 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,696 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,703 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,710 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,717 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,726 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,736 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,748 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,759 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,770 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,780 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,788 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,799 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,805 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,812 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,817 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,824 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,830 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,837 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,846 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,853 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,862 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,869 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,881 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,891 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,901 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,911 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,921 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,932 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,941 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,951 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,962 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,972 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,982 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:06,994 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,004 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,015 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,025 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,035 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,045 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,056 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,066 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,073 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,080 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,086 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,094 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,100 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,106 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,112 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,118 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,124 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,132 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,138 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,146 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,154 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,161 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,168 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,175 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,184 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,193 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,203 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,214 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,224 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,234 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,241 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,248 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,254 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,262 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,269 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,277 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,285 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,291 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,299 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,307 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,314 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,321 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,329 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,336 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,343 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,349 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,356 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,364 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,371 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,379 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,386 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,395 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,403 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,410 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,417 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,425 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,433 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,438 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,446 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,453 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,461 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,468 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,475 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,484 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,492 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,500 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,509 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,517 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,525 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,534 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,541 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,549 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,555 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,563 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,569 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,577 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,583 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,589 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,597 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,604 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,611 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,618 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,625 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,633 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,638 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,646 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,652 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,659 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,666 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,671 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,680 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,690 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,699 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,709 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,718 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,729 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,738 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,746 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,756 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,771 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,786 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,797 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,807 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,818 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,827 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,837 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,846 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,857 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,864 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,871 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,879 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,886 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,893 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,899 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,904 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,912 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,918 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,925 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,930 [INFO] Shutdown signal received. Stopping observer...
+2026-02-19 13:14:07,932 [ERROR] Router IP not detected. Skipping cycle.
+2026-02-19 13:14:07,932 [INFO] U-ITE Observer stopped.
+2026-02-19 13:31:05,699 [INFO] Device ID: 07bf093a-6a7e-4e5d-88f0-e59c00017cd0
+2026-02-19 13:31:05,700 [INFO] Database initialized successfully.
+2026-02-19 13:31:12,854 [INFO] Verdict: Degraded Internet | Latency: 69.1ms | Loss: 20%
+2026-02-19 13:31:40,873 [INFO] Verdict: Degraded Internet | Latency: 222.7ms | Loss: 0%
+2026-02-19 13:32:11,330 [WARNING] EVENT [NETWORK_STATUS_CHANGE] | Network status changed
+2026-02-19 13:32:11,331 [INFO] Verdict: Healthy | Latency: 6.8ms | Loss: 0%
+2026-02-19 13:32:37,707 [INFO] Shutdown signal received. Stopping observer...
+2026-02-19 13:32:37,718 [INFO] Verdict: Healthy | Latency: 4.4ms | Loss: 0%
+2026-02-19 13:32:37,718 [INFO] U-ITE Observer stopped.
+2026-02-19 13:33:00,973 [INFO] Device ID: 07bf093a-6a7e-4e5d-88f0-e59c00017cd0
+2026-02-19 13:33:00,974 [INFO] Database initialized successfully.
+2026-02-19 13:33:06,192 [INFO] Verdict: Healthy | Latency: 7.7ms | Loss: 0%
+2026-02-19 13:33:30,997 [ERROR] 🌐 INTERNET DOWN: Router not detected. Please check your internet connection.
+2026-02-19 13:34:00,991 [ERROR] 🌐 Still offline (outage duration: 29s). Will retry in 30s.
+2026-02-19 13:34:30,996 [ERROR] 🌐 Still offline (outage duration: 59s). Will retry in 30s.
+2026-02-19 13:35:00,997 [ERROR] 🌐 Still offline (outage duration: 90s). Will retry in 30s.
+2026-02-19 13:35:31,006 [ERROR] 🌐 Still offline (outage duration: 120s). Will retry in 30s.
+2026-02-19 13:36:01,005 [ERROR] 🌐 Still offline (outage duration: 150s). Will retry in 30s.
+2026-02-19 13:36:31,010 [ERROR] 🌐 Still offline (outage duration: 180s). Will retry in 30s.
+2026-02-19 13:37:01,012 [ERROR] 🌐 Still offline (outage duration: 210s). Will retry in 30s.
+2026-02-19 13:37:41,494 [INFO] ✅ Internet connection restored after 250 seconds
+2026-02-19 13:37:47,306 [WARNING] EVENT [NETWORK_STATUS_CHANGE] | Network status changed
+2026-02-19 13:37:47,306 [INFO] Verdict: Degraded Internet | Latency: 32.1ms | Loss: 20%
+2026-02-19 13:38:08,049 [WARNING] EVENT [NETWORK_STATUS_CHANGE] | Network status changed
+2026-02-19 13:38:08,050 [INFO] Verdict: Healthy | Latency: 33.8ms | Loss: 0%
+2026-02-19 13:38:37,619 [INFO] Verdict: Healthy | Latency: 26.1ms | Loss: 0%
+2026-02-19 13:39:14,397 [INFO] Verdict: Healthy | Latency: 20.6ms | Loss: 0%
+2026-02-19 13:39:37,150 [WARNING] EVENT [NETWORK_STATUS_CHANGE] | Network status changed
+2026-02-19 13:39:37,150 [INFO] Verdict: Degraded Internet | Latency: 230.3ms | Loss: 0%
+2026-02-19 13:40:15,951 [WARNING] EVENT [NETWORK_STATUS_CHANGE] | Network status changed
+2026-02-19 13:40:15,951 [INFO] Verdict: Healthy | Latency: 7.2ms | Loss: 0%
+2026-02-19 13:40:36,116 [INFO] Verdict: Healthy | Latency: 13.8ms | Loss: 0%
+2026-02-19 13:41:06,250 [INFO] Verdict: Healthy | Latency: 8.8ms | Loss: 0%
+2026-02-19 13:41:36,501 [WARNING] EVENT [NETWORK_STATUS_CHANGE] | Network status changed
+2026-02-19 13:41:36,501 [INFO] Verdict: Degraded Internet | Latency: 278.3ms | Loss: 0%
+2026-02-19 13:42:06,137 [WARNING] EVENT [NETWORK_STATUS_CHANGE] | Network status changed
+2026-02-19 13:42:06,137 [INFO] Verdict: Healthy | Latency: 32.3ms | Loss: 0%
+2026-02-19 13:42:38,187 [WARNING] EVENT [NETWORK_STATUS_CHANGE] | Network status changed
+2026-02-19 13:42:38,187 [INFO] Verdict: Degraded Internet | Latency: 20.4ms | Loss: 20%
+2026-02-19 13:43:06,292 [WARNING] EVENT [NETWORK_STATUS_CHANGE] | Network status changed
+2026-02-19 13:43:06,292 [INFO] Verdict: Healthy | Latency: 19.4ms | Loss: 0%
+2026-02-19 13:43:40,622 [INFO] Verdict: Healthy | Latency: 10.8ms | Loss: 0%
+2026-02-19 13:44:06,031 [INFO] Verdict: Healthy | Latency: 21.4ms | Loss: 0%
+2026-02-19 13:44:36,931 [INFO] Verdict: Healthy | Latency: 47.8ms | Loss: 0%
+2026-02-19 13:45:16,251 [INFO] Verdict: Healthy | Latency: 10.1ms | Loss: 0%
+2026-02-19 13:45:37,374 [INFO] Verdict: Healthy | Latency: 12.8ms | Loss: 0%
+2026-02-19 13:46:07,686 [INFO] Verdict: Healthy | Latency: 19.5ms | Loss: 0%
+2026-02-19 13:46:37,232 [WARNING] EVENT [NETWORK_STATUS_CHANGE] | Network status changed
+2026-02-19 13:46:37,232 [INFO] Verdict: Degraded Internet | Latency: 26.8ms | Loss: 40%
+2026-02-19 13:46:49,898 [INFO] Shutdown signal received. Stopping observer...
+2026-02-19 13:46:50,234 [INFO] U-ITE Observer stopped.
+2026-02-19 13:53:21,382 [INFO] Device ID: 07bf093a-6a7e-4e5d-88f0-e59c00017cd0
+2026-02-19 13:53:21,382 [INFO] Database initialized successfully.
+2026-02-19 13:53:41,650 [INFO] Verdict: Healthy | Latency: 13.9ms | Loss: 0%
+2026-02-19 13:54:08,951 [INFO] Verdict: Healthy | Latency: 15.3ms | Loss: 0%
+2026-02-19 13:54:31,464 [INFO] Verdict: Healthy | Latency: 12.8ms | Loss: 0%
+2026-02-19 13:55:11,414 [ERROR] 🌐 INTERNET DOWN: Router not detected. Please check your internet connection.
+2026-02-19 13:55:41,412 [ERROR] 🌐 Still offline (outage duration: 29s). Will retry in 30s.
+2026-02-19 13:56:11,413 [ERROR] 🌐 Still offline (outage duration: 59s). Will retry in 30s.
+2026-02-19 13:56:41,417 [ERROR] 🌐 Still offline (outage duration: 90s). Will retry in 30s.
+2026-02-19 13:57:06,926 [ERROR] 🌐 Still offline (outage duration: 115s). Will retry in 30s.
+2026-02-19 13:57:28,331 [INFO] ✅ Internet connection restored after 136 seconds
+2026-02-19 13:57:33,861 [INFO] Verdict: Degraded Internet | Latency: 46.9ms | Loss: 40%
+2026-02-19 13:57:56,696 [INFO] Verdict: Healthy | Latency: 20.0ms | Loss: 0%
+2026-02-19 13:58:11,248 [INFO] Shutdown signal received. Stopping observer...
+2026-02-19 13:58:11,697 [INFO] U-ITE Observer stopped.
+2026-02-19 14:35:43,220 [INFO] Device ID: 07bf093a-6a7e-4e5d-88f0-e59c00017cd0
+2026-02-19 14:35:43,223 [INFO] Database initialized successfully.
+2026-02-19 14:35:53,353 [INFO] Shutdown signal received. Stopping observer...
+2026-02-19 14:35:54,918 [INFO] Shutdown signal received. Stopping observer...
+2026-02-19 14:36:00,709 [INFO] Verdict: Healthy | Latency: 68.9ms | Loss: 0%
+2026-02-19 14:36:00,709 [INFO] U-ITE Observer stopped.

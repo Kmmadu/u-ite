@@ -2,6 +2,7 @@ import time
 import signal
 import sys
 import logging
+from datetime import datetime
 
 # -------- Core Imports --------
 try:
@@ -51,6 +52,7 @@ logger.propagate = False
 class ObserverState:
     def __init__(self):
         self.running = True
+        self.outage_started = None  # Track when internet outage began
 
 state = ObserverState()
 
@@ -97,64 +99,85 @@ def observe(interval=DEFAULT_INTERVAL):
 
             # -------- DIAGNOSTICS --------
             router_ip = fingerprint.get("default_gateway")
+            
             if not router_ip:
-                logger.error("Router IP not detected. Skipping cycle.")
-                continue
+                # Track internet outage
+                if state.outage_started is None:
+                    state.outage_started = datetime.now()
+                    logger.error("🌐 INTERNET DOWN: Router not detected. Please check your internet connection.")
+                else:
+                    # Calculate outage duration
+                    outage_duration = (datetime.now() - state.outage_started).seconds
+                    logger.error(f"🌐 Still offline (outage duration: {outage_duration}s). Will retry in {interval}s.")
+                
+                # Skip diagnostic run but still respect interval
+                result = None
+            else:
+                # Internet is back - clear outage flag if it was set
+                if state.outage_started is not None:
+                    outage_duration = (datetime.now() - state.outage_started).seconds
+                    logger.info(f"✅ Internet connection restored after {outage_duration} seconds")
+                    state.outage_started = None
 
-            result = run_diagnostics(
-                router_ip=router_ip,
-                internet_ip=DEFAULT_INTERNET_IP,
-                website=DEFAULT_WEBSITE_NAME,
-                url=DEFAULT_WEBSITE_URL,
-                return_result=True
-            )
+                # Run diagnostics
+                result = run_diagnostics(
+                    router_ip=router_ip,
+                    internet_ip=DEFAULT_INTERNET_IP,
+                    website=DEFAULT_WEBSITE_NAME,
+                    url=DEFAULT_WEBSITE_URL,
+                    return_result=True
+                )
 
-            if not result:
-                logger.warning("No diagnostic data returned.")
-                continue
+                if not result:
+                    logger.warning("No diagnostic data returned.")
+                else:
+                    # -------- ENRICH SNAPSHOT --------
+                    timestamp = time.time()
 
-            # -------- ENRICH SNAPSHOT --------
-            timestamp = time.time()
+                    result.update({
+                        "device_id": device_id,
+                        "network_id": network_id,
+                        "timestamp": timestamp
+                    })
 
-            result.update({
-                "device_id": device_id,
-                "network_id": network_id,
-                "timestamp": timestamp
-            })
+                    save_run(result)
 
-            save_run(result)
-
-            # -------- EVENT DETECTION --------
-            events = event_detector.analyze(
-                snapshot=result
-            )
-
-            if events:
-                save_events(events)
-
-                for event in events:
-                    logger.warning(
-                        f"EVENT [{event['type']}] | {event['summary']}"
+                    # -------- EVENT DETECTION --------
+                    events = event_detector.analyze(
+                        snapshot=result
                     )
 
-            # -------- METRIC LOGGING --------
-            verdict = result.get("verdict", "Unknown")
-            latency = result.get("avg_latency")
-            loss = result.get("packet_loss")
+                    if events:
+                        save_events(events)
 
-            msg = f"Verdict: {verdict}"
-            if latency is not None and loss is not None:
-                msg += f" | Latency: {latency:.1f}ms | Loss: {loss}%"
+                        for event in events:
+                            logger.warning(
+                                f"EVENT [{event['type']}] | {event['summary']}"
+                            )
 
-            logger.info(msg)
+                    # -------- METRIC LOGGING --------
+                    verdict = result.get("verdict", "Unknown")
+                    latency = result.get("avg_latency")
+                    loss = result.get("packet_loss")
+
+                    msg = f"Verdict: {verdict}"
+                    if latency is not None and loss is not None:
+                        msg += f" | Latency: {latency:.1f}ms | Loss: {loss}%"
+
+                    logger.info(msg)
 
         except Exception as e:
             logger.error(f"Observer cycle failed: {e}", exc_info=True)
 
-        # -------- Interval Control --------
+        # -------- Interval Control - ALWAYS EXECUTE THIS --------
         elapsed = time.time() - start_time
         sleep_time = max(0, interval - elapsed)
 
+        # Only log sleep time if it's significant
+        if sleep_time > 1 and state.running:
+            logger.debug(f"Sleeping for {sleep_time:.1f} seconds until next cycle")
+
+        # Break sleep into chunks to allow for clean shutdown
         for _ in range(int(sleep_time)):
             if not state.running:
                 break
