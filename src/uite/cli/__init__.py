@@ -3,6 +3,7 @@
 import click
 from uite.cli.commands.history import from_command, by_network
 from uite.cli.commands.network import network
+from uite.cli.commands.service import service
 
 @click.group()
 def cli():
@@ -13,6 +14,7 @@ def cli():
 cli.add_command(from_command)
 cli.add_command(by_network)
 cli.add_command(network)  # Add the network command group
+cli.add_command(service)  # Add the service command group
 
 if __name__ == "__main__":
     cli()

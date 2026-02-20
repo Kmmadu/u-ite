@@ -3,27 +3,33 @@ from pathlib import Path
 from datetime import datetime
 import hashlib
 import importlib.resources as pkg_resources
+from uite.core.platform import OS
 
-# For runtime data (writable)
-BASE_DIR = Path.home() / ".uite"
-DB_PATH = BASE_DIR / "data" / "u_ite.db"
+# Use OS-appropriate paths
+BASE_DIR = OS.get_data_dir()
+DB_PATH = BASE_DIR / "u_ite.db"
+LOG_DIR = OS.get_log_dir()
 
 def init_db():
-    DB_PATH.parent.mkdir(parents=True, exist_ok=True)
+    """Initialize the database with schema"""
+    BASE_DIR.mkdir(parents=True, exist_ok=True)
+    LOG_DIR.mkdir(parents=True, exist_ok=True)
 
     with sqlite3.connect(DB_PATH) as conn:
-        # Load schema from package (read-only, works after installation)
+        # Load schema from package
         from uite import storage
         schema_text = pkg_resources.read_text(storage, "schema.sql")
         conn.executescript(schema_text)
 
 
 def generate_network_id(router_ip, internet_ip):
+    """Generate a network ID from router and internet IPs"""
     raw = f"{router_ip}-{internet_ip}"
     return hashlib.sha256(raw.encode()).hexdigest()[:16]
 
 
 def save_run(data: dict):
+    """Save a diagnostic run to the database"""
     print(f"DEBUG: Saving run for network {data.get('network_id')}")
     with sqlite3.connect(DB_PATH) as conn:
         conn.execute(
