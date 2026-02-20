@@ -24,6 +24,9 @@ def generate_network_id(router_ip, internet_ip):
 
 
 def save_run(data: dict):
+    print(f"DEBUG: Saving run for network {data.get("network_id")}")
+    print(f"DEBUG: Saving run for network {data.get("network_id")}")
+    print(f"DEBUG: Saving run for network {data.get("network_id")}")
     with sqlite3.connect(DB_PATH) as conn:
         conn.execute(
             """

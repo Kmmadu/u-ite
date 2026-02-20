@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 import re
 from uite.storage.history import HistoricalData
 from uite.core.network_profile import NetworkProfileManager
+from uite.storage.db import DB_PATH
 
 __all__ = ['from_command', 'by_network', 'parse_natural_date', 'display_results']
 
@@ -172,7 +173,7 @@ def parse_natural_date(text):
         minute = int(time_match.group(2))
         text = text.replace(time_match.group(0), '').strip()
     
-    # Try different date formats
+    # Try different date formats - expanded to include ISO format
     date_formats = [
         ('%d/%m', f"{datetime.now().year}"),  # 17/02
         ('%d/%m/%Y', ''),                      # 17/02/2026
@@ -180,6 +181,8 @@ def parse_natural_date(text):
         ('%d-%m-%Y', ''),                      # 17-02-2026
         ('%m/%d', f"{datetime.now().year}"),   # 02/17 (US format)
         ('%m/%d/%Y', ''),                      # 02/17/2026
+        ('%Y-%m-%d', ''),                      # 2026-02-20 (ISO format) - ADDED
+        ('%Y/%m/%d', ''),                      # 2026/02/20 - ADDED
         ('%b %d', f"{datetime.now().year}"),   # Feb 17
         ('%B %d', f"{datetime.now().year}"),   # February 17
         ('%d %b', f"{datetime.now().year}"),   # 17 Feb
@@ -204,7 +207,7 @@ def parse_natural_date(text):
             continue
     
     click.echo(f"❌ Could not understand date: '{text}'")
-    click.echo("   Try formats like: 17/02, 17/02/2026, 17-02, yesterday, today")
+    click.echo("   Try formats like: 17/02, 17/02/2026, 17-02, 2026-02-20, yesterday, today")
     return None
 
 def display_results(runs, start, end, show_header=True):

@@ -10,7 +10,7 @@ def network():
 
 @network.command(name="list")
 def list_networks():
-    """List all detected networks"""
+    """List all networks the device has connected to"""
     manager = NetworkProfileManager()
     profiles = manager.list_profiles()
     
@@ -18,30 +18,74 @@ def list_networks():
         click.echo("No networks detected yet. Run the observer first.")
         return
     
-    table = []
+    # Filter to show ONLY networks that were actually connected to
+    connected_networks = []
     for p in profiles:
+        # Skip anything that's clearly not a real network
+        if p.network_id == "offline-state":
+            continue
+        if hasattr(p, 'is_offline_network') and p.is_offline_network:
+            continue
+        if p.name == "Offline State" or "offline" in p.name.lower():
+            continue
+        
+        # Check if this network has ever had a successful connection
+        # If it has a provider set or tags, it's been manually managed (so it's real)
+        if p.provider and p.provider != "Unknown":
+            connected_networks.append(p)
+            continue
+            
+        if p.tags:
+            connected_networks.append(p)
+            continue
+        
+        # If it has a proper hash ID (16+ chars) and doesn't start with "offline"
+        if p.network_id and len(p.network_id) >= 8 and not p.network_id.startswith("offline"):
+            # This is likely a real network
+            connected_networks.append(p)
+    
+    if not connected_networks:
+        click.echo("No connected networks found. Run the observer while connected to WiFi.")
+        return
+    
+    # Sort by last seen (most recent first)
+    connected_networks.sort(key=lambda x: x.last_seen, reverse=True)
+    
+    table = []
+    for p in connected_networks:
         # Format tags
         tags_display = ", ".join(p.tags) if p.tags else ""
         
-        # Calculate total runs (you might want to add this to the profile)
-        total_runs = getattr(p, 'total_runs', 'N/A')
+        # Format last seen nicely
+        last_seen = p.last_seen.strftime("%Y-%m-%d %H:%M")
+        days_ago = (datetime.now() - p.last_seen).days
+        if days_ago == 0:
+            last_seen_display = f"{last_seen} (today)"
+        elif days_ago == 1:
+            last_seen_display = f"{last_seen} (yesterday)"
+        else:
+            last_seen_display = f"{last_seen} ({days_ago} days ago)"
         
         table.append([
             p.network_id[:8],  # Short ID
             p.name,
             p.provider or "Unknown",
             tags_display,
-            p.first_seen.strftime("%Y-%m-%d %H:%M"),
-            p.last_seen.strftime("%Y-%m-%d %H:%M"),
-            total_runs
+            p.first_seen.strftime("%Y-%m-%d"),
+            last_seen_display
         ])
     
-    click.echo("\n📡 Detected Networks:")
+    click.echo(f"\n📡 Connected Networks ({len(connected_networks)}):")
     click.echo(tabulate(
         table,
-        headers=["ID", "Name", "Provider", "Tags", "First Seen", "Last Seen", "Runs"],
+        headers=["ID", "Name", "Provider", "Tags", "First Seen", "Last Seen"],
         tablefmt="grid"
     ))
+    
+    # Show count of filtered offline sessions if any
+    filtered_count = len(profiles) - len(connected_networks)
+    if filtered_count > 0:
+        click.echo(f"\nℹ️  {filtered_count} offline session(s) not shown")
     
     # Show usage tips
     click.echo("\n💡 Tips:")
@@ -49,6 +93,75 @@ def list_networks():
     click.echo("  • Set provider: uite network provider <ID> \"ISP Name\"")
     click.echo("  • Add tag: uite network tag <ID> <tag>")
     click.echo("  • View stats: uite by-network <name/ID/tag> --days 30")
+
+@network.command(name="list-all")
+def list_all_networks():
+    """List all networks including offline sessions"""
+    manager = NetworkProfileManager()
+    profiles = manager.list_profiles()
+    
+    if not profiles:
+        click.echo("No networks detected yet.")
+        return
+    
+    # Separate connected and offline
+    connected = []
+    offline = []
+    
+    for p in profiles:
+        is_offline = (p.network_id == "offline-state" or 
+                     (hasattr(p, 'is_offline_network') and p.is_offline_network) or
+                     p.name == "Offline State" or 
+                     "offline" in p.name.lower())
+        
+        if is_offline:
+            offline.append(p)
+        else:
+            connected.append(p)
+    
+    # Show connected networks
+    if connected:
+        table = []
+        for p in connected:
+            tags_display = ", ".join(p.tags) if p.tags else ""
+            table.append([
+                p.network_id[:8],
+                p.name,
+                p.provider or "Unknown",
+                tags_display,
+                p.first_seen.strftime("%Y-%m-%d %H:%M"),
+                p.last_seen.strftime("%Y-%m-%d %H:%M")
+            ])
+        
+        click.echo("\n📡 Connected Networks:")
+        click.echo(tabulate(
+            table,
+            headers=["ID", "Name", "Provider", "Tags", "First Seen", "Last Seen"],
+            tablefmt="grid"
+        ))
+    
+    # Show offline sessions
+    if offline:
+        table = []
+        for p in offline:
+            tags_display = ", ".join(p.tags) if p.tags else ""
+            # Truncate offline ID for display
+            display_id = p.network_id[:8] if len(p.network_id) > 8 else p.network_id
+            table.append([
+                display_id,
+                f"{p.name} (offline)",
+                p.provider or "Unknown",
+                tags_display,
+                p.first_seen.strftime("%Y-%m-%d %H:%M"),
+                p.last_seen.strftime("%Y-%m-%d %H:%M")
+            ])
+        
+        click.echo("\n📡 Offline Sessions:")
+        click.echo(tabulate(
+            table,
+            headers=["ID", "Name", "Provider", "Tags", "First Seen", "Last Seen"],
+            tablefmt="grid"
+        ))
 
 @network.command()
 @click.argument('network_id')
@@ -71,6 +184,9 @@ def rename(network_id, name):
         click.echo(f"❌ Network {network_id} not found")
         click.echo("\nAvailable networks:")
         for pid, profile in manager.profiles.items():
+            # Skip offline sessions in suggestions
+            if pid == "offline-state" or (hasattr(profile, 'is_offline_network') and profile.is_offline_network):
+                continue
             click.echo(f"  • {pid[:8]} - {profile.name}")
 
 @network.command()
@@ -164,6 +280,35 @@ def stats(network_id):
         healthy = sum(1 for r in runs if '✅' in r.get('verdict', '') or 'Connected' in r.get('verdict', ''))
         uptime = (healthy / len(runs)) * 100 if runs else 0
         click.echo(f"Uptime (30d): {uptime:.1f}%")
+
+@network.command(name="cleanup")
+@click.option('--days', default=7, help='Remove offline sessions older than N days')
+def cleanup_networks(days):
+    """Remove old offline network sessions"""
+    manager = NetworkProfileManager()
+    profiles = manager.list_profiles()
+    
+    removed = 0
+    now = datetime.now()
+    
+    for pid, profile in list(manager.profiles.items()):
+        # Check if this is an offline network
+        is_offline = (pid == "offline-state" or 
+                     (hasattr(profile, 'is_offline_network') and profile.is_offline_network) or
+                     profile.name == "Offline State" or 
+                     "offline" in profile.name.lower())
+        
+        if is_offline:
+            age = (now - profile.last_seen).days
+            if age >= days:
+                del manager.profiles[pid]
+                removed += 1
+    
+    if removed > 0:
+        manager.save()
+        click.echo(f"✅ Removed {removed} old offline session(s)")
+    else:
+        click.echo("No old offline sessions to remove")
 
 # Export the group
 __all__ = ['network']
