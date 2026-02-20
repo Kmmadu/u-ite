@@ -2,18 +2,20 @@ import json
 from pathlib import Path
 from typing import Dict, List, Optional
 from datetime import datetime
+import hashlib
 
 class NetworkProfile:
     """Profile for a specific network/ISP"""
     
-    def __init__(self, network_id: str, name: str, provider: str = ""):
+    def __init__(self, network_id: str, name: str = None, provider: str = ""):
         self.network_id = network_id
-        self.name = name  # e.g., "Home Fiber", "Work VPN", "Mobile Hotspot"
-        self.provider = provider  # e.g., "Comcast", "AT&T", "Starlink"
-        self.tags: List[str] = []  # e.g., ["backup", "primary", "vpn"]
+        self.name = name or f"Network {network_id[:8]}"  # Use ID if no name
+        self.provider = provider
+        self.tags: List[str] = []
         self.first_seen: datetime = datetime.now()
         self.last_seen: datetime = datetime.now()
         self.notes: str = ""
+        self.is_offline_network = False  # Flag for offline-only networks
     
     def to_dict(self) -> dict:
         return {
@@ -23,16 +25,18 @@ class NetworkProfile:
             "tags": self.tags,
             "first_seen": self.first_seen.isoformat(),
             "last_seen": self.last_seen.isoformat(),
-            "notes": self.notes
+            "notes": self.notes,
+            "is_offline_network": self.is_offline_network
         }
     
     @classmethod
     def from_dict(cls, data: dict):
-        profile = cls(data["network_id"], data["name"], data.get("provider", ""))
+        profile = cls(data["network_id"], data.get("name"), data.get("provider", ""))
         profile.tags = data.get("tags", [])
         profile.first_seen = datetime.fromisoformat(data["first_seen"])
         profile.last_seen = datetime.fromisoformat(data["last_seen"])
         profile.notes = data.get("notes", "")
+        profile.is_offline_network = data.get("is_offline_network", False)
         return profile
 
 class NetworkProfileManager:
@@ -60,16 +64,37 @@ class NetworkProfileManager:
         data = {pid: p.to_dict() for pid, p in self.profiles.items()}
         self.profiles_file.write_text(json.dumps(data, indent=2))
     
-    def get_or_create(self, network_id: str, fingerprint: dict = None) -> NetworkProfile:
+    def get_or_create(self, network_id: str, fingerprint: dict = None, is_offline: bool = False) -> NetworkProfile:
         """Get existing profile or create new one"""
+        # First check if we already have this profile
         if network_id in self.profiles:
             profile = self.profiles[network_id]
             profile.last_seen = datetime.now()
             return profile
         
-        # Try to generate a friendly name from fingerprint
-        name = self._generate_name(fingerprint)
-        profile = NetworkProfile(network_id, name)
+        # Check if this might be the same as a previous offline network
+        # by looking at the router IP or other identifiers
+        router_ip = fingerprint.get('default_gateway') if fingerprint else None
+        
+        # Special handling for offline state
+        if is_offline or not router_ip:
+            # Look for any existing network with the same router IP when it was online
+            for pid, existing in self.profiles.items():
+                if existing.notes and router_ip and router_ip in existing.notes:
+                    # This is the same network, just offline
+                    existing.last_seen = datetime.now()
+                    return existing
+            
+            # Create a temporary offline profile
+            name = "Offline State"
+            profile = NetworkProfile(network_id, name)
+            profile.is_offline_network = True
+            profile.notes = f"Offline network (last seen router: {router_ip})" if router_ip else "No network connection"
+        else:
+            # Generate a friendly name from fingerprint
+            name = self._generate_name(fingerprint)
+            profile = NetworkProfile(network_id, name)
+        
         self.profiles[network_id] = profile
         self.save()
         return profile
@@ -79,11 +104,15 @@ class NetworkProfileManager:
         if not fingerprint:
             return f"Network {len(self.profiles) + 1}"
         
-        # Try to get network name from gateway or other identifiers
+        # Try to get network name from gateway
         gateway = fingerprint.get('default_gateway', '')
         if gateway:
-            # Could do reverse DNS lookup here
             return f"Network {gateway}"
+        
+        # Try hostname
+        hostname = fingerprint.get('hostname', '')
+        if hostname and hostname != 'unknown':
+            return f"{hostname}'s Network"
         
         return f"Network {len(self.profiles) + 1}"
     
@@ -103,3 +132,19 @@ class NetworkProfileManager:
     def list_profiles(self) -> List[NetworkProfile]:
         """List all profiles"""
         return list(self.profiles.values())
+    
+    def merge_offline_network(self, offline_id: str, online_id: str):
+        """Merge an offline network profile into an online one"""
+        if offline_id in self.profiles and online_id in self.profiles:
+            offline = self.profiles[offline_id]
+            online = self.profiles[online_id]
+            
+            # Transfer any useful data
+            if offline.first_seen < online.first_seen:
+                online.first_seen = offline.first_seen
+            
+            # Remove the offline profile
+            del self.profiles[offline_id]
+            self.save()
+            return True
+        return False

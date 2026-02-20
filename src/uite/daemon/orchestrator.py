@@ -55,6 +55,7 @@ class ObserverState:
         self.running = True
         self.outage_started = None  # Track when internet outage began
         self.announced_networks = set()  # Track which networks we've announced
+        self.was_offline = False  # Track previous offline state
 
 state = ObserverState()
 
@@ -100,24 +101,46 @@ def observe(interval=DEFAULT_INTERVAL):
         try:
             # -------- NETWORK IDENTITY --------
             fingerprint = collect_fingerprint()
-            network_id = generate_network_id(fingerprint)
-
-            # -------- NETWORK PROFILING --------
-            profile = profile_manager.get_or_create(network_id, fingerprint)
-            
-            # Check if this is a newly created profile (within the last 5 minutes)
-            # This prevents the message from showing on every cycle
-            time_since_first_seen = (datetime.now() - profile.first_seen).total_seconds()
-            if time_since_first_seen < 300:  # Less than 5 minutes old
-                if network_id not in state.announced_networks:
-                    state.announced_networks.add(network_id)
-                    logger.info(f"🆕 New network detected: {profile.name}")
-                    logger.info(f"   Run 'uite network list' to see all networks")
-                    logger.info(f"   Run 'uite network rename {network_id[:8]} \"My Network\"' to name it")
-
-            # -------- DIAGNOSTICS --------
             router_ip = fingerprint.get("default_gateway")
             
+            # Determine if we're offline
+            is_offline = router_ip is None
+            
+            # Generate network ID - use a consistent offline ID when offline
+            if is_offline:
+                # Use a special ID for offline state that won't create new profiles
+                network_id = "offline-state"
+            else:
+                network_id = generate_network_id(fingerprint)
+
+            # -------- NETWORK PROFILING --------
+            profile = profile_manager.get_or_create(network_id, fingerprint, is_offline=is_offline)
+            
+            # Only announce new networks if they're real networks (not offline state)
+            if not is_offline and network_id != "offline-state":
+                # Check if this is a newly created profile (within the last 5 minutes)
+                time_since_first_seen = (datetime.now() - profile.first_seen).total_seconds()
+                if time_since_first_seen < 300:  # Less than 5 minutes old
+                    if network_id not in state.announced_networks:
+                        state.announced_networks.add(network_id)
+                        logger.info(f"🆕 New network detected: {profile.name}")
+                        logger.info(f"   Run 'uite network list' to see all networks")
+                        logger.info(f"   Run 'uite network rename {network_id[:8]} \"My Network\"' to name it")
+            
+            # If we were offline and now we're online, try to merge profiles
+            if not is_offline and state.was_offline:
+                # Try to find an offline profile that might match this network
+                for pid, old_profile in profile_manager.profiles.items():
+                    if pid != network_id and hasattr(old_profile, 'is_offline_network') and old_profile.is_offline_network:
+                        # Check if this offline profile might be the same network
+                        if router_ip and router_ip in old_profile.notes:
+                            if profile_manager.merge_offline_network(pid, network_id):
+                                logger.info(f"🔄 Reconnected to {profile.name} (merged offline session)")
+                                break
+            
+            state.was_offline = is_offline
+
+            # -------- DIAGNOSTICS --------
             if not router_ip:
                 # Track internet outage
                 if state.outage_started is None:

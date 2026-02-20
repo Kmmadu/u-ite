@@ -5546,3 +5546,201 @@
 2026-02-19 22:02:33,089 [INFO] Shutdown signal received. Stopping observer...
 2026-02-19 22:02:33,877 [INFO] U-ITE Observer ran for: 7 seconds
 2026-02-19 22:02:33,877 [INFO] U-ITE Observer stopped.
+2026-02-20 08:36:24,558 [INFO] Device ID: 07bf093a-6a7e-4e5d-88f0-e59c00017cd0
+2026-02-20 08:36:24,562 [INFO] Database initialized successfully.
+2026-02-20 08:36:49,610 [INFO] 🆕 New network detected: Network 10.10.1.254
+2026-02-20 08:36:49,610 [INFO]    Run 'uite network list' to see all networks
+2026-02-20 08:36:49,610 [INFO]    Run 'uite network rename b23c4fec "My Network"' to name it
+2026-02-20 08:36:59,632 [INFO] [Network 10.10.1.254] Verdict: 🔴 No Network Connection
+2026-02-20 08:37:34,676 [INFO] [Network 10.10.1.254] Verdict: 🔴 No Network Connection
+2026-02-20 08:38:04,719 [INFO] [Network 10.10.1.254] Verdict: 🔴 No Network Connection
+2026-02-20 08:38:34,756 [INFO] [Network 10.10.1.254] Verdict: 🔴 No Network Connection
+2026-02-20 08:39:14,524 [INFO] [Network 10.10.1.254] Verdict: 🔴 No Network Connection
+2026-02-20 08:39:43,144 [INFO] [Network 10.10.1.254] Verdict: 🔴 No Network Connection
+2026-02-20 08:40:14,566 [INFO] [Network 10.10.1.254] Verdict: 🔴 No Network Connection
+2026-02-20 08:40:44,608 [INFO] [Network 10.10.1.254] Verdict: 🔴 No Network Connection
+2026-02-20 08:41:14,647 [INFO] [Network 10.10.1.254] Verdict: 🔴 No Network Connection
+2026-02-20 08:41:33,821 [INFO] [Network 10.10.1.254] Verdict: 🔴 No Network Connection
+2026-02-20 08:42:04,671 [INFO] 🆕 New network detected: Network 3
+2026-02-20 08:42:04,671 [INFO]    Run 'uite network list' to see all networks
+2026-02-20 08:42:04,671 [INFO]    Run 'uite network rename 8f8ecc3b "My Network"' to name it
+2026-02-20 08:42:04,671 [ERROR] 🌐 INTERNET DOWN: Router not detected. Please check your internet connection.
+2026-02-20 08:42:34,675 [ERROR] 🌐 Still offline (outage duration: 30 seconds). Will retry in 30s.
+2026-02-20 08:43:04,676 [ERROR] 🌐 Still offline (outage duration: 1 minute). Will retry in 30s.
+2026-02-20 08:43:34,678 [ERROR] 🌐 Still offline (outage duration: 1 minute 30 seconds). Will retry in 30s.
+2026-02-20 08:43:47,470 [INFO] ✅ Internet connection restored after 1 minute 42 seconds
+2026-02-20 08:43:55,060 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 131.9ms | Loss: 20%
+2026-02-20 08:44:19,932 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 13.3ms | Loss: 0%
+2026-02-20 08:45:01,089 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 67.4ms | Loss: 20%
+2026-02-20 08:45:22,579 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 209.7ms | Loss: 20%
+2026-02-20 08:46:03,183 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 25.7ms | Loss: 0%
+2026-02-20 08:46:24,508 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 26.8ms | Loss: 0%
+2026-02-20 08:46:52,846 [INFO] [Network 10.10.1.254] Verdict: 🐢 Slow Connection | Latency: 221.4ms | Loss: 0%
+2026-02-20 08:47:21,760 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 19.4ms | Loss: 40%
+2026-02-20 08:47:54,784 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 91.0ms | Loss: 20%
+2026-02-20 08:48:21,542 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 60.3ms | Loss: 0%
+2026-02-20 08:48:51,855 [INFO] [Network 10.10.1.254] Verdict: 🐢 Slow Connection | Latency: 373.2ms | Loss: 0%
+2026-02-20 08:49:20,555 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 49.7ms | Loss: 0%
+2026-02-20 08:49:51,502 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 33.0ms | Loss: 0%
+2026-02-20 08:50:20,089 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 16.2ms | Loss: 0%
+2026-02-20 08:50:49,770 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 18.4ms | Loss: 0%
+2026-02-20 08:51:20,085 [INFO] [Network 10.10.1.254] Verdict: 📶 Degraded Performance | Latency: 166.8ms | Loss: 0%
+2026-02-20 08:51:51,579 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 24.0ms | Loss: 20%
+2026-02-20 08:52:20,900 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 22.3ms | Loss: 0%
+2026-02-20 08:52:57,332 [INFO] [Network 10.10.1.254] Verdict: 🌍 ISP Outage
+2026-02-20 08:53:19,753 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 38.4ms | Loss: 0%
+2026-02-20 08:53:53,633 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 21.0ms | Loss: 40%
+2026-02-20 08:54:31,320 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 20.3ms | Loss: 20%
+2026-02-20 08:54:51,634 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 21.7ms | Loss: 20%
+2026-02-20 08:55:22,125 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 121.4ms | Loss: 20%
+2026-02-20 08:55:50,641 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 16.5ms | Loss: 20%
+2026-02-20 08:56:21,425 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 15.6ms | Loss: 20%
+2026-02-20 08:56:51,034 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 11.3ms | Loss: 40%
+2026-02-20 08:57:21,308 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 51.1ms | Loss: 20%
+2026-02-20 08:57:49,764 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 16.8ms | Loss: 0%
+2026-02-20 08:58:22,410 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 10.6ms | Loss: 40%
+2026-02-20 08:58:49,815 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 19.6ms | Loss: 0%
+2026-02-20 08:59:19,794 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 19.4ms | Loss: 0%
+2026-02-20 08:59:51,754 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 14.2ms | Loss: 20%
+2026-02-20 09:00:20,811 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 11.7ms | Loss: 0%
+2026-02-20 09:00:54,473 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 19.4ms | Loss: 0%
+2026-02-20 09:01:42,239 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 10.8ms | Loss: 0%
+2026-02-20 09:01:51,031 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 19.2ms | Loss: 0%
+2026-02-20 09:02:22,079 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 15.0ms | Loss: 0%
+2026-02-20 09:02:50,724 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 17.1ms | Loss: 0%
+2026-02-20 09:03:20,057 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 12.0ms | Loss: 0%
+2026-02-20 09:03:50,404 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 11.7ms | Loss: 0%
+2026-02-20 09:04:21,324 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 17.0ms | Loss: 0%
+2026-02-20 09:04:55,259 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 10.9ms | Loss: 0%
+2026-02-20 09:05:21,096 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 4.8ms | Loss: 20%
+2026-02-20 09:05:50,976 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 17.7ms | Loss: 0%
+2026-02-20 09:06:19,778 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 23.8ms | Loss: 0%
+2026-02-20 09:06:49,691 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 10.5ms | Loss: 0%
+2026-02-20 09:07:19,703 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 10.1ms | Loss: 0%
+2026-02-20 09:07:50,707 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 15.8ms | Loss: 20%
+2026-02-20 09:08:20,788 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 15.2ms | Loss: 20%
+2026-02-20 09:09:05,824 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 42.9ms | Loss: 60%
+2026-02-20 09:09:19,896 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 12.0ms | Loss: 0%
+2026-02-20 09:09:49,849 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 12.7ms | Loss: 0%
+2026-02-20 09:10:20,013 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 5.5ms | Loss: 0%
+2026-02-20 09:10:52,585 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 13.1ms | Loss: 20%
+2026-02-20 09:11:31,566 [INFO] [Network 10.10.1.254] Verdict: 🔴 No Network Connection
+2026-02-20 09:11:50,093 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 62.8ms | Loss: 0%
+2026-02-20 09:12:21,170 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 9.7ms | Loss: 20%
+2026-02-20 09:12:52,728 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 23.1ms | Loss: 0%
+2026-02-20 09:13:21,190 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 13.8ms | Loss: 0%
+2026-02-20 09:14:01,401 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 15.7ms | Loss: 0%
+2026-02-20 09:14:22,269 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 12.5ms | Loss: 0%
+2026-02-20 09:14:50,090 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 8.2ms | Loss: 0%
+2026-02-20 09:15:19,873 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 17.3ms | Loss: 0%
+2026-02-20 09:15:54,745 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 13.2ms | Loss: 0%
+2026-02-20 09:16:19,907 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 15.0ms | Loss: 0%
+2026-02-20 09:16:51,879 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 42.0ms | Loss: 0%
+2026-02-20 09:17:20,328 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 44.7ms | Loss: 0%
+2026-02-20 09:17:51,501 [INFO] [Network 10.10.1.254] Verdict: 📶 Degraded Performance | Latency: 161.6ms | Loss: 0%
+2026-02-20 09:18:35,191 [INFO] [Network 10.10.1.254] Verdict: 📶 Degraded Performance | Latency: 149.8ms | Loss: 0%
+2026-02-20 09:18:51,572 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 26.4ms | Loss: 20%
+2026-02-20 09:19:20,243 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 20.0ms | Loss: 0%
+2026-02-20 09:19:50,345 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 39.6ms | Loss: 0%
+2026-02-20 09:20:21,747 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 7.8ms | Loss: 20%
+2026-02-20 09:20:50,565 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 21.6ms | Loss: 0%
+2026-02-20 09:21:20,093 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 16.2ms | Loss: 0%
+2026-02-20 09:21:50,232 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 21.5ms | Loss: 0%
+2026-02-20 09:22:22,252 [INFO] [Network 10.10.1.254] Verdict: 📶 Degraded Performance | Latency: 124.9ms | Loss: 0%
+2026-02-20 09:22:51,389 [INFO] [Network 10.10.1.254] Verdict: 🐢 Slow Connection | Latency: 377.5ms | Loss: 0%
+2026-02-20 09:23:26,859 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 97.6ms | Loss: 0%
+2026-02-20 09:23:51,739 [INFO] [Network 10.10.1.254] Verdict: 🐢 Slow Connection | Latency: 481.4ms | Loss: 0%
+2026-02-20 09:24:25,182 [INFO] [Network 10.10.1.254] Verdict: 📶 Degraded Performance | Latency: 163.3ms | Loss: 0%
+2026-02-20 09:24:54,114 [INFO] [Network 10.10.1.254] Verdict: 🐢 Slow Connection | Latency: 612.8ms | Loss: 0%
+2026-02-20 09:25:31,366 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 38.1ms | Loss: 0%
+2026-02-20 09:25:49,871 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 6.8ms | Loss: 0%
+2026-02-20 09:26:22,149 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 10.1ms | Loss: 0%
+2026-02-20 09:26:49,964 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 20.3ms | Loss: 0%
+2026-02-20 09:27:20,363 [INFO] [Network 10.10.1.254] Verdict: 🐢 Slow Connection | Latency: 240.4ms | Loss: 0%
+2026-02-20 09:27:50,520 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 42.4ms | Loss: 0%
+2026-02-20 09:28:20,353 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 6.8ms | Loss: 0%
+2026-02-20 09:28:52,873 [INFO] [Network 10.10.1.254] Verdict: 📶 Degraded Performance | Latency: 139.7ms | Loss: 0%
+2026-02-20 09:29:32,450 [INFO] [Network 10.10.1.254] Verdict: 🐢 Slow Connection | Latency: 445.5ms | Loss: 0%
+2026-02-20 09:30:06,785 [INFO] [Network 10.10.1.254] Verdict: 🐢 Slow Connection | Latency: 288.3ms | Loss: 0%
+2026-02-20 09:30:21,830 [INFO] [Network 10.10.1.254] Verdict: 🐢 Slow Connection | Latency: 934.2ms | Loss: 0%
+2026-02-20 09:31:00,419 [INFO] [Network 10.10.1.254] Verdict: 🐢 Slow Connection | Latency: 287.3ms | Loss: 0%
+2026-02-20 09:31:24,876 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 28.0ms | Loss: 0%
+2026-02-20 09:31:56,231 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 190.0ms | Loss: 20%
+2026-02-20 09:32:21,709 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 102.6ms | Loss: 20%
+2026-02-20 09:32:51,880 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 12.9ms | Loss: 0%
+2026-02-20 09:33:20,108 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 12.3ms | Loss: 0%
+2026-02-20 09:33:52,257 [INFO] [Network 10.10.1.254] Verdict: 📶 Degraded Performance | Latency: 169.6ms | Loss: 0%
+2026-02-20 09:34:20,389 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 18.8ms | Loss: 0%
+2026-02-20 09:34:52,245 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 8.7ms | Loss: 0%
+2026-02-20 09:35:19,960 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 18.6ms | Loss: 0%
+2026-02-20 09:35:55,381 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 17.5ms | Loss: 0%
+2026-02-20 09:36:19,970 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 18.9ms | Loss: 0%
+2026-02-20 09:36:49,816 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 13.7ms | Loss: 0%
+2026-02-20 09:37:20,806 [INFO] [Network 10.10.1.254] Verdict: 📶 Degraded Performance | Latency: 120.3ms | Loss: 0%
+2026-02-20 09:37:51,156 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 46.7ms | Loss: 40%
+2026-02-20 09:38:21,154 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 30.6ms | Loss: 0%
+2026-02-20 09:38:50,011 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 12.4ms | Loss: 0%
+2026-02-20 09:39:22,366 [INFO] [Network 10.10.1.254] Verdict: 📶 Degraded Performance | Latency: 107.8ms | Loss: 0%
+2026-02-20 09:39:51,101 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 81.9ms | Loss: 0%
+2026-02-20 09:40:35,582 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 24.7ms | Loss: 0%
+2026-02-20 09:40:57,191 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 11.5ms | Loss: 0%
+2026-02-20 09:41:21,533 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 11.3ms | Loss: 0%
+2026-02-20 09:41:50,665 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 24.5ms | Loss: 0%
+2026-02-20 09:42:22,560 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 24.1ms | Loss: 40%
+2026-02-20 09:43:05,910 [INFO] [Network 10.10.1.254] Verdict: 🔍 DNS Resolution Failed
+2026-02-20 09:43:26,301 [INFO] [Network 10.10.1.254] Verdict: 🔴 No Network Connection
+2026-02-20 09:43:50,488 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 7.1ms | Loss: 0%
+2026-02-20 09:44:20,321 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 15.1ms | Loss: 0%
+2026-02-20 09:44:51,715 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 10.3ms | Loss: 0%
+2026-02-20 09:45:20,131 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 19.1ms | Loss: 0%
+2026-02-20 09:45:50,010 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 17.1ms | Loss: 0%
+2026-02-20 09:46:20,185 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 6.5ms | Loss: 0%
+2026-02-20 09:46:52,293 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 19.3ms | Loss: 20%
+2026-02-20 09:47:21,161 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 13.3ms | Loss: 20%
+2026-02-20 09:47:49,904 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 11.7ms | Loss: 0%
+2026-02-20 09:48:20,029 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 18.7ms | Loss: 0%
+2026-02-20 09:48:55,155 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 15.8ms | Loss: 0%
+2026-02-20 09:49:27,177 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 13.0ms | Loss: 20%
+2026-02-20 09:49:56,408 [INFO] [Network 10.10.1.254] Verdict: 🌍 ISP Outage
+2026-02-20 09:50:25,318 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 15.8ms | Loss: 0%
+2026-02-20 09:50:52,105 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 14.3ms | Loss: 20%
+2026-02-20 09:51:20,476 [INFO] [Network 10.10.1.254] Verdict: 📶 Degraded Performance | Latency: 169.9ms | Loss: 0%
+2026-02-20 09:51:54,173 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 32.7ms | Loss: 0%
+2026-02-20 09:52:20,104 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 14.5ms | Loss: 0%
+2026-02-20 09:52:50,519 [INFO] [Network 10.10.1.254] Verdict: 📶 Degraded Performance | Latency: 127.2ms | Loss: 0%
+2026-02-20 09:53:21,847 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 65.7ms | Loss: 0%
+2026-02-20 09:53:50,253 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 16.0ms | Loss: 0%
+2026-02-20 09:54:20,155 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 43.2ms | Loss: 0%
+2026-02-20 09:54:50,374 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 16.8ms | Loss: 0%
+2026-02-20 09:55:20,675 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 16.0ms | Loss: 0%
+2026-02-20 09:55:51,048 [INFO] [Network 10.10.1.254] Verdict: 📶 Degraded Performance | Latency: 100.1ms | Loss: 0%
+2026-02-20 09:56:21,456 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 58.5ms | Loss: 20%
+2026-02-20 09:56:51,144 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 30.3ms | Loss: 0%
+2026-02-20 09:57:20,493 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 9.5ms | Loss: 0%
+2026-02-20 09:57:50,481 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 33.1ms | Loss: 0%
+2026-02-20 09:58:22,598 [INFO] [Network 10.10.1.254] Verdict: 🐢 Slow Connection | Latency: 256.4ms | Loss: 0%
+2026-02-20 09:58:50,433 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 97.3ms | Loss: 0%
+2026-02-20 09:59:21,628 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 397.8ms | Loss: 20%
+2026-02-20 09:59:51,085 [INFO] [Network 10.10.1.254] Verdict: 📶 Degraded Performance | Latency: 158.2ms | Loss: 0%
+2026-02-20 10:00:21,464 [INFO] [Network 10.10.1.254] Verdict: 🐢 Slow Connection | Latency: 277.1ms | Loss: 0%
+2026-02-20 10:00:51,735 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 56.1ms | Loss: 20%
+2026-02-20 10:01:20,350 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 23.2ms | Loss: 0%
+2026-02-20 10:01:50,460 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 78.4ms | Loss: 0%
+2026-02-20 10:02:21,911 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 92.8ms | Loss: 20%
+2026-02-20 10:02:51,209 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 5.1ms | Loss: 20%
+2026-02-20 10:03:20,144 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 21.7ms | Loss: 0%
+2026-02-20 10:03:57,301 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 75.4ms | Loss: 0%
+2026-02-20 10:04:10,112 [INFO] Shutdown signal received. Stopping observer...
+2026-02-20 10:04:10,302 [INFO] U-ITE Observer ran for: 25 seconds
+2026-02-20 10:04:10,302 [INFO] U-ITE Observer stopped.
+2026-02-20 10:04:17,155 [INFO] Device ID: 07bf093a-6a7e-4e5d-88f0-e59c00017cd0
+2026-02-20 10:04:17,156 [INFO] Database initialized successfully.
+2026-02-20 10:04:26,648 [INFO] [Network 10.10.1.254] Verdict: 📶 Degraded Performance | Latency: 114.7ms | Loss: 0%
+2026-02-20 10:04:53,253 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 37.6ms | Loss: 0%
+2026-02-20 10:05:23,178 [INFO] [Network 10.10.1.254] Verdict: 📶 Degraded Performance | Latency: 113.8ms | Loss: 0%
+2026-02-20 10:05:55,188 [INFO] [Network 10.10.1.254] Verdict: 🐢 Slow Connection | Latency: 207.3ms | Loss: 0%
+2026-02-20 10:06:25,128 [INFO] [Network 10.10.1.254] Verdict: 🐢 Slow Connection | Latency: 222.4ms | Loss: 0%
+2026-02-20 10:06:47,185 [ERROR] 🌐 INTERNET DOWN: Router not detected. Please check your internet connection.
+2026-02-20 10:06:55,237 [INFO] Shutdown signal received. Stopping observer...
+2026-02-20 10:06:56,187 [INFO] U-ITE Observer ran for: 9 seconds
+2026-02-20 10:06:56,187 [INFO] U-ITE Observer stopped.
