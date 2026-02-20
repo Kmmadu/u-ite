@@ -1,7 +1,7 @@
 import click
 from datetime import datetime, timedelta
 import re
-from uite.storage.history import HistoricalData
+from uite.storage.db import HistoricalData
 from uite.core.network_profile import NetworkProfileManager
 from uite.storage.db import DB_PATH
 

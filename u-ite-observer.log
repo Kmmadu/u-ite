@@ -109,3 +109,21 @@
 2026-02-20 11:18:45,636 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 15.9ms | Loss: 0%
 2026-02-20 11:19:16,668 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 8.8ms | Loss: 0%
 2026-02-20 11:19:50,014 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 11.7ms | Loss: 0%
+2026-02-20 11:20:15,531 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 6.6ms | Loss: 0%
+2026-02-20 11:20:45,774 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 13.7ms | Loss: 0%
+2026-02-20 11:21:16,979 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 10.7ms | Loss: 20%
+2026-02-20 11:21:47,185 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 11.0ms | Loss: 20%
+2026-02-20 11:22:15,619 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 14.1ms | Loss: 0%
+2026-02-20 11:22:47,072 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 4.1ms | Loss: 40%
+2026-02-20 11:23:15,670 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 15.7ms | Loss: 0%
+2026-02-20 11:23:46,657 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 15.7ms | Loss: 0%
+2026-02-20 11:24:16,056 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 10.5ms | Loss: 0%
+2026-02-20 11:24:46,794 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 8.5ms | Loss: 20%
+2026-02-20 11:25:15,777 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 11.7ms | Loss: 0%
+2026-02-20 11:25:46,065 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 14.0ms | Loss: 0%
+2026-02-20 11:26:16,619 [INFO] [Network 10.10.1.254] Verdict: ⚠️ Unstable Connection | Latency: 14.2ms | Loss: 20%
+2026-02-20 11:26:45,590 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 13.3ms | Loss: 0%
+2026-02-20 11:27:15,646 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 13.2ms | Loss: 0%
+2026-02-20 11:27:45,883 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 21.0ms | Loss: 0%
+2026-02-20 11:28:15,596 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 15.6ms | Loss: 0%
+2026-02-20 11:28:45,645 [INFO] [Network 10.10.1.254] Verdict: ✅ Connected | Latency: 11.7ms | Loss: 0%
