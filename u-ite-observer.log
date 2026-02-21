@@ -201,3 +201,299 @@
 2026-02-20 12:08:20,752 [INFO] Shutdown signal received. Stopping observer...
 2026-02-20 12:08:21,473 [INFO] U-ITE Observer ran for: 27 seconds
 2026-02-20 12:08:21,474 [INFO] U-ITE Observer stopped.
+2026-02-21 17:39:19,449 [INFO] Device ID: 07bf093a-6a7e-4e5d-88f0-e59c00017cd0
+2026-02-21 17:39:19,500 [INFO] Database initialized successfully.
+2026-02-21 17:39:20,272 [INFO] 🆕 New network detected: Network 192.168.1.1
+2026-02-21 17:39:20,272 [INFO]    Run 'uite network list' to see all networks
+2026-02-21 17:39:20,272 [INFO]    Run 'uite network rename 345ec2aa "My Network"' to name it
+2026-02-21 17:39:30,292 [INFO] [Network 192.168.1.1] Verdict: 🔴 No Network Connection
+2026-02-21 17:39:55,470 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 56.8ms | Loss: 0%
+2026-02-21 17:40:25,662 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 81.7ms | Loss: 0%
+2026-02-21 17:40:56,227 [INFO] [Network 192.168.1.1] Verdict: ⚠️ Unstable Connection | Latency: 309.5ms | Loss: 20%
+2026-02-21 17:41:27,641 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 62.7ms | Loss: 0%
+2026-02-21 17:41:54,983 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 37.2ms | Loss: 0%
+2026-02-21 17:42:04,565 [INFO] Shutdown signal received. Stopping observer...
+2026-02-21 17:42:04,985 [INFO] U-ITE Observer ran for: 15 seconds
+2026-02-21 17:42:04,986 [INFO] U-ITE Observer stopped.
+2026-02-21 17:54:38,616 [INFO] Device ID: 07bf093a-6a7e-4e5d-88f0-e59c00017cd0
+2026-02-21 17:54:38,618 [INFO] Database initialized successfully.
+2026-02-21 17:54:38,628 [ERROR] 🌐 INTERNET DOWN: Router not detected. Please check your internet connection.
+2026-02-21 17:55:08,635 [ERROR] 🌐 Still offline (outage duration: 30 seconds). Will retry in 30s.
+2026-02-21 17:55:38,639 [ERROR] 🌐 Still offline (outage duration: 1 minute). Will retry in 30s.
+2026-02-21 17:56:08,645 [ERROR] 🌐 Still offline (outage duration: 1 minute 30 seconds). Will retry in 30s.
+2026-02-21 17:56:38,648 [ERROR] 🌐 Still offline (outage duration: 2 minutes). Will retry in 30s.
+2026-02-21 17:57:09,308 [INFO] ✅ Internet connection restored after 2 minutes 30 seconds
+2026-02-21 17:57:14,057 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 8.5ms | Loss: 0%
+2026-02-21 17:57:43,860 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 8.6ms | Loss: 0%
+2026-02-21 17:58:13,802 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 39.0ms | Loss: 0%
+2026-02-21 17:58:44,307 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 37.5ms | Loss: 0%
+2026-02-21 17:59:13,957 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 44.8ms | Loss: 0%
+2026-02-21 17:59:44,013 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 35.1ms | Loss: 0%
+2026-02-21 18:00:15,126 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 25.7ms | Loss: 0%
+2026-02-21 18:00:49,287 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 24.2ms | Loss: 0%
+2026-02-21 18:01:15,425 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 11.9ms | Loss: 0%
+2026-02-21 18:01:44,163 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 53.6ms | Loss: 0%
+2026-02-21 18:02:14,597 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 80.4ms | Loss: 0%
+2026-02-21 18:02:44,241 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 70.9ms | Loss: 0%
+2026-02-21 18:03:13,929 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 44.7ms | Loss: 0%
+2026-02-21 18:03:46,021 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 50.3ms | Loss: 0%
+2026-02-21 18:04:14,217 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 23.4ms | Loss: 0%
+2026-02-21 18:04:44,053 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 32.7ms | Loss: 0%
+2026-02-21 18:04:48,598 [INFO] Shutdown signal received. Stopping observer...
+2026-02-21 18:04:49,054 [INFO] U-ITE Observer ran for: 10 seconds
+2026-02-21 18:04:49,055 [INFO] U-ITE Observer stopped.
+2026-02-21 18:06:14,889 [INFO] Device ID: 07bf093a-6a7e-4e5d-88f0-e59c00017cd0
+2026-02-21 18:06:14,890 [INFO] Database initialized successfully.
+2026-02-21 18:06:20,159 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 39.2ms | Loss: 0%
+2026-02-21 18:06:44,905 [ERROR] 🌐 INTERNET DOWN: Router not detected. Please check your internet connection.
+2026-02-21 18:07:15,565 [INFO] ✅ Internet connection restored after 30 seconds
+2026-02-21 18:07:20,446 [INFO] [Network 192.168.1.1] Verdict: 🐢 Slow Connection | Latency: 990.2ms | Loss: 0%
+2026-02-21 18:07:50,610 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 36.8ms | Loss: 0%
+2026-02-21 18:08:21,731 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 72.5ms | Loss: 0%
+2026-02-21 18:08:50,769 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 44.9ms | Loss: 0%
+2026-02-21 18:09:20,503 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 32.2ms | Loss: 0%
+2026-02-21 18:09:50,828 [INFO] [Network 192.168.1.1] Verdict: 📶 Degraded Performance | Latency: 131.5ms | Loss: 0%
+2026-02-21 18:10:20,647 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 88.3ms | Loss: 0%
+2026-02-21 18:10:51,558 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 84.5ms | Loss: 0%
+2026-02-21 18:11:20,163 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 16.7ms | Loss: 0%
+2026-02-21 18:11:51,308 [INFO] [Network 192.168.1.1] Verdict: ⚠️ Unstable Connection | Latency: 37.3ms | Loss: 20%
+2026-02-21 18:12:21,899 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 74.5ms | Loss: 0%
+2026-02-21 18:12:50,600 [INFO] [Network 192.168.1.1] Verdict: 📶 Degraded Performance | Latency: 100.1ms | Loss: 0%
+2026-02-21 18:13:20,639 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 46.0ms | Loss: 0%
+2026-02-21 18:13:50,893 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 73.8ms | Loss: 0%
+2026-02-21 18:14:21,207 [INFO] [Network 192.168.1.1] Verdict: ✅ Connected | Latency: 64.3ms | Loss: 0%
+2026-02-21 18:14:23,962 [INFO] Shutdown signal received. Stopping observer...
+2026-02-21 18:14:24,208 [INFO] U-ITE Observer ran for: 9 seconds
+2026-02-21 18:14:24,208 [INFO] U-ITE Observer stopped.
+2026-02-21 18:14:26,572 [INFO] Device ID: 07bf093a-6a7e-4e5d-88f0-e59c00017cd0
+2026-02-21 18:14:26,572 [INFO] Database initialized successfully.
+2026-02-21 18:14:32,213 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 46.2ms | Loss: 0%
+2026-02-21 18:15:07,480 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 89.0ms | Loss: 0%
+2026-02-21 18:15:33,476 [INFO] [Home Router] Verdict: ⚠️ Unstable Connection | Latency: 64.2ms | Loss: 20%
+2026-02-21 18:16:02,800 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 35.5ms | Loss: 0%
+2026-02-21 18:16:32,258 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 90.5ms | Loss: 0%
+2026-02-21 18:17:03,255 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 20.6ms | Loss: 0%
+2026-02-21 18:17:32,460 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 59.8ms | Loss: 0%
+2026-02-21 18:18:02,457 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 85.6ms | Loss: 0%
+2026-02-21 18:18:32,895 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 92.6ms | Loss: 0%
+2026-02-21 18:19:02,460 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 50.0ms | Loss: 0%
+2026-02-21 18:19:32,177 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 32.9ms | Loss: 0%
+2026-02-21 18:20:07,330 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 37.0ms | Loss: 0%
+2026-02-21 18:20:32,725 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 60.9ms | Loss: 0%
+2026-02-21 18:21:01,851 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 31.8ms | Loss: 0%
+2026-02-21 18:21:32,189 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 30.1ms | Loss: 0%
+2026-02-21 18:22:02,004 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 28.9ms | Loss: 0%
+2026-02-21 18:22:32,349 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 76.4ms | Loss: 0%
+2026-02-21 18:23:02,958 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 53.2ms | Loss: 0%
+2026-02-21 18:23:32,234 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 54.6ms | Loss: 0%
+2026-02-21 18:24:02,392 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 64.4ms | Loss: 0%
+2026-02-21 18:24:32,390 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 76.4ms | Loss: 0%
+2026-02-21 18:25:02,460 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 45.1ms | Loss: 0%
+2026-02-21 18:25:32,237 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 43.4ms | Loss: 0%
+2026-02-21 18:26:03,064 [INFO] [Home Router] Verdict: ⚠️ Unstable Connection | Latency: 89.6ms | Loss: 20%
+2026-02-21 18:26:32,129 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 55.4ms | Loss: 0%
+2026-02-21 18:27:04,643 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 39.7ms | Loss: 0%
+2026-02-21 18:27:32,239 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 68.4ms | Loss: 0%
+2026-02-21 18:28:02,682 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 79.7ms | Loss: 0%
+2026-02-21 18:28:32,517 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 99.2ms | Loss: 0%
+2026-02-21 18:29:04,146 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 44.7ms | Loss: 0%
+2026-02-21 18:29:32,538 [INFO] [Home Router] Verdict: 📶 Degraded Performance | Latency: 125.2ms | Loss: 0%
+2026-02-21 18:30:02,251 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 35.6ms | Loss: 0%
+2026-02-21 18:30:33,826 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 77.5ms | Loss: 0%
+2026-02-21 18:31:02,346 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 51.8ms | Loss: 0%
+2026-02-21 18:31:36,410 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 81.3ms | Loss: 0%
+2026-02-21 18:32:02,365 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 68.9ms | Loss: 0%
+2026-02-21 18:32:32,824 [INFO] [Home Router] Verdict: 📶 Degraded Performance | Latency: 145.4ms | Loss: 0%
+2026-02-21 18:33:02,538 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 58.8ms | Loss: 0%
+2026-02-21 18:33:32,594 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 70.8ms | Loss: 0%
+2026-02-21 18:34:02,500 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 49.4ms | Loss: 0%
+2026-02-21 18:34:34,085 [INFO] [Home Router] Verdict: ⚠️ Unstable Connection | Latency: 36.1ms | Loss: 20%
+2026-02-21 18:35:02,863 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 68.6ms | Loss: 0%
+2026-02-21 18:35:33,453 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 32.2ms | Loss: 0%
+2026-02-21 18:36:03,535 [INFO] [Home Router] Verdict: ⚠️ Unstable Connection | Latency: 53.6ms | Loss: 20%
+2026-02-21 18:36:32,966 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 81.8ms | Loss: 0%
+2026-02-21 18:37:03,001 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 54.8ms | Loss: 0%
+2026-02-21 18:37:33,550 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 92.3ms | Loss: 0%
+2026-02-21 18:38:02,613 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 58.2ms | Loss: 0%
+2026-02-21 18:38:32,509 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 51.6ms | Loss: 0%
+2026-02-21 18:39:02,357 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 28.9ms | Loss: 0%
+2026-02-21 18:39:32,441 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 65.9ms | Loss: 0%
+2026-02-21 18:40:02,952 [INFO] [Home Router] Verdict: 📶 Degraded Performance | Latency: 141.1ms | Loss: 0%
+2026-02-21 18:40:32,631 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 42.8ms | Loss: 0%
+2026-02-21 18:41:02,632 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 26.1ms | Loss: 0%
+2026-02-21 18:41:32,150 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 69.4ms | Loss: 0%
+2026-02-21 18:42:02,786 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 54.4ms | Loss: 0%
+2026-02-21 18:42:32,610 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 53.4ms | Loss: 0%
+2026-02-21 18:43:02,658 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 80.9ms | Loss: 0%
+2026-02-21 18:43:34,240 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 60.6ms | Loss: 0%
+2026-02-21 18:44:02,688 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 56.1ms | Loss: 0%
+2026-02-21 18:44:33,487 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 88.7ms | Loss: 0%
+2026-02-21 18:45:16,946 [INFO] [Home Router] Verdict: 🔴 No Network Connection
+2026-02-21 18:45:46,931 [ERROR] 🌐 INTERNET DOWN: Router not detected. Please check your internet connection.
+2026-02-21 18:46:16,926 [ERROR] 🌐 Still offline (outage duration: 29 seconds). Will retry in 30s.
+2026-02-21 18:46:46,929 [ERROR] 🌐 Still offline (outage duration: 59 seconds). Will retry in 30s.
+2026-02-21 18:47:16,929 [INFO] ✅ Internet connection restored after 1 minute 29 seconds
+2026-02-21 18:47:26,953 [INFO] [Home Router] Verdict: 🌍 ISP Outage
+2026-02-21 18:47:57,004 [INFO] [Home Router] Verdict: 🌍 ISP Outage
+2026-02-21 18:48:27,068 [INFO] [Home Router] Verdict: 🌍 ISP Outage
+2026-02-21 18:48:57,198 [INFO] [Home Router] Verdict: 🌍 ISP Outage
+2026-02-21 18:49:27,244 [INFO] [Home Router] Verdict: 🌍 ISP Outage
+2026-02-21 18:49:57,283 [INFO] [Home Router] Verdict: 🌍 ISP Outage
+2026-02-21 18:50:27,375 [INFO] [Home Router] Verdict: 🌍 ISP Outage
+2026-02-21 18:50:57,499 [INFO] [Home Router] Verdict: 🌍 ISP Outage
+2026-02-21 18:51:27,544 [INFO] [Home Router] Verdict: 🌍 ISP Outage
+2026-02-21 18:51:57,586 [INFO] [Home Router] Verdict: 🌍 ISP Outage
+2026-02-21 18:52:27,626 [INFO] [Home Router] Verdict: 🌍 ISP Outage
+2026-02-21 18:52:57,699 [INFO] [Home Router] Verdict: 🌍 ISP Outage
+2026-02-21 18:53:13,857 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 72.4ms | Loss: 0%
+2026-02-21 18:53:33,218 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 49.0ms | Loss: 0%
+2026-02-21 18:54:03,302 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 52.4ms | Loss: 0%
+2026-02-21 18:54:33,243 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 38.3ms | Loss: 0%
+2026-02-21 18:55:04,041 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 98.9ms | Loss: 0%
+2026-02-21 18:55:33,402 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 49.3ms | Loss: 0%
+2026-02-21 18:56:04,514 [INFO] [Home Router] Verdict: ⚠️ Unstable Connection | Latency: 34.8ms | Loss: 20%
+2026-02-21 18:56:33,423 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 55.6ms | Loss: 0%
+2026-02-21 18:57:03,317 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 89.6ms | Loss: 0%
+2026-02-21 18:57:38,314 [INFO] [Home Router] Verdict: 🌍 ISP Outage
+2026-02-21 18:58:03,534 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 61.7ms | Loss: 0%
+2026-02-21 18:58:33,206 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 62.0ms | Loss: 0%
+2026-02-21 18:59:03,180 [INFO] [Home Router] Verdict: 📶 Degraded Performance | Latency: 112.0ms | Loss: 0%
+2026-02-21 18:59:34,461 [INFO] [Home Router] Verdict: 📶 Degraded Performance | Latency: 148.1ms | Loss: 0%
+2026-02-21 19:00:03,274 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 56.6ms | Loss: 0%
+2026-02-21 19:00:33,887 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 53.4ms | Loss: 0%
+2026-02-21 19:01:03,275 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 28.3ms | Loss: 0%
+2026-02-21 19:01:34,284 [INFO] [Home Router] Verdict: ⚠️ Unstable Connection | Latency: 52.2ms | Loss: 20%
+2026-02-21 19:02:03,201 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 56.0ms | Loss: 0%
+2026-02-21 19:02:34,946 [INFO] [Home Router] Verdict: 📶 Degraded Performance | Latency: 124.8ms | Loss: 0%
+2026-02-21 19:03:08,557 [INFO] [Home Router] Verdict: 🌍 ISP Outage
+2026-02-21 19:03:33,777 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 43.4ms | Loss: 0%
+2026-02-21 19:04:03,267 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 56.9ms | Loss: 0%
+2026-02-21 19:04:33,218 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 64.2ms | Loss: 0%
+2026-02-21 19:05:03,664 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 66.9ms | Loss: 0%
+2026-02-21 19:05:33,482 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 68.2ms | Loss: 0%
+2026-02-21 19:06:03,367 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 58.3ms | Loss: 0%
+2026-02-21 19:06:33,283 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 90.6ms | Loss: 0%
+2026-02-21 19:07:03,305 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 55.6ms | Loss: 0%
+2026-02-21 19:07:34,218 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 66.0ms | Loss: 0%
+2026-02-21 19:08:03,354 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 62.4ms | Loss: 0%
+2026-02-21 19:08:33,786 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 52.6ms | Loss: 0%
+2026-02-21 19:09:03,394 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 67.6ms | Loss: 0%
+2026-02-21 19:09:35,158 [INFO] [Home Router] Verdict: ⚠️ Unstable Connection | Latency: 59.7ms | Loss: 20%
+2026-02-21 19:10:03,451 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 48.5ms | Loss: 0%
+2026-02-21 19:10:33,475 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 66.2ms | Loss: 0%
+2026-02-21 19:11:03,359 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 93.8ms | Loss: 0%
+2026-02-21 19:11:33,364 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 54.2ms | Loss: 0%
+2026-02-21 19:12:03,593 [INFO] [Home Router] Verdict: 📶 Degraded Performance | Latency: 134.2ms | Loss: 0%
+2026-02-21 19:12:33,967 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 65.4ms | Loss: 0%
+2026-02-21 19:13:03,648 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 73.3ms | Loss: 0%
+2026-02-21 19:13:34,708 [INFO] [Home Router] Verdict: ⚠️ Unstable Connection | Latency: 55.6ms | Loss: 20%
+2026-02-21 19:14:03,829 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 53.6ms | Loss: 0%
+2026-02-21 19:14:33,465 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 60.4ms | Loss: 0%
+2026-02-21 19:15:03,677 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 61.4ms | Loss: 0%
+2026-02-21 19:15:33,905 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 62.6ms | Loss: 0%
+2026-02-21 19:16:04,049 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 47.6ms | Loss: 0%
+2026-02-21 19:16:34,015 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 81.5ms | Loss: 0%
+2026-02-21 19:17:03,388 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 63.2ms | Loss: 0%
+2026-02-21 19:17:33,612 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 74.2ms | Loss: 0%
+2026-02-21 19:18:08,720 [INFO] [Home Router] Verdict: 📶 Degraded Performance | Latency: 115.3ms | Loss: 0%
+2026-02-21 19:18:33,833 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 84.7ms | Loss: 0%
+2026-02-21 19:19:04,374 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 68.8ms | Loss: 0%
+2026-02-21 19:19:33,698 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 67.5ms | Loss: 0%
+2026-02-21 19:20:03,610 [INFO] [Home Router] Verdict: 📶 Degraded Performance | Latency: 120.5ms | Loss: 0%
+2026-02-21 19:20:33,789 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 55.1ms | Loss: 0%
+2026-02-21 19:21:03,659 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 54.3ms | Loss: 0%
+2026-02-21 19:21:33,473 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 46.9ms | Loss: 0%
+2026-02-21 19:22:03,483 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 46.2ms | Loss: 0%
+2026-02-21 19:22:33,559 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 50.0ms | Loss: 0%
+2026-02-21 19:23:03,374 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 47.3ms | Loss: 0%
+2026-02-21 19:23:33,907 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 63.2ms | Loss: 0%
+2026-02-21 19:24:03,559 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 62.9ms | Loss: 0%
+2026-02-21 19:24:33,611 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 54.8ms | Loss: 0%
+2026-02-21 19:25:03,844 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 64.9ms | Loss: 0%
+2026-02-21 19:25:33,539 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 91.5ms | Loss: 0%
+2026-02-21 19:26:04,825 [INFO] [Home Router] Verdict: ⚠️ Unstable Connection | Latency: 73.0ms | Loss: 20%
+2026-02-21 19:26:33,589 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 57.4ms | Loss: 0%
+2026-02-21 19:27:04,015 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 65.2ms | Loss: 0%
+2026-02-21 19:27:33,790 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 67.1ms | Loss: 0%
+2026-02-21 19:28:03,674 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 67.9ms | Loss: 0%
+2026-02-21 19:28:34,629 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 48.6ms | Loss: 0%
+2026-02-21 19:29:04,359 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 60.6ms | Loss: 0%
+2026-02-21 19:29:33,664 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 53.6ms | Loss: 0%
+2026-02-21 19:30:03,574 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 53.2ms | Loss: 0%
+2026-02-21 19:30:33,747 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 63.9ms | Loss: 0%
+2026-02-21 19:31:03,909 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 71.2ms | Loss: 0%
+2026-02-21 19:31:33,627 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 86.3ms | Loss: 0%
+2026-02-21 19:32:03,797 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 94.8ms | Loss: 0%
+2026-02-21 19:32:34,063 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 79.6ms | Loss: 0%
+2026-02-21 19:33:03,857 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 53.2ms | Loss: 0%
+2026-02-21 19:33:34,797 [INFO] [Home Router] Verdict: ⚠️ Unstable Connection | Latency: 73.2ms | Loss: 20%
+2026-02-21 19:34:03,774 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 55.5ms | Loss: 0%
+2026-02-21 19:34:33,671 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 68.5ms | Loss: 0%
+2026-02-21 19:35:03,593 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 67.9ms | Loss: 0%
+2026-02-21 19:35:33,835 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 57.5ms | Loss: 0%
+2026-02-21 19:36:03,937 [INFO] [Home Router] Verdict: 📶 Degraded Performance | Latency: 102.7ms | Loss: 0%
+2026-02-21 19:36:33,962 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 73.2ms | Loss: 0%
+2026-02-21 19:37:03,726 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 72.5ms | Loss: 0%
+2026-02-21 19:37:34,039 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 68.5ms | Loss: 0%
+2026-02-21 19:38:04,758 [INFO] [Home Router] Verdict: ⚠️ Unstable Connection | Latency: 59.4ms | Loss: 20%
+2026-02-21 19:38:34,309 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 66.3ms | Loss: 0%
+2026-02-21 19:39:03,561 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 55.6ms | Loss: 0%
+2026-02-21 19:39:33,511 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 59.7ms | Loss: 0%
+2026-02-21 19:40:03,604 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 55.2ms | Loss: 0%
+2026-02-21 19:40:33,999 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 95.1ms | Loss: 0%
+2026-02-21 19:41:03,936 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 69.4ms | Loss: 0%
+2026-02-21 19:41:34,576 [INFO] [Home Router] Verdict: 📶 Degraded Performance | Latency: 107.4ms | Loss: 0%
+2026-02-21 19:42:04,054 [INFO] [Home Router] Verdict: 📶 Degraded Performance | Latency: 101.6ms | Loss: 0%
+2026-02-21 19:42:35,449 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 50.5ms | Loss: 0%
+2026-02-21 19:43:04,930 [INFO] [Home Router] Verdict: ⚠️ Unstable Connection | Latency: 65.5ms | Loss: 20%
+2026-02-21 19:43:33,827 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 61.1ms | Loss: 0%
+2026-02-21 19:44:03,895 [INFO] [Home Router] Verdict: 📶 Degraded Performance | Latency: 105.7ms | Loss: 0%
+2026-02-21 19:44:34,850 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 70.5ms | Loss: 0%
+2026-02-21 19:45:04,176 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 66.2ms | Loss: 0%
+2026-02-21 19:45:35,204 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 80.3ms | Loss: 0%
+2026-02-21 19:46:11,386 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 93.7ms | Loss: 0%
+2026-02-21 19:46:34,024 [INFO] [Home Router] Verdict: 📶 Degraded Performance | Latency: 116.7ms | Loss: 0%
+2026-02-21 19:47:03,963 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 71.6ms | Loss: 0%
+2026-02-21 19:47:34,021 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 63.7ms | Loss: 0%
+2026-02-21 19:48:04,362 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 72.5ms | Loss: 0%
+2026-02-21 19:48:34,060 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 76.7ms | Loss: 0%
+2026-02-21 19:49:04,526 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 65.1ms | Loss: 0%
+2026-02-21 19:49:34,176 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 83.9ms | Loss: 0%
+2026-02-21 19:50:04,101 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 81.2ms | Loss: 0%
+2026-02-21 19:50:34,409 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 73.4ms | Loss: 0%
+2026-02-21 19:51:04,502 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 76.2ms | Loss: 0%
+2026-02-21 19:51:34,451 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 75.6ms | Loss: 0%
+2026-02-21 19:52:05,325 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 74.6ms | Loss: 0%
+2026-02-21 19:52:34,143 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 70.4ms | Loss: 0%
+2026-02-21 19:53:04,081 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 77.0ms | Loss: 0%
+2026-02-21 19:53:34,995 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 68.5ms | Loss: 0%
+2026-02-21 19:54:08,400 [INFO] [Home Router] Verdict: ⚠️ Unstable Connection | Latency: 68.9ms | Loss: 20%
+2026-02-21 19:54:34,383 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 76.2ms | Loss: 0%
+2026-02-21 19:55:03,984 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 61.7ms | Loss: 0%
+2026-02-21 19:55:34,522 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 64.3ms | Loss: 0%
+2026-02-21 19:56:04,201 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 64.7ms | Loss: 0%
+2026-02-21 19:56:34,612 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 78.8ms | Loss: 0%
+2026-02-21 19:57:04,742 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 72.4ms | Loss: 0%
+2026-02-21 19:57:34,403 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 63.1ms | Loss: 0%
+2026-02-21 19:58:04,300 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 70.5ms | Loss: 0%
+2026-02-21 19:58:34,226 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 61.5ms | Loss: 0%
+2026-02-21 19:59:04,487 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 85.1ms | Loss: 0%
+2026-02-21 19:59:35,093 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 67.9ms | Loss: 0%
+2026-02-21 20:00:04,299 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 77.7ms | Loss: 0%
+2026-02-21 20:00:35,161 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 68.8ms | Loss: 0%
+2026-02-21 20:01:04,553 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 63.2ms | Loss: 0%
+2026-02-21 20:01:34,118 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 70.5ms | Loss: 0%
+2026-02-21 20:02:04,080 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 72.8ms | Loss: 0%
+2026-02-21 20:02:34,373 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 82.7ms | Loss: 0%
+2026-02-21 20:03:04,167 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 77.9ms | Loss: 0%
+2026-02-21 20:03:34,385 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 68.2ms | Loss: 0%
+2026-02-21 20:04:05,563 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 68.0ms | Loss: 0%
+2026-02-21 20:04:34,071 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 62.9ms | Loss: 0%
+2026-02-21 20:05:05,887 [INFO] [Home Router] Verdict: ⚠️ Unstable Connection | Latency: 63.9ms | Loss: 20%
+2026-02-21 20:05:34,163 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 69.2ms | Loss: 0%
+2026-02-21 20:06:04,151 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 64.3ms | Loss: 0%
+2026-02-21 20:06:35,329 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 88.6ms | Loss: 0%
+2026-02-21 20:06:59,607 [INFO] Shutdown signal received. Stopping observer...
+2026-02-21 20:07:03,969 [INFO] [Home Router] Verdict: ✅ Connected | Latency: 56.7ms | Loss: 0%
+2026-02-21 20:07:03,969 [INFO] U-ITE Observer ran for: 5 seconds
+2026-02-21 20:07:03,969 [INFO] U-ITE Observer stopped.

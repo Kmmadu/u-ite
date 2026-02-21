@@ -1,0 +1,2 @@
+[console_scripts]
+uite = uite.cli:cli
