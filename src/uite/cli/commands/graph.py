@@ -13,27 +13,27 @@ def graph():
 
 @graph.command()
 @click.option('--days', default=7, help='Number of days to show')
-@click.option('--network', help='Filter by network ID or name')
+@click.option('--network', required=True, help='Network name, ID, or tag (required)')
 def latency(days, network):
-    """Show latency graph"""
+    """Show latency graph for a specific network"""
     _generate_graph('latency', days, network)
 
 @graph.command()
 @click.option('--days', default=7, help='Number of days to show')
-@click.option('--network', help='Filter by network ID or name')
+@click.option('--network', required=True, help='Network name, ID, or tag (required)')
 def health(days, network):
-    """Show health/uptime graph"""
+    """Show combined health graph for a specific network"""
     _generate_graph('health', days, network)
 
 @graph.command()
 @click.option('--days', default=7, help='Number of days to show')
-@click.option('--network', help='Filter by network ID or name')
+@click.option('--network', required=True, help='Network name, ID, or tag (required)')
 def loss(days, network):
-    """Show packet loss graph"""
+    """Show packet loss graph for a specific network"""
     _generate_graph('loss', days, network)
 
 def _generate_graph(graph_type, days, network):
-    """Generate and display a graph"""
+    """Generate and display a graph for a specific network"""
     try:
         import matplotlib.pyplot as plt
         import matplotlib.dates as mdates
@@ -45,18 +45,60 @@ def _generate_graph(graph_type, days, network):
         click.echo("   Please install: pip install matplotlib numpy")
         return
     
-    # Resolve network ID if name was provided
-    network_id = None
-    if network:
-        from uite.core.network_profile import NetworkProfileManager
-        manager = NetworkProfileManager()
-        for pid, profile in manager.profiles.items():
-            if network in profile.name or network == pid or (profile.tags and network in profile.tags):
-                network_id = pid
-                click.echo(f"📡 Using network: {profile.name}")
-                break
+    # Resolve network ID from name/tag
+    from uite.core.network_profile import NetworkProfileManager
+    manager = NetworkProfileManager()
     
-    # Get data
+    network_id = None
+    network_name = None
+    
+    # Try to find the network - improved matching
+    network_lower = network.lower()
+    for pid, profile in manager.profiles.items():
+        # Skip offline state
+        if pid == "offline-state" or (hasattr(profile, 'is_offline_network') and profile.is_offline_network):
+            continue
+            
+        # Check by full ID
+        if network == pid:
+            network_id = pid
+            network_name = profile.name
+            break
+            
+        # Check by short ID (first 8 chars)
+        if len(pid) >= 8 and network == pid[:8]:
+            network_id = pid
+            network_name = profile.name
+            break
+            
+        # Check by name (case-insensitive partial match)
+        if network_lower in profile.name.lower():
+            network_id = pid
+            network_name = profile.name
+            break
+            
+        # Check by tags
+        if profile.tags and network_lower in [t.lower() for t in profile.tags]:
+            network_id = pid
+            network_name = profile.name
+            break
+    
+    if not network_id:
+        click.echo(f"❌ Network '{network}' not found")
+        click.echo("\nAvailable networks:")
+        for pid, profile in manager.profiles.items():
+            # Skip offline state
+            if pid == "offline-state" or (hasattr(profile, 'is_offline_network') and profile.is_offline_network):
+                continue
+            tags = f"[{', '.join(profile.tags)}]" if profile.tags else ""
+            provider = f"({profile.provider})" if profile.provider else ""
+            click.echo(f"  • {profile.name} {provider} {tags}")
+            click.echo(f"    ID: {pid[:8]}")
+        return
+    
+    click.echo(f"📡 Generating graph for network: {network_name}")
+    
+    # Get data for this specific network
     end = datetime.now()
     start = end - timedelta(days=days)
     
@@ -67,10 +109,10 @@ def _generate_graph(graph_type, days, network):
     )
     
     if not runs:
-        click.echo("❌ No data found for this period")
+        click.echo(f"❌ No data found for {network_name} in the last {days} days")
         return
     
-    click.echo(f"📊 Generating {graph_type} graph from {len(runs)} data points...")
+    click.echo(f"📊 Found {len(runs)} data points for this network")
     
     # Prepare data - filter out entries with missing values
     valid_data = []
@@ -79,140 +121,246 @@ def _generate_graph(graph_type, days, network):
             # Parse timestamp
             dt = datetime.fromisoformat(r['timestamp'].replace('Z', '+00:00'))
             
-            # Check if we have the required data based on graph type
-            if graph_type == 'latency' and r.get('latency') is not None:
-                valid_data.append((dt, r['latency'], None))
-            elif graph_type == 'loss' and r.get('loss') is not None:
-                valid_data.append((dt, None, r['loss']))
-            elif graph_type == 'health' and r.get('latency') is not None and r.get('loss') is not None:
-                valid_data.append((dt, r['latency'], r['loss']))
+            # Get verdict for status coloring
+            verdict = r.get('verdict', 'Unknown')
+            
+            # Determine status color
+            if '✅' in verdict or 'Connected' in verdict or 'Healthy' in verdict:
+                status = 'healthy'
+            elif '⚠️' in verdict or 'Unstable' in verdict or 'Degraded' in verdict:
+                status = 'degraded'
+            elif '🐢' in verdict or 'Slow' in verdict:
+                status = 'slow'
+            elif '🌍' in verdict or 'ISP' in verdict:
+                status = 'isp_issue'
+            elif '🔴' in verdict or 'No Network' in verdict:
+                status = 'offline'
+            else:
+                status = 'other'
+            
+            # Check if we have the required data
+            if r.get('latency') is not None and r.get('loss') is not None:
+                valid_data.append((dt, r['latency'], r['loss'], status))
         except (ValueError, KeyError, TypeError):
             continue
     
     if not valid_data:
-        click.echo(f"❌ No valid {graph_type} data found")
+        click.echo(f"❌ No valid data points with complete metrics")
         return
+    
+    click.echo(f"   Using {len(valid_data)} data points with complete metrics")
     
     # Extract data
     dates = [d[0] for d in valid_data]
-    
-    click.echo(f"   Using {len(valid_data)} valid data points")
-    
-    # Convert to matplotlib date numbers
     date_nums = mdates.date2num(dates)
     
     # Create graph based on type
     if graph_type == 'latency':
-        fig, ax = plt.subplots(figsize=(12, 6))
+        # Professional NOC dashboard dark theme
+        fig, ax = plt.subplots(figsize=(16, 8))
+        fig.patch.set_facecolor('#1e1e1e')
+        ax.set_facecolor('#2b2b2b')
+        
         latencies = [d[1] for d in valid_data]
         
-        ax.plot(date_nums, latencies, 'b-', linewidth=1, alpha=0.7, label='Latency')
-        ax.fill_between(date_nums, 0, latencies, alpha=0.2, color='blue')
+        # Smooth line plot - soft electric blue
+        ax.plot(date_nums, latencies, color='#4aa3ff', linewidth=2.2, alpha=0.9, solid_capstyle='round')
         
-        # Add threshold lines
-        ax.axhline(y=100, color='orange', linestyle='--', alpha=0.5, label='Slow (100ms)')
-        ax.axhline(y=200, color='red', linestyle='--', alpha=0.5, label='Very slow (200ms)')
+        # Clean threshold lines
+        ax.axhline(y=100, color='#2ecc71', linewidth=2, alpha=0.7)  # Green acceptable threshold
+        ax.axhline(y=200, color='#e74c3c', linewidth=2, alpha=0.7)  # Red critical threshold
         
-        ax.set_ylabel('Latency (ms)')
-        ax.set_title(f'Latency Over Last {days} Days ({len(valid_data)} samples)')
-        ax.legend()
-        ax.grid(True, alpha=0.3)
+        # Minimal dashed grid
+        ax.grid(True, linestyle='--', linewidth=0.5, alpha=0.2, color='#808080')
         
-        # Add stats
-        avg_latency = sum(latencies) / len(latencies)
-        max_latency = max(latencies)
-        ax.text(0.02, 0.98, f'Avg: {avg_latency:.1f}ms\nMax: {max_latency:.1f}ms', 
-                transform=ax.transAxes, verticalalignment='top',
-                bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
+        # Remove all spines
+        ax.spines['top'].set_visible(False)
+        ax.spines['right'].set_visible(False)
+        ax.spines['bottom'].set_color('#555555')
+        ax.spines['left'].set_color('#555555')
+        
+        # Typography
+        title_font = {'fontsize': 20, 'fontweight': 'bold', 'color': '#ffffff'}
+        label_font = {'fontsize': 14, 'color': '#cccccc'}
+        
+        ax.set_title(f'LATENCY OVER TIME - {network_name.upper()}\nLast {days} Days', **title_font, pad=20)
+        ax.set_ylabel('Latency (ms)', **label_font, labelpad=10)
+        ax.set_xlabel('Time', **label_font, labelpad=10)
+        
+        # Style ticks
+        ax.tick_params(axis='both', colors='#aaaaaa', labelsize=12)
         
         # Format x-axis
         ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d %H:%M'))
         ax.xaxis.set_major_locator(mdates.HourLocator(interval=12))
-        plt.setp(ax.xaxis.get_majorticklabels(), rotation=45)
+        plt.setp(ax.xaxis.get_majorticklabels(), rotation=45, color='#aaaaaa')
+        
+        # Y-axis formatting
+        ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda x, p: f'{int(x)}ms'))
+        
+        # Set axis limits with padding
+        ax.set_ylim(0, max(latencies) * 1.1)
         
     elif graph_type == 'loss':
-        fig, ax = plt.subplots(figsize=(12, 6))
+        # Professional NOC dashboard dark theme for packet loss
+        fig, ax = plt.subplots(figsize=(16, 8))
+        fig.patch.set_facecolor('#1e1e1e')
+        ax.set_facecolor('#2b2b2b')
+        
         losses = [d[2] for d in valid_data]
         
-        ax.plot(date_nums, losses, 'r-', linewidth=1, alpha=0.7, label='Packet Loss')
-        ax.fill_between(date_nums, 0, losses, alpha=0.2, color='red')
+        # Smooth line plot - soft orange/red for loss
+        ax.plot(date_nums, losses, color='#e67e22', linewidth=2.2, alpha=0.9, solid_capstyle='round')
         
-        # Add threshold lines
-        ax.axhline(y=5, color='orange', linestyle='--', alpha=0.5, label='Warning (5%)')
-        ax.axhline(y=20, color='red', linestyle='--', alpha=0.5, label='Critical (20%)')
+        # Clean threshold lines
+        ax.axhline(y=5, color='#f1c40f', linewidth=2, alpha=0.7)   # Yellow warning threshold
+        ax.axhline(y=20, color='#e74c3c', linewidth=2, alpha=0.7)  # Red critical threshold
         
-        ax.set_ylabel('Packet Loss (%)')
-        ax.set_title(f'Packet Loss Over Last {days} Days ({len(valid_data)} samples)')
-        ax.legend()
-        ax.grid(True, alpha=0.3)
+        # Minimal dashed grid
+        ax.grid(True, linestyle='--', linewidth=0.5, alpha=0.2, color='#808080')
         
-        # Add stats
-        avg_loss = sum(losses) / len(losses)
-        max_loss = max(losses)
-        ax.text(0.02, 0.98, f'Avg: {avg_loss:.1f}%\nMax: {max_loss:.1f}%', 
-                transform=ax.transAxes, verticalalignment='top',
-                bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
+        # Remove all spines
+        ax.spines['top'].set_visible(False)
+        ax.spines['right'].set_visible(False)
+        ax.spines['bottom'].set_color('#555555')
+        ax.spines['left'].set_color('#555555')
+        
+        # Typography
+        title_font = {'fontsize': 20, 'fontweight': 'bold', 'color': '#ffffff'}
+        label_font = {'fontsize': 14, 'color': '#cccccc'}
+        
+        ax.set_title(f'PACKET LOSS OVER TIME - {network_name.upper()}\nLast {days} Days', **title_font, pad=20)
+        ax.set_ylabel('Packet Loss (%)', **label_font, labelpad=10)
+        ax.set_xlabel('Time', **label_font, labelpad=10)
+        
+        # Style ticks
+        ax.tick_params(axis='both', colors='#aaaaaa', labelsize=12)
         
         # Format x-axis
         ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d %H:%M'))
         ax.xaxis.set_major_locator(mdates.HourLocator(interval=12))
-        plt.setp(ax.xaxis.get_majorticklabels(), rotation=45)
+        plt.setp(ax.xaxis.get_majorticklabels(), rotation=45, color='#aaaaaa')
+        
+        # Y-axis formatting
+        ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda x, p: f'{int(x)}%'))
+        
+        # Set axis limits with padding
+        ax.set_ylim(0, max(losses) * 1.1 if max(losses) > 0 else 5)
         
     elif graph_type == 'health':
-        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 8))
+        # Professional NOC dashboard dark theme for health dashboard
+        fig, ax1 = plt.subplots(figsize=(16, 8))
+        fig.patch.set_facecolor('#1e1e1e')
+        ax1.set_facecolor('#2b2b2b')
         
-        # Latency subplot
+        ax2 = ax1.twinx()
+        
+        # Extract data
         latencies = [d[1] for d in valid_data]
-        ax1.plot(date_nums, latencies, 'b-', linewidth=1, alpha=0.7)
-        ax1.fill_between(date_nums, 0, latencies, alpha=0.2, color='blue')
-        ax1.axhline(y=100, color='orange', linestyle='--', alpha=0.5)
-        ax1.axhline(y=200, color='red', linestyle='--', alpha=0.5)
-        ax1.set_ylabel('Latency (ms)')
-        ax1.set_title(f'Network Health Overview ({len(valid_data)} samples)')
-        ax1.grid(True, alpha=0.3)
+        losses = [d[2] for d in valid_data]
+        statuses = [d[3] for d in valid_data]
         
-        # Format x-axis for first subplot
+        # Plot latency - electric blue
+        line1 = ax1.plot(date_nums, latencies, color='#4aa3ff', linewidth=2.2, alpha=0.9, 
+                         solid_capstyle='round', label='Latency (ms)')
+        ax1.set_ylabel('Latency (ms)', color='#4aa3ff', fontsize=14, labelpad=10)
+        ax1.tick_params(axis='y', labelcolor='#4aa3ff', labelsize=12)
+        
+        # Plot packet loss - orange/red
+        line2 = ax2.plot(date_nums, losses, color='#e67e22', linewidth=2.2, alpha=0.9,
+                         solid_capstyle='round', label='Packet Loss (%)')
+        ax2.set_ylabel('Packet Loss (%)', color='#e67e22', fontsize=14, labelpad=10)
+        ax2.tick_params(axis='y', labelcolor='#e67e22', labelsize=12)
+        
+        # Add threshold lines
+        ax1.axhline(y=100, color='#2ecc71', linewidth=1.5, alpha=0.5, linestyle=':')
+        ax1.axhline(y=200, color='#e74c3c', linewidth=1.5, alpha=0.5, linestyle=':')
+        ax2.axhline(y=5, color='#f1c40f', linewidth=1.5, alpha=0.5, linestyle=':')
+        ax2.axhline(y=20, color='#e74c3c', linewidth=1.5, alpha=0.5, linestyle=':')
+        
+        # Minimal dashed grid
+        ax1.grid(True, linestyle='--', linewidth=0.5, alpha=0.2, color='#808080')
+        
+        # Remove all spines
+        ax1.spines['top'].set_visible(False)
+        ax1.spines['right'].set_visible(False)
+        ax1.spines['bottom'].set_color('#555555')
+        ax1.spines['left'].set_color('#4aa3ff')
+        ax2.spines['right'].set_color('#e67e22')
+        
+        # Color-code background based on status
+        status_colors = {
+            'healthy': '#27ae60',   # Darker green for background
+            'degraded': '#f39c12',   # Darker orange
+            'slow': '#e67e22',       # Darker orange/red
+            'isp_issue': '#c0392b',  # Darker red
+            'offline': '#7f8c8d',    # Darker gray
+            'other': '#34495e'       # Dark blue-gray
+        }
+        
+        # Group consecutive same-status periods
+        current_status = statuses[0]
+        start_idx = 0
+        
+        for i, status in enumerate(statuses):
+            if status != current_status or i == len(statuses) - 1:
+                end_idx = i + 1 if i == len(statuses) - 1 else i
+                color = status_colors.get(current_status, '#34495e')
+                ax1.axvspan(date_nums[start_idx], date_nums[end_idx-1], 
+                           alpha=0.15, color=color)
+                current_status = status
+                start_idx = i
+        
+        # Typography
+        title_font = {'fontsize': 20, 'fontweight': 'bold', 'color': '#ffffff'}
+        label_font = {'fontsize': 14, 'color': '#cccccc'}
+        
+        plt.title(f'NETWORK HEALTH DASHBOARD - {network_name.upper()}\nLast {days} Days', 
+                 **title_font, pad=20)
+        ax1.set_xlabel('Time', **label_font, labelpad=10)
+        
+        # Format x-axis
         ax1.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d %H:%M'))
         ax1.xaxis.set_major_locator(mdates.HourLocator(interval=12))
-        plt.setp(ax1.xaxis.get_majorticklabels(), rotation=45)
+        plt.setp(ax1.xaxis.get_majorticklabels(), rotation=45, color='#aaaaaa')
         
-        # Loss subplot
-        losses = [d[2] for d in valid_data]
-        ax2.plot(date_nums, losses, 'r-', linewidth=1, alpha=0.7)
-        ax2.fill_between(date_nums, 0, losses, alpha=0.2, color='red')
-        ax2.axhline(y=5, color='orange', linestyle='--', alpha=0.5)
-        ax2.axhline(y=20, color='red', linestyle='--', alpha=0.5)
-        ax2.set_ylabel('Packet Loss (%)')
-        ax2.set_xlabel('Time')
-        ax2.grid(True, alpha=0.3)
+        # Calculate statistics
+        total_points = len(valid_data)
+        status_counts = {s: statuses.count(s) for s in set(statuses)}
         
-        # Format x-axis for second subplot
-        ax2.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d %H:%M'))
-        ax2.xaxis.set_major_locator(mdates.HourLocator(interval=12))
-        plt.setp(ax2.xaxis.get_majorticklabels(), rotation=45)
+        # Add status summary in bottom right
+        status_text = (
+            f"● Healthy: {status_counts.get('healthy', 0)} ({status_counts.get('healthy', 0)/total_points*100:.1f}%)\n"
+            f"● Degraded: {status_counts.get('degraded', 0)} ({status_counts.get('degraded', 0)/total_points*100:.1f}%)\n"
+            f"● Slow: {status_counts.get('slow', 0)} ({status_counts.get('slow', 0)/total_points*100:.1f}%)\n"
+            f"● ISP Issue: {status_counts.get('isp_issue', 0)} ({status_counts.get('isp_issue', 0)/total_points*100:.1f}%)\n"
+            f"● Offline: {status_counts.get('offline', 0)} ({status_counts.get('offline', 0)/total_points*100:.1f}%)"
+        )
+        
+        ax1.text(0.98, 0.02, status_text, transform=ax1.transAxes, 
+                verticalalignment='bottom', horizontalalignment='right',
+                fontsize=11, color='#cccccc',
+                bbox=dict(boxstyle='round', facecolor='#2b2b2b', alpha=0.9, edgecolor='#555555'))
     
     plt.tight_layout()
     
-    # Save to temp file and open
+    # Save and open
     with tempfile.NamedTemporaryFile(suffix='.png', delete=False) as tmp:
-        plt.savefig(tmp.name, dpi=100, bbox_inches='tight')
+        plt.savefig(tmp.name, dpi=100, bbox_inches='tight', facecolor='#1e1e1e')
         click.echo(f"✅ Graph saved to: {tmp.name}")
         
-        # Try to open with default image viewer
+        # Open with default viewer
         try:
             import platform
             system = platform.system().lower()
             
             if system == 'linux':
                 subprocess.run(['xdg-open', tmp.name])
-            elif system == 'darwin':  # macOS
+            elif system == 'darwin':
                 subprocess.run(['open', tmp.name])
             elif system == 'windows':
                 subprocess.run(['start', tmp.name], shell=True)
-            else:
-                click.echo(f"📁 Graph file: {tmp.name}")
-        except Exception as e:
+        except:
             click.echo(f"📁 Graph file: {tmp.name}")
-            click.echo(f"   (Could not auto-open: {e})")
 
 __all__ = ['graph']
