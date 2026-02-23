@@ -65,11 +65,12 @@ class NetworkProfileManager:
         self.profiles_file.write_text(json.dumps(data, indent=2))
     
     def get_or_create(self, network_id: str, fingerprint: dict = None, is_offline: bool = False) -> NetworkProfile:
-        """Get existing profile or create new one"""
+        """Get existing profile or create new one, always updating last_seen"""
         # First check if we already have this profile
         if network_id in self.profiles:
             profile = self.profiles[network_id]
-            profile.last_seen = datetime.now()
+            profile.last_seen = datetime.now()  # Update last_seen timestamp
+            self.save()  # Save the updated profile to disk
             return profile
         
         # Check if this might be the same as a previous offline network
@@ -82,7 +83,8 @@ class NetworkProfileManager:
             for pid, existing in self.profiles.items():
                 if existing.notes and router_ip and router_ip in existing.notes:
                     # This is the same network, just offline
-                    existing.last_seen = datetime.now()
+                    existing.last_seen = datetime.now()  # Update last_seen timestamp
+                    self.save()  # Save the updated profile to disk
                     return existing
             
             # Create a temporary offline profile
