@@ -40,7 +40,7 @@ try:
     from uite.core.device import get_device_id
     from uite.core.formatters import format_duration
     from uite.tracking.event_detector import EventDetector
-    from uite.tracking.event_store import save_events
+    from uite.storage.event_store import EventStore  # FIXED: Import from storage
     from uite.core.network_profile import NetworkProfileManager
     from uite.core.platform import OS
 except ImportError as e:
@@ -200,10 +200,11 @@ def observe(interval=DEFAULT_INTERVAL, router_ip_override=None,
                     # Save to database
                     save_run(result)
                     
-                    # Detect and save events
+                    # Detect and save events - FIXED: Use EventStore
                     events = event_detector.analyze(snapshot=result)
                     if events: 
-                        save_events(events)
+                        for event in events:
+                            EventStore.save_event(event)
                     
                     # Log the verdict
                     logger.info(

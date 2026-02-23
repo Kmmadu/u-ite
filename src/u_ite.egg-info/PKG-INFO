@@ -2,6 +2,7 @@ Metadata-Version: 2.4
 Name: u-ite
 Version: 0.1.0
 Summary: Continuous Network Observability Platform
+Home-page: https://github.com/yourusername/u-ite
 Author: Your Name
 Author-email: Your Name <your.email@example.com>
 License: MIT
@@ -20,6 +21,7 @@ Requires-Dist: click>=8.0.0
 Requires-Dist: requests>=2.25.0
 Requires-Dist: tabulate>=0.8.0
 Dynamic: author
+Dynamic: home-page
 Dynamic: requires-python
 
 # U-ITE — Internet Truth Engine
