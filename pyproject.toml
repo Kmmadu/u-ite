@@ -1,35 +1,123 @@
+# ======================================================================
+# U-ITE Package Configuration
+# ======================================================================
+# This file defines how U-ITE is built, installed, and distributed.
+# It follows PEP 621 standards for modern Python packaging.
+# ======================================================================
+
+# ----------------------------------------------------------------------
+# Build System Configuration
+# Defines the tools used to build the package
+# ----------------------------------------------------------------------
 [build-system]
+# Minimum version of setuptools required (61.0+ for PEP 621 support)
 requires = ["setuptools>=61.0", "wheel"]
+# Use setuptools as the build backend
 build-backend = "setuptools.build_meta"
 
+
+# ----------------------------------------------------------------------
+# Project Metadata
+# Information displayed on PyPI and used by pip
+# ----------------------------------------------------------------------
 [project]
+# Package name on PyPI (what users `pip install`)
 name = "u-ite"
+
+# Version following Semantic Versioning (MAJOR.MINOR.PATCH)
+# Current: 0.1.0 - Initial beta release
 version = "0.1.0"
+
+# Short, one-line description of the project
 description = "Continuous Network Observability Platform"
+
+# Path to README file (used as long description on PyPI)
 readme = "README.md"
-authors = [{name = "Your Name", email = "your.email@example.com"}]
+
+# Author information
+authors = [
+    {name = "Your Name", email = "your.email@example.com"}
+]
+
+# License type (MIT is permissive and popular for open source)
 license = {text = "MIT"}
+
+# PyPI classifiers help users find your package
+# See full list at: https://pypi.org/classifiers/
 classifiers = [
+    # Development stage
     "Development Status :: 4 - Beta",
+    
+    # Target audience
     "Intended Audience :: System Administrators",
+    "Intended Audience :: Developers",
+    
+    # License
     "License :: OSI Approved :: MIT License",
+    
+    # Programming languages
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
-]
-requires-python = ">=3.8"
-dependencies = [
-    "click>=8.0.0",
-    "requests>=2.25.0",
-    "tabulate>=0.8.0",
+    
+    # Operating systems
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    
+    # Topics
+    "Topic :: System :: Networking :: Monitoring",
+    "Topic :: System :: Systems Administration",
 ]
 
+# Minimum Python version required
+requires-python = ">=3.8"
+
+# ----------------------------------------------------------------------
+# Dependencies
+# Packages that must be installed for U-ITE to work
+# ----------------------------------------------------------------------
+dependencies = [
+    "click>=8.0.0",      # CLI framework - provides @click.command decorators
+    "requests>=2.25.0",   # HTTP requests - used for website checks
+    "tabulate>=0.8.0",    # Pretty table formatting - for CLI output
+]
+
+# Optional dependencies (install with: pip install u-ite[option])
+# [project.optional-dependencies]
+# graphs = ["matplotlib>=3.5.0", "numpy>=1.21.0"]
+# dev = ["pytest>=6.0", "black", "flake8"]
+
+
+# ----------------------------------------------------------------------
+# Console Scripts Entry Points
+# Creates executable commands when the package is installed
+# ----------------------------------------------------------------------
 [project.scripts]
+# This creates the 'uite' command that runs uite.cli:cli()
+# After installation, users can type 'uite' in their terminal
 uite = "uite.cli:cli"
 
+
+# ----------------------------------------------------------------------
+# Package Discovery
+# Tells setuptools where to find Python packages
+# ----------------------------------------------------------------------
 [tool.setuptools.packages.find]
+# Look for packages in the 'src' directory (src/ layout)
 where = ["src"]
+# Include all packages starting with 'uite'
 include = ["uite*"]
+
+
+# ----------------------------------------------------------------------
+# Optional: Project URLs (displayed on PyPI)
+# ----------------------------------------------------------------------
+# [project.urls]
+# Homepage = "https://github.com/yourusername/u-ite"
+# Documentation = "https://docs.u-ite.io"
+# Repository = "https://github.com/yourusername/u-ite.git"
+# "Bug Tracker" = "https://github.com/yourusername/u-ite/issues"
