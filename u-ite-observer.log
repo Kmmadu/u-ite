@@ -535,3 +535,378 @@
 2026-02-23 09:42:26,305 [INFO] Shutdown signal received. Stopping observer...
 2026-02-23 09:42:26,360 [INFO] U-ITE Observer ran for: 20 seconds
 2026-02-23 09:42:26,361 [INFO] U-ITE Observer stopped.
+2026-02-23 10:32:09,951 [INFO] Device ID: 07bf093a-6a7e-4e5d-88f0-e59c00017cd0
+2026-02-23 10:32:09,953 [INFO] Database initialized successfully.
+2026-02-23 10:32:14,973 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 5.8ms | Loss: 0%
+2026-02-23 10:32:45,994 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 4.1ms | Loss: 20%
+2026-02-23 10:33:21,002 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 8.9ms | Loss: 0%
+2026-02-23 10:33:45,313 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 11.1ms | Loss: 0%
+2026-02-23 10:34:33,533 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 92.3ms | Loss: 0%
+2026-02-23 10:34:44,976 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 8.1ms | Loss: 0%
+2026-02-23 10:35:14,926 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 15.9ms | Loss: 0%
+2026-02-23 10:35:46,775 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 5.4ms | Loss: 20%
+2026-02-23 10:36:22,116 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 5.7ms | Loss: 40%
+2026-02-23 10:36:50,542 [INFO] [Office Network] Verdict: 🌍 ISP Outage
+2026-02-23 10:37:16,307 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 14.6ms | Loss: 40%
+2026-02-23 10:37:45,938 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 13.1ms | Loss: 20%
+2026-02-23 10:38:15,128 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 12.9ms | Loss: 0%
+2026-02-23 10:38:45,336 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 11.0ms | Loss: 0%
+2026-02-23 10:39:15,943 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 18.4ms | Loss: 20%
+2026-02-23 10:39:46,306 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 19.1ms | Loss: 20%
+2026-02-23 10:40:16,099 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 10.8ms | Loss: 0%
+2026-02-23 10:40:45,317 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 20.6ms | Loss: 0%
+2026-02-23 10:41:15,562 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 21.1ms | Loss: 0%
+2026-02-23 10:41:45,752 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 15.4ms | Loss: 0%
+2026-02-23 10:42:15,368 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 9.8ms | Loss: 0%
+2026-02-23 10:42:44,971 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 13.4ms | Loss: 0%
+2026-02-23 10:43:15,083 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 32.8ms | Loss: 0%
+2026-02-23 10:43:45,981 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 6.6ms | Loss: 20%
+2026-02-23 10:44:15,082 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 8.5ms | Loss: 0%
+2026-02-23 10:44:50,478 [INFO] [Office Network] Verdict: 🔴 No Network Connection
+2026-02-23 10:45:15,037 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 23.4ms | Loss: 0%
+2026-02-23 10:45:45,024 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 13.9ms | Loss: 0%
+2026-02-23 10:46:15,156 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 24.5ms | Loss: 0%
+2026-02-23 10:46:45,340 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 12.3ms | Loss: 0%
+2026-02-23 10:47:15,234 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 13.9ms | Loss: 0%
+2026-02-23 10:47:45,133 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 11.9ms | Loss: 0%
+2026-02-23 10:48:15,455 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 12.0ms | Loss: 0%
+2026-02-23 10:48:45,004 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 17.0ms | Loss: 0%
+2026-02-23 10:49:15,124 [INFO] [Office Network] Verdict: 📶 Degraded Performance | Latency: 110.3ms | Loss: 0%
+2026-02-23 10:49:45,988 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 55.1ms | Loss: 0%
+2026-02-23 10:50:15,153 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 10.7ms | Loss: 0%
+2026-02-23 10:50:45,060 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 9.9ms | Loss: 0%
+2026-02-23 10:51:15,153 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 64.9ms | Loss: 0%
+2026-02-23 10:51:45,143 [INFO] [Office Network] Verdict: 📶 Degraded Performance | Latency: 114.2ms | Loss: 0%
+2026-02-23 10:52:16,827 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 4.5ms | Loss: 20%
+2026-02-23 10:52:46,121 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 32.8ms | Loss: 0%
+2026-02-23 10:53:15,572 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 33.1ms | Loss: 0%
+2026-02-23 10:53:45,101 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 14.2ms | Loss: 0%
+2026-02-23 10:54:15,071 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 29.8ms | Loss: 0%
+2026-02-23 10:54:45,519 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 19.3ms | Loss: 0%
+2026-02-23 10:55:15,158 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 9.7ms | Loss: 0%
+2026-02-23 10:55:44,990 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 17.4ms | Loss: 0%
+2026-02-23 10:56:20,289 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 20.9ms | Loss: 0%
+2026-02-23 10:56:51,296 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 14.8ms | Loss: 0%
+2026-02-23 10:57:15,468 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 73.5ms | Loss: 0%
+2026-02-23 10:57:49,266 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 153.6ms | Loss: 20%
+2026-02-23 10:58:35,740 [INFO] [Office Network] Verdict: 🌍 ISP Outage
+2026-02-23 10:58:45,319 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 50.4ms | Loss: 0%
+2026-02-23 10:59:15,234 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 21.6ms | Loss: 0%
+2026-02-23 10:59:46,020 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 34.6ms | Loss: 0%
+2026-02-23 11:00:15,725 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 72.3ms | Loss: 0%
+2026-02-23 11:00:51,152 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 13.9ms | Loss: 0%
+2026-02-23 11:01:32,330 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 53.2ms | Loss: 20%
+2026-02-23 11:01:58,313 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 75.9ms | Loss: 20%
+2026-02-23 11:02:16,979 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 24.1ms | Loss: 20%
+2026-02-23 11:02:47,017 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 25.4ms | Loss: 20%
+2026-02-23 11:03:17,202 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 20.6ms | Loss: 20%
+2026-02-23 11:03:48,011 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 21.4ms | Loss: 0%
+2026-02-23 11:04:24,105 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 19.4ms | Loss: 20%
+2026-02-23 11:04:46,354 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 17.8ms | Loss: 20%
+2026-02-23 11:05:15,136 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 32.7ms | Loss: 0%
+2026-02-23 11:05:51,082 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 10.3ms | Loss: 20%
+2026-02-23 11:06:15,189 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 11.1ms | Loss: 0%
+2026-02-23 11:06:46,898 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 5.2ms | Loss: 0%
+2026-02-23 11:07:15,462 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 24.8ms | Loss: 0%
+2026-02-23 11:07:46,174 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 8.0ms | Loss: 0%
+2026-02-23 11:08:16,329 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 15.6ms | Loss: 20%
+2026-02-23 11:08:45,340 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 9.7ms | Loss: 0%
+2026-02-23 11:09:15,222 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 18.2ms | Loss: 0%
+2026-02-23 11:09:45,334 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 11.0ms | Loss: 0%
+2026-02-23 11:10:16,086 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 31.4ms | Loss: 0%
+2026-02-23 11:10:45,516 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 14.0ms | Loss: 0%
+2026-02-23 11:11:15,249 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 29.2ms | Loss: 0%
+2026-02-23 11:11:45,075 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 9.5ms | Loss: 0%
+2026-02-23 11:12:15,610 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 18.4ms | Loss: 0%
+2026-02-23 11:12:45,327 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 16.7ms | Loss: 0%
+2026-02-23 11:13:15,157 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 12.3ms | Loss: 0%
+2026-02-23 11:13:46,684 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 48.8ms | Loss: 20%
+2026-02-23 11:14:15,448 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 18.4ms | Loss: 0%
+2026-02-23 11:14:45,457 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 7.7ms | Loss: 0%
+2026-02-23 11:15:20,622 [INFO] [Office Network] Verdict: 🔴 No Network Connection
+2026-02-23 11:15:47,174 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 25.1ms | Loss: 0%
+2026-02-23 11:16:15,739 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 23.3ms | Loss: 0%
+2026-02-23 11:16:46,707 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 7.5ms | Loss: 0%
+2026-02-23 11:17:16,379 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 16.4ms | Loss: 0%
+2026-02-23 11:17:46,398 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 16.3ms | Loss: 0%
+2026-02-23 11:18:17,385 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 61.3ms | Loss: 0%
+2026-02-23 11:18:47,383 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 12.2ms | Loss: 0%
+2026-02-23 11:19:16,481 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 18.3ms | Loss: 0%
+2026-02-23 11:19:47,743 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 10.0ms | Loss: 20%
+2026-02-23 11:20:17,204 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 9.7ms | Loss: 20%
+2026-02-23 11:20:47,878 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 5.6ms | Loss: 0%
+2026-02-23 11:21:18,054 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 14.9ms | Loss: 20%
+2026-02-23 11:21:46,830 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 17.4ms | Loss: 0%
+2026-02-23 11:22:17,816 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 33.2ms | Loss: 0%
+2026-02-23 11:22:51,363 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 17.7ms | Loss: 0%
+2026-02-23 11:23:17,821 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 16.9ms | Loss: 0%
+2026-02-23 11:23:46,609 [INFO] [Office Network] Verdict: 🐢 Slow Connection | Latency: 371.8ms | Loss: 0%
+2026-02-23 11:24:16,433 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 55.6ms | Loss: 0%
+2026-02-23 11:24:48,784 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 50.1ms | Loss: 40%
+2026-02-23 11:25:16,840 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 49.0ms | Loss: 0%
+2026-02-23 11:25:46,232 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 39.3ms | Loss: 0%
+2026-02-23 11:26:17,550 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 19.0ms | Loss: 20%
+2026-02-23 11:26:48,189 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 20.5ms | Loss: 20%
+2026-02-23 11:27:17,141 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 19.9ms | Loss: 20%
+2026-02-23 11:27:47,139 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 16.3ms | Loss: 0%
+2026-02-23 11:28:15,882 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 19.4ms | Loss: 0%
+2026-02-23 11:28:46,517 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 11.6ms | Loss: 0%
+2026-02-23 11:29:16,920 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 12.7ms | Loss: 0%
+2026-02-23 11:29:45,981 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 9.9ms | Loss: 0%
+2026-02-23 11:30:15,902 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 12.5ms | Loss: 0%
+2026-02-23 11:30:45,852 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 10.2ms | Loss: 0%
+2026-02-23 11:31:15,621 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 11.2ms | Loss: 0%
+2026-02-23 11:31:45,724 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 14.7ms | Loss: 0%
+2026-02-23 11:32:15,622 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 5.4ms | Loss: 0%
+2026-02-23 11:32:46,614 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 17.2ms | Loss: 0%
+2026-02-23 11:33:17,211 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 11.7ms | Loss: 0%
+2026-02-23 11:33:45,648 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 16.1ms | Loss: 0%
+2026-02-23 11:34:15,667 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 13.6ms | Loss: 0%
+2026-02-23 11:34:46,095 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 56.9ms | Loss: 0%
+2026-02-23 11:35:16,698 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 11.8ms | Loss: 20%
+2026-02-23 11:35:45,890 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 40.6ms | Loss: 0%
+2026-02-23 11:36:16,419 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 49.3ms | Loss: 0%
+2026-02-23 11:36:47,354 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 25.3ms | Loss: 0%
+2026-02-23 11:37:16,003 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 23.4ms | Loss: 0%
+2026-02-23 11:37:45,930 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 15.0ms | Loss: 0%
+2026-02-23 11:38:16,930 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 34.2ms | Loss: 0%
+2026-02-23 11:38:52,187 [INFO] [Office Network] Verdict: 🌍 ISP Outage
+2026-02-23 11:39:17,220 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 68.3ms | Loss: 20%
+2026-02-23 11:39:51,436 [INFO] [Office Network] Verdict: 🔴 No Network Connection
+2026-02-23 11:40:16,287 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 25.3ms | Loss: 0%
+2026-02-23 11:40:51,194 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 35.7ms | Loss: 0%
+2026-02-23 11:41:21,513 [INFO] [Office Network] Verdict: 🔴 No Network Connection
+2026-02-23 11:41:46,299 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 18.0ms | Loss: 0%
+2026-02-23 11:42:27,037 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 67.7ms | Loss: 0%
+2026-02-23 11:42:47,515 [INFO] [Office Network] Verdict: 📶 Degraded Performance | Latency: 173.6ms | Loss: 0%
+2026-02-23 11:43:21,130 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 26.4ms | Loss: 0%
+2026-02-23 11:43:45,749 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 24.0ms | Loss: 0%
+2026-02-23 11:44:15,731 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 21.7ms | Loss: 0%
+2026-02-23 11:44:46,461 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 45.5ms | Loss: 0%
+2026-02-23 11:45:15,663 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 10.0ms | Loss: 0%
+2026-02-23 11:45:45,890 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 13.3ms | Loss: 0%
+2026-02-23 11:46:15,668 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 9.9ms | Loss: 0%
+2026-02-23 11:46:45,831 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 20.6ms | Loss: 0%
+2026-02-23 11:47:15,694 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 16.7ms | Loss: 0%
+2026-02-23 11:47:45,583 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 12.3ms | Loss: 0%
+2026-02-23 11:48:16,092 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 15.4ms | Loss: 0%
+2026-02-23 11:48:46,762 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 9.3ms | Loss: 20%
+2026-02-23 11:49:15,690 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 12.8ms | Loss: 0%
+2026-02-23 11:50:02,674 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 20.0ms | Loss: 0%
+2026-02-23 11:50:16,584 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 61.2ms | Loss: 0%
+2026-02-23 11:50:46,077 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 17.1ms | Loss: 0%
+2026-02-23 11:51:16,905 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 12.5ms | Loss: 20%
+2026-02-23 11:51:46,431 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 13.7ms | Loss: 0%
+2026-02-23 11:52:27,498 [INFO] [Office Network] Verdict: 🌍 ISP Outage
+2026-02-23 11:52:47,383 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 13.5ms | Loss: 20%
+2026-02-23 11:53:17,263 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 52.0ms | Loss: 0%
+2026-02-23 11:53:45,753 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 14.7ms | Loss: 0%
+2026-02-23 11:54:21,797 [INFO] [Office Network] Verdict: 🐢 Slow Connection | Latency: 229.5ms | Loss: 0%
+2026-02-23 11:54:56,942 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 10.1ms | Loss: 0%
+2026-02-23 11:55:16,271 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 22.8ms | Loss: 0%
+2026-02-23 11:55:47,868 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 20.0ms | Loss: 0%
+2026-02-23 11:56:16,210 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 23.4ms | Loss: 0%
+2026-02-23 11:56:46,291 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 17.7ms | Loss: 0%
+2026-02-23 11:57:15,762 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 53.0ms | Loss: 0%
+2026-02-23 11:58:01,442 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 16.1ms | Loss: 0%
+2026-02-23 11:58:28,231 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 28.2ms | Loss: 20%
+2026-02-23 11:58:48,736 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 24.2ms | Loss: 0%
+2026-02-23 11:59:21,450 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 18.5ms | Loss: 20%
+2026-02-23 11:59:47,752 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 23.2ms | Loss: 20%
+2026-02-23 12:00:18,650 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 14.8ms | Loss: 0%
+2026-02-23 12:00:48,053 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 19.7ms | Loss: 20%
+2026-02-23 12:01:17,327 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 12.7ms | Loss: 0%
+2026-02-23 12:01:47,137 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 7.8ms | Loss: 0%
+2026-02-23 12:02:15,732 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 14.4ms | Loss: 0%
+2026-02-23 12:02:46,795 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 15.9ms | Loss: 0%
+2026-02-23 12:03:15,835 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 17.5ms | Loss: 0%
+2026-02-23 12:03:46,175 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 12.0ms | Loss: 0%
+2026-02-23 12:04:15,977 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 28.2ms | Loss: 0%
+2026-02-23 12:04:45,703 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 8.9ms | Loss: 0%
+2026-02-23 12:05:17,331 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 14.2ms | Loss: 20%
+2026-02-23 12:05:54,538 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 18.9ms | Loss: 20%
+2026-02-23 12:06:17,172 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 12.5ms | Loss: 20%
+2026-02-23 12:06:46,257 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 21.1ms | Loss: 0%
+2026-02-23 12:07:26,307 [INFO] [Office Network] Verdict: 🌍 ISP Outage
+2026-02-23 12:07:59,204 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 32.5ms | Loss: 40%
+2026-02-23 12:08:21,895 [INFO] [Office Network] Verdict: 🌍 ISP Outage
+2026-02-23 12:08:48,595 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 11.3ms | Loss: 40%
+2026-02-23 12:09:28,125 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 22.5ms | Loss: 20%
+2026-02-23 12:09:47,364 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 13.3ms | Loss: 20%
+2026-02-23 12:10:16,877 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 20.5ms | Loss: 0%
+2026-02-23 12:10:47,272 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 34.1ms | Loss: 20%
+2026-02-23 12:11:18,111 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 23.7ms | Loss: 20%
+2026-02-23 12:11:58,984 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 39.7ms | Loss: 20%
+2026-02-23 12:12:22,550 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 86.9ms | Loss: 0%
+2026-02-23 12:12:45,870 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 24.0ms | Loss: 0%
+2026-02-23 12:13:22,548 [INFO] [Office Network] Verdict: 🌍 ISP Outage
+2026-02-23 12:13:45,968 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 9.3ms | Loss: 0%
+2026-02-23 12:14:18,644 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 31.3ms | Loss: 0%
+2026-02-23 12:14:46,412 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 82.4ms | Loss: 0%
+2026-02-23 12:15:16,279 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 20.8ms | Loss: 0%
+2026-02-23 12:15:46,632 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 25.7ms | Loss: 0%
+2026-02-23 12:16:22,792 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 14.6ms | Loss: 20%
+2026-02-23 12:16:48,202 [INFO] [Office Network] Verdict: 📶 Degraded Performance | Latency: 107.8ms | Loss: 0%
+2026-02-23 12:17:22,227 [INFO] [Office Network] Verdict: 🌍 ISP Outage
+2026-02-23 12:17:46,175 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 18.4ms | Loss: 0%
+2026-02-23 12:18:16,233 [INFO] [Office Network] Verdict: 📶 Degraded Performance | Latency: 154.9ms | Loss: 0%
+2026-02-23 12:18:59,698 [INFO] [Office Network] Verdict: 🔴 No Network Connection
+2026-02-23 12:19:16,576 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 15.0ms | Loss: 0%
+2026-02-23 12:19:48,068 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 24.5ms | Loss: 20%
+2026-02-23 12:20:15,865 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 28.2ms | Loss: 0%
+2026-02-23 12:20:47,732 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 62.7ms | Loss: 0%
+2026-02-23 12:21:16,338 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 20.2ms | Loss: 0%
+2026-02-23 12:21:46,324 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 35.6ms | Loss: 0%
+2026-02-23 12:22:16,004 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 20.7ms | Loss: 0%
+2026-02-23 12:22:46,050 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 13.2ms | Loss: 0%
+2026-02-23 12:23:15,849 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 19.5ms | Loss: 0%
+2026-02-23 12:23:46,065 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 11.4ms | Loss: 0%
+2026-02-23 12:24:17,020 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 12.3ms | Loss: 40%
+2026-02-23 12:24:46,280 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 13.3ms | Loss: 0%
+2026-02-23 12:25:17,396 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 16.6ms | Loss: 40%
+2026-02-23 12:25:53,633 [INFO] [Office Network] Verdict: 🌍 ISP Outage
+2026-02-23 12:26:26,853 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 12.1ms | Loss: 20%
+2026-02-23 12:26:46,523 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 18.6ms | Loss: 0%
+2026-02-23 12:27:17,294 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 20.9ms | Loss: 0%
+2026-02-23 12:27:46,166 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 15.2ms | Loss: 0%
+2026-02-23 12:28:16,873 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 4.2ms | Loss: 40%
+2026-02-23 12:28:46,368 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 23.7ms | Loss: 0%
+2026-02-23 12:29:16,107 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 18.9ms | Loss: 0%
+2026-02-23 12:29:52,004 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 13.3ms | Loss: 20%
+2026-02-23 12:30:16,032 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 5.1ms | Loss: 0%
+2026-02-23 12:30:46,393 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 19.4ms | Loss: 0%
+2026-02-23 12:31:26,642 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 13.7ms | Loss: 0%
+2026-02-23 12:31:51,443 [INFO] [Office Network] Verdict: 🌍 ISP Outage
+2026-02-23 12:32:17,102 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 16.8ms | Loss: 0%
+2026-02-23 12:33:02,060 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 23.9ms | Loss: 20%
+2026-02-23 12:33:18,412 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 25.7ms | Loss: 0%
+2026-02-23 12:33:49,181 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 27.3ms | Loss: 20%
+2026-02-23 12:34:17,340 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 15.0ms | Loss: 40%
+2026-02-23 12:34:47,210 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 15.0ms | Loss: 20%
+2026-02-23 12:35:16,641 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 16.6ms | Loss: 0%
+2026-02-23 12:35:45,967 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 23.2ms | Loss: 0%
+2026-02-23 12:36:18,281 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 86.7ms | Loss: 20%
+2026-02-23 12:36:48,045 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 12.2ms | Loss: 0%
+2026-02-23 12:37:16,626 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 28.2ms | Loss: 0%
+2026-02-23 12:37:46,380 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 12.4ms | Loss: 0%
+2026-02-23 12:38:16,899 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 11.9ms | Loss: 0%
+2026-02-23 12:38:50,219 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 24.6ms | Loss: 20%
+2026-02-23 12:39:17,226 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 19.3ms | Loss: 20%
+2026-02-23 12:39:52,396 [INFO] [Office Network] Verdict: 🔴 No Network Connection
+2026-02-23 12:40:26,881 [INFO] [Office Network] Verdict: 🌍 ISP Outage
+2026-02-23 12:40:49,019 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 13.2ms | Loss: 20%
+2026-02-23 12:41:16,015 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 7.5ms | Loss: 0%
+2026-02-23 12:41:46,482 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 22.3ms | Loss: 0%
+2026-02-23 12:42:15,958 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 19.5ms | Loss: 0%
+2026-02-23 12:42:46,228 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 39.6ms | Loss: 0%
+2026-02-23 12:43:16,101 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 13.9ms | Loss: 0%
+2026-02-23 12:43:47,602 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 9.4ms | Loss: 20%
+2026-02-23 12:44:22,690 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 15.1ms | Loss: 0%
+2026-02-23 12:44:48,170 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 16.1ms | Loss: 20%
+2026-02-23 12:45:17,564 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 12.7ms | Loss: 20%
+2026-02-23 12:45:46,089 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 16.6ms | Loss: 0%
+2026-02-23 12:46:15,928 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 15.4ms | Loss: 0%
+2026-02-23 12:46:46,045 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 23.8ms | Loss: 0%
+2026-02-23 12:47:15,963 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 10.8ms | Loss: 0%
+2026-02-23 12:47:46,956 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 65.0ms | Loss: 0%
+2026-02-23 12:48:16,355 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 17.1ms | Loss: 0%
+2026-02-23 12:48:46,825 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 17.3ms | Loss: 0%
+2026-02-23 12:49:15,948 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 10.1ms | Loss: 0%
+2026-02-23 12:49:46,036 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 16.1ms | Loss: 0%
+2026-02-23 12:50:16,211 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 24.5ms | Loss: 0%
+2026-02-23 12:50:47,085 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 10.0ms | Loss: 20%
+2026-02-23 12:51:17,692 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 26.5ms | Loss: 0%
+2026-02-23 12:51:47,580 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 11.3ms | Loss: 20%
+2026-02-23 12:52:17,257 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 17.5ms | Loss: 20%
+2026-02-23 12:52:46,084 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 17.1ms | Loss: 0%
+2026-02-23 12:53:27,470 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 19.1ms | Loss: 0%
+2026-02-23 12:53:47,027 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 8.0ms | Loss: 20%
+2026-02-23 12:54:16,017 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 25.7ms | Loss: 0%
+2026-02-23 12:54:46,614 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 10.6ms | Loss: 0%
+2026-02-23 12:55:16,789 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 25.0ms | Loss: 0%
+2026-02-23 12:55:47,306 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 37.8ms | Loss: 20%
+2026-02-23 12:56:16,741 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 15.0ms | Loss: 0%
+2026-02-23 12:56:47,904 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 13.2ms | Loss: 0%
+2026-02-23 12:57:16,533 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 20.7ms | Loss: 0%
+2026-02-23 12:57:46,243 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 6.1ms | Loss: 0%
+2026-02-23 12:58:17,977 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 13.3ms | Loss: 0%
+2026-02-23 12:58:46,393 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 17.7ms | Loss: 0%
+2026-02-23 12:59:17,051 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 20.1ms | Loss: 20%
+2026-02-23 12:59:48,265 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 17.3ms | Loss: 20%
+2026-02-23 13:00:15,991 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 13.6ms | Loss: 0%
+2026-02-23 13:00:46,546 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 42.3ms | Loss: 0%
+2026-02-23 13:01:17,334 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 37.7ms | Loss: 0%
+2026-02-23 13:01:46,545 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 16.7ms | Loss: 0%
+2026-02-23 13:02:19,262 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 440.1ms | Loss: 40%
+2026-02-23 13:02:46,507 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 24.4ms | Loss: 0%
+2026-02-23 13:03:16,105 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 11.9ms | Loss: 0%
+2026-02-23 13:03:51,371 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 71.5ms | Loss: 0%
+2026-02-23 13:04:17,884 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 49.0ms | Loss: 0%
+2026-02-23 13:04:46,311 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 65.7ms | Loss: 0%
+2026-02-23 13:05:16,170 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 15.7ms | Loss: 0%
+2026-02-23 13:05:46,285 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 13.5ms | Loss: 0%
+2026-02-23 13:06:16,485 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 17.0ms | Loss: 0%
+2026-02-23 13:06:46,441 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 14.6ms | Loss: 0%
+2026-02-23 13:07:21,332 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 34.2ms | Loss: 0%
+2026-02-23 13:07:48,771 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 64.6ms | Loss: 20%
+2026-02-23 13:08:16,445 [INFO] [Office Network] Verdict: 📶 Degraded Performance | Latency: 115.1ms | Loss: 0%
+2026-02-23 13:08:46,656 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 87.8ms | Loss: 0%
+2026-02-23 13:09:16,918 [INFO] [Office Network] Verdict: 🐢 Slow Connection | Latency: 275.2ms | Loss: 0%
+2026-02-23 13:09:46,202 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 17.3ms | Loss: 0%
+2026-02-23 13:10:21,937 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 57.8ms | Loss: 0%
+2026-02-23 13:10:53,873 [INFO] [Office Network] Verdict: 🔴 No Network Connection
+2026-02-23 13:11:17,893 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 22.1ms | Loss: 0%
+2026-02-23 13:11:52,577 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 22.5ms | Loss: 0%
+2026-02-23 13:12:16,209 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 10.6ms | Loss: 0%
+2026-02-23 13:12:46,100 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 18.1ms | Loss: 0%
+2026-02-23 13:13:17,501 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 14.3ms | Loss: 20%
+2026-02-23 13:13:46,092 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 14.2ms | Loss: 0%
+2026-02-23 13:14:23,954 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 2194.8ms | Loss: 40%
+2026-02-23 13:15:11,221 [INFO] [Office Network] Verdict: 🔴 No Network Connection
+2026-02-23 13:15:23,652 [INFO] [Office Network] Verdict: 🐢 Slow Connection | Latency: 704.0ms | Loss: 0%
+2026-02-23 13:15:58,066 [INFO] [Office Network] Verdict: 🐢 Slow Connection | Latency: 434.9ms | Loss: 0%
+2026-02-23 13:16:18,618 [INFO] [Office Network] Verdict: 🐢 Slow Connection | Latency: 219.1ms | Loss: 0%
+2026-02-23 13:16:49,242 [INFO] [Office Network] Verdict: ⚠️ Unstable Connection | Latency: 462.2ms | Loss: 20%
+2026-02-23 13:17:17,320 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 21.8ms | Loss: 0%
+2026-02-23 13:17:59,239 [INFO] [Office Network] Verdict: 🐢 Slow Connection | Latency: 364.7ms | Loss: 0%
+2026-02-23 13:18:23,021 [INFO] [Office Network] Verdict: 🐢 Slow Connection | Latency: 1244.2ms | Loss: 0%
+2026-02-23 13:18:51,716 [INFO] [Office Network] Verdict: 🐢 Slow Connection | Latency: 923.5ms | Loss: 0%
+2026-02-23 13:19:31,274 [INFO] [Office Network] Verdict: 🔴 No Network Connection
+2026-02-23 13:20:01,275 [ERROR] 🌐 INTERNET DOWN: Router not detected. Please check your internet connection.
+2026-02-23 13:20:13,006 [INFO] ✅ Internet connection restored after 11 seconds
+2026-02-23 13:20:18,978 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 14.1ms | Loss: 0%
+2026-02-23 13:21:01,281 [INFO] [Office Network] Verdict: 🔴 No Network Connection
+2026-02-23 13:21:31,271 [ERROR] 🌐 INTERNET DOWN: Router not detected. Please check your internet connection.
+2026-02-23 13:22:01,275 [ERROR] 🌐 Still offline (outage duration: 29 seconds). Will retry in 30s.
+2026-02-23 13:22:31,276 [ERROR] 🌐 Still offline (outage duration: 1 minute). Will retry in 30s.
+2026-02-23 13:23:01,275 [ERROR] 🌐 Still offline (outage duration: 1 minute 30 seconds). Will retry in 30s.
+2026-02-23 13:23:31,274 [ERROR] 🌐 Still offline (outage duration: 2 minutes). Will retry in 30s.
+2026-02-23 13:24:01,274 [ERROR] 🌐 Still offline (outage duration: 2 minutes 30 seconds). Will retry in 30s.
+2026-02-23 13:24:31,281 [INFO] ✅ Internet connection restored after 3 minutes
+2026-02-23 13:24:31,293 [INFO] [Office Network] Verdict: 🔴 No Network Connection
+2026-02-23 13:25:01,282 [ERROR] 🌐 INTERNET DOWN: Router not detected. Please check your internet connection.
+2026-02-23 13:25:31,282 [ERROR] 🌐 Still offline (outage duration: 30 seconds). Will retry in 30s.
+2026-02-23 13:26:01,283 [ERROR] 🌐 Still offline (outage duration: 1 minute). Will retry in 30s.
+2026-02-23 13:26:31,282 [ERROR] 🌐 Still offline (outage duration: 1 minute 30 seconds). Will retry in 30s.
+2026-02-23 13:27:01,288 [ERROR] 🌐 Still offline (outage duration: 2 minutes). Will retry in 30s.
+2026-02-23 13:27:12,904 [INFO] ✅ Internet connection restored after 2 minutes 11 seconds
+2026-02-23 13:27:17,904 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 26.0ms | Loss: 0%
+2026-02-23 13:27:48,667 [INFO] [Office Network] Verdict: ✅ Connected | Latency: 32.6ms | Loss: 0%
+2026-02-23 13:28:32,674 [INFO] [Office Network] Verdict: 🔴 No Network Connection
+2026-02-23 13:29:30,205 [INFO] [Office Network] Verdict: 🌐 Web Access Issue
+2026-02-23 13:29:50,236 [INFO] Shutdown signal received. Stopping observer...
+2026-02-23 13:30:00,259 [INFO] [Office Network] Verdict: 🔴 No Network Connection
+2026-02-23 13:30:00,260 [INFO] U-ITE Observer ran for: 30 seconds
+2026-02-23 13:30:00,260 [INFO] U-ITE Observer stopped.
+2026-02-23 13:35:08,192 [INFO] Device ID: 07bf093a-6a7e-4e5d-88f0-e59c00017cd0
+2026-02-23 13:35:08,194 [INFO] Database initialized successfully.
+2026-02-23 13:35:53,541 [INFO] [Office Network] Verdict: 🔍 DNS Resolution Failed
+2026-02-23 13:36:19,858 [INFO] [Office Network] Verdict: 🔴 No Network Connection
+2026-02-23 13:36:46,218 [INFO] [Office Network] Verdict: 🔴 No Network Connection
+2026-02-23 13:37:15,130 [INFO] [Office Network] Verdict: 🔴 No Network Connection
+2026-02-23 13:37:53,587 [INFO] [Office Network] Verdict: 🔴 No Network Connection
+2026-02-23 13:38:24,197 [INFO] [Office Network] Verdict: 🔴 No Network Connection
+2026-02-23 13:38:44,216 [INFO] Shutdown signal received. Stopping observer...
+2026-02-23 13:38:54,231 [INFO] [Office Network] Verdict: 🔴 No Network Connection
+2026-02-23 13:38:54,231 [INFO] U-ITE Observer ran for: 30 seconds
+2026-02-23 13:38:54,232 [INFO] U-ITE Observer stopped.

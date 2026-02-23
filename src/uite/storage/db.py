@@ -1,6 +1,6 @@
 import sqlite3
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timedelta
 import hashlib
 import importlib.resources as pkg_resources
 from uite.core.platform import OS
@@ -30,7 +30,6 @@ def generate_network_id(router_ip, internet_ip):
 
 def save_run(data: dict):
     """Save a diagnostic run to the database"""
-    print(f"DEBUG: Saving run for network {data.get('network_id')}")
     with sqlite3.connect(DB_PATH) as conn:
         conn.execute(
             """
@@ -97,7 +96,7 @@ class HistoricalData:
         conn = sqlite3.connect(DB_PATH)
         conn.row_factory = sqlite3.Row
         
-        # Build query
+        # Build query - use proper ISO format for comparison
         query = """
             SELECT 
                 timestamp,
@@ -106,7 +105,7 @@ class HistoricalData:
                 avg_latency_ms as latency,
                 packet_loss_pct as loss
             FROM diagnostic_runs
-            WHERE timestamp BETWEEN ? AND ?
+            WHERE datetime(timestamp) BETWEEN datetime(?) AND datetime(?)
         """
         params = [start_dt.isoformat(), end_dt.isoformat()]
         
@@ -124,10 +123,33 @@ class HistoricalData:
         return results
     
     @staticmethod
+    def get_runs_for_last_days(network_id, days):
+        """
+        Get diagnostic runs for the last N days
+        
+        Args:
+            network_id: Network ID to filter by
+            days: Number of days to look back
+        
+        Returns:
+            List of diagnostic runs as dictionaries
+        """
+        end_date = datetime.now()
+        start_date = end_date - timedelta(days=days)
+        
+        # Format dates for the query
+        start_str = start_date.strftime("%d-%m-%Y")
+        start_time = start_date.strftime("%H:%M")
+        end_str = end_date.strftime("%d-%m-%Y")
+        end_time = end_date.strftime("%H:%M")
+        
+        return HistoricalData.get_runs_by_date_range(
+            start_str, start_time, end_str, end_time, network_id
+        )
+    
+    @staticmethod
     def get_network_stats(network_id, days=30):
         """Get statistics for a specific network"""
-        from datetime import timedelta
-        
         end_date = datetime.now()
         start_date = end_date - timedelta(days=days)
         
@@ -143,7 +165,7 @@ class HistoricalData:
                 MAX(avg_latency_ms) as max_latency,
                 MAX(packet_loss_pct) as max_loss
             FROM diagnostic_runs
-            WHERE network_id = ? AND timestamp BETWEEN ? AND ?
+            WHERE network_id = ? AND datetime(timestamp) BETWEEN datetime(?) AND datetime(?)
         """
         
         cursor = conn.execute(query, [network_id, start_date.isoformat(), end_date.isoformat()])

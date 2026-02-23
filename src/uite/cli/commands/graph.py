@@ -98,15 +98,8 @@ def _generate_graph(graph_type, days, network):
     
     click.echo(f"📡 Generating graph for network: {network_name}")
     
-    # Get data for this specific network
-    end = datetime.now()
-    start = end - timedelta(days=days)
-    
-    runs = HistoricalData.get_runs_by_date_range(
-        start.strftime("%d-%m-%Y"), "00:00",
-        end.strftime("%d-%m-%Y"), "23:59",
-        network_id=network_id
-    )
+    # Get data for this specific network using the new helper method
+    runs = HistoricalData.get_runs_for_last_days(network_id, days)
     
     if not runs:
         click.echo(f"❌ No data found for {network_name} in the last {days} days")
