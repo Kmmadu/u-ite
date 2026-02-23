@@ -1,16 +1,55 @@
+"""
+Network Profile Management Commands for U-ITE
+==============================================
+Provides commands to manage and interact with network profiles detected by U-ITE.
+
+Features:
+- List all connected networks with their metadata
+- View offline sessions separately
+- Rename networks with friendly names
+- Set ISP/provider information
+- Add/remove tags for organization
+- View detailed network statistics
+- Clean up old offline sessions
+"""
+
 import click
 from tabulate import tabulate
 from uite.core.network_profile import NetworkProfileManager
 from datetime import datetime
 
+
 @click.group()
 def network():
-    """Manage network profiles"""
+    """
+    Manage network profiles detected by U-ITE.
+    
+    This command group allows you to view, organize, and analyze the networks
+    your device has connected to. You can rename networks, add tags, set
+    provider information, and view detailed statistics.
+    
+    Examples:
+        uite network list
+        uite network rename abc123 "Home Fiber"
+        uite network tag abc123 primary
+        uite network stats abc123
+        uite network cleanup --days 30
+    """
     pass
+
 
 @network.command(name="list")
 def list_networks():
-    """List all networks the device has connected to"""
+    """
+    List all networks the device has connected to.
+    
+    Shows only real networks (filters out offline sessions and temporary states).
+    Displays network ID, name, provider, tags, first seen, and last seen with
+    human-readable time indicators (today, yesterday, X days ago).
+    
+    Examples:
+        uite network list
+    """
     manager = NetworkProfileManager()
     profiles = manager.list_profiles()
     
@@ -18,7 +57,9 @@ def list_networks():
         click.echo("No networks detected yet. Run the observer first.")
         return
     
+    # ======================================================================
     # Filter to show ONLY networks that were actually connected to
+    # ======================================================================
     connected_networks = []
     for p in profiles:
         # Skip anything that's clearly not a real network
@@ -29,8 +70,7 @@ def list_networks():
         if p.name == "Offline State" or "offline" in p.name.lower():
             continue
         
-        # Check if this network has ever had a successful connection
-        # If it has a provider set or tags, it's been manually managed (so it's real)
+        # Include networks that have been manually managed (provider or tags set)
         if p.provider and p.provider != "Unknown":
             connected_networks.append(p)
             continue
@@ -39,9 +79,8 @@ def list_networks():
             connected_networks.append(p)
             continue
         
-        # If it has a proper hash ID (16+ chars) and doesn't start with "offline"
+        # Include networks with proper hash IDs (likely real networks)
         if p.network_id and len(p.network_id) >= 8 and not p.network_id.startswith("offline"):
-            # This is likely a real network
             connected_networks.append(p)
     
     if not connected_networks:
@@ -51,12 +90,13 @@ def list_networks():
     # Sort by last seen (most recent first)
     connected_networks.sort(key=lambda x: x.last_seen, reverse=True)
     
+    # Build table for display
     table = []
     for p in connected_networks:
-        # Format tags
+        # Format tags as comma-separated string
         tags_display = ", ".join(p.tags) if p.tags else ""
         
-        # Format last seen nicely
+        # Format last seen with human-readable relative time
         last_seen = p.last_seen.strftime("%Y-%m-%d %H:%M")
         days_ago = (datetime.now() - p.last_seen).days
         if days_ago == 0:
@@ -67,7 +107,7 @@ def list_networks():
             last_seen_display = f"{last_seen} ({days_ago} days ago)"
         
         table.append([
-            p.network_id[:8],  # Short ID
+            p.network_id[:8],  # Show only first 8 chars of ID for readability
             p.name,
             p.provider or "Unknown",
             tags_display,
@@ -75,6 +115,7 @@ def list_networks():
             last_seen_display
         ])
     
+    # Display the table
     click.echo(f"\n📡 Connected Networks ({len(connected_networks)}):")
     click.echo(tabulate(
         table,
@@ -85,18 +126,27 @@ def list_networks():
     # Show count of filtered offline sessions if any
     filtered_count = len(profiles) - len(connected_networks)
     if filtered_count > 0:
-        click.echo(f"\nℹ️  {filtered_count} offline session(s) not shown")
+        click.echo(f"\nℹ️  {filtered_count} offline session(s) not shown (use 'list-all' to see them)")
     
-    # Show usage tips
+    # Show helpful tips
     click.echo("\n💡 Tips:")
     click.echo("  • Rename: uite network rename <ID> \"New Name\"")
     click.echo("  • Set provider: uite network provider <ID> \"ISP Name\"")
     click.echo("  • Add tag: uite network tag <ID> <tag>")
     click.echo("  • View stats: uite by-network <name/ID/tag> --days 30")
 
+
 @network.command(name="list-all")
 def list_all_networks():
-    """List all networks including offline sessions"""
+    """
+    List all networks including offline sessions.
+    
+    Shows both real networks and temporary offline sessions separately.
+    Useful for debugging and cleaning up old sessions.
+    
+    Examples:
+        uite network list-all
+    """
     manager = NetworkProfileManager()
     profiles = manager.list_profiles()
     
@@ -104,7 +154,7 @@ def list_all_networks():
         click.echo("No networks detected yet.")
         return
     
-    # Separate connected and offline
+    # Separate connected networks from offline sessions
     connected = []
     offline = []
     
@@ -140,7 +190,7 @@ def list_all_networks():
             tablefmt="grid"
         ))
     
-    # Show offline sessions
+    # Show offline sessions separately
     if offline:
         table = []
         for p in offline:
@@ -163,14 +213,21 @@ def list_all_networks():
             tablefmt="grid"
         ))
 
+
 @network.command()
 @click.argument('network_id')
 @click.argument('name')
 def rename(network_id, name):
-    """Rename a network"""
+    """
+    Rename a network with a friendly, memorable name.
+    
+    Examples:
+        uite network rename abc123 "Home Fiber"
+        uite network rename b23c4fec "Office Network"
+    """
     manager = NetworkProfileManager()
     
-    # Try to find by full ID or prefix
+    # Try to find by full ID or prefix (first 8 chars)
     found = None
     for pid, profile in manager.profiles.items():
         if pid == network_id or pid.startswith(network_id):
@@ -182,6 +239,7 @@ def rename(network_id, name):
         click.echo(f"✅ Network renamed to: {name}")
     else:
         click.echo(f"❌ Network {network_id} not found")
+        # Show available networks to help the user
         click.echo("\nAvailable networks:")
         for pid, profile in manager.profiles.items():
             # Skip offline sessions in suggestions
@@ -189,11 +247,18 @@ def rename(network_id, name):
                 continue
             click.echo(f"  • {pid[:8]} - {profile.name}")
 
+
 @network.command()
 @click.argument('network_id')
 @click.argument('provider')
 def provider(network_id, provider):
-    """Set provider for a network"""
+    """
+    Set the Internet Service Provider (ISP) name for a network.
+    
+    Examples:
+        uite network provider abc123 "Comcast"
+        uite network provider b23c4fec "AT&T Fiber"
+    """
     manager = NetworkProfileManager()
     
     # Try to find by full ID or prefix
@@ -210,11 +275,22 @@ def provider(network_id, provider):
     else:
         click.echo(f"❌ Network {network_id} not found")
 
+
 @network.command()
 @click.argument('network_id')
 @click.argument('tag')
 def tag(network_id, tag):
-    """Add a tag to a network (e.g., primary, backup, work)"""
+    """
+    Add a tag to a network for easy filtering and organization.
+    
+    Tags can be used with 'by-network' command to filter networks.
+    Common tags: primary, backup, work, home, office, guest
+    
+    Examples:
+        uite network tag abc123 primary
+        uite network tag abc123 backup
+        uite network tag b23c4fec work
+    """
     manager = NetworkProfileManager()
     
     # Try to find by full ID or prefix
@@ -234,11 +310,24 @@ def tag(network_id, tag):
     else:
         click.echo(f"❌ Network {network_id} not found")
 
+
 @network.command()
 @click.argument('network_id')
 def stats(network_id):
-    """Show detailed stats for a network"""
-    from uite.storage.history import HistoricalData
+    """
+    Show detailed statistics for a specific network.
+    
+    Displays network metadata and performance statistics from the last 30 days:
+    - Network ID, name, provider, tags
+    - First seen and last seen timestamps
+    - Total diagnostic runs
+    - Uptime percentage
+    
+    Examples:
+        uite network stats abc123
+        uite network stats b23c4fec
+    """
+    from uite.storage.db import HistoricalData
     from datetime import datetime, timedelta
     
     manager = NetworkProfileManager()
@@ -266,6 +355,7 @@ def stats(network_id):
         network_id=found
     )
     
+    # Display network information
     click.echo(f"\n📊 Network Statistics: {profile.name}")
     click.echo("=" * 50)
     click.echo(f"ID: {found}")
@@ -276,21 +366,34 @@ def stats(network_id):
     click.echo(f"Total runs (30d): {len(runs)}")
     
     if runs:
-        # Calculate uptime
+        # Calculate uptime percentage
         healthy = sum(1 for r in runs if '✅' in r.get('verdict', '') or 'Connected' in r.get('verdict', ''))
         uptime = (healthy / len(runs)) * 100 if runs else 0
         click.echo(f"Uptime (30d): {uptime:.1f}%")
 
+
 @network.command(name="cleanup")
 @click.option('--days', default=7, help='Remove offline sessions older than N days')
 def cleanup_networks(days):
-    """Remove old offline network sessions"""
+    """
+    Remove old offline network sessions to keep the profile list clean.
+    
+    Offline sessions are temporary profiles created when the device has
+    no network connection. This command removes those that are older than
+    the specified number of days.
+    
+    Examples:
+        uite network cleanup               # Remove sessions older than 7 days
+        uite network cleanup --days 30     # Remove sessions older than 30 days
+        uite network cleanup --days 0      # Remove all offline sessions
+    """
     manager = NetworkProfileManager()
     profiles = manager.list_profiles()
     
     removed = 0
     now = datetime.now()
     
+    # Iterate through profiles and remove old offline sessions
     for pid, profile in list(manager.profiles.items()):
         # Check if this is an offline network
         is_offline = (pid == "offline-state" or 
@@ -310,5 +413,6 @@ def cleanup_networks(days):
     else:
         click.echo("No old offline sessions to remove")
 
-# Export the group
+
+# Export the command group for registration in main CLI
 __all__ = ['network']

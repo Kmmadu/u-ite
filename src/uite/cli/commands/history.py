@@ -1,39 +1,61 @@
+"""
+Historical Data Query Commands for U-ITE
+=========================================
+Provides commands to query and display historical network performance data.
+Supports natural language dates, multiple date formats, and network filtering.
+
+Features:
+- Natural language date parsing (today, yesterday, now)
+- Multiple date formats (DD/MM, DD/MM/YYYY, DD-MM, YYYY-MM-DD, etc.)
+- Time specifications (HH:MM)
+- Network filtering by name, ID, or tag
+- Beautiful formatted output with emojis and statistics
+- Summary statistics and recent events display
+"""
+
 import click
 from datetime import datetime, timedelta
 import re
 from uite.storage.db import HistoricalData
 from uite.core.network_profile import NetworkProfileManager
-from uite.storage.db import DB_PATH
 
+
+# Public exports for the module
 __all__ = ['from_command', 'by_network', 'parse_natural_date', 'display_results']
+
 
 @click.command(name="from")
 @click.argument('args', nargs=-1, required=True)
 def from_command(args):
     """
-    Show data between two dates/times.
+    Query historical data between two dates/times.
+    
+    This command allows you to fetch and display network performance data
+    for any time period using natural language dates.
     
     Examples:
         uite from 17/02 to 18/02
         uite from 17/02/2026 08:00 to 18/02/2026 18:00
         uite from yesterday to today
         uite from "Jan 17" to "Jan 18"
+        uite from 2026-02-20 to now
     """
-    # Join all arguments into a string
+    # Combine all arguments into a single string for parsing
     text = ' '.join(args).lower()
     
-    # Since "from" is the command name, the args should contain "to"
-    # Format should be: <start> to <end>
+    # Since "from" is the command name, the arguments should contain "to"
+    # Expected format: <start> to <end>
     words = text.split()
     
-    # Find the position of "to"
+    # Find the position of "to" in the arguments
     if 'to' in words:
         to_idx = words.index('to')
         
+        # Validate that "to" is not at the beginning or end
         if to_idx > 0 and to_idx < len(words) - 1:
-            # Everything before "to" is the start date
+            # Everything before "to" is the start date/time
             start_parts = words[:to_idx]
-            # Everything after "to" is the end date
+            # Everything after "to" is the end date/time
             end_parts = words[to_idx+1:]
             
             if start_parts and end_parts:
@@ -50,25 +72,25 @@ def from_command(args):
         click.echo("   Please use format: uite from <start> to <end>")
         return
     
-    # Parse start and end dates
+    # Parse the natural language dates into datetime objects
     start = parse_natural_date(start_str)
     end = parse_natural_date(end_str)
     
     if not start or not end:
         return
     
-    # Ensure start is before end
+    # Ensure start is before end (swap if necessary)
     if start > end:
         start, end = end, start
         click.echo("ℹ️  Swapped dates to ensure start is before end")
     
-    # Format for database query
+    # Format dates for database query (DD-MM-YYYY HH:MM)
     start_date = start.strftime("%d-%m-%Y")
     start_time = start.strftime("%H:%M")
     end_date = end.strftime("%d-%m-%Y")
     end_time = end.strftime("%H:%M")
     
-    # Get the data
+    # Fetch data from database
     click.echo(f"\n🔍 Fetching data from {start_date} {start_time} to {end_date} {end_time}...")
     
     runs = HistoricalData.get_runs_by_date_range(
@@ -79,8 +101,9 @@ def from_command(args):
         click.echo("📭 No data found for this period")
         return
     
-    # Display results
+    # Display the results
     display_results(runs, start, end)
+
 
 @click.command(name="by-network")
 @click.argument('network_identifier')
@@ -88,15 +111,34 @@ def from_command(args):
 @click.option('--start', help='Start date (DD-MM-YYYY)')
 @click.option('--end', help='End date (DD-MM-YYYY)')
 def by_network(network_identifier, days, start, end):
-    """Show data for a specific network (by name, ID, or tag)"""
+    """
+    Query historical data for a specific network.
+    
+    Filter results by network name, ID, or tag. Can specify either:
+    - Last N days (using --days)
+    - Custom date range (using --start and --end)
+    
+    Examples:
+        uite by-network "Home Fiber" --days 30
+        uite by-network primary --days 7
+        uite by-network office --start 01-02-2026 --end 07-02-2026
+    """
     
     manager = NetworkProfileManager()
     
-    # Find network by name, ID, or tag
+    # ======================================================================
+    # Network Resolution
+    # Find the network by name, ID, or tag
+    # ======================================================================
     network_id = None
     matched_profile = None
     
     for pid, profile in manager.profiles.items():
+        # Check multiple identifiers:
+        # - Name (case-insensitive partial match)
+        # - Exact ID match
+        # - Tag match
+        # - Provider match
         if (network_identifier.lower() in profile.name.lower() or 
             network_identifier == pid or
             (profile.tags and network_identifier.lower() in [t.lower() for t in profile.tags]) or
@@ -107,6 +149,7 @@ def by_network(network_identifier, days, start, end):
     
     if not network_id:
         click.echo(f"❌ No network found matching '{network_identifier}'")
+        # Show available networks to help the user
         click.echo("\nAvailable networks:")
         for pid, profile in manager.profiles.items():
             tags = f"[{', '.join(profile.tags)}]" if profile.tags else ""
@@ -115,12 +158,16 @@ def by_network(network_identifier, days, start, end):
             click.echo(f"    ID: {pid}")
         return
     
-    # Calculate date range
+    # ======================================================================
+    # Date Range Calculation
+    # Determine the time period to query
+    # ======================================================================
     if start and end:
-        # Use custom date range if provided
+        # Custom date range provided
         try:
             start_date = datetime.strptime(start, "%d-%m-%Y")
             end_date = datetime.strptime(end, "%d-%m-%Y")
+            # Set end date to end of day
             end_date = end_date.replace(hour=23, minute=59, second=59)
         except ValueError:
             click.echo("❌ Invalid date format. Use DD-MM-YYYY")
@@ -130,6 +177,7 @@ def by_network(network_identifier, days, start, end):
         end_date = datetime.now()
         start_date = end_date - timedelta(days=days)
     
+    # Fetch data for this specific network
     runs = HistoricalData.get_runs_by_date_range(
         start_date.strftime("%d-%m-%Y"), start_date.strftime("%H:%M"),
         end_date.strftime("%d-%m-%Y"), end_date.strftime("%H:%M"),
@@ -147,15 +195,36 @@ def by_network(network_identifier, days, start, end):
     if matched_profile.tags:
         click.echo(f"   Tags: {', '.join(matched_profile.tags)}")
     
-    # Reuse display_results but with modified header
+    # Reuse display_results but without the header (since we added network info)
     display_results(runs, start_date, end_date, show_header=False)
 
+
 def parse_natural_date(text):
-    """Parse natural language dates like '17/02', 'yesterday', 'today'"""
+    """
+    Parse natural language date expressions into datetime objects.
+    
+    Supports:
+    - Special words: today, yesterday, tomorrow, now
+    - Time specifications: HH:MM
+    - Multiple date formats:
+        * DD/MM or DD/MM/YYYY
+        * DD-MM or DD-MM-YYYY
+        * MM/DD (US format)
+        * YYYY-MM-DD (ISO format)
+        * Month names: "Feb 17", "17 Feb", etc.
+    
+    Args:
+        text (str): Natural language date expression
+        
+    Returns:
+        datetime: Parsed datetime object, or None if parsing fails
+    """
     now = datetime.now()
     text = text.lower().strip()
     
+    # ======================================================================
     # Handle special words
+    # ======================================================================
     if text == 'today':
         return now.replace(hour=0, minute=0, second=0, microsecond=0)
     elif text == 'yesterday':
@@ -165,7 +234,9 @@ def parse_natural_date(text):
     elif text == 'now':
         return now
     
-    # Try to parse with time
+    # ======================================================================
+    # Extract time if present (HH:MM format)
+    # ======================================================================
     time_match = re.search(r'(\d{1,2}):(\d{2})', text)
     hour = minute = 0
     if time_match:
@@ -173,16 +244,27 @@ def parse_natural_date(text):
         minute = int(time_match.group(2))
         text = text.replace(time_match.group(0), '').strip()
     
-    # Try different date formats - expanded to include ISO format
+    # ======================================================================
+    # Try various date formats (in order of preference)
+    # ======================================================================
     date_formats = [
+        # European format with current year
         ('%d/%m', f"{datetime.now().year}"),  # 17/02
+        ('%d-%m', f"{datetime.now().year}"),  # 17-02
+        
+        # European format with full year
         ('%d/%m/%Y', ''),                      # 17/02/2026
-        ('%d-%m', f"{datetime.now().year}"),   # 17-02
         ('%d-%m-%Y', ''),                      # 17-02-2026
-        ('%m/%d', f"{datetime.now().year}"),   # 02/17 (US format)
+        
+        # US format
+        ('%m/%d', f"{datetime.now().year}"),   # 02/17
         ('%m/%d/%Y', ''),                      # 02/17/2026
-        ('%Y-%m-%d', ''),                      # 2026-02-20 (ISO format) - ADDED
-        ('%Y/%m/%d', ''),                      # 2026/02/20 - ADDED
+        
+        # ISO format
+        ('%Y-%m-%d', ''),                      # 2026-02-20
+        ('%Y/%m/%d', ''),                      # 2026/02/20
+        
+        # Month name formats
         ('%b %d', f"{datetime.now().year}"),   # Feb 17
         ('%B %d', f"{datetime.now().year}"),   # February 17
         ('%d %b', f"{datetime.now().year}"),   # 17 Feb
@@ -193,7 +275,7 @@ def parse_natural_date(text):
     for fmt, year_suffix in date_formats:
         try:
             if year_suffix:
-                # If year suffix is provided, append it
+                # If year suffix is provided, append current year
                 date_str = f"{text} {year_suffix}"
                 dt = datetime.strptime(date_str, f"{fmt} %Y")
             else:
@@ -201,25 +283,44 @@ def parse_natural_date(text):
                 # If no year in format, assume current year
                 dt = dt.replace(year=now.year)
             
-            # Set the time
+            # Set the time component and return
             return dt.replace(hour=hour, minute=minute)
         except ValueError:
             continue
     
+    # If all formats fail, show error and return None
     click.echo(f"❌ Could not understand date: '{text}'")
     click.echo("   Try formats like: 17/02, 17/02/2026, 17-02, 2026-02-20, yesterday, today")
     return None
 
+
 def display_results(runs, start, end, show_header=True):
-    """Display the historical data in a nice format"""
+    """
+    Display historical data in a beautifully formatted table.
     
+    Shows:
+    - Summary statistics (total checks, time period)
+    - Health percentage
+    - Latency statistics (average, maximum)
+    - Packet loss statistics (average, maximum)
+    - Issue breakdown by type
+    - Recent events (last 5 records)
+    
+    Args:
+        runs (list): List of diagnostic run dictionaries
+        start (datetime): Start of query period
+        end (datetime): End of query period
+        show_header (bool): Whether to show the header (for by-network command)
+    """
     total = len(runs)
     duration = end - start
     days = duration.days
     if days == 0:
         days = 1  # Prevent division by zero
     
+    # ======================================================================
     # Calculate statistics
+    # ======================================================================
     verdict_counts = {}
     latencies = []
     losses = []
@@ -233,20 +334,26 @@ def display_results(runs, start, end, show_header=True):
         if run.get('loss') is not None:
             losses.append(run['loss'])
     
+    # ======================================================================
     # Header (conditional for by-network command)
+    # ======================================================================
     if show_header:
         click.echo("\n" + "=" * 70)
         click.echo(f"📊 Historical Summary ({start.strftime('%d %b %Y %H:%M')} to {end.strftime('%d %b %Y %H:%M')})")
         click.echo("=" * 70)
     
-    # Overview
+    # ======================================================================
+    # Overview Section
+    # ======================================================================
     click.echo(f"\n📈 Overview:")
     click.echo(f"   Total checks: {total}")
     click.echo(f"   Time period: {duration.days} day{'s' if duration.days != 1 else ''}")
     if duration.days > 0:
         click.echo(f"   Average checks per day: {total // duration.days}")
     
-    # Health stats
+    # ======================================================================
+    # Health Statistics
+    # ======================================================================
     healthy_count = 0
     for v, count in verdict_counts.items():
         if '✅' in v or 'Connected' in v or 'Healthy' in v:
@@ -256,7 +363,9 @@ def display_results(runs, start, end, show_header=True):
         percentage = (healthy_count / total) * 100
         click.echo(f"\n✅ Health: {healthy_count}/{total} ({percentage:.1f}%)")
     
-    # Performance
+    # ======================================================================
+    # Performance Metrics
+    # ======================================================================
     if latencies:
         avg_latency = sum(latencies) / len(latencies)
         max_latency = max(latencies)
@@ -271,7 +380,9 @@ def display_results(runs, start, end, show_header=True):
         click.echo(f"   Average: {avg_loss:.1f}%")
         click.echo(f"   Maximum: {max_loss:.1f}%")
     
-    # Issues breakdown
+    # ======================================================================
+    # Issue Breakdown
+    # ======================================================================
     issues = {}
     for v, count in verdict_counts.items():
         if '✅' not in v and 'Connected' not in v and 'Healthy' not in v:
@@ -283,15 +394,19 @@ def display_results(runs, start, end, show_header=True):
             percentage = (count / total) * 100
             click.echo(f"   {verdict}: {count} times ({percentage:.1f}%)")
     
-    # Show sample of recent events
+    # ======================================================================
+    # Recent Events (last 5 records)
+    # ======================================================================
     if runs:
         click.echo(f"\n📋 Recent Events (last 5):")
         for run in runs[-5:]:
-            time_str = run['timestamp'][11:19]  # HH:MM:SS
+            time_str = run['timestamp'][11:19]  # Extract HH:MM:SS
             verdict = run['verdict']
             latency = f"{run['latency']:.1f}ms" if run.get('latency') is not None else 'N/A'
             loss = f"{run['loss']}%" if run.get('loss') is not None else 'N/A'
             click.echo(f"   {time_str} - {verdict:35} | Lat: {latency:8} | Loss: {loss:6}")
     
-    # Footer with tip
+    # ======================================================================
+    # Helpful Tip
+    # ======================================================================
     click.echo("\n💡 Tip: Use 'uite export' to save this data to CSV")

@@ -1,4 +1,18 @@
-"""Graph generation commands for U-ITE"""
+"""
+Graph Generation Commands for U-ITE
+====================================
+Provides data visualization capabilities for network performance metrics.
+Generates professional NOC-style graphs with dark theme for better visibility.
+
+Features:
+- Latency graphs with threshold lines (100ms warning, 200ms critical)
+- Packet loss graphs with threshold lines (5% warning, 20% critical)
+- Combined health dashboard showing both metrics with status coloring
+- Professional dark theme optimized for NOC environments
+- Automatic graph opening in default image viewer
+- Cross-platform support (Linux, macOS, Windows)
+"""
+
 import click
 from datetime import datetime, timedelta
 import tempfile
@@ -6,56 +20,133 @@ import subprocess
 import webbrowser
 from uite.storage.db import HistoricalData
 
+
 @click.group()
 def graph():
-    """Generate graphs from historical data"""
+    """
+    Generate visual graphs from historical network data.
+    
+    Creates professional NOC-style graphs to visualize network performance
+    trends over time. Three graph types are available:
+    
+    - latency:    Line graph of latency with threshold lines
+    - loss:       Line graph of packet loss with threshold lines  
+    - health:     Combined dashboard with both metrics and status coloring
+    
+    All graphs use a dark theme optimized for monitoring environments.
+    
+    Examples:
+        uite graph latency --network "Home" --days 7
+        uite graph loss --network "Office" --days 30
+        uite graph health --network primary --days 14
+    """
     pass
 
+
 @graph.command()
 @click.option('--days', default=7, help='Number of days to show')
-@click.option('--network', required=True, help='Network name, ID, or tag (required)')
+@click.option('--network', required=True, help='Network name, ID, or tag')
 def latency(days, network):
-    """Show latency graph for a specific network"""
+    """
+    Generate a latency graph for a specific network.
+    
+    Creates a line graph showing latency over time with threshold lines:
+    - Green line at 100ms (acceptable threshold)
+    - Red line at 200ms (critical threshold)
+    
+    The graph uses a professional dark theme and includes:
+    - Average and maximum latency statistics
+    - Time series data with proper date formatting
+    - Clean grid lines for easy reading
+    """
     _generate_graph('latency', days, network)
 
+
 @graph.command()
 @click.option('--days', default=7, help='Number of days to show')
-@click.option('--network', required=True, help='Network name, ID, or tag (required)')
+@click.option('--network', required=True, help='Network name, ID, or tag')
 def health(days, network):
-    """Show combined health graph for a specific network"""
+    """
+    Generate a comprehensive health dashboard.
+    
+    Creates a dual-axis graph showing both latency and packet loss:
+    - Left axis (blue): Latency over time
+    - Right axis (orange): Packet loss over time
+    
+    Background colors indicate network status:
+    - Green:  Healthy operation
+    - Yellow: Degraded performance
+    - Orange: Slow connection
+    - Pink:   ISP issues
+    - Gray:   Offline
+    
+    Includes status summary with percentage breakdowns.
+    """
     _generate_graph('health', days, network)
 
+
 @graph.command()
 @click.option('--days', default=7, help='Number of days to show')
-@click.option('--network', required=True, help='Network name, ID, or tag (required)')
+@click.option('--network', required=True, help='Network name, ID, or tag')
 def loss(days, network):
-    """Show packet loss graph for a specific network"""
+    """
+    Generate a packet loss graph for a specific network.
+    
+    Creates a line graph showing packet loss over time with threshold lines:
+    - Yellow line at 5% (warning threshold)
+    - Red line at 20% (critical threshold)
+    
+    The graph uses a professional dark theme and includes:
+    - Average and maximum loss statistics
+    - Time series data with proper date formatting
+    - Clean grid lines for easy reading
+    """
     _generate_graph('loss', days, network)
 
+
 def _generate_graph(graph_type, days, network):
-    """Generate and display a graph for a specific network"""
+    """
+    Core graph generation function.
+    
+    This internal function handles all graph types, data processing,
+    and visualization logic. It:
+    1. Validates and resolves the network identifier
+    2. Fetches historical data for the specified period
+    3. Filters and prepares data for plotting
+    4. Creates the appropriate graph based on type
+    5. Saves and opens the generated image
+    
+    Args:
+        graph_type (str): Type of graph ('latency', 'loss', or 'health')
+        days (int): Number of days of data to include
+        network (str): Network name, ID, or tag to graph
+    """
     try:
+        # Import matplotlib conditionally to avoid making it a hard dependency
         import matplotlib.pyplot as plt
         import matplotlib.dates as mdates
         import matplotlib
-        matplotlib.use('Agg')  # Non-interactive backend
+        matplotlib.use('Agg')  # Use non-interactive backend for headless operation
         import numpy as np
     except ImportError as e:
         click.echo(f"❌ Missing dependency: {e}")
         click.echo("   Please install: pip install matplotlib numpy")
         return
     
-    # Resolve network ID from name/tag
+    # ======================================================================
+    # Network Resolution
+    # Find the network by ID, name, or tag
+    # ======================================================================
     from uite.core.network_profile import NetworkProfileManager
     manager = NetworkProfileManager()
     
     network_id = None
     network_name = None
     
-    # Try to find the network - improved matching
+    # Try to find the network using multiple strategies
     network_lower = network.lower()
     for pid, profile in manager.profiles.items():
-        # Skip offline state
+        # Skip offline state in graph queries
         if pid == "offline-state" or (hasattr(profile, 'is_offline_network') and profile.is_offline_network):
             continue
             
@@ -87,7 +178,6 @@ def _generate_graph(graph_type, days, network):
         click.echo(f"❌ Network '{network}' not found")
         click.echo("\nAvailable networks:")
         for pid, profile in manager.profiles.items():
-            # Skip offline state
             if pid == "offline-state" or (hasattr(profile, 'is_offline_network') and profile.is_offline_network):
                 continue
             tags = f"[{', '.join(profile.tags)}]" if profile.tags else ""
@@ -98,7 +188,10 @@ def _generate_graph(graph_type, days, network):
     
     click.echo(f"📡 Generating graph for network: {network_name}")
     
-    # Get data for this specific network using the new helper method
+    # ======================================================================
+    # Data Fetching
+    # Get historical data for the specified period
+    # ======================================================================
     runs = HistoricalData.get_runs_for_last_days(network_id, days)
     
     if not runs:
@@ -107,17 +200,20 @@ def _generate_graph(graph_type, days, network):
     
     click.echo(f"📊 Found {len(runs)} data points for this network")
     
-    # Prepare data - filter out entries with missing values
+    # ======================================================================
+    # Data Preparation
+    # Filter and validate data points, extract metrics
+    # ======================================================================
     valid_data = []
     for r in runs:
         try:
-            # Parse timestamp
+            # Parse timestamp (handle potential 'Z' timezone indicator)
             dt = datetime.fromisoformat(r['timestamp'].replace('Z', '+00:00'))
             
-            # Get verdict for status coloring
+            # Get verdict for status coloring (used in health graph)
             verdict = r.get('verdict', 'Unknown')
             
-            # Determine status color
+            # Determine status category based on verdict emoji
             if '✅' in verdict or 'Connected' in verdict or 'Healthy' in verdict:
                 status = 'healthy'
             elif '⚠️' in verdict or 'Unstable' in verdict or 'Degraded' in verdict:
@@ -131,10 +227,11 @@ def _generate_graph(graph_type, days, network):
             else:
                 status = 'other'
             
-            # Check if we have the required data
+            # Only include data points with both latency and loss metrics
             if r.get('latency') is not None and r.get('loss') is not None:
                 valid_data.append((dt, r['latency'], r['loss'], status))
         except (ValueError, KeyError, TypeError):
+            # Skip invalid data points
             continue
     
     if not valid_data:
@@ -143,13 +240,17 @@ def _generate_graph(graph_type, days, network):
     
     click.echo(f"   Using {len(valid_data)} data points with complete metrics")
     
-    # Extract data
+    # Extract data components
     dates = [d[0] for d in valid_data]
-    date_nums = mdates.date2num(dates)
+    date_nums = mdates.date2num(dates)  # Convert to matplotlib date format
     
-    # Create graph based on type
+    # ======================================================================
+    # Graph Creation
+    # Generate the appropriate graph type with professional styling
+    # ======================================================================
+    
     if graph_type == 'latency':
-        # Professional NOC dashboard dark theme
+        # Latency Graph - Professional NOC dashboard dark theme
         fig, ax = plt.subplots(figsize=(16, 8))
         fig.patch.set_facecolor('#1e1e1e')
         ax.set_facecolor('#2b2b2b')
@@ -166,13 +267,13 @@ def _generate_graph(graph_type, days, network):
         # Minimal dashed grid
         ax.grid(True, linestyle='--', linewidth=0.5, alpha=0.2, color='#808080')
         
-        # Remove all spines
+        # Remove all spines for clean look
         ax.spines['top'].set_visible(False)
         ax.spines['right'].set_visible(False)
         ax.spines['bottom'].set_color('#555555')
         ax.spines['left'].set_color('#555555')
         
-        # Typography
+        # Typography - Professional NOC styling
         title_font = {'fontsize': 20, 'fontweight': 'bold', 'color': '#ffffff'}
         label_font = {'fontsize': 14, 'color': '#cccccc'}
         
@@ -183,7 +284,7 @@ def _generate_graph(graph_type, days, network):
         # Style ticks
         ax.tick_params(axis='both', colors='#aaaaaa', labelsize=12)
         
-        # Format x-axis
+        # Format x-axis with date/time
         ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d %H:%M'))
         ax.xaxis.set_major_locator(mdates.HourLocator(interval=12))
         plt.setp(ax.xaxis.get_majorticklabels(), rotation=45, color='#aaaaaa')
@@ -195,7 +296,7 @@ def _generate_graph(graph_type, days, network):
         ax.set_ylim(0, max(latencies) * 1.1)
         
     elif graph_type == 'loss':
-        # Professional NOC dashboard dark theme for packet loss
+        # Packet Loss Graph - Professional NOC dashboard dark theme
         fig, ax = plt.subplots(figsize=(16, 8))
         fig.patch.set_facecolor('#1e1e1e')
         ax.set_facecolor('#2b2b2b')
@@ -241,31 +342,31 @@ def _generate_graph(graph_type, days, network):
         ax.set_ylim(0, max(losses) * 1.1 if max(losses) > 0 else 5)
         
     elif graph_type == 'health':
-        # Professional NOC dashboard dark theme for health dashboard
+        # Combined Health Dashboard - Dual axis with status coloring
         fig, ax1 = plt.subplots(figsize=(16, 8))
         fig.patch.set_facecolor('#1e1e1e')
         ax1.set_facecolor('#2b2b2b')
         
-        ax2 = ax1.twinx()
+        ax2 = ax1.twinx()  # Create second y-axis
         
         # Extract data
         latencies = [d[1] for d in valid_data]
         losses = [d[2] for d in valid_data]
         statuses = [d[3] for d in valid_data]
         
-        # Plot latency - electric blue
+        # Plot latency on left axis - electric blue
         line1 = ax1.plot(date_nums, latencies, color='#4aa3ff', linewidth=2.2, alpha=0.9, 
                          solid_capstyle='round', label='Latency (ms)')
         ax1.set_ylabel('Latency (ms)', color='#4aa3ff', fontsize=14, labelpad=10)
         ax1.tick_params(axis='y', labelcolor='#4aa3ff', labelsize=12)
         
-        # Plot packet loss - orange/red
+        # Plot packet loss on right axis - orange/red
         line2 = ax2.plot(date_nums, losses, color='#e67e22', linewidth=2.2, alpha=0.9,
                          solid_capstyle='round', label='Packet Loss (%)')
         ax2.set_ylabel('Packet Loss (%)', color='#e67e22', fontsize=14, labelpad=10)
         ax2.tick_params(axis='y', labelcolor='#e67e22', labelsize=12)
         
-        # Add threshold lines
+        # Add threshold lines (dotted for subtlety)
         ax1.axhline(y=100, color='#2ecc71', linewidth=1.5, alpha=0.5, linestyle=':')
         ax1.axhline(y=200, color='#e74c3c', linewidth=1.5, alpha=0.5, linestyle=':')
         ax2.axhline(y=5, color='#f1c40f', linewidth=1.5, alpha=0.5, linestyle=':')
@@ -274,14 +375,14 @@ def _generate_graph(graph_type, days, network):
         # Minimal dashed grid
         ax1.grid(True, linestyle='--', linewidth=0.5, alpha=0.2, color='#808080')
         
-        # Remove all spines
+        # Remove all spines except bottom and colored axes
         ax1.spines['top'].set_visible(False)
         ax1.spines['right'].set_visible(False)
         ax1.spines['bottom'].set_color('#555555')
         ax1.spines['left'].set_color('#4aa3ff')
         ax2.spines['right'].set_color('#e67e22')
         
-        # Color-code background based on status
+        # Color-code background based on network status
         status_colors = {
             'healthy': '#27ae60',   # Darker green for background
             'degraded': '#f39c12',   # Darker orange
@@ -291,7 +392,7 @@ def _generate_graph(graph_type, days, network):
             'other': '#34495e'       # Dark blue-gray
         }
         
-        # Group consecutive same-status periods
+        # Group consecutive same-status periods to create colored bands
         current_status = statuses[0]
         start_idx = 0
         
@@ -317,11 +418,10 @@ def _generate_graph(graph_type, days, network):
         ax1.xaxis.set_major_locator(mdates.HourLocator(interval=12))
         plt.setp(ax1.xaxis.get_majorticklabels(), rotation=45, color='#aaaaaa')
         
-        # Calculate statistics
+        # Calculate and display status statistics
         total_points = len(valid_data)
         status_counts = {s: statuses.count(s) for s in set(statuses)}
         
-        # Add status summary in bottom right
         status_text = (
             f"● Healthy: {status_counts.get('healthy', 0)} ({status_counts.get('healthy', 0)/total_points*100:.1f}%)\n"
             f"● Degraded: {status_counts.get('degraded', 0)} ({status_counts.get('degraded', 0)/total_points*100:.1f}%)\n"
@@ -330,30 +430,41 @@ def _generate_graph(graph_type, days, network):
             f"● Offline: {status_counts.get('offline', 0)} ({status_counts.get('offline', 0)/total_points*100:.1f}%)"
         )
         
+        # Add status summary in bottom right
         ax1.text(0.98, 0.02, status_text, transform=ax1.transAxes, 
                 verticalalignment='bottom', horizontalalignment='right',
                 fontsize=11, color='#cccccc',
                 bbox=dict(boxstyle='round', facecolor='#2b2b2b', alpha=0.9, edgecolor='#555555'))
     
+    # Adjust layout to prevent clipping
     plt.tight_layout()
     
-    # Save and open
+    # ======================================================================
+    # Save and Open
+    # Save graph to temporary file and open with default viewer
+    # ======================================================================
     with tempfile.NamedTemporaryFile(suffix='.png', delete=False) as tmp:
         plt.savefig(tmp.name, dpi=100, bbox_inches='tight', facecolor='#1e1e1e')
         click.echo(f"✅ Graph saved to: {tmp.name}")
         
-        # Open with default viewer
+        # Open with default system image viewer (cross-platform)
         try:
             import platform
             system = platform.system().lower()
             
             if system == 'linux':
                 subprocess.run(['xdg-open', tmp.name])
-            elif system == 'darwin':
+            elif system == 'darwin':  # macOS
                 subprocess.run(['open', tmp.name])
             elif system == 'windows':
                 subprocess.run(['start', tmp.name], shell=True)
-        except:
+            else:
+                click.echo(f"📁 Graph file: {tmp.name}")
+        except Exception as e:
+            # If auto-open fails, at least show the file path
             click.echo(f"📁 Graph file: {tmp.name}")
+            click.echo(f"   (Could not auto-open: {e})")
 
+
+# Export the command group for registration in main CLI
 __all__ = ['graph']
