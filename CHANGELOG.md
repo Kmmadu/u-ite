@@ -49,3 +49,10 @@
 - Quality verdicts now show correctly (Slow/Degraded/Unstable)
 - Enhanced emoji support on all platforms
 
+
+## [0.2.6] - 2026-02-24
+### Fixed
+- Final Windows shutdown encoding errors
+- Added WindowsSafeHandler for console logging
+- Force exit on Windows to ensure clean shutdown
+- All emoji issues resolved across all platforms
