@@ -17,6 +17,7 @@ classification across all event types.
 """
 
 from enum import Enum
+from typing import Optional, List, Dict
 
 
 class Category(str, Enum):
@@ -93,12 +94,12 @@ def is_valid_category(value) -> bool:
 # Additional utility functions
 # ============================================================================
 
-def get_all_categories() -> list[str]:
+def get_all_categories() -> List[str]:
     """
     Get a list of all category values.
     
     Returns:
-        list[str]: All category strings
+        List[str]: All category strings
         
     Example:
         >>> categories = get_all_categories()
@@ -108,12 +109,12 @@ def get_all_categories() -> list[str]:
     return [c.value for c in Category]
 
 
-def get_category_descriptions() -> dict[str, str]:
+def get_category_descriptions() -> Dict[str, str]:
     """
     Get human-readable descriptions for each category.
     
     Returns:
-        dict: Mapping of category to description
+        Dict: Mapping of category to description
         
     Example:
         >>> desc = get_category_descriptions()
@@ -129,7 +130,7 @@ def get_category_descriptions() -> dict[str, str]:
     }
 
 
-def categorize_by_keyword(text: str) -> Category | None:
+def categorize_by_keyword(text: str) -> Optional[Category]:
     """
     Attempt to categorize a text description based on keywords.
     
@@ -140,7 +141,7 @@ def categorize_by_keyword(text: str) -> Category | None:
         text (str): Description text to analyze
         
     Returns:
-        Category or None: Best matching category, or None if no match
+        Optional[Category]: Best matching category, or None if no match
         
     Example:
         >>> cat = categorize_by_keyword("Internet connection lost")

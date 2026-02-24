@@ -65,22 +65,50 @@ def start(interval):
     click.echo("")
     
     # ======================================================================
-    # Path Resolution
-    # Find the orchestrator.py script regardless of where we're called from
+    # Path Resolution - Works in both development and installed environments
     # ======================================================================
-    current_file = Path(__file__).resolve()           # .../cli/commands/daemon.py
-    commands_dir = current_file.parent                # .../cli/commands/
-    cli_dir = commands_dir.parent                     # .../cli/
-    uite_dir = cli_dir.parent                          # .../uite/
-    src_dir = uite_dir.parent                          # .../src/
-    project_root = src_dir.parent                      # .../u-ite/
+    import sys
+    from pathlib import Path
+    import importlib.util
     
-    orchestrator_script = project_root / "src" / "uite" / "daemon" / "orchestrator.py"
+    orchestrator_script = None
+    
+    # Method 1: Try installed package location first (when installed via pip)
+    try:
+        import uite
+        uite_package_path = Path(uite.__file__).parent
+        test_path = uite_package_path / "daemon" / "orchestrator.py"
+        if test_path.exists():
+            orchestrator_script = test_path
+            click.echo(f"📦 Using installed package: {orchestrator_script}")
+    except (ImportError, AttributeError):
+        pass
+    
+    # Method 2: Try development path (when running from source)
+    if not orchestrator_script or not orchestrator_script.exists():
+        current_file = Path(__file__).resolve()
+        # Navigate up from .../cli/commands/daemon.py to project root
+        for parent in current_file.parents:
+            test_path = parent / "src" / "uite" / "daemon" / "orchestrator.py"
+            if test_path.exists():
+                orchestrator_script = test_path
+                click.echo(f"🔧 Using development path: {orchestrator_script}")
+                break
+    
+    # Method 3: Try current working directory (last resort)
+    if not orchestrator_script or not orchestrator_script.exists():
+        test_path = Path.cwd() / "src" / "uite" / "daemon" / "orchestrator.py"
+        if test_path.exists():
+            orchestrator_script = test_path
+            click.echo(f"📁 Using current directory: {orchestrator_script}")
     
     # Verify the script exists
-    if not orchestrator_script.exists():
+    if not orchestrator_script or not orchestrator_script.exists():
         click.echo(f"❌ Error: Orchestrator script not found")
-        click.echo(f"   Looked for: {orchestrator_script}")
+        click.echo(f"   Tried multiple locations:")
+        click.echo(f"   - In installed package: site-packages/uite/daemon/orchestrator.py")
+        click.echo(f"   - In development: src/uite/daemon/orchestrator.py")
+        click.echo(f"   - In current dir: {Path.cwd()}/src/uite/daemon/orchestrator.py")
         return
     
     # Build the command to execute
@@ -189,8 +217,10 @@ def logs(lines):
     """
     # List of possible log file locations (in order of preference)
     possible_logs = [
-        Path.home() / ".local/share/uite/logs/uite-observer.log",  # Preferred location
-        Path("u-ite-observer.log"),                                 # Legacy location
+        Path.home() / ".local/share/uite/logs/uite-observer.log",  # Linux/macOS
+        Path.home() / "Library/Logs/uite.log",                     # macOS alternative
+        Path.home() / "AppData/Local/uite/logs/uite.log",          # Windows
+        Path("u-ite-observer.log"),                                 # Legacy/current directory
     ]
     
     # Find the first existing log file
@@ -202,21 +232,24 @@ def logs(lines):
     
     if log_file:
         # Read and display the last N lines
-        with open(log_file, 'r') as f:
-            all_lines = f.readlines()
-            last_lines = all_lines[-lines:]
+        try:
+            with open(log_file, 'r', encoding='utf-8') as f:
+                all_lines = f.readlines()
+                last_lines = all_lines[-lines:]
+                
+                # Print each line (stripping trailing newlines)
+                for line in last_lines:
+                    click.echo(line.rstrip())
             
-            # Print each line (stripping trailing newlines)
-            for line in last_lines:
-                click.echo(line.rstrip())
-        
-        # Show the full path for reference
-        click.echo(f"\n📁 Full log: {log_file.absolute()}")
+            # Show the full path for reference
+            click.echo(f"\n📁 Full log: {log_file.absolute()}")
+        except Exception as e:
+            click.echo(f"❌ Error reading log file: {e}")
     else:
         click.echo("No logs found. Start the observer first.")
-        click.echo("Checked locations:")
-        for log in possible_logs:
-            click.echo(f"  • {log.absolute()}")
+        if sys.platform == "win32":
+            click.echo("   On Windows, logs are typically in:")
+            click.echo(f"   {Path.home() / 'AppData/Local/uite/logs/uite.log'}")
 
 
 # Export the command group for registration in main CLI
