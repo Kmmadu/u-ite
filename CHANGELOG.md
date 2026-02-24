@@ -28,3 +28,10 @@
 ### Changed
 - Improved path resolution to work in both development and installed environments
 - Better cross-platform log file detection
+
+## [0.2.2] - 2026-02-24
+### Fixed
+- Additional Python 3.9 compatibility fixes in emitter.py
+- All union types (`| None`) replaced with `Optional[]`
+- Full Python 3.8-3.12 support now confirmed
+EOF

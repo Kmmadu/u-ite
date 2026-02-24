@@ -19,7 +19,7 @@ Package metadata and version information.
 # - MAJOR: Incompatible API changes
 # - MINOR: New functionality in backwards compatible manner
 # - PATCH: Backwards compatible bug fixes
-__version__ = "0.2.1"
+__version__ = "0.2.2"
 
 # Package authorship information
 __author__ = "Your Name"  # Replace with your name/organization
