@@ -34,4 +34,18 @@
 - Additional Python 3.9 compatibility fixes in emitter.py
 - All union types (`| None`) replaced with `Optional[]`
 - Full Python 3.8-3.12 support now confirmed
-EOF
+
+## [0.2.4] - 2026-02-24
+### Fixed
+- Windows packet loss parsing (fixed "Loss: None%" issue)
+- Quality verdicts now show correctly (Slow/Degraded/Unstable)
+- Windows console encoding for emoji support
+- Improved ping output parsing for all platforms
+
+## [0.2.5] - 2026-02-24
+### Fixed
+- Windows packet loss parsing (fixed "Loss: None%" issue)
+- Windows shutdown encoding errors
+- Quality verdicts now show correctly (Slow/Degraded/Unstable)
+- Enhanced emoji support on all platforms
+

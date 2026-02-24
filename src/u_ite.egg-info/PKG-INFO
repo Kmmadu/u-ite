@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: u-ite
-Version: 0.1.0
+Version: 0.2.4
 Summary: Continuous Network Observability Platform
 Home-page: https://github.com/yourusername/u-ite
 Author: Your Name
@@ -8,6 +8,7 @@ Author-email: Your Name <your.email@example.com>
 License: MIT
 Classifier: Development Status :: 4 - Beta
 Classifier: Intended Audience :: System Administrators
+Classifier: Intended Audience :: Developers
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Programming Language :: Python :: 3
 Classifier: Programming Language :: Python :: 3.8
@@ -15,32 +16,51 @@ Classifier: Programming Language :: Python :: 3.9
 Classifier: Programming Language :: Python :: 3.10
 Classifier: Programming Language :: Python :: 3.11
 Classifier: Programming Language :: Python :: 3.12
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Topic :: System :: Networking :: Monitoring
+Classifier: Topic :: System :: Systems Administration
 Requires-Python: >=3.8
 Description-Content-Type: text/markdown
+License-File: LICENSE
 Requires-Dist: click>=8.0.0
 Requires-Dist: requests>=2.25.0
 Requires-Dist: tabulate>=0.8.0
 Dynamic: author
 Dynamic: home-page
+Dynamic: license-file
 Dynamic: requires-python
 
-# U-ITE — Internet Truth Engine
+# U-ITE 🔍
 
-U-ITE is a cross-platform diagnostic tool that tells the **truth** about where internet problems really exist:
-- Local device
-- Router / LAN
-- ISP
-- DNS
-- Application layer
+**Continuous Network Observability Platform**
 
-It performs layered network checks and stores historical results for future analysis.
+[![PyPI version](https://img.shields.io/pypi/v/u-ite.svg)](https://pypi.org/project/u-ite/)
+[![Python versions](https://img.shields.io/pypi/pyversions/u-ite.svg)](https://pypi.org/project/u-ite/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Downloads](https://pepy.tech/badge/u-ite)](https://pepy.tech/project/u-ite)
 
-## Features
-- Auto-detects router (default gateway)
-- Layered connectivity diagnostics
-- Latency & packet loss analysis
-- Cross-platform (Linux, macOS, Windows)
-- Persistent local storage (SQLite)
+U-ITE (User-Centric Internet Truth Engine) is a powerful, lightweight network observability tool that runs in the background, continuously monitors your internet connection, and provides deep insights into your network performance across multiple ISPs and locations.
 
-## Usage
+![U-ITE Demo](docs/demo.gif)
+
+## ✨ Features
+
+- 🔄 **Continuous Monitoring** - Runs every 30 seconds, automatically detects network changes
+- 🌐 **Multi-Network Support** - Tracks different networks separately (home, office, coffee shops, VPNs)
+- 📊 **Rich CLI Interface** - 8 powerful command groups for querying and analyzing data
+- 📈 **Beautiful Graphs** - Professional NOC-style graphs with dark theme
+- 📤 **Data Export** - Export to CSV, JSON, or view as formatted tables
+- 🔍 **Smart Event Detection** - Debounced alerts for meaningful events only
+- 🏷️ **Network Profiles** - Rename, tag, and organize your networks
+- 🔄 **Network Comparison** - Compare performance across different ISPs
+- 💾 **SQLite Storage** - Lightweight, portable, no external database needed
+- 🖥️ **Cross-Platform** - Works on Linux, macOS, and Windows
+
+## 🚀 Quick Start
+
+### One-Line Install (Linux/macOS)
+
 ```bash
+curl -sSL https://raw.githubusercontent.com/yourusername/u-ite/main/scripts/install.sh | bash

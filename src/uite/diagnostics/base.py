@@ -25,6 +25,17 @@ import re
 
 
 # ============================================================================
+# Windows Console Encoding Fix
+# ============================================================================
+if sys.platform == "win32":
+    import codecs
+    if hasattr(sys.stdout, 'buffer'):
+        sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer)
+    if hasattr(sys.stderr, 'buffer'):
+        sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer)
+
+
+# ============================================================================
 # Network Discovery Functions
 # ============================================================================
 
@@ -172,25 +183,55 @@ def measure_latency_and_loss(target, count=5):
 
     output = result.stdout.lower()
 
-    # Extract packet loss percentage
+    # ========================================================================
+    # Extract packet loss percentage - Support multiple formats
+    # ========================================================================
     loss = None
+    
+    # Format 1: Linux/macOS style "X% packet loss"
     m = re.search(r'(\d+)%\s*packet loss', output)
     if m:
         loss = int(m.group(1))
     else:
+        # Format 2: Windows style "Lost = X (Y% loss)"
         m = re.search(r'lost = \d+ \((\d+)%\)', output)
         if m:
             loss = int(m.group(1))
+        else:
+            # Format 3: Windows alternative "(X% loss)"
+            m = re.search(r'\((\d+)%\s*loss\)', output)
+            if m:
+                loss = int(m.group(1))
+            else:
+                # Format 4: Windows simplified "XX% loss"
+                m = re.search(r'(\d+)%\s*loss', output)
+                if m:
+                    loss = int(m.group(1))
 
-    # Extract average latency
+    # ========================================================================
+    # Extract average latency - Support multiple formats
+    # ========================================================================
     latency = None
-    m = re.search(r'[\d\.]+/([\d\.]+)/', output)  # Linux format: min/avg/max
+    
+    # Format 1: Linux style "min/avg/max = 10.2/15.5/20.1 ms"
+    m = re.search(r'[\d\.]+/([\d\.]+)/', output)
     if m:
         latency = float(m.group(1))
     else:
-        m = re.search(r'average = (\d+)ms', output)  # Windows format
+        # Format 2: Windows style "Average = 15ms"
+        m = re.search(r'average = (\d+)ms', output)
         if m:
             latency = float(m.group(1))
+        else:
+            # Format 3: Windows with decimals "Average = 15.5ms"
+            m = re.search(r'average = ([\d\.]+)ms', output)
+            if m:
+                latency = float(m.group(1))
+            else:
+                # Format 4: Alternative "avg = 15.5ms"
+                m = re.search(r'avg = ([\d\.]+)ms', output)
+                if m:
+                    latency = float(m.group(1))
 
     return latency, loss
 
@@ -266,63 +307,140 @@ def run_diagnostics(router_ip, internet_ip="8.8.8.8", website="www.google.com",
         verdict = "🔴 No Network Connection"
         if not return_result: 
             print("[FAIL] Router unreachable - Check cables or WiFi")
+        # Skip remaining tests - they're meaningless without router
+        http_ok = False
+        dns_ok = False
+        internet_ok = False
+        # Compile and return early
+        diagnostic_data = {
+            "router_ip": router_ip,
+            "internet_ip": internet_ip,
+            "router_reachable": router_ok,
+            "internet_reachable": internet_ok,
+            "dns_ok": dns_ok,
+            "http_ok": http_ok,
+            "avg_latency": latency,
+            "packet_loss": loss,
+            "verdict": verdict
+        }
+        if not return_result:
+            print(f"[RESULT] {verdict}")
+            print("--- U-ITE Diagnostic Check Complete ---")
+        return diagnostic_data
 
     # ========================================================================
-    # Level 2: Internet Connectivity (WAN)
+    # Level 2: Internet Connectivity (WAN) - only if router is reachable
     # ========================================================================
-    if router_ok and can_ping(internet_ip):
+    if can_ping(internet_ip):
         internet_ok = True
         if not return_result: 
             print("[PASS] Internet reachable")
-    elif router_ok:
+    else:
         verdict = "🌍 ISP Outage"
         if not return_result: 
             print("[FAIL] Internet unreachable - Your ISP may be down")
+        # Skip remaining tests
+        http_ok = False
+        dns_ok = False
+        # Compile and return early
+        diagnostic_data = {
+            "router_ip": router_ip,
+            "internet_ip": internet_ip,
+            "router_reachable": router_ok,
+            "internet_reachable": internet_ok,
+            "dns_ok": dns_ok,
+            "http_ok": http_ok,
+            "avg_latency": latency,
+            "packet_loss": loss,
+            "verdict": verdict
+        }
+        if not return_result:
+            print(f"[RESULT] {verdict}")
+            print("--- U-ITE Diagnostic Check Complete ---")
+        return diagnostic_data
 
     # ========================================================================
-    # Level 3: DNS Resolution
+    # Level 3: DNS Resolution - only if internet is reachable
     # ========================================================================
-    if internet_ok and can_resolve_dns(website):
+    if can_resolve_dns(website):
         dns_ok = True
         if not return_result: 
             print("[PASS] DNS OK")
-    elif internet_ok:
+    else:
         verdict = "🔍 DNS Resolution Failed"
         if not return_result: 
             print("[FAIL] DNS failure - Can't resolve website names")
+        # Skip HTTP test
+        http_ok = False
+        # Compile and return early
+        diagnostic_data = {
+            "router_ip": router_ip,
+            "internet_ip": internet_ip,
+            "router_reachable": router_ok,
+            "internet_reachable": internet_ok,
+            "dns_ok": dns_ok,
+            "http_ok": http_ok,
+            "avg_latency": latency,
+            "packet_loss": loss,
+            "verdict": verdict
+        }
+        if not return_result:
+            print(f"[RESULT] {verdict}")
+            print("--- U-ITE Diagnostic Check Complete ---")
+        return diagnostic_data
 
     # ========================================================================
-    # Level 4: HTTP/HTTPS Connectivity
+    # Level 4: HTTP/HTTPS Connectivity - only if DNS works
     # ========================================================================
-    if dns_ok and can_open_website(url):
+    if can_open_website(url):
         http_ok = True
         if not return_result: 
             print("[PASS] HTTP OK")
-    elif dns_ok:
+    else:
         verdict = "🌐 Web Access Issue"
         if not return_result: 
             print("[FAIL] HTTP failure - Can't load websites")
+        # Compile and return early
+        diagnostic_data = {
+            "router_ip": router_ip,
+            "internet_ip": internet_ip,
+            "router_reachable": router_ok,
+            "internet_reachable": internet_ok,
+            "dns_ok": dns_ok,
+            "http_ok": http_ok,
+            "avg_latency": latency,
+            "packet_loss": loss,
+            "verdict": verdict
+        }
+        if not return_result:
+            print(f"[RESULT] {verdict}")
+            print("--- U-ITE Diagnostic Check Complete ---")
+        return diagnostic_data
 
     # ========================================================================
-    # Level 5: Quality Metrics
+    # Level 5: Quality Metrics - only if HTTP works
     # ========================================================================
-    if http_ok:
-        latency, loss = measure_latency_and_loss(internet_ip)
-        if latency is not None and loss is not None:
-            if not return_result: 
-                print(f"[INFO] Avg latency: {latency:.2f} ms | Packet loss: {loss}%")
-            
-            # Determine quality verdict based on thresholds
-            if loss >= 20:
-                verdict = "⚠️ Unstable Connection"
-            elif latency >= 200:
-                verdict = "🐢 Slow Connection"
-            elif loss >= 10 or latency >= 100:
-                verdict = "📶 Degraded Performance"
-            else:
-                verdict = "✅ Connected"
+    latency, loss = measure_latency_and_loss(internet_ip)
+    
+    # Always use quality metrics if we have them
+    if latency is not None or loss is not None:
+        if not return_result:
+            latency_str = f"{latency:.2f}" if latency is not None else "N/A"
+            loss_str = f"{loss}%" if loss is not None else "N/A"
+            print(f"[INFO] Avg latency: {latency_str} ms | Packet loss: {loss_str}")
+        
+        # Determine quality verdict based on available metrics
+        if loss is not None and loss >= 20:
+            verdict = "⚠️ Unstable Connection"
+        elif latency is not None and latency >= 200:
+            verdict = "🐢 Slow Connection"
+        elif (loss is not None and loss >= 10) or (latency is not None and latency >= 100):
+            verdict = "📶 Degraded Performance"
         else:
             verdict = "✅ Connected"
+    else:
+        # If we couldn't measure anything, assume connected
+        verdict = "✅ Connected"
 
     # Compile results
     diagnostic_data = {

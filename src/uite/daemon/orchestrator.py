@@ -19,19 +19,25 @@ This module can be run directly or imported and called programmatically.
 import sys
 
 # ======================================================================
-# Windows Unicode/Emoji Fix
+# Windows Unicode/Emoji Fix - Enhanced Version
 # This ensures emojis display correctly on Windows consoles
+# and prevents encoding errors during shutdown
 # ======================================================================
 if sys.platform == "win32":
     import codecs
     import subprocess as sp
+    import os
+    
     # Force UTF-8 encoding for console output
     if hasattr(sys.stdout, 'buffer'):
         sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer)
     if hasattr(sys.stderr, 'buffer'):
         sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer)
     
-    # Also set console code page to UTF-8
+    # Set environment variable for Python
+    os.environ['PYTHONIOENCODING'] = 'utf-8'
+    
+    # Set console code page to UTF-8
     try:
         sp.run('chcp 65001 > nul', shell=True, capture_output=True)
     except:
@@ -60,7 +66,7 @@ try:
     from uite.core.device import get_device_id
     from uite.core.formatters import format_duration
     from uite.tracking.event_detector import EventDetector
-    from uite.storage.event_store import EventStore  # FIXED: Import from storage
+    from uite.storage.event_store import EventStore
     from uite.core.network_profile import NetworkProfileManager
     from uite.core.platform import OS
 except ImportError as e:
@@ -131,6 +137,20 @@ def shutdown_handler(signum, frame):
     """Handle shutdown signals gracefully."""
     logger.info("Shutdown signal received. Stopping observer...")
     state.running = False
+    
+    # Give time for final logs to write
+    time.sleep(0.5)
+    
+    # On Windows, suppress encoding errors during exit
+    if sys.platform == "win32":
+        try:
+            # Reopen stdout/stderr with error handling
+            if hasattr(sys.stdout, 'buffer'):
+                sys.stdout = open(sys.stdout.fileno(), 'w', encoding='utf-8', errors='ignore')
+            if hasattr(sys.stderr, 'buffer'):
+                sys.stderr = open(sys.stderr.fileno(), 'w', encoding='utf-8', errors='ignore')
+        except:
+            pass
 
 
 signal.signal(signal.SIGINT, shutdown_handler)
@@ -196,8 +216,10 @@ def observe(interval=DEFAULT_INTERVAL, router_ip_override=None,
             # Diagnostics (only when online)
             # ==============================================================
             if not is_offline:
-                # Clear outage flag if it was set
-                if state.outage_started:
+                # Check if we were just offline (outage just ended)
+                if state.outage_started is not None:
+                    outage_duration = (datetime.now() - state.outage_started).seconds
+                    logger.info(f"✅ Internet connection restored after {format_duration(outage_duration)}")
                     state.outage_started = None
                 
                 # Run comprehensive diagnostics
@@ -220,7 +242,7 @@ def observe(interval=DEFAULT_INTERVAL, router_ip_override=None,
                     # Save to database
                     save_run(result)
                     
-                    # Detect and save events - FIXED: Use EventStore
+                    # Detect and save events
                     events = event_detector.analyze(snapshot=result)
                     if events: 
                         for event in events:
@@ -239,7 +261,10 @@ def observe(interval=DEFAULT_INTERVAL, router_ip_override=None,
             else:
                 if state.outage_started is None: 
                     state.outage_started = datetime.now()
-                logger.error("🌐 INTERNET DOWN")
+                    logger.error("🌐 INTERNET DOWN")
+                else:
+                    outage_duration = (datetime.now() - state.outage_started).seconds
+                    logger.error(f"🌐 Still offline (outage duration: {format_duration(outage_duration)})")
 
         except Exception as e:
             logger.error(f"Observer cycle failed: {e}", exc_info=True)
