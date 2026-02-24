@@ -49,8 +49,12 @@
 - Quality verdicts now show correctly (Slow/Degraded/Unstable)
 - Enhanced emoji support on all platforms
 
-
 ## [0.2.6] - 2026-02-24
+### Added
+- Simplified health graph (Healthy vs Degraded only)
+- Removed offline periods from health dashboard
+- Consolidated all performance issues into "Degraded" status
+
 ### Fixed
 - Final Windows shutdown encoding errors
 - Added WindowsSafeHandler for console logging

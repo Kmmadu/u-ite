@@ -7,7 +7,7 @@ Generates professional NOC-style graphs with dark theme for better visibility.
 Features:
 - Latency graphs with threshold lines (100ms warning, 200ms critical)
 - Packet loss graphs with threshold lines (5% warning, 20% critical)
-- Combined health dashboard showing both metrics with status coloring
+- Combined health dashboard showing both metrics with simplified status (Healthy vs Degraded)
 - Professional dark theme optimized for NOC environments
 - Automatic graph opening in default image viewer
 - Cross-platform support (Linux, macOS, Windows)
@@ -31,7 +31,7 @@ def graph():
     
     - latency:    Line graph of latency with threshold lines
     - loss:       Line graph of packet loss with threshold lines  
-    - health:     Combined dashboard with both metrics and status coloring
+    - health:     Combined dashboard with both metrics and simplified status
     
     All graphs use a dark theme optimized for monitoring environments.
     
@@ -67,20 +67,18 @@ def latency(days, network):
 @click.option('--network', required=True, help='Network name, ID, or tag')
 def health(days, network):
     """
-    Generate a comprehensive health dashboard.
+    Generate a simplified health dashboard.
     
     Creates a dual-axis graph showing both latency and packet loss:
     - Left axis (blue): Latency over time
     - Right axis (orange): Packet loss over time
     
-    Background colors indicate network status:
+    Background colors indicate network status (SIMPLIFIED):
     - Green:  Healthy operation
-    - Yellow: Degraded performance
-    - Orange: Slow connection
-    - Pink:   ISP issues
-    - Gray:   Offline
+    - Orange: Degraded (any issue: slow, unstable, ISP problems)
     
     Includes status summary with percentage breakdowns.
+    Note: Offline periods are excluded as they represent connectivity, not performance.
     """
     _generate_graph('health', days, network)
 
@@ -219,11 +217,11 @@ def _generate_graph(graph_type, days, network):
             elif '⚠️' in verdict or 'Unstable' in verdict or 'Degraded' in verdict:
                 status = 'degraded'
             elif '🐢' in verdict or 'Slow' in verdict:
-                status = 'slow'
+                status = 'degraded'  # Consolidated into degraded
             elif '🌍' in verdict or 'ISP' in verdict:
-                status = 'isp_issue'
+                status = 'degraded'  # Consolidated into degraded
             elif '🔴' in verdict or 'No Network' in verdict:
-                status = 'offline'
+                status = 'offline'   # Will be filtered out for health graph
             else:
                 status = 'other'
             
@@ -342,25 +340,45 @@ def _generate_graph(graph_type, days, network):
         ax.set_ylim(0, max(losses) * 1.1 if max(losses) > 0 else 5)
         
     elif graph_type == 'health':
-        # Combined Health Dashboard - Dual axis with status coloring
+        # SIMPLIFIED HEALTH DASHBOARD - Healthy vs Degraded only
+        # Filter out offline periods (they represent connectivity, not performance)
+        online_data = [(d[0], d[1], d[2], d[3]) for d in valid_data if d[3] != 'offline']
+        
+        if not online_data:
+            click.echo("⚠️ No online data points in this period (all offline)")
+            return
+        
+        click.echo(f"   Using {len(online_data)} online data points for health graph")
+        
+        dates = [d[0] for d in online_data]
+        date_nums = mdates.date2num(dates)
+        latencies = [d[1] for d in online_data]
+        losses = [d[2] for d in online_data]
+        statuses = [d[3] for d in online_data]
+        
+        # Simplify status to Healthy vs Degraded
+        simplified_status = []
+        for s in statuses:
+            if s == 'healthy':
+                simplified_status.append('healthy')
+            else:
+                # Unstable, slow, ISP issues, other all become "degraded"
+                simplified_status.append('degraded')
+        
+        # Create dual-axis graph
         fig, ax1 = plt.subplots(figsize=(16, 8))
         fig.patch.set_facecolor('#1e1e1e')
         ax1.set_facecolor('#2b2b2b')
         
-        ax2 = ax1.twinx()  # Create second y-axis
+        ax2 = ax1.twinx()
         
-        # Extract data
-        latencies = [d[1] for d in valid_data]
-        losses = [d[2] for d in valid_data]
-        statuses = [d[3] for d in valid_data]
-        
-        # Plot latency on left axis - electric blue
+        # Plot latency - electric blue
         line1 = ax1.plot(date_nums, latencies, color='#4aa3ff', linewidth=2.2, alpha=0.9, 
                          solid_capstyle='round', label='Latency (ms)')
         ax1.set_ylabel('Latency (ms)', color='#4aa3ff', fontsize=14, labelpad=10)
         ax1.tick_params(axis='y', labelcolor='#4aa3ff', labelsize=12)
         
-        # Plot packet loss on right axis - orange/red
+        # Plot packet loss - orange/red
         line2 = ax2.plot(date_nums, losses, color='#e67e22', linewidth=2.2, alpha=0.9,
                          solid_capstyle='round', label='Packet Loss (%)')
         ax2.set_ylabel('Packet Loss (%)', color='#e67e22', fontsize=14, labelpad=10)
@@ -382,23 +400,19 @@ def _generate_graph(graph_type, days, network):
         ax1.spines['left'].set_color('#4aa3ff')
         ax2.spines['right'].set_color('#e67e22')
         
-        # Color-code background based on network status
+        # Color-code background based on SIMPLIFIED status (Healthy vs Degraded)
         status_colors = {
-            'healthy': '#27ae60',   # Darker green for background
-            'degraded': '#f39c12',   # Darker orange
-            'slow': '#e67e22',       # Darker orange/red
-            'isp_issue': '#c0392b',  # Darker red
-            'offline': '#7f8c8d',    # Darker gray
-            'other': '#34495e'       # Dark blue-gray
+            'healthy': '#27ae60',   # Green for healthy
+            'degraded': '#e67e22',   # Orange for degraded
         }
         
-        # Group consecutive same-status periods to create colored bands
-        current_status = statuses[0]
+        # Group consecutive same-status periods
+        current_status = simplified_status[0]
         start_idx = 0
         
-        for i, status in enumerate(statuses):
-            if status != current_status or i == len(statuses) - 1:
-                end_idx = i + 1 if i == len(statuses) - 1 else i
+        for i, status in enumerate(simplified_status):
+            if status != current_status or i == len(simplified_status) - 1:
+                end_idx = i + 1 if i == len(simplified_status) - 1 else i
                 color = status_colors.get(current_status, '#34495e')
                 ax1.axvspan(date_nums[start_idx], date_nums[end_idx-1], 
                            alpha=0.15, color=color)
@@ -409,7 +423,7 @@ def _generate_graph(graph_type, days, network):
         title_font = {'fontsize': 20, 'fontweight': 'bold', 'color': '#ffffff'}
         label_font = {'fontsize': 14, 'color': '#cccccc'}
         
-        plt.title(f'NETWORK HEALTH DASHBOARD - {network_name.upper()}\nLast {days} Days', 
+        plt.title(f'NETWORK PERFORMANCE DASHBOARD - {network_name.upper()}\nLast {days} Days', 
                  **title_font, pad=20)
         ax1.set_xlabel('Time', **label_font, labelpad=10)
         
@@ -418,19 +432,17 @@ def _generate_graph(graph_type, days, network):
         ax1.xaxis.set_major_locator(mdates.HourLocator(interval=12))
         plt.setp(ax1.xaxis.get_majorticklabels(), rotation=45, color='#aaaaaa')
         
-        # Calculate and display status statistics
-        total_points = len(valid_data)
-        status_counts = {s: statuses.count(s) for s in set(statuses)}
+        # Calculate statistics (SIMPLIFIED)
+        total_points = len(simplified_status)
+        healthy_count = simplified_status.count('healthy')
+        degraded_count = simplified_status.count('degraded')
         
+        # Add status summary in bottom right (SIMPLIFIED)
         status_text = (
-            f"● Healthy: {status_counts.get('healthy', 0)} ({status_counts.get('healthy', 0)/total_points*100:.1f}%)\n"
-            f"● Degraded: {status_counts.get('degraded', 0)} ({status_counts.get('degraded', 0)/total_points*100:.1f}%)\n"
-            f"● Slow: {status_counts.get('slow', 0)} ({status_counts.get('slow', 0)/total_points*100:.1f}%)\n"
-            f"● ISP Issue: {status_counts.get('isp_issue', 0)} ({status_counts.get('isp_issue', 0)/total_points*100:.1f}%)\n"
-            f"● Offline: {status_counts.get('offline', 0)} ({status_counts.get('offline', 0)/total_points*100:.1f}%)"
+            f"● Healthy: {healthy_count} ({healthy_count/total_points*100:.1f}%)\n"
+            f"● Degraded: {degraded_count} ({degraded_count/total_points*100:.1f}%)"
         )
         
-        # Add status summary in bottom right
         ax1.text(0.98, 0.02, status_text, transform=ax1.transAxes, 
                 verticalalignment='bottom', horizontalalignment='right',
                 fontsize=11, color='#cccccc',
