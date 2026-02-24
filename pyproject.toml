@@ -26,7 +26,7 @@ name = "u-ite"
 
 # Version following Semantic Versioning (MAJOR.MINOR.PATCH)
 # Current: 0.1.0 - Initial beta release
-version = "0.2.6"
+version = "0.2.7"
 
 # Short, one-line description of the project
 description = "Continuous Network Observability Platform"

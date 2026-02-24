@@ -60,3 +60,8 @@
 - Added WindowsSafeHandler for console logging
 - Force exit on Windows to ensure clean shutdown
 - All emoji issues resolved across all platforms
+
+## [0.2.7] - 2026-02-24
+### Fixed
+- Re-upload attempt for v0.2.6 (already on PyPI)
+- No code changes from v0.2.6
