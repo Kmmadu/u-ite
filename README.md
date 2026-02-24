@@ -7,7 +7,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Downloads](https://pepy.tech/badge/u-ite)](https://pepy.tech/project/u-ite)
 
-U-ITE (You - Internet Truth Engine) is a powerful, lightweight network observability tool that runs in the background, continuously monitors your internet connection, and provides deep insights into your network performance across multiple ISPs and locations.
+U-ITE (User-Centric Internet Truth Engine) is a powerful, lightweight network observability tool that runs in the background, continuously monitors your internet connection, and provides deep insights into your network performance across multiple ISPs and locations.
 
 ![U-ITE Demo](docs/demo.gif)
 
