@@ -18,6 +18,20 @@ All functionality is organized into logical command groups:
     - compare           : Network comparison
 """
 
+import sys
+
+# ======================================================================
+# Windows Unicode/Emoji Fix for CLI
+# This ensures emojis display correctly on Windows consoles
+# ======================================================================
+if sys.platform == "win32":
+    import codecs
+    # Force UTF-8 encoding for console output
+    if hasattr(sys.stdout, 'buffer'):
+        sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer)
+    if hasattr(sys.stderr, 'buffer'):
+        sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer)
+
 import click
 from uite import __version__
 

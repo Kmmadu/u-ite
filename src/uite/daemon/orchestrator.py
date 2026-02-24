@@ -17,6 +17,26 @@ This module can be run directly or imported and called programmatically.
 """
 
 import sys
+
+# ======================================================================
+# Windows Unicode/Emoji Fix
+# This ensures emojis display correctly on Windows consoles
+# ======================================================================
+if sys.platform == "win32":
+    import codecs
+    import subprocess as sp
+    # Force UTF-8 encoding for console output
+    if hasattr(sys.stdout, 'buffer'):
+        sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer)
+    if hasattr(sys.stderr, 'buffer'):
+        sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer)
+    
+    # Also set console code page to UTF-8
+    try:
+        sp.run('chcp 65001 > nul', shell=True, capture_output=True)
+    except:
+        pass
+
 # ======================================================================
 # Argument Protection
 # Temporarily hide CLI arguments from imported modules
