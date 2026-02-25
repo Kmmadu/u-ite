@@ -65,3 +65,17 @@
 ### Fixed
 - Re-upload attempt for v0.2.6 (already on PyPI)
 - No code changes from v0.2.6
+
+## [0.3.0] - 2026-02-25
+### Removed
+- Graph generation features (unstable/removed)
+- Matplotlib, numpy, and scikit-learn dependencies
+- Graph CLI commands (latency, loss, health, trend)
+
+### Changed
+- Cleaner CLI with focused functionality
+- Reduced package size and dependencies
+- Improved stability by removing complex features
+
+### Fixed
+- Various import issues in graph module
