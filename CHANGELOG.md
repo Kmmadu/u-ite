@@ -79,3 +79,16 @@
 
 ### Fixed
 - Various import issues in graph module
+
+## [0.3.1] - 2026-02-25
+### Added
+- `export clean` command to delete CSV files
+- `daemon clear-logs` command to clear log files
+
+### Improved
+- Professional logging with CRITICAL/WARNING levels
+- Clean startup messages with separator line
+- Better error handling in export commands
+
+### Fixed
+- Various minor bug fixes and improvements
