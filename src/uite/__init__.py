@@ -1,63 +1,27 @@
-#!/usr/bin/env python3
 """
-U-ITE Command Line Interface
-============================
-Main CLI entry point that defines the command structure.
+U-ITE (U - Internet Truth Engine) Network Observability Platform
+================================================================
+A continuous network monitoring and diagnostics tool that runs in the background,
+collects network performance data, and provides insights through a CLI interface.
+
+This package provides:
+- Continuous network monitoring every 30 seconds
+- Automatic network detection and profiling
+- Historical data storage in SQLite
+- Rich CLI for querying and visualizing data
+- Cross-platform support (Linux, macOS, Windows)
+
+Package metadata and version information.
 """
 
-import sys
-import click
-from uite import __version__
+# Package version following Semantic Versioning (SemVer)
+__version__ = "0.3.0"
 
-# Import all command groups
-from uite.cli.commands.history import from_command, by_network
-from uite.cli.commands.network import network
-from uite.cli.commands.service import service
-from uite.cli.commands.daemon import daemon
-from uite.cli.commands.export import export
-from uite.cli.commands.compare import compare
+# Package authorship information
+__author__ = "Mmadubugwu Kingsley Obinna"
+__license__ = "MIT"
+__email__ = "mmadubugwukingsley@gmail.com"
+__status__ = "Production"
 
-@click.group(invoke_without_command=True)
-@click.option('--version', is_flag=True, help='Show version information')
-@click.option('--verbose', '-v', is_flag=True, help='Enable verbose output')
-@click.pass_context
-def cli(ctx, version, verbose):
-    """U-ITE Network Observability Platform
-    
-    A continuous network monitoring tool that runs in the background,
-    collects performance data, and provides rich insights through this CLI.
-    
-    Features:
-    - Automatic network detection and profiling
-    - Continuous monitoring every 30 seconds
-    - Historical data storage in SQLite
-    - Rich querying with natural language dates
-    - Multi-network comparison
-    - Data export to CSV/JSON
-    
-    Examples:
-        uite from today to now                    # Today's data
-        uite network list                          # Show networks
-        uite compare "Office" "Home" --days 30     # Compare networks
-    """
-    if version:
-        click.echo(f"U-ITE version {__version__}")
-        ctx.exit()
-    
-    if ctx.invoked_subcommand is None:
-        click.echo(ctx.get_help())
-        click.echo("\n📚 Documentation: https://docs.u-ite.io")
-        click.echo("💬 Feedback: https://github.com/u-ite/feedback")
-        ctx.exit()
-
-# Register all command groups
-cli.add_command(from_command)
-cli.add_command(by_network)
-cli.add_command(network)
-cli.add_command(service)
-cli.add_command(daemon)
-cli.add_command(export)
-cli.add_command(compare)
-
-if __name__ == "__main__":
-    cli()
+# Public API - what gets imported with "from uite import *"
+__all__ = []

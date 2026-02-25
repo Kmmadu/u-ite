@@ -10,6 +10,7 @@ Features:
 - Export single network or all networks
 - Smart network resolution by name, ID, or tag
 - Preview data in table format before exporting
+- Clean up exported CSV files
 """
 
 import click
@@ -38,6 +39,7 @@ def export():
         uite export data --network "Home" --days 30 --format csv --output home.csv
         uite export data --network office --format json --days 7
         uite export all --days 14 --format csv --output exports/
+        uite export clean --all
     """
     pass
 
@@ -262,6 +264,52 @@ def all(days, format, output):
         # User provided a file path, but --all requires a directory
         click.echo("❌ For --all, please provide a directory path (not a file)")
         click.echo("   Example: uite export all --days 7 --format csv --output exports/")
+
+
+@export.command()
+@click.option('--file', help='Specific CSV file to delete')
+@click.option('--all', 'all_files', is_flag=True, help='Delete all CSV files')
+@click.option('--force', is_flag=True, help='Force delete without confirmation')
+def clean(file, all_files, force):
+    """Delete exported CSV files.
+    
+    Examples:
+        uite export clean --file test.csv
+        uite export clean --all
+        uite export clean --all --force
+    """
+    import os
+    
+    if file:
+        if os.path.exists(file):
+            if force or click.confirm(f"Delete {file}?"):
+                os.remove(file)
+                click.echo(f"✅ Deleted {file}")
+            else:
+                click.echo("❌ Cancelled")
+        else:
+            click.echo(f"❌ File not found: {file}")
+    
+    elif all_files:
+        csv_files = list(Path().glob("*.csv"))
+        if not csv_files:
+            click.echo("No CSV files found")
+            return
+        
+        click.echo(f"Found {len(csv_files)} CSV files:")
+        for f in csv_files:
+            click.echo(f"  • {f.name}")
+        
+        if force or click.confirm("Delete all CSV files?"):
+            for f in csv_files:
+                f.unlink()
+            click.echo(f"✅ Deleted {len(csv_files)} CSV files")
+        else:
+            click.echo("❌ Cancelled")
+    else:
+        click.echo("❌ Please specify --file or --all")
+        click.echo("   Example: uite export clean --file test.csv")
+        click.echo("   Example: uite export clean --all")
 
 
 # Export the command group for registration in main CLI

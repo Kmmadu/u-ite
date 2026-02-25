@@ -158,8 +158,7 @@ def observe(interval=DEFAULT_INTERVAL, router_ip_override=None,
     """
     Run the continuous network monitoring loop.
     """
-    print(f"\n🔍 U-ITE Network Observer (interval: {interval}s)")
-    print("-" * 40)
+    # Startup message removed - now handled by daemon.py
 
     device_id = get_device_id()
     init_db()
@@ -177,9 +176,10 @@ def observe(interval=DEFAULT_INTERVAL, router_ip_override=None,
             profile = profile_manager.get_or_create(network_id, fingerprint, is_offline=is_offline)
             
             if not is_offline:
+                # Connection restored
                 if state.outage_started is not None:
                     outage_duration = (datetime.now() - state.outage_started).seconds
-                    logger.info(f"✅ Internet connection restored after {format_duration(outage_duration)}")
+                    logger.info(f"✅ Connection restored after {format_duration(outage_duration)}")
                     state.outage_started = None
                 
                 result = run_diagnostics(
@@ -204,17 +204,23 @@ def observe(interval=DEFAULT_INTERVAL, router_ip_override=None,
                             EventStore.save_event(event)
                     
                     logger.info(
-                        f"[{profile.name}] Verdict: {result.get('verdict')} | "
+                        f"[{profile.name}] {result.get('verdict')} | "
                         f"Latency: {result.get('avg_latency')}ms | "
                         f"Loss: {result.get('packet_loss')}%"
                     )
             else:
-                if state.outage_started is None: 
+                # Offline handling - clean, concise messages
+                if state.outage_started is None:
                     state.outage_started = datetime.now()
-                    logger.error("🌐 INTERNET DOWN")
+                    
+                    # Smart, concise message based on what we know
+                    if router_ip is None:
+                        logger.critical("🔌 No network connection detected")
+                    else:
+                        logger.critical("🌐 Internet unreachable")
                 else:
                     outage_duration = (datetime.now() - state.outage_started).seconds
-                    logger.error(f"🌐 Still offline (outage duration: {format_duration(outage_duration)})")
+                    logger.warning(f"⏳ Still offline - {format_duration(outage_duration)}")
 
         except Exception as e:
             logger.error(f"Observer cycle failed: {e}", exc_info=True)
@@ -243,7 +249,6 @@ if __name__ == "__main__":
                        help='URL to check')
     
     args = parser.parse_args()
-    print(f"Starting U-ITE observer with interval: {args.interval}s")
     observe(
         interval=args.interval, 
         router_ip_override=args.router, 

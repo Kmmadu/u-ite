@@ -9,6 +9,7 @@ This module handles:
 - Checking process status
 - Stopping running observers
 - Viewing real-time logs
+- Clearing log files
 
 Note: For production use, use 'uite service' commands instead.
 """
@@ -40,6 +41,7 @@ def daemon():
         uite daemon status
         uite daemon logs --lines 100
         uite daemon stop
+        uite daemon clear-logs
     """
     pass
 
@@ -60,9 +62,10 @@ def start(interval):
         uite daemon start
         uite daemon start --interval 60
     """
-    click.echo(f"🚀 Starting U-ITE observer (interval: {interval}s)")
-    click.echo("   Press Ctrl+C to stop")
-    click.echo("")
+    click.echo(f"🚀 U-ITE Network Observer")
+    click.echo(f"   Interval: {interval}s | Press Ctrl+C to stop")
+    click.echo("─" * 50)  # Add separator line
+    # No extra blank line - logs start immediately after separator
     
     # ======================================================================
     # Path Resolution - Works in both development and installed environments
@@ -80,7 +83,6 @@ def start(interval):
         test_path = uite_package_path / "daemon" / "orchestrator.py"
         if test_path.exists():
             orchestrator_script = test_path
-            click.echo(f"📦 Using installed package: {orchestrator_script}")
     except (ImportError, AttributeError):
         pass
     
@@ -92,7 +94,6 @@ def start(interval):
             test_path = parent / "src" / "uite" / "daemon" / "orchestrator.py"
             if test_path.exists():
                 orchestrator_script = test_path
-                click.echo(f"🔧 Using development path: {orchestrator_script}")
                 break
     
     # Method 3: Try current working directory (last resort)
@@ -100,7 +101,6 @@ def start(interval):
         test_path = Path.cwd() / "src" / "uite" / "daemon" / "orchestrator.py"
         if test_path.exists():
             orchestrator_script = test_path
-            click.echo(f"📁 Using current directory: {orchestrator_script}")
     
     # Verify the script exists
     if not orchestrator_script or not orchestrator_script.exists():
@@ -250,6 +250,31 @@ def logs(lines):
         if sys.platform == "win32":
             click.echo("   On Windows, logs are typically in:")
             click.echo(f"   {Path.home() / 'AppData/Local/uite/logs/uite.log'}")
+
+
+@daemon.command()
+@click.option('--force', is_flag=True, help='Clear without confirmation')
+def clear_logs(force):
+    """Clear daemon log files.
+    
+    Examples:
+        uite daemon clear-logs
+        uite daemon clear-logs --force
+    """
+    log_file = Path.home() / ".local/share/uite/logs/uite-observer.log"
+    
+    if not log_file.exists():
+        click.echo("No log file found")
+        return
+    
+    size = log_file.stat().st_size
+    click.echo(f"Log file size: {size} bytes")
+    
+    if force or click.confirm("Clear log file?"):
+        log_file.write_text("")  # Empty the file
+        click.echo("✅ Log file cleared")
+    else:
+        click.echo("❌ Cancelled")
 
 
 # Export the command group for registration in main CLI
