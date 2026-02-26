@@ -30,6 +30,8 @@ U-ITE (User-Centric Internet Truth Engine) is a powerful, lightweight network ob
 ```bash
 curl -sSL https://raw.githubusercontent.com/yourusername/u-ite/main/scripts/install.sh | bash
 
+####
+
 ## 📬 Contact & Ownership
 
 **U-ITE** is created and maintained by **Mmadubugwu Kingsley Obinna**.
