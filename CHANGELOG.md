@@ -106,7 +106,7 @@ cat >> CHANGELOG.md << 'EOF'
 - Safety features with confirmation prompts
 - Automatic backups for disaster recovery
 
-## [0.3.3] - 2026-02-26
+## [0.3.4] - 2026-02-26
 ### Added
 - New `uite network reset` command to completely clear all network profiles
 - Automatic backup creation before reset (saved as `.backup.TIMESTAMP`)

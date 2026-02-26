@@ -15,7 +15,7 @@ Package metadata and version information.
 """
 
 # Package version following Semantic Versioning (SemVer)
-__version__ = "0.3.3"
+__version__ = "0.3.4"
 
 # Package authorship information
 __author__ = "Mmadubugwu Kingsley Obinna"
