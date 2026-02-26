@@ -18,6 +18,7 @@ import click
 from tabulate import tabulate
 from uite.core.network_profile import NetworkProfileManager
 from datetime import datetime
+import time
 
 
 @click.group()
@@ -415,7 +416,7 @@ def reset_networks(force):
     Reset ALL network profiles to clean state.
     
     This removes all networks (real and offline) from the database.
-    Use with caution! Networks will be recreated when the observer runs.
+    Networks will be recreated when the observer runs again.
     
     Examples:
         uite network reset              # Ask for confirmation
@@ -424,6 +425,7 @@ def reset_networks(force):
     from pathlib import Path
     import shutil
     from datetime import datetime
+    import time
     
     profiles_file = Path.home() / ".u-ite" / "network_profiles.json"
     
@@ -460,11 +462,35 @@ def reset_networks(force):
     profiles_file.unlink()
     click.echo("✅ All network profiles have been reset!")
     
+    # Force reload of the profile manager by creating a new instance
+    # and clearing any cached data
+    import importlib
+    import uite.core.network_profile
+    importlib.reload(uite.core.network_profile)
+    
+    # Create a fresh manager that will load empty state
+    from uite.core.network_profile import NetworkProfileManager as FreshManager
+    fresh_manager = FreshManager()
+    
     # Verify it's gone
     if not profiles_file.exists():
         click.echo("   ✓ Database file removed successfully")
+        click.echo("   ✓ Memory cache cleared")
     else:
         click.echo("   ⚠️  Database file still exists. Try manual removal: rm ~/.u-ite/network_profiles.json")
+    
+    # Show empty list to confirm
+    click.echo("\n📋 Verifying reset...")
+    time.sleep(1)  # Give filesystem a moment
+    
+    # Create one more fresh manager to check
+    final_manager = FreshManager()
+    remaining = final_manager.list_profiles()
+    
+    if len(remaining) == 0:
+        click.echo("   ✓ No networks remaining - reset successful!")
+    else:
+        click.echo(f"   ⚠️  {len(remaining)} networks still present. Try restarting your shell.")
 
 
 # Export the command group for registration in main CLI

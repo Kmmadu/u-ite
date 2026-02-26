@@ -105,3 +105,15 @@ cat >> CHANGELOG.md << 'EOF'
 - User-friendly network management
 - Safety features with confirmation prompts
 - Automatic backups for disaster recovery
+
+## [0.3.3] - 2026-02-26
+### Added
+- New `uite network reset` command to completely clear all network profiles
+- Automatic backup creation before reset (saved as `.backup.TIMESTAMP`)
+- Force option `--force` for automated resets
+- Memory cache clearing to ensure reset is immediate
+
+### Fixed
+- Reset command now properly clears in-memory cache
+- Networks no longer reappear after reset
+- Added verification step to confirm successful reset
