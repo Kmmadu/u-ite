@@ -11,7 +11,7 @@ Features:
 - Add/remove tags for organization
 - View detailed network statistics
 - Clean up old offline sessions
-- Reset all network profiles
+- Reset network profiles and optionally clear logs/database
 """
 
 import click
@@ -37,6 +37,8 @@ def network():
         uite network stats abc123
         uite network cleanup --days 30
         uite network reset --force
+        uite network reset --logs --force
+        uite network reset --all --force
     """
     pass
 
@@ -411,41 +413,64 @@ def cleanup_networks(days):
 
 @network.command(name="reset")
 @click.option('--force', is_flag=True, help='Reset without confirmation')
-def reset_networks(force):
+@click.option('--logs', is_flag=True, help='Also clear all logs')
+@click.option('--all', 'all_data', is_flag=True, help='Reset EVERYTHING (networks + logs + database)')
+def reset_networks(force, logs, all_data):
     """
-    Reset ALL network profiles to clean state.
-    
-    This removes all networks (real and offline) from the database.
-    Networks will be recreated when the observer runs again.
+    Reset network profiles and optionally clear logs.
     
     Examples:
-        uite network reset              # Ask for confirmation
-        uite network reset --force      # Reset without asking
+        uite network reset                    # Reset networks only (with confirmation)
+        uite network reset --force            # Reset networks without confirmation
+        uite network reset --logs             # Reset networks AND clear logs
+        uite network reset --logs --force     # Reset networks and logs without confirmation
+        uite network reset --all              # Reset EVERYTHING (networks + logs + database)
     """
     from pathlib import Path
     import shutil
-    from datetime import datetime
     import time
+    from datetime import datetime
     
-    profiles_file = Path.home() / ".u-ite" / "network_profiles.json"
+    home = Path.home()
+    profiles_file = home / ".u-ite" / "network_profiles.json"
+    logs_dir = home / ".local/share/uite/logs"
+    db_file = home / ".local/share/uite/u_ite.db"
     
-    if not profiles_file.exists():
-        click.echo("No network profiles found. Database is already empty.")
-        return
+    # Show what will be deleted
+    click.echo(f"\n📊 Current Network Status:")
     
-    # Show current networks
+    # Check current networks
     manager = NetworkProfileManager()
     profiles = manager.list_profiles()
-    
     real_count = len([p for p in profiles if p.network_id != "offline-state"])
     offline_count = len([p for p in profiles if p.network_id == "offline-state"])
     
-    click.echo(f"\n📊 Current Network Status:")
     click.echo(f"   • Real networks: {real_count}")
     click.echo(f"   • Offline sessions: {offline_count}")
     click.echo(f"   • Total profiles: {len(profiles)}")
     
-    click.echo("\n⚠️  This will DELETE ALL network profiles!")
+    if logs or all_data:
+        # Check log sizes
+        daemon_log = logs_dir / "uite-observer.log"
+        service_log = logs_dir / "uite.log"
+        
+        if daemon_log.exists():
+            size = daemon_log.stat().st_size
+            click.echo(f"   • Daemon logs: {size} bytes")
+        if service_log.exists():
+            size = service_log.stat().st_size
+            click.echo(f"   • Service logs: {size} bytes")
+    
+    if all_data and db_file.exists():
+        size = db_file.stat().st_size
+        click.echo(f"   • Database: {size} bytes")
+    
+    click.echo("\n⚠️  This will DELETE:")
+    click.echo("   • All network profiles")
+    if logs:
+        click.echo("   • All daemon and service logs")
+    if all_data:
+        click.echo("   • Complete diagnostic database (ALL historical data)")
     
     # Confirm unless --force is used
     if not force:
@@ -453,44 +478,64 @@ def reset_networks(force):
             click.echo("❌ Reset cancelled.")
             return
     
-    # Create a backup just in case
-    backup_file = profiles_file.with_suffix(f'.backup.{datetime.now().strftime("%Y%m%d_%H%M%S")}')
-    shutil.copy2(profiles_file, backup_file)
-    click.echo(f"📦 Backup saved to: {backup_file}")
+    # Track what was deleted
+    deleted_items = []
     
-    # Delete the profiles file
-    profiles_file.unlink()
-    click.echo("✅ All network profiles have been reset!")
+    # 1. Handle network profiles
+    if profiles_file.exists():
+        # Create a backup
+        backup_file = profiles_file.with_suffix(f'.backup.{datetime.now().strftime("%Y%m%d_%H%M%S")}')
+        shutil.copy2(profiles_file, backup_file)
+        click.echo(f"📦 Network backup saved to: {backup_file}")
+        
+        # Delete the profiles file
+        profiles_file.unlink()
+        deleted_items.append("networks")
+        click.echo("   ✅ Network profiles deleted")
     
-    # Force reload of the profile manager by creating a new instance
-    # and clearing any cached data
+    # 2. Clear logs if requested
+    if logs or all_data:
+        daemon_log = logs_dir / "uite-observer.log"
+        service_log = logs_dir / "uite.log"
+        
+        if daemon_log.exists():
+            daemon_log.unlink()
+            deleted_items.append("daemon logs")
+            click.echo("   ✅ Daemon logs cleared")
+        if service_log.exists():
+            service_log.unlink()
+            deleted_items.append("service logs")
+            click.echo("   ✅ Service logs cleared")
+    
+    # 3. Clear database if --all
+    if all_data and db_file.exists():
+        db_file.unlink()
+        deleted_items.append("database")
+        click.echo("   ✅ Diagnostic database deleted")
+    
+    # Force reload of profile manager
     import importlib
     import uite.core.network_profile
     importlib.reload(uite.core.network_profile)
     
-    # Create a fresh manager that will load empty state
+    click.echo(f"\n✅ Reset complete! Deleted: {', '.join(deleted_items)}")
+    
+    # Verify
+    time.sleep(1)
     from uite.core.network_profile import NetworkProfileManager as FreshManager
-    fresh_manager = FreshManager()
-    
-    # Verify it's gone
-    if not profiles_file.exists():
-        click.echo("   ✓ Database file removed successfully")
-        click.echo("   ✓ Memory cache cleared")
-    else:
-        click.echo("   ⚠️  Database file still exists. Try manual removal: rm ~/.u-ite/network_profiles.json")
-    
-    # Show empty list to confirm
-    click.echo("\n📋 Verifying reset...")
-    time.sleep(1)  # Give filesystem a moment
-    
-    # Create one more fresh manager to check
     final_manager = FreshManager()
     remaining = final_manager.list_profiles()
     
     if len(remaining) == 0:
-        click.echo("   ✓ No networks remaining - reset successful!")
+        click.echo("   ✓ No networks remaining")
     else:
-        click.echo(f"   ⚠️  {len(remaining)} networks still present. Try restarting your shell.")
+        click.echo(f"   ⚠️  {len(remaining)} networks still present")
+    
+    # Check logs
+    if (logs or all_data) and not daemon_log.exists() and not service_log.exists():
+        click.echo("   ✓ All logs cleared")
+    elif logs or all_data:
+        click.echo("   ⚠️  Some logs may still exist")
 
 
 # Export the command group for registration in main CLI

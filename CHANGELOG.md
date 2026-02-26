@@ -117,3 +117,15 @@ cat >> CHANGELOG.md << 'EOF'
 - Reset command now properly clears in-memory cache
 - Networks no longer reappear after reset
 - Added verification step to confirm successful reset
+
+## [0.4.0] - 2026-02-26
+### Added
+- Enhanced `uite network reset` command with options:
+  - `--logs` - Also clear all daemon and service logs
+  - `--all` - Nuclear option: clear networks + logs + database
+- Automatic backups before reset (saved as `.backup.TIMESTAMP`)
+- Better verification after reset
+
+### Fixed
+- Reset now properly clears memory cache
+- Logs and database can now be reset independently
