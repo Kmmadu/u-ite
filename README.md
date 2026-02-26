@@ -15,8 +15,7 @@ U-ITE (User-Centric Internet Truth Engine) is a powerful, lightweight network ob
 
 - 🔄 **Continuous Monitoring** - Runs every 30 seconds, automatically detects network changes
 - 🌐 **Multi-Network Support** - Tracks different networks separately (home, office, coffee shops, VPNs)
-- 📊 **Rich CLI Interface** - 8 powerful command groups for querying and analyzing data
-- 📈 **Beautiful Graphs** - Professional NOC-style graphs with dark theme
+- 📊 **Rich CLI Interface** - Powerful command groups for querying data
 - 📤 **Data Export** - Export to CSV, JSON, or view as formatted tables
 - 🔍 **Smart Event Detection** - Debounced alerts for meaningful events only
 - 🏷️ **Network Profiles** - Rename, tag, and organize your networks
@@ -24,9 +23,13 @@ U-ITE (User-Centric Internet Truth Engine) is a powerful, lightweight network ob
 - 💾 **SQLite Storage** - Lightweight, portable, no external database needed
 - 🖥️ **Cross-Platform** - Works on Linux, macOS, and Windows
 
+## 📬 Contact & Ownership
+
+**U-ITE** is created and maintained by **Mmadubugwu Kingsley Obinna**.
+
+- GitHub: [@Kmmadu](https://github.com/Kmmadu)
+- Email: mmadubugwukingsley@gmail.com
+- Project: [https://github.com/Kmmadu/u-ite](https://github.com/Kmmadu/u-ite)
+
+
 ## 🚀 Quick Start
-
-### One-Line Install (Linux/macOS)
-
-```bash
-curl -sSL https://raw.githubusercontent.com/yourusername/u-ite/main/scripts/install.sh | bash
