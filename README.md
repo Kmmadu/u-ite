@@ -23,15 +23,6 @@ U-ITE (User-Centric Internet Truth Engine) is a powerful, lightweight network ob
 - 💾 **SQLite Storage** - Lightweight, portable, no external database needed
 - 🖥️ **Cross-Platform** - Works on Linux, macOS, and Windows
 
-## 🚀 Quick Start
-
-### One-Line Install (Linux/macOS)
-
-```bash
-curl -sSL https://raw.githubusercontent.com/yourusername/u-ite/main/scripts/install.sh | bash
-
-####
-
 ## 📬 Contact & Ownership
 
 **U-ITE** is created and maintained by **Mmadubugwu Kingsley Obinna**.
@@ -39,3 +30,6 @@ curl -sSL https://raw.githubusercontent.com/yourusername/u-ite/main/scripts/inst
 - GitHub: [@Kmmadu](https://github.com/Kmmadu)
 - Email: mmadubugwukingsley@gmail.com
 - Project: [https://github.com/Kmmadu/u-ite](https://github.com/Kmmadu/u-ite)
+
+
+## 🚀 Quick Start
