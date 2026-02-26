@@ -25,7 +25,7 @@ build-backend = "setuptools.build_meta"
 name = "u-ite"
 
 # Version following Semantic Versioning (MAJOR.MINOR.PATCH)
-version = "0.3.2"
+version = "0.3.3"
 
 # Short, one-line description of the project
 description = "Continuous Network Observability Platform"

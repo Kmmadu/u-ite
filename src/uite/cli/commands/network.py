@@ -11,6 +11,7 @@ Features:
 - Add/remove tags for organization
 - View detailed network statistics
 - Clean up old offline sessions
+- Reset all network profiles
 """
 
 import click
@@ -34,6 +35,7 @@ def network():
         uite network tag abc123 primary
         uite network stats abc123
         uite network cleanup --days 30
+        uite network reset --force
     """
     pass
 
@@ -44,8 +46,7 @@ def list_networks():
     List all networks the device has connected to.
     
     Shows only real networks (filters out offline sessions and temporary states).
-    Displays network ID, name, provider, tags, first seen, and last seen with
-    human-readable time indicators (today, yesterday, X days ago).
+    Displays network ID, name, provider, tags, first seen, and last seen.
     
     Examples:
         uite network list
@@ -96,15 +97,8 @@ def list_networks():
         # Format tags as comma-separated string
         tags_display = ", ".join(p.tags) if p.tags else ""
         
-        # Format last seen with human-readable relative time
-        last_seen = p.last_seen.strftime("%Y-%m-%d %H:%M")
-        days_ago = (datetime.now() - p.last_seen).days
-        if days_ago == 0:
-            last_seen_display = f"{last_seen} (today)"
-        elif days_ago == 1:
-            last_seen_display = f"{last_seen} (yesterday)"
-        else:
-            last_seen_display = f"{last_seen} ({days_ago} days ago)"
+        # Format last seen - simple date and time only (no relative text)
+        last_seen_display = p.last_seen.strftime("%Y-%m-%d %H:%M")
         
         table.append([
             p.network_id[:8],  # Show only first 8 chars of ID for readability
@@ -412,6 +406,65 @@ def cleanup_networks(days):
         click.echo(f"✅ Removed {removed} old offline session(s)")
     else:
         click.echo("No old offline sessions to remove")
+
+
+@network.command(name="reset")
+@click.option('--force', is_flag=True, help='Reset without confirmation')
+def reset_networks(force):
+    """
+    Reset ALL network profiles to clean state.
+    
+    This removes all networks (real and offline) from the database.
+    Use with caution! Networks will be recreated when the observer runs.
+    
+    Examples:
+        uite network reset              # Ask for confirmation
+        uite network reset --force      # Reset without asking
+    """
+    from pathlib import Path
+    import shutil
+    from datetime import datetime
+    
+    profiles_file = Path.home() / ".u-ite" / "network_profiles.json"
+    
+    if not profiles_file.exists():
+        click.echo("No network profiles found. Database is already empty.")
+        return
+    
+    # Show current networks
+    manager = NetworkProfileManager()
+    profiles = manager.list_profiles()
+    
+    real_count = len([p for p in profiles if p.network_id != "offline-state"])
+    offline_count = len([p for p in profiles if p.network_id == "offline-state"])
+    
+    click.echo(f"\n📊 Current Network Status:")
+    click.echo(f"   • Real networks: {real_count}")
+    click.echo(f"   • Offline sessions: {offline_count}")
+    click.echo(f"   • Total profiles: {len(profiles)}")
+    
+    click.echo("\n⚠️  This will DELETE ALL network profiles!")
+    
+    # Confirm unless --force is used
+    if not force:
+        if not click.confirm("\nAre you ABSOLUTELY sure you want to reset?"):
+            click.echo("❌ Reset cancelled.")
+            return
+    
+    # Create a backup just in case
+    backup_file = profiles_file.with_suffix(f'.backup.{datetime.now().strftime("%Y%m%d_%H%M%S")}')
+    shutil.copy2(profiles_file, backup_file)
+    click.echo(f"📦 Backup saved to: {backup_file}")
+    
+    # Delete the profiles file
+    profiles_file.unlink()
+    click.echo("✅ All network profiles have been reset!")
+    
+    # Verify it's gone
+    if not profiles_file.exists():
+        click.echo("   ✓ Database file removed successfully")
+    else:
+        click.echo("   ⚠️  Database file still exists. Try manual removal: rm ~/.u-ite/network_profiles.json")
 
 
 # Export the command group for registration in main CLI

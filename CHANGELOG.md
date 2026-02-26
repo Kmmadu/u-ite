@@ -92,3 +92,16 @@
 
 ### Fixed
 - Various minor bug fixes and improvements
+
+cat >> CHANGELOG.md << 'EOF'
+
+## [0.3.3] - 2026-02-26
+### Added
+- New `uite network reset` command to completely clear all network profiles
+- Backup creation before reset (saved as `.backup.TIMESTAMP`)
+- Force option `--force` for automated resets
+
+### Improved
+- User-friendly network management
+- Safety features with confirmation prompts
+- Automatic backups for disaster recovery
