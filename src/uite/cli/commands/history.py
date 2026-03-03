@@ -1,3 +1,4 @@
+
 """
 Historical Data Query Commands for U-ITE
 =========================================
@@ -9,7 +10,7 @@ Features:
 - Multiple date formats (DD/MM, DD/MM/YYYY, DD-MM, YYYY-MM-DD, etc.)
 - Time specifications (HH:MM)
 - Network filtering by name, ID, or tag
-- Beautiful formatted output with emojis and statistics
+- Beautiful formatted output with statistics
 - Summary statistics and recent events display
 """
 
@@ -62,13 +63,13 @@ def from_command(args):
                 start_str = ' '.join(start_parts)
                 end_str = ' '.join(end_parts)
             else:
-                click.echo("❌ Start or end date missing")
+                click.echo("[ERROR] Start or end date missing")
                 return
         else:
-            click.echo("❌ 'to' is at the beginning or end of the arguments")
+            click.echo("[ERROR] 'to' is at the beginning or end of the arguments")
             return
     else:
-        click.echo("❌ Could not find 'to' in the arguments")
+        click.echo("[ERROR] Could not find 'to' in the arguments")
         click.echo("   Please use format: uite from <start> to <end>")
         return
     
@@ -82,7 +83,7 @@ def from_command(args):
     # Ensure start is before end (swap if necessary)
     if start > end:
         start, end = end, start
-        click.echo("ℹ️  Swapped dates to ensure start is before end")
+        click.echo("[INFO] Swapped dates to ensure start is before end")
     
     # Format dates for database query (DD-MM-YYYY HH:MM)
     start_date = start.strftime("%d-%m-%Y")
@@ -91,14 +92,14 @@ def from_command(args):
     end_time = end.strftime("%H:%M")
     
     # Fetch data from database
-    click.echo(f"\n🔍 Fetching data from {start_date} {start_time} to {end_date} {end_time}...")
+    click.echo(f"\n[SEARCH] Fetching data from {start_date} {start_time} to {end_date} {end_time}...")
     
     runs = HistoricalData.get_runs_by_date_range(
         start_date, start_time, end_date, end_time
     )
     
     if not runs:
-        click.echo("📭 No data found for this period")
+        click.echo("[EMPTY] No data found for this period")
         return
     
     # Display the results
@@ -148,7 +149,7 @@ def by_network(network_identifier, days, start, end):
             break
     
     if not network_id:
-        click.echo(f"❌ No network found matching '{network_identifier}'")
+        click.echo(f"[ERROR] No network found matching '{network_identifier}'")
         # Show available networks to help the user
         click.echo("\nAvailable networks:")
         for pid, profile in manager.profiles.items():
@@ -170,7 +171,7 @@ def by_network(network_identifier, days, start, end):
             # Set end date to end of day
             end_date = end_date.replace(hour=23, minute=59, second=59)
         except ValueError:
-            click.echo("❌ Invalid date format. Use DD-MM-YYYY")
+            click.echo("[ERROR] Invalid date format. Use DD-MM-YYYY")
             return
     else:
         # Default to last N days
@@ -185,11 +186,11 @@ def by_network(network_identifier, days, start, end):
     )
     
     if not runs:
-        click.echo(f"📭 No data found for {matched_profile.name} in this period")
+        click.echo(f"[EMPTY] No data found for {matched_profile.name} in this period")
         return
     
     # Display results with network context
-    click.echo(f"\n📡 Network: {matched_profile.name}")
+    click.echo(f"\n[NETWORK] Network: {matched_profile.name}")
     if matched_profile.provider:
         click.echo(f"   Provider: {matched_profile.provider}")
     if matched_profile.tags:
@@ -289,7 +290,7 @@ def parse_natural_date(text):
             continue
     
     # If all formats fail, show error and return None
-    click.echo(f"❌ Could not understand date: '{text}'")
+    click.echo(f"[ERROR] Could not understand date: '{text}'")
     click.echo("   Try formats like: 17/02, 17/02/2026, 17-02, 2026-02-20, yesterday, today")
     return None
 
@@ -339,13 +340,13 @@ def display_results(runs, start, end, show_header=True):
     # ======================================================================
     if show_header:
         click.echo("\n" + "=" * 70)
-        click.echo(f"📊 Historical Summary ({start.strftime('%d %b %Y %H:%M')} to {end.strftime('%d %b %Y %H:%M')})")
+        click.echo(f"[STATS] Historical Summary ({start.strftime('%d %b %Y %H:%M')} to {end.strftime('%d %b %Y %H:%M')})")
         click.echo("=" * 70)
     
     # ======================================================================
     # Overview Section
     # ======================================================================
-    click.echo(f"\n📈 Overview:")
+    click.echo(f"\nOverview:")
     click.echo(f"   Total checks: {total}")
     click.echo(f"   Time period: {duration.days} day{'s' if duration.days != 1 else ''}")
     if duration.days > 0:
@@ -356,12 +357,12 @@ def display_results(runs, start, end, show_header=True):
     # ======================================================================
     healthy_count = 0
     for v, count in verdict_counts.items():
-        if '✅' in v or 'Connected' in v or 'Healthy' in v:
+        if 'Connected' in v or 'Healthy' in v:
             healthy_count += count
     
     if healthy_count:
         percentage = (healthy_count / total) * 100
-        click.echo(f"\n✅ Health: {healthy_count}/{total} ({percentage:.1f}%)")
+        click.echo(f"\nHealth: {healthy_count}/{total} ({percentage:.1f}%)")
     
     # ======================================================================
     # Performance Metrics
@@ -369,14 +370,14 @@ def display_results(runs, start, end, show_header=True):
     if latencies:
         avg_latency = sum(latencies) / len(latencies)
         max_latency = max(latencies)
-        click.echo(f"\n⏱️  Latency:")
+        click.echo(f"\nLatency:")
         click.echo(f"   Average: {avg_latency:.1f}ms")
         click.echo(f"   Maximum: {max_latency:.1f}ms")
     
     if losses:
         avg_loss = sum(losses) / len(losses)
         max_loss = max(losses)
-        click.echo(f"\n📉 Packet Loss:")
+        click.echo(f"\nPacket Loss:")
         click.echo(f"   Average: {avg_loss:.1f}%")
         click.echo(f"   Maximum: {max_loss:.1f}%")
     
@@ -385,11 +386,11 @@ def display_results(runs, start, end, show_header=True):
     # ======================================================================
     issues = {}
     for v, count in verdict_counts.items():
-        if '✅' not in v and 'Connected' not in v and 'Healthy' not in v:
+        if 'Connected' not in v and 'Healthy' not in v:
             issues[v] = count
     
     if issues:
-        click.echo(f"\n⚠️  Issues Detected:")
+        click.echo(f"\nIssues Detected:")
         for verdict, count in sorted(issues.items(), key=lambda x: x[1], reverse=True):
             percentage = (count / total) * 100
             click.echo(f"   {verdict}: {count} times ({percentage:.1f}%)")
@@ -398,7 +399,7 @@ def display_results(runs, start, end, show_header=True):
     # Recent Events (last 5 records)
     # ======================================================================
     if runs:
-        click.echo(f"\n📋 Recent Events (last 5):")
+        click.echo(f"\nRecent Events (last 5):")
         for run in runs[-5:]:
             time_str = run['timestamp'][11:19]  # Extract HH:MM:SS
             verdict = run['verdict']
@@ -409,4 +410,4 @@ def display_results(runs, start, end, show_header=True):
     # ======================================================================
     # Helpful Tip
     # ======================================================================
-    click.echo("\n💡 Tip: Use 'uite export' to save this data to CSV")
+    click.echo("\nTIP: Use 'uite export' to save this data to CSV")

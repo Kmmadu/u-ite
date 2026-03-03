@@ -39,9 +39,9 @@ def main():
     df = fetch_all_runs_df()
 
     if df is None or df.empty:
-        print("No diagnostic data available.")
-        print(f"Expected database path: {PROJECT_ROOT / 'data' / 'u_ite.db'}")
-        print("Please run Layer 3 diagnostics first.")
+        print("[ERROR] No diagnostic data available.")
+        print(f"[INFO] Expected database path: {PROJECT_ROOT / 'data' / 'u_ite.db'}")
+        print("[INFO] Please run Layer 3 diagnostics first.")
         return
 
     print(f"[INFO] Loaded {len(df)} diagnostic records.")
@@ -57,7 +57,7 @@ def main():
 
     dropped = len(df_all) - len(df_quality)
     if dropped > 0:
-        print(f"[WARN] {dropped} records lack quality metrics (expected for outages).")
+        print(f"[WARNING] {dropped} records lack quality metrics (expected for outages).")
 
     if df_quality.empty:
         print("[ERROR] No valid quality data available for plotting.")

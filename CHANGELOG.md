@@ -129,3 +129,24 @@ cat >> CHANGELOG.md << 'EOF'
 ### Fixed
 - Reset now properly clears memory cache
 - Logs and database can now be reset independently
+
+## [0.5.0] - 2026-03-03
+### Added
+- **Windows auto-start support** - Bundled nssm.exe eliminates manual installation
+- Windows users can now run `uite service enable --auto-start` with zero setup
+- New `windows_nssm.py` module for seamless Windows service management
+
+### Changed
+- **Professionalized all CLI output** - Removed all emojis throughout the codebase
+- Standardized status indicators (`✅` → `[OK]`, `❌` → `[ERROR]`, etc.)
+- Professional verdict messages (`🔴 No Network Connection` → `NO NETWORK CONNECTION`)
+- Tips format (`💡` → `TIP:`)
+
+### Fixed
+- Windows users no longer see "nssm not found" errors
+- All terminal encoding issues on Windows resolved
+- Consistent output across all platforms
+
+### Tests
+- 100% test pass rate on Linux
+- Windows auto-start ready for testing

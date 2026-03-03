@@ -18,6 +18,7 @@ import subprocess
 import time
 from pathlib import Path
 from uite.core.platform import OS, Platform
+from uite.service import ServiceManager
 
 
 @click.group()
@@ -62,9 +63,9 @@ def status():
             capture_output=True, text=True
         )
         if result.returncode == 0:
-            click.echo("✅ U-ITE is running")
+            click.echo("[OK] U-ITE is running")
         else:
-            click.echo("❌ U-ITE is not running")
+            click.echo("[ERROR] U-ITE is not running")
     
     elif platform == Platform.MACOS:
         # macOS: Check launchd service status
@@ -73,23 +74,19 @@ def status():
             capture_output=True, text=True
         )
         if result.returncode == 0:
-            click.echo("✅ U-ITE is running")
+            click.echo("[OK] U-ITE is running")
         else:
-            click.echo("❌ U-ITE is not running")
+            click.echo("[ERROR] U-ITE is not running")
     
     elif platform == Platform.WINDOWS:
-        # Windows: Check Windows service status
-        result = subprocess.run(
-            ["sc", "query", "U-ITE"],
-            capture_output=True, text=True
-        )
-        if "RUNNING" in result.stdout:
-            click.echo("✅ U-ITE is running")
+        # Use ServiceManager for consistent status
+        if ServiceManager.status() == "running":
+            click.echo("[OK] U-ITE is running")
         else:
-            click.echo("❌ U-ITE is not running")
+            click.echo("[ERROR] U-ITE is not running")
     
     else:
-        click.echo("❌ Unsupported platform")
+        click.echo("[ERROR] Unsupported platform")
 
 
 @service.command()
@@ -102,32 +99,60 @@ def enable(auto_start):
     - Without --auto-start: Just start the service now
     - With --auto-start: Install service and enable auto-start on boot
     
+    On Windows, auto-start uses bundled nssm.exe for better reliability.
+    
     Examples:
         uite service enable                    # Start service now
         uite service enable --auto-start       # Install and enable auto-start
     """
-    if auto_start:
-        # Full installation with auto-start
-        from uite.service.install import install_auto_start
-        install_auto_start()
-    else:
-        # Just start existing service (no auto-start)
-        platform = OS.get_platform()
-        
-        if platform == Platform.LINUX:
-            subprocess.run(["systemctl", "--user", "start", "uite"])
-            click.echo("✅ U-ITE service started")
+    platform = OS.get_platform()
+    
+    if platform == Platform.WINDOWS:
+        if auto_start:
+            # Windows with auto-start using bundled nssm
+            click.echo("[INFO] Installing U-ITE as Windows service with auto-start...")
+            click.echo("   Note: Administrator privileges required")
             
-        elif platform == Platform.MACOS:
-            subprocess.run(["launchctl", "start", "com.uite.observer"])
-            click.echo("✅ U-ITE service started")
-            
-        elif platform == Platform.WINDOWS:
-            subprocess.run(["sc", "start", "U-ITE"])
-            click.echo("✅ U-ITE service started")
-            
+            try:
+                from uite.service.windows_nssm import install
+                install()
+            except ImportError as e:
+                click.echo(f"[ERROR] Failed to load nssm module: {e}")
+                click.echo("   Falling back to basic service...")
+                ServiceManager.install(auto_start=False)
         else:
-            click.echo("❌ Unsupported platform")
+            # Windows without auto-start (simple background)
+            click.echo("[INFO] Starting U-ITE as background process...")
+            from uite.service.windows import start_simple_background
+            start_simple_background()
+            click.echo("[OK] U-ITE background service started")
+            click.echo("   Note: Service will stop when you reboot")
+            click.echo("   For auto-start on boot, use: uite service enable --auto-start")
+    
+    elif platform == Platform.LINUX:
+        if auto_start:
+            # Linux with auto-start
+            from uite.service.linux import install
+            install()
+            click.echo("[OK] U-ITE service installed with auto-start")
+        else:
+            # Linux without auto-start
+            subprocess.run(["systemctl", "--user", "start", "uite"])
+            click.echo("[OK] U-ITE service started")
+    
+    elif platform == Platform.MACOS:
+        if auto_start:
+            # macOS with auto-start
+            from uite.service.darwin import install
+            install()
+            click.echo("[OK] U-ITE service installed with auto-start")
+        else:
+            # macOS without auto-start
+            subprocess.run(["launchctl", "start", "com.uite.observer"])
+            click.echo("[OK] U-ITE service started")
+    
+    else:
+        click.echo("[ERROR] Unsupported platform")
 
 
 @service.command()
@@ -149,7 +174,7 @@ def disable():
         # Linux: Stop and disable systemd user service
         subprocess.run(["systemctl", "--user", "stop", "uite"])
         subprocess.run(["systemctl", "--user", "disable", "uite"])
-        click.echo("✅ U-ITE service stopped and disabled")
+        click.echo("[OK] U-ITE service stopped and disabled")
         
     elif platform == Platform.MACOS:
         # macOS: Unload launchd service
@@ -157,18 +182,23 @@ def disable():
         if plist.exists():
             subprocess.run(["launchctl", "unload", str(plist)])
             plist.unlink()  # Remove the plist file
-            click.echo("✅ U-ITE service stopped and disabled")
+            click.echo("[OK] U-ITE service stopped and disabled")
         else:
-            click.echo("❌ Service not found")
+            click.echo("[ERROR] Service not found")
             
     elif platform == Platform.WINDOWS:
-        # Windows: Stop and delete service
-        subprocess.run(["sc", "stop", "U-ITE"])
-        subprocess.run(["sc", "delete", "U-ITE"])
-        click.echo("✅ U-ITE service stopped and disabled")
+        # Windows: Use nssm uninstall if available
+        try:
+            from uite.service.windows_nssm import uninstall
+            uninstall()
+        except ImportError:
+            # Fall back to sc.exe
+            subprocess.run(["sc", "stop", "U-ITE"], capture_output=True)
+            subprocess.run(["sc", "delete", "U-ITE"], capture_output=True)
+            click.echo("[OK] U-ITE service stopped and disabled")
         
     else:
-        click.echo("❌ Unsupported platform")
+        click.echo("[ERROR] Unsupported platform")
 
 
 @service.command()
@@ -195,15 +225,15 @@ def logs():
     elif platform == Platform.WINDOWS:
         log_file = Path.home() / "AppData/Local/uite/logs/uite.log"
     else:
-        click.echo("❌ Unsupported platform")
+        click.echo("[ERROR] Unsupported platform")
         return
     
     # Check if log file exists and display last 50 lines
     if log_file.exists():
-        click.echo(f"\n📄 Last 50 lines from: {log_file}")
+        click.echo(f"\n[LOGS] Last 50 lines from: {log_file}")
         click.echo("-" * 60)
         
-        with open(log_file, 'r') as f:
+        with open(log_file, 'r', encoding='utf-8') as f:
             lines = f.readlines()
             # Show last 50 lines (or all if less than 50)
             start_idx = max(0, len(lines) - 50)
@@ -211,16 +241,10 @@ def logs():
                 click.echo(line.strip())
         
         click.echo("-" * 60)
-        click.echo(f"📁 Full log: {log_file}")
+        click.echo(f"[PATH] Full log: {log_file}")
     else:
         click.echo("No logs found. Is U-ITE running?")
         click.echo(f"Checked: {log_file}")
-
-
-# Note: The actual service installation (auto-start) is handled by
-# the install_auto_start() function imported from uite.service.install
-# This separation keeps the CLI clean while allowing platform-specific
-# installation logic to be maintained separately.
 
 
 # Export the command group for registration in main CLI

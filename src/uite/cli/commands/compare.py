@@ -107,11 +107,11 @@ def between(network1, network2, days, metric):
     
     # Handle not found cases
     if not id1:
-        click.echo(f"❌ Network '{network1}' not found")
+        click.echo(f"[ERROR] Network '{network1}' not found")
         _show_available_networks()
         return
     if not id2:
-        click.echo(f"❌ Network '{network2}' not found")
+        click.echo(f"[ERROR] Network '{network2}' not found")
         _show_available_networks()
         return
     
@@ -125,7 +125,7 @@ def between(network1, network2, days, metric):
     
     # Header
     click.echo("\n" + "=" * 80)
-    click.echo(f"📊 NETWORK COMPARISON (Last {days} days)")
+    click.echo(f"[STATS] NETWORK COMPARISON (Last {days} days)")
     click.echo("=" * 80)
     
     # Overview section (always shown, even with metric filter)
@@ -144,7 +144,7 @@ def between(network1, network2, days, metric):
     
     # Latency comparison (if requested)
     if metric == 'all' or metric == 'latency':
-        click.echo("\n⏱️  LATENCY COMPARISON")
+        click.echo("\nLATENCY COMPARISON")
         table_data = [
             ["Avg Latency", 
              f"{stats1['avg_latency']:.1f}ms" if stats1['avg_latency'] else 'N/A',
@@ -159,7 +159,7 @@ def between(network1, network2, days, metric):
     
     # Packet loss comparison (if requested)
     if metric == 'all' or metric == 'loss':
-        click.echo("\n📉 PACKET LOSS COMPARISON")
+        click.echo("\nPACKET LOSS COMPARISON")
         table_data = [
             ["Avg Loss", 
              f"{stats1['avg_loss']:.1f}%" if stats1['avg_loss'] else 'N/A',
@@ -174,7 +174,7 @@ def between(network1, network2, days, metric):
     
     # Winner determination based on uptime
     if metric == 'all' or metric == 'uptime':
-        click.echo("\n🏆 VERDICT")
+        click.echo("\nVERDICT")
         if uptime1 > uptime2:
             click.echo(f"   {profile1.name} is more reliable "
                       f"(+{(uptime1-uptime2):.1f}% uptime)")
@@ -202,10 +202,10 @@ def multi(networks, days):
     """
     # Validate input
     if len(networks) < 2:
-        click.echo("❌ Please specify at least 2 networks")
+        click.echo("[ERROR] Please specify at least 2 networks")
         return
     if len(networks) > 5:
-        click.echo("❌ Maximum 5 networks can be compared at once")
+        click.echo("[ERROR] Maximum 5 networks can be compared at once")
         return
     
     # Resolve all network identifiers to actual networks
@@ -215,11 +215,11 @@ def multi(networks, days):
         if nid:
             resolved.append((nid, profile))
         else:
-            click.echo(f"⚠️  Skipping unknown network: {n}")
+            click.echo(f"[WARNING] Skipping unknown network: {n}")
     
     # Ensure we have at least 2 valid networks
     if len(resolved) < 2:
-        click.echo("❌ Not enough valid networks to compare")
+        click.echo("[ERROR] Not enough valid networks to compare")
         _show_available_networks()
         return
     
@@ -231,7 +231,7 @@ def multi(networks, days):
     
     # Header
     click.echo("\n" + "=" * 80)
-    click.echo(f"📊 MULTI-NETWORK COMPARISON (Last {days} days)")
+    click.echo(f"[STATS] MULTI-NETWORK COMPARISON (Last {days} days)")
     click.echo("=" * 80)
     
     # Build comparison table
@@ -271,7 +271,7 @@ def multi(networks, days):
                     key=lambda i: stats_list[i][1]['healthy_runs'] / stats_list[i][1]['total_runs'] 
                     if stats_list[i][1]['total_runs'] > 0 else 0)
     winner = stats_list[winner_idx][0]
-    click.echo(f"\n🏆 Most reliable: {winner.name}")
+    click.echo(f"\nMost reliable: {winner.name}")
 
 
 def _show_available_networks():

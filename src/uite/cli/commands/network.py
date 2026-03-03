@@ -113,7 +113,7 @@ def list_networks():
         ])
     
     # Display the table
-    click.echo(f"\n📡 Connected Networks ({len(connected_networks)}):")
+    click.echo(f"\n[NETWORK] Connected Networks ({len(connected_networks)}):")
     click.echo(tabulate(
         table,
         headers=["ID", "Name", "Provider", "Tags", "First Seen", "Last Seen"],
@@ -123,10 +123,10 @@ def list_networks():
     # Show count of filtered offline sessions if any
     filtered_count = len(profiles) - len(connected_networks)
     if filtered_count > 0:
-        click.echo(f"\nℹ️  {filtered_count} offline session(s) not shown (use 'list-all' to see them)")
+        click.echo(f"\n[INFO] {filtered_count} offline session(s) not shown (use 'list-all' to see them)")
     
     # Show helpful tips
-    click.echo("\n💡 Tips:")
+    click.echo("\nTIPS:")
     click.echo("  • Rename: uite network rename <ID> \"New Name\"")
     click.echo("  • Set provider: uite network provider <ID> \"ISP Name\"")
     click.echo("  • Add tag: uite network tag <ID> <tag>")
@@ -180,7 +180,7 @@ def list_all_networks():
                 p.last_seen.strftime("%Y-%m-%d %H:%M")
             ])
         
-        click.echo("\n📡 Connected Networks:")
+        click.echo("\n[NETWORK] Connected Networks:")
         click.echo(tabulate(
             table,
             headers=["ID", "Name", "Provider", "Tags", "First Seen", "Last Seen"],
@@ -203,7 +203,7 @@ def list_all_networks():
                 p.last_seen.strftime("%Y-%m-%d %H:%M")
             ])
         
-        click.echo("\n📡 Offline Sessions:")
+        click.echo("\n[NETWORK] Offline Sessions:")
         click.echo(tabulate(
             table,
             headers=["ID", "Name", "Provider", "Tags", "First Seen", "Last Seen"],
@@ -233,9 +233,9 @@ def rename(network_id, name):
     
     if found:
         manager.rename(found, name)
-        click.echo(f"✅ Network renamed to: {name}")
+        click.echo(f"[OK] Network renamed to: {name}")
     else:
-        click.echo(f"❌ Network {network_id} not found")
+        click.echo(f"[ERROR] Network {network_id} not found")
         # Show available networks to help the user
         click.echo("\nAvailable networks:")
         for pid, profile in manager.profiles.items():
@@ -268,9 +268,9 @@ def provider(network_id, provider):
     if found:
         manager.profiles[found].provider = provider
         manager.save()
-        click.echo(f"✅ Provider set to: {provider}")
+        click.echo(f"[OK] Provider set to: {provider}")
     else:
-        click.echo(f"❌ Network {network_id} not found")
+        click.echo(f"[ERROR] Network {network_id} not found")
 
 
 @network.command()
@@ -301,11 +301,11 @@ def tag(network_id, tag):
         if tag not in manager.profiles[found].tags:
             manager.profiles[found].tags.append(tag)
             manager.save()
-            click.echo(f"✅ Added tag: {tag}")
+            click.echo(f"[OK] Added tag: {tag}")
         else:
-            click.echo(f"⚠️ Tag '{tag}' already exists")
+            click.echo(f"[WARNING] Tag '{tag}' already exists")
     else:
-        click.echo(f"❌ Network {network_id} not found")
+        click.echo(f"[ERROR] Network {network_id} not found")
 
 
 @network.command()
@@ -339,7 +339,7 @@ def stats(network_id):
             break
     
     if not found:
-        click.echo(f"❌ Network {network_id} not found")
+        click.echo(f"[ERROR] Network {network_id} not found")
         return
     
     # Get last 30 days of data
@@ -353,7 +353,7 @@ def stats(network_id):
     )
     
     # Display network information
-    click.echo(f"\n📊 Network Statistics: {profile.name}")
+    click.echo(f"\n[STATS] Network Statistics: {profile.name}")
     click.echo("=" * 50)
     click.echo(f"ID: {found}")
     click.echo(f"Provider: {profile.provider or 'Not set'}")
@@ -364,7 +364,7 @@ def stats(network_id):
     
     if runs:
         # Calculate uptime percentage
-        healthy = sum(1 for r in runs if '✅' in r.get('verdict', '') or 'Connected' in r.get('verdict', ''))
+        healthy = sum(1 for r in runs if 'Connected' in r.get('verdict', ''))
         uptime = (healthy / len(runs)) * 100 if runs else 0
         click.echo(f"Uptime (30d): {uptime:.1f}%")
 
@@ -406,7 +406,7 @@ def cleanup_networks(days):
     
     if removed > 0:
         manager.save()
-        click.echo(f"✅ Removed {removed} old offline session(s)")
+        click.echo(f"[OK] Removed {removed} old offline session(s)")
     else:
         click.echo("No old offline sessions to remove")
 
@@ -437,7 +437,7 @@ def reset_networks(force, logs, all_data):
     db_file = home / ".local/share/uite/u_ite.db"
     
     # Show what will be deleted
-    click.echo(f"\n📊 Current Network Status:")
+    click.echo(f"\n[STATS] Current Network Status:")
     
     # Check current networks
     manager = NetworkProfileManager()
@@ -465,7 +465,7 @@ def reset_networks(force, logs, all_data):
         size = db_file.stat().st_size
         click.echo(f"   • Database: {size} bytes")
     
-    click.echo("\n⚠️  This will DELETE:")
+    click.echo("\n[WARNING] This will DELETE:")
     click.echo("   • All network profiles")
     if logs:
         click.echo("   • All daemon and service logs")
@@ -475,7 +475,7 @@ def reset_networks(force, logs, all_data):
     # Confirm unless --force is used
     if not force:
         if not click.confirm("\nAre you ABSOLUTELY sure you want to reset?"):
-            click.echo("❌ Reset cancelled.")
+            click.echo("[ERROR] Reset cancelled.")
             return
     
     # Track what was deleted
@@ -486,12 +486,12 @@ def reset_networks(force, logs, all_data):
         # Create a backup
         backup_file = profiles_file.with_suffix(f'.backup.{datetime.now().strftime("%Y%m%d_%H%M%S")}')
         shutil.copy2(profiles_file, backup_file)
-        click.echo(f"📦 Network backup saved to: {backup_file}")
+        click.echo(f"[PATH] Network backup saved to: {backup_file}")
         
         # Delete the profiles file
         profiles_file.unlink()
         deleted_items.append("networks")
-        click.echo("   ✅ Network profiles deleted")
+        click.echo("   [OK] Network profiles deleted")
     
     # 2. Clear logs if requested
     if logs or all_data:
@@ -501,24 +501,24 @@ def reset_networks(force, logs, all_data):
         if daemon_log.exists():
             daemon_log.unlink()
             deleted_items.append("daemon logs")
-            click.echo("   ✅ Daemon logs cleared")
+            click.echo("   [OK] Daemon logs cleared")
         if service_log.exists():
             service_log.unlink()
             deleted_items.append("service logs")
-            click.echo("   ✅ Service logs cleared")
+            click.echo("   [OK] Service logs cleared")
     
     # 3. Clear database if --all
     if all_data and db_file.exists():
         db_file.unlink()
         deleted_items.append("database")
-        click.echo("   ✅ Diagnostic database deleted")
+        click.echo("   [OK] Diagnostic database deleted")
     
     # Force reload of profile manager
     import importlib
     import uite.core.network_profile
     importlib.reload(uite.core.network_profile)
     
-    click.echo(f"\n✅ Reset complete! Deleted: {', '.join(deleted_items)}")
+    click.echo(f"\n[OK] Reset complete! Deleted: {', '.join(deleted_items)}")
     
     # Verify
     time.sleep(1)
@@ -529,13 +529,13 @@ def reset_networks(force, logs, all_data):
     if len(remaining) == 0:
         click.echo("   ✓ No networks remaining")
     else:
-        click.echo(f"   ⚠️  {len(remaining)} networks still present")
+        click.echo(f"   [WARNING] {len(remaining)} networks still present")
     
     # Check logs
     if (logs or all_data) and not daemon_log.exists() and not service_log.exists():
         click.echo("   ✓ All logs cleared")
     elif logs or all_data:
-        click.echo("   ⚠️  Some logs may still exist")
+        click.echo("   [WARNING] Some logs may still exist")
 
 
 # Export the command group for registration in main CLI

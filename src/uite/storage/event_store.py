@@ -84,7 +84,7 @@ class EventStore:
             ...     "severity": "CRITICAL",
             ...     "device_id": "dev-001",
             ...     "network_id": "a1b2c3d4",
-            ...     "verdict": "🌍 ISP Outage",
+            ...     "verdict": "ISP Outage",
             ...     "summary": "Internet connection lost",
             ...     "description": "No internet connectivity for 5 minutes",
             ...     "duration": 300,

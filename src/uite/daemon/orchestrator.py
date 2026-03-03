@@ -9,7 +9,7 @@ import sys
 
 # ======================================================================
 # Windows Unicode/Emoji Fix - ULTIMATE VERSION
-# This ensures emojis display correctly on Windows consoles
+# This ensures proper text display on Windows consoles
 # and prevents ANY encoding errors during shutdown
 # ======================================================================
 if sys.platform == "win32":
@@ -84,9 +84,9 @@ class WindowsSafeHandler(logging.StreamHandler):
         try:
             super().emit(record)
         except UnicodeEncodeError:
-            # If encoding fails, try without emojis
+            # If encoding fails, try without special characters
             msg = self.format(record)
-            # Simple emoji removal for Windows
+            # Simple non-ASCII character removal for Windows
             import re
             msg = re.sub(r'[^\x00-\x7F]+', '', msg)
             try:
@@ -179,7 +179,7 @@ def observe(interval=DEFAULT_INTERVAL, router_ip_override=None,
                 # Connection restored
                 if state.outage_started is not None:
                     outage_duration = (datetime.now() - state.outage_started).seconds
-                    logger.info(f"✅ Connection restored after {format_duration(outage_duration)}")
+                    logger.info(f"[OK] Connection restored after {format_duration(outage_duration)}")
                     state.outage_started = None
                 
                 result = run_diagnostics(
@@ -215,12 +215,12 @@ def observe(interval=DEFAULT_INTERVAL, router_ip_override=None,
                     
                     # Smart, concise message based on what we know
                     if router_ip is None:
-                        logger.critical("🔌 No network connection detected")
+                        logger.critical("[ERROR] No network connection detected")
                     else:
-                        logger.critical("🌐 Internet unreachable")
+                        logger.critical("[ERROR] Internet unreachable")
                 else:
                     outage_duration = (datetime.now() - state.outage_started).seconds
-                    logger.warning(f"⏳ Still offline - {format_duration(outage_duration)}")
+                    logger.warning(f"[WARNING] Still offline - {format_duration(outage_duration)}")
 
         except Exception as e:
             logger.error(f"Observer cycle failed: {e}", exc_info=True)

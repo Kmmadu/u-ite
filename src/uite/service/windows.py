@@ -76,7 +76,7 @@ def install():
     Example:
         >>> from uite.service.windows import install
         >>> install()
-        '✅ U-ITE service installed and started'
+        'U-ITE service installed and started'
     """
     python_path = sys.executable
     script_path = Path(__file__).parent.parent.parent / "daemon" / "orchestrator.py"
@@ -86,10 +86,10 @@ def install():
     
     try:
         if nssm_path:
-            print(f"🔍 Found nssm at: {nssm_path}")
+            print(f"[INFO] Found nssm at: {nssm_path}")
             _install_with_nssm(nssm_path, python_path)
         else:
-            print("⚠️  nssm not found. Falling back to sc.exe (limited functionality).")
+            print("[WARNING] nssm not found. Falling back to sc.exe (limited functionality).")
             print("   For better service management, install nssm from: https://nssm.cc/download")
             _install_with_sc(python_path, script_path)
         
@@ -106,16 +106,16 @@ def install():
         # Start the service
         subprocess.run(f'sc start {SERVICE_NAME}', shell=True, check=True)
         
-        print(f"✅ U-ITE service installed and started")
+        print(f"[OK] U-ITE service installed and started")
         print(f"   Service name: {SERVICE_NAME}")
         print(f"   Display name: {SERVICE_DISPLAY_NAME}")
         print(f"   Use Services.msc or 'sc query {SERVICE_NAME}' to check status")
         
     except subprocess.CalledProcessError as e:
-        print(f"❌ Failed to install service: {e}")
+        print(f"[ERROR] Failed to install service: {e}")
         print("   Make sure you're running as Administrator.")
     except Exception as e:
-        print(f"❌ Unexpected error: {e}")
+        print(f"[ERROR] Unexpected error: {e}")
 
 
 def _install_with_nssm(nssm_path, python_path):
@@ -143,7 +143,7 @@ def _install_with_nssm(nssm_path, python_path):
     # Configure restart on failure
     subprocess.run([nssm_path, "set", SERVICE_NAME, "AppRestartDelay", "10000"], check=True)  # 10 seconds
     
-    print("✅ Service installed with nssm")
+    print("[OK] Service installed with nssm")
 
 
 def _install_with_sc(python_path, script_path):
@@ -168,7 +168,7 @@ def _install_with_sc(python_path, script_path):
     )
     subprocess.run(cmd, shell=True, check=True)
     
-    print("✅ Service installed with sc.exe (basic)")
+    print("[OK] Service installed with sc.exe (basic)")
 
 
 def uninstall():
@@ -187,7 +187,7 @@ def uninstall():
     Example:
         >>> from uite.service.windows import uninstall
         >>> uninstall()
-        '✅ U-ITE service uninstalled'
+        'U-ITE service uninstalled'
     """
     try:
         # Try to stop the service first (ignore errors if not running)
@@ -196,7 +196,7 @@ def uninstall():
         # Delete the service
         subprocess.run(f'sc delete {SERVICE_NAME}', shell=True, check=True)
         
-        print(f"✅ U-ITE service uninstalled")
+        print(f"[OK] U-ITE service uninstalled")
         
         # Try to clean up nssm if it was used
         nssm_path = find_nssm()
@@ -207,7 +207,7 @@ def uninstall():
                 pass  # Ignore nssm cleanup errors
                 
     except subprocess.CalledProcessError as e:
-        print(f"❌ Failed to uninstall service: {e}")
+        print(f"[ERROR] Failed to uninstall service: {e}")
         print("   Make sure you're running as Administrator.")
 
 
@@ -222,9 +222,9 @@ def start():
     """
     try:
         subprocess.run(f'sc start {SERVICE_NAME}', shell=True, check=True)
-        print(f"✅ Service started")
+        print(f"[OK] Service started")
     except subprocess.CalledProcessError as e:
-        print(f"❌ Failed to start service: {e}")
+        print(f"[ERROR] Failed to start service: {e}")
 
 
 def stop():
@@ -238,9 +238,9 @@ def stop():
     """
     try:
         subprocess.run(f'sc stop {SERVICE_NAME}', shell=True, check=True)
-        print(f"✅ Service stopped")
+        print(f"[OK] Service stopped")
     except subprocess.CalledProcessError as e:
-        print(f"❌ Failed to stop service: {e}")
+        print(f"[ERROR] Failed to stop service: {e}")
 
 
 def status():
@@ -268,6 +268,38 @@ def status():
         return result.stdout
     except Exception as e:
         return f"Error getting status: {e}"
+
+
+def start_simple_background():
+    """
+    Start U-ITE as a simple background process (no service).
+    Uses pythonw.exe to run without a console window.
+    
+    Returns:
+        bool: True if started successfully, False otherwise
+    """
+    import subprocess
+    import sys
+    from pathlib import Path
+    
+    python_dir = Path(sys.executable).parent
+    pythonw = python_dir / "pythonw.exe"
+    
+    if pythonw.exists():
+        try:
+            subprocess.Popen(
+                [str(pythonw), "-m", "uite.daemon.orchestrator"],
+                creationflags=subprocess.CREATE_NO_WINDOW,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL
+            )
+            return True
+        except Exception as e:
+            print(f"[ERROR] Failed to start background process: {e}")
+            return False
+    else:
+        print("[ERROR] Could not find pythonw.exe")
+        return False
 
 
 # ============================================================================
@@ -345,6 +377,7 @@ __all__ = [
     'start',
     'stop',
     'status',
+    'start_simple_background',
     'is_installed',
     'is_running',
     'get_config'

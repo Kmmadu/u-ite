@@ -34,24 +34,18 @@ class ServiceManager:
     Platform-specific implementations are in:
     - linux.py   (systemd)
     - darwin.py  (launchd)
-    - windows.py (Windows Service)
+    - windows.py (Windows Service using sc.exe)
+    - windows_nssm.py (Windows Service using nssm - auto-start)
     """
     
     @staticmethod
-    def install():
+    def install(auto_start=True):
         """
         Install U-ITE as a system service with auto-start.
         
-        This performs a full installation:
-        - Creates the necessary service configuration files
-        - Enables auto-start on boot
-        - Starts the service immediately
-        
-        Platform-specific actions:
-        - Linux: Creates systemd user service
-        - macOS: Creates launchd agent
-        - Windows: Creates Windows Service
-        
+        Args:
+            auto_start (bool): Whether to enable auto-start on boot
+            
         Returns:
             None
             
@@ -59,148 +53,123 @@ class ServiceManager:
             Exception: If platform is unsupported
             
         Example:
-            >>> ServiceManager.install()
+            >>> ServiceManager.install(auto_start=True)
         """
         platform = OS.get_platform()
         
         # Dynamically import the appropriate platform module
         if platform == Platform.LINUX:
             from .linux import install
+            install()
         elif platform == Platform.MACOS:
             from .darwin import install
+            install()
         elif platform == Platform.WINDOWS:
-            from .windows import install
+            if auto_start:
+                # Use nssm for auto-start
+                try:
+                    from .windows_nssm import install
+                    install()
+                except ImportError:
+                    # Fall back to regular windows service
+                    from .windows import install
+                    install()
+            else:
+                # Use simple sc.exe service
+                from .windows import install_simple
+                install_simple()
         else:
             raise Exception(f"Unsupported platform: {platform}")
-        
-        # Delegate to platform-specific implementation
-        install()
     
     @staticmethod
     def uninstall():
-        """
-        Uninstall U-ITE service completely.
-        
-        This removes all traces of the service:
-        - Stops the service if running
-        - Disables auto-start
-        - Removes service configuration files
-        
-        Returns:
-            None
-            
-        Raises:
-            Exception: If platform is unsupported
-            
-        Example:
-            >>> ServiceManager.uninstall()
-        """
+        """Uninstall U-ITE service completely."""
         platform = OS.get_platform()
         
         if platform == Platform.LINUX:
             from .linux import uninstall
+            uninstall()
         elif platform == Platform.MACOS:
             from .darwin import uninstall
+            uninstall()
         elif platform == Platform.WINDOWS:
-            from .windows import uninstall
+            # Try nssm first, fall back to sc.exe
+            try:
+                from .windows_nssm import uninstall
+                if not uninstall(silent=True):
+                    from .windows import uninstall
+                    uninstall()
+            except ImportError:
+                from .windows import uninstall
+                uninstall()
         else:
             raise Exception(f"Unsupported platform: {platform}")
-        
-        uninstall()
     
     @staticmethod
     def start():
-        """
-        Start the U-ITE service.
-        
-        This starts the service if it's installed but not running.
-        Does not change auto-start settings.
-        
-        Returns:
-            None
-            
-        Raises:
-            Exception: If platform is unsupported
-            
-        Example:
-            >>> ServiceManager.start()
-        """
+        """Start the U-ITE service."""
         platform = OS.get_platform()
         
         if platform == Platform.LINUX:
             from .linux import start
+            start()
         elif platform == Platform.MACOS:
             from .darwin import start
+            start()
         elif platform == Platform.WINDOWS:
-            from .windows import start
+            # Try nssm first, fall back to sc.exe
+            try:
+                from .windows_nssm import start
+                start()
+            except ImportError:
+                from .windows import start
+                start()
         else:
             raise Exception(f"Unsupported platform: {platform}")
-        
-        start()
     
     @staticmethod
     def stop():
-        """
-        Stop the U-ITE service.
-        
-        This stops the service if it's running.
-        Does not change auto-start settings.
-        
-        Returns:
-            None
-            
-        Raises:
-            Exception: If platform is unsupported
-            
-        Example:
-            >>> ServiceManager.stop()
-        """
+        """Stop the U-ITE service."""
         platform = OS.get_platform()
         
         if platform == Platform.LINUX:
             from .linux import stop
+            stop()
         elif platform == Platform.MACOS:
             from .darwin import stop
+            stop()
         elif platform == Platform.WINDOWS:
-            from .windows import stop
+            # Try nssm first, fall back to sc.exe
+            try:
+                from .windows_nssm import stop
+                stop()
+            except ImportError:
+                from .windows import stop
+                stop()
         else:
             raise Exception(f"Unsupported platform: {platform}")
-        
-        stop()
     
     @staticmethod
     def status():
-        """
-        Check the status of the U-ITE service.
-        
-        Returns platform-specific status information:
-        - Linux: systemctl status output
-        - macOS: launchctl list output
-        - Windows: sc query output
-        
-        Returns:
-            str: Platform-specific status information
-            
-        Raises:
-            Exception: If platform is unsupported
-            
-        Example:
-            >>> status = ServiceManager.status()
-            >>> if "running" in status.lower():
-            ...     print("Service is running")
-        """
+        """Check the status of the U-ITE service."""
         platform = OS.get_platform()
         
         if platform == Platform.LINUX:
             from .linux import status
+            return status()
         elif platform == Platform.MACOS:
             from .darwin import status
+            return status()
         elif platform == Platform.WINDOWS:
-            from .windows import status
+            # Try nssm first, fall back to sc.exe
+            try:
+                from .windows_nssm import status
+                return status()
+            except ImportError:
+                from .windows import status
+                return status()
         else:
             raise Exception(f"Unsupported platform: {platform}")
-        
-        return status()
 
 
 # ============================================================================

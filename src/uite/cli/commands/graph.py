@@ -127,7 +127,7 @@ def _generate_graph(graph_type, days, network):
         matplotlib.use('Agg')  # Use non-interactive backend for headless operation
         import numpy as np
     except ImportError as e:
-        click.echo(f"❌ Missing dependency: {e}")
+        click.echo(f"[ERROR] Missing dependency: {e}")
         click.echo("   Please install: pip install matplotlib numpy")
         return
     
@@ -173,7 +173,7 @@ def _generate_graph(graph_type, days, network):
             break
     
     if not network_id:
-        click.echo(f"❌ Network '{network}' not found")
+        click.echo(f"[ERROR] Network '{network}' not found")
         click.echo("\nAvailable networks:")
         for pid, profile in manager.profiles.items():
             if pid == "offline-state" or (hasattr(profile, 'is_offline_network') and profile.is_offline_network):
@@ -184,7 +184,7 @@ def _generate_graph(graph_type, days, network):
             click.echo(f"    ID: {pid[:8]}")
         return
     
-    click.echo(f"📡 Generating graph for network: {network_name}")
+    click.echo(f"[NETWORK] Generating graph for network: {network_name}")
     
     # ======================================================================
     # Data Fetching
@@ -193,10 +193,10 @@ def _generate_graph(graph_type, days, network):
     runs = HistoricalData.get_runs_for_last_days(network_id, days)
     
     if not runs:
-        click.echo(f"❌ No data found for {network_name} in the last {days} days")
+        click.echo(f"[ERROR] No data found for {network_name} in the last {days} days")
         return
     
-    click.echo(f"📊 Found {len(runs)} data points for this network")
+    click.echo(f"[STATS] Found {len(runs)} data points for this network")
     
     # ======================================================================
     # Data Preparation
@@ -211,16 +211,16 @@ def _generate_graph(graph_type, days, network):
             # Get verdict for status coloring (used in health graph)
             verdict = r.get('verdict', 'Unknown')
             
-            # Determine status category based on verdict emoji
-            if '✅' in verdict or 'Connected' in verdict or 'Healthy' in verdict:
+            # Determine status category based on verdict text
+            if 'Connected' in verdict or 'Healthy' in verdict:
                 status = 'healthy'
-            elif '⚠️' in verdict or 'Unstable' in verdict or 'Degraded' in verdict:
+            elif 'Unstable' in verdict or 'Degraded' in verdict:
                 status = 'degraded'
-            elif '🐢' in verdict or 'Slow' in verdict:
+            elif 'Slow' in verdict:
                 status = 'degraded'  # Consolidated into degraded
-            elif '🌍' in verdict or 'ISP' in verdict:
+            elif 'ISP' in verdict:
                 status = 'degraded'  # Consolidated into degraded
-            elif '🔴' in verdict or 'No Network' in verdict:
+            elif 'No Network' in verdict:
                 status = 'offline'   # Will be filtered out for health graph
             else:
                 status = 'other'
@@ -233,7 +233,7 @@ def _generate_graph(graph_type, days, network):
             continue
     
     if not valid_data:
-        click.echo(f"❌ No valid data points with complete metrics")
+        click.echo(f"[ERROR] No valid data points with complete metrics")
         return
     
     click.echo(f"   Using {len(valid_data)} data points with complete metrics")
@@ -345,7 +345,7 @@ def _generate_graph(graph_type, days, network):
         online_data = [(d[0], d[1], d[2], d[3]) for d in valid_data if d[3] != 'offline']
         
         if not online_data:
-            click.echo("⚠️ No online data points in this period (all offline)")
+            click.echo("[WARNING] No online data points in this period (all offline)")
             return
         
         click.echo(f"   Using {len(online_data)} online data points for health graph")
@@ -457,7 +457,7 @@ def _generate_graph(graph_type, days, network):
     # ======================================================================
     with tempfile.NamedTemporaryFile(suffix='.png', delete=False) as tmp:
         plt.savefig(tmp.name, dpi=100, bbox_inches='tight', facecolor='#1e1e1e')
-        click.echo(f"✅ Graph saved to: {tmp.name}")
+        click.echo(f"[OK] Graph saved to: {tmp.name}")
         
         # Open with default system image viewer (cross-platform)
         try:
@@ -471,10 +471,10 @@ def _generate_graph(graph_type, days, network):
             elif system == 'windows':
                 subprocess.run(['start', tmp.name], shell=True)
             else:
-                click.echo(f"📁 Graph file: {tmp.name}")
+                click.echo(f"[PATH] Graph file: {tmp.name}")
         except Exception as e:
             # If auto-open fails, at least show the file path
-            click.echo(f"📁 Graph file: {tmp.name}")
+            click.echo(f"[PATH] Graph file: {tmp.name}")
             click.echo(f"   (Could not auto-open: {e})")
 
 

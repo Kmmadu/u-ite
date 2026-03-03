@@ -117,7 +117,7 @@ def data(network, days, format, output):
     network_id, profile = _resolve_network(network)
     
     if not network_id:
-        click.echo(f"❌ Network '{network}' not found")
+        click.echo(f"[ERROR] Network '{network}' not found")
         # Show available networks to help the user
         click.echo("\nAvailable networks:")
         manager = NetworkProfileManager()
@@ -127,11 +127,11 @@ def data(network, days, format, output):
         return
     
     # Fetch the data
-    click.echo(f"📊 Exporting data for: {profile.name}")
+    click.echo(f"[STATS] Exporting data for: {profile.name}")
     runs = HistoricalData.get_runs_for_last_days(network_id, days)
     
     if not runs:
-        click.echo(f"❌ No data found for the last {days} days")
+        click.echo(f"[ERROR] No data found for the last {days} days")
         return
     
     click.echo(f"   Found {len(runs)} data points")
@@ -157,7 +157,7 @@ def data(network, days, format, output):
         if output:
             with open(output, 'w') as f:
                 f.write(output_data)
-            click.echo(f"✅ Exported to {output}")
+            click.echo(f"[OK] Exported to {output}")
         else:
             click.echo(output_data)
     
@@ -168,7 +168,7 @@ def data(network, days, format, output):
                 writer = csv.DictWriter(f, fieldnames=export_data[0].keys())
                 writer.writeheader()
                 writer.writerows(export_data)
-            click.echo(f"✅ Exported to {output}")
+            click.echo(f"[OK] Exported to {output}")
         else:
             # Print to stdout if no output file specified
             import io
@@ -251,18 +251,18 @@ def all(days, format, output):
             if runs:
                 # Generate filename: network_name.format (spaces replaced with underscores)
                 filename = output_path / f"{profile.name.replace(' ', '_')}.{format}"
-                click.echo(f"📊 Exporting {profile.name}...")
+                click.echo(f"[STATS] Exporting {profile.name}...")
                 
                 # Reuse the data command logic by invoking it programmatically
                 ctx = click.get_current_context()
                 ctx.invoke(data, network=pid, days=days, format=format, output=str(filename))
                 exported_count += 1
         
-        click.echo(f"\n✅ Exported {exported_count} networks to {output_path.absolute()}")
+        click.echo(f"\n[OK] Exported {exported_count} networks to {output_path.absolute()}")
         
     else:
         # User provided a file path, but --all requires a directory
-        click.echo("❌ For --all, please provide a directory path (not a file)")
+        click.echo("[ERROR] For --all, please provide a directory path (not a file)")
         click.echo("   Example: uite export all --days 7 --format csv --output exports/")
 
 
@@ -284,11 +284,11 @@ def clean(file, all_files, force):
         if os.path.exists(file):
             if force or click.confirm(f"Delete {file}?"):
                 os.remove(file)
-                click.echo(f"✅ Deleted {file}")
+                click.echo(f"[OK] Deleted {file}")
             else:
-                click.echo("❌ Cancelled")
+                click.echo("[ERROR] Cancelled")
         else:
-            click.echo(f"❌ File not found: {file}")
+            click.echo(f"[ERROR] File not found: {file}")
     
     elif all_files:
         csv_files = list(Path().glob("*.csv"))
@@ -303,11 +303,11 @@ def clean(file, all_files, force):
         if force or click.confirm("Delete all CSV files?"):
             for f in csv_files:
                 f.unlink()
-            click.echo(f"✅ Deleted {len(csv_files)} CSV files")
+            click.echo(f"[OK] Deleted {len(csv_files)} CSV files")
         else:
-            click.echo("❌ Cancelled")
+            click.echo("[ERROR] Cancelled")
     else:
-        click.echo("❌ Please specify --file or --all")
+        click.echo("[ERROR] Please specify --file or --all")
         click.echo("   Example: uite export clean --file test.csv")
         click.echo("   Example: uite export clean --all")
 

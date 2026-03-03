@@ -1,4 +1,7 @@
+CHANGELOG.md
+CONTRIBUTING.md
 LICENSE
+MANIFEST.in
 README.md
 pyproject.toml
 setup.py
@@ -11,13 +14,18 @@ src/u_ite.egg-info/requires.txt
 src/u_ite.egg-info/top_level.txt
 src/uite/__init__.py
 src/uite/__main__.py
+src/uite/home_data.csv
 src/uite/api/__init__.py
 src/uite/api/routes.py
 src/uite/api/server.py
+src/uite/api/reports/latency_over_time.png
+src/uite/api/reports/loss_over_time.png
+src/uite/api/reports/verdict_distribution.png
 src/uite/api/visualization/__init__.py
 src/uite/api/visualization/dashboard.py
 src/uite/api/visualization/plots.py
 src/uite/api/visualization/queries.py
+src/uite/bin/nssm.exe
 src/uite/cli/__init__.py
 src/uite/cli/__main__.py
 src/uite/cli/app.py
@@ -49,6 +57,8 @@ src/uite/diagnostics/darwin.py
 src/uite/diagnostics/factory.py
 src/uite/diagnostics/linux.py
 src/uite/diagnostics/windows.py
+src/uite/exports/Home_Router.json
+src/uite/exports/Office_Network.json
 src/uite/service/__init__.py
 src/uite/service/darwin.py
 src/uite/service/install.py
@@ -74,3 +84,5 @@ src/uite/tracking/state/emitter.py
 src/uite/tracking/state/engine.py
 src/uite/tracking/state/network_state.py
 src/uite/tracking/state/transitions.py
+tests/test_edge_cases.py
+tests/test_output_professional.py

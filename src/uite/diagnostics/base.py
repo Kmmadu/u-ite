@@ -269,12 +269,12 @@ def run_diagnostics(router_ip, internet_ip="8.8.8.8", website="www.google.com",
             - http_ok: bool
             - avg_latency: float or None
             - packet_loss: float or None
-            - verdict: Human-readable status with emoji
+            - verdict: Human-readable status
             
     Example:
         >>> result = run_diagnostics("192.168.1.1", return_result=True)
         >>> print(result["verdict"])
-        '✅ Connected'
+        'Connected'
     """
     # Validate input
     if not router_ip:
@@ -304,7 +304,7 @@ def run_diagnostics(router_ip, internet_ip="8.8.8.8", website="www.google.com",
         if not return_result: 
             print("[PASS] Router reachable")
     else:
-        verdict = "🔴 No Network Connection"
+        verdict = "NO NETWORK CONNECTION"
         if not return_result: 
             print("[FAIL] Router unreachable - Check cables or WiFi")
         # Skip remaining tests - they're meaningless without router
@@ -336,7 +336,7 @@ def run_diagnostics(router_ip, internet_ip="8.8.8.8", website="www.google.com",
         if not return_result: 
             print("[PASS] Internet reachable")
     else:
-        verdict = "🌍 ISP Outage"
+        verdict = "ISP OUTAGE"
         if not return_result: 
             print("[FAIL] Internet unreachable - Your ISP may be down")
         # Skip remaining tests
@@ -367,7 +367,7 @@ def run_diagnostics(router_ip, internet_ip="8.8.8.8", website="www.google.com",
         if not return_result: 
             print("[PASS] DNS OK")
     else:
-        verdict = "🔍 DNS Resolution Failed"
+        verdict = "DNS RESOLUTION FAILED"
         if not return_result: 
             print("[FAIL] DNS failure - Can't resolve website names")
         # Skip HTTP test
@@ -397,7 +397,7 @@ def run_diagnostics(router_ip, internet_ip="8.8.8.8", website="www.google.com",
         if not return_result: 
             print("[PASS] HTTP OK")
     else:
-        verdict = "🌐 Web Access Issue"
+        verdict = "WEB ACCESS ISSUE"
         if not return_result: 
             print("[FAIL] HTTP failure - Can't load websites")
         # Compile and return early
@@ -431,16 +431,16 @@ def run_diagnostics(router_ip, internet_ip="8.8.8.8", website="www.google.com",
         
         # Determine quality verdict based on available metrics
         if loss is not None and loss >= 20:
-            verdict = "⚠️ Unstable Connection"
+            verdict = "UNSTABLE CONNECTION"
         elif latency is not None and latency >= 200:
-            verdict = "🐢 Slow Connection"
+            verdict = "SLOW CONNECTION"
         elif (loss is not None and loss >= 10) or (latency is not None and latency >= 100):
-            verdict = "📶 Degraded Performance"
+            verdict = "DEGRADED PERFORMANCE"
         else:
-            verdict = "✅ Connected"
+            verdict = "CONNECTED"
     else:
         # If we couldn't measure anything, assume connected
-        verdict = "✅ Connected"
+        verdict = "CONNECTED"
 
     # Compile results
     diagnostic_data = {
@@ -488,7 +488,7 @@ if __name__ == "__main__":
     parser.add_argument("--website", default="www.google.com", 
                        help="Website name for DNS resolution check.")
     parser.add_argument("--url", default="https://www.google.com", 
-                       help="Full URL for HTTP/HTTPS connectivity check.")
+                       help="Full URL for HTTP/HTTP S connectivity check.")
     
     args = parser.parse_args()
 

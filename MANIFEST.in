@@ -1,0 +1,18 @@
+# Include package data
+include src/uite/bin/nssm.exe
+include src/uite/storage/schema.sql
+
+# Include documentation
+include README.md
+include CHANGELOG.md
+include LICENSE
+include CONTRIBUTING.md
+
+# Include tests
+recursive-include tests *.py
+
+# Exclude cache and temp files
+prune **/__pycache__
+prune **/*.pyc
+prune **/*.pyo
+prune **/*.pyd

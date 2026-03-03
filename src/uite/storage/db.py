@@ -123,7 +123,7 @@ def save_run(data: dict):
         ...     "http_ok": True,
         ...     "avg_latency": 15.3,
         ...     "packet_loss": 0,
-        ...     "verdict": "✅ Connected"
+        ...     "verdict": "Connected"
         ... })
     """
     with sqlite3.connect(DB_PATH) as conn:
@@ -206,7 +206,7 @@ class HistoricalData:
             start_dt = datetime.strptime(start_str, "%d-%m-%Y %H:%M")
             end_dt = datetime.strptime(end_str, "%d-%m-%Y %H:%M")
         except ValueError as e:
-            print(f"❌ Date parsing error: {e}")
+            print(f"[ERROR] Date parsing error: {e}")
             return []
         
         # Connect to database with row factory for dict-like access
@@ -276,7 +276,7 @@ class HistoricalData:
         
         Calculates:
         - Total number of diagnostic runs
-        - Number of healthy runs (with ✅/Connected/Healthy verdict)
+        - Number of healthy runs (with Connected/Healthy verdict)
         - Average and maximum latency
         - Average and maximum packet loss
         
@@ -306,8 +306,7 @@ class HistoricalData:
         query = """
             SELECT 
                 COUNT(*) as total_runs,
-                SUM(CASE WHEN verdict LIKE '%✅%' 
-                          OR verdict LIKE '%Connected%' 
+                SUM(CASE WHEN verdict LIKE '%Connected%' 
                           OR verdict LIKE '%Healthy%' 
                     THEN 1 ELSE 0 END) as healthy_runs,
                 AVG(avg_latency_ms) as avg_latency,
@@ -351,7 +350,7 @@ class HistoricalData:
             ...     "01-02-2026", "00:00",
             ...     "07-02-2026", "23:59"
             ... )
-            >>> print(summary['✅ Connected'])
+            >>> print(summary['Connected'])
             42
         """
         runs = HistoricalData.get_runs_by_date_range(

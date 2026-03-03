@@ -62,9 +62,9 @@ def start(interval):
         uite daemon start
         uite daemon start --interval 60
     """
-    click.echo(f"🚀 U-ITE Network Observer")
+    click.echo("[START] U-ITE Network Observer")
     click.echo(f"   Interval: {interval}s | Press Ctrl+C to stop")
-    click.echo("─" * 50)  # Add separator line
+    click.echo("-" * 50)  # Add separator line
     # No extra blank line - logs start immediately after separator
     
     # ======================================================================
@@ -104,7 +104,7 @@ def start(interval):
     
     # Verify the script exists
     if not orchestrator_script or not orchestrator_script.exists():
-        click.echo(f"❌ Error: Orchestrator script not found")
+        click.echo("[ERROR] Orchestrator script not found")
         click.echo(f"   Tried multiple locations:")
         click.echo(f"   - In installed package: site-packages/uite/daemon/orchestrator.py")
         click.echo(f"   - In development: src/uite/daemon/orchestrator.py")
@@ -126,15 +126,15 @@ def start(interval):
         
         # Check if the process exited with an error
         if process.returncode != 0:
-            click.echo(f"❌ Observer exited with code {process.returncode}")
+            click.echo(f"[ERROR] Observer exited with code {process.returncode}")
             
     except KeyboardInterrupt:
         # Handle Ctrl+C gracefully - the subprocess will also receive SIGINT
-        click.echo("\n✅ Observer stopped")
+        click.echo("\n[OK] Observer stopped")
         
     except Exception as e:
         # Handle any other unexpected errors
-        click.echo(f"❌ Failed to start observer: {e}")
+        click.echo(f"[ERROR] Failed to start observer: {e}")
 
 
 @daemon.command()
@@ -159,14 +159,14 @@ def status():
         if result.returncode == 0:
             # Process found - show PIDs
             pids = result.stdout.strip().split('\n')
-            click.echo(f"✅ Observer is running (PID: {', '.join(pids)})")
+            click.echo(f"[OK] Observer is running (PID: {', '.join(pids)})")
         else:
             # No process found
-            click.echo("❌ Observer is not running")
+            click.echo("[ERROR] Observer is not running")
             
     except FileNotFoundError:
         # pgrep not installed on this system
-        click.echo("⚠️  Cannot check status (pgrep not available)")
+        click.echo("[WARNING] Cannot check status (pgrep not available)")
         click.echo("   Try: ps aux | grep orchestrator.py")
 
 
@@ -189,13 +189,13 @@ def stop():
         )
         
         if result.returncode == 0:
-            click.echo("✅ Observer stopped")
+            click.echo("[OK] Observer stopped")
         else:
-            click.echo("❌ No running observer found")
+            click.echo("[ERROR] No running observer found")
             
     except FileNotFoundError:
         # pkill not installed on this system
-        click.echo("⚠️  Cannot stop observer (pkill not available)")
+        click.echo("[WARNING] Cannot stop observer (pkill not available)")
         click.echo("   Try: pkill -f orchestrator.py")
 
 
@@ -242,9 +242,9 @@ def logs(lines):
                     click.echo(line.rstrip())
             
             # Show the full path for reference
-            click.echo(f"\n📁 Full log: {log_file.absolute()}")
+            click.echo(f"\n[PATH] Full log: {log_file.absolute()}")
         except Exception as e:
-            click.echo(f"❌ Error reading log file: {e}")
+            click.echo(f"[ERROR] Error reading log file: {e}")
     else:
         click.echo("No logs found. Start the observer first.")
         if sys.platform == "win32":
@@ -272,9 +272,9 @@ def clear_logs(force):
     
     if force or click.confirm("Clear log file?"):
         log_file.write_text("")  # Empty the file
-        click.echo("✅ Log file cleared")
+        click.echo("[OK] Log file cleared")
     else:
-        click.echo("❌ Cancelled")
+        click.echo("[ERROR] Cancelled")
 
 
 # Export the command group for registration in main CLI
